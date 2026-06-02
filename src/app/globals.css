@@ -111,12 +111,13 @@ a {
   position: relative;
   min-height: 29rem;
   overflow: hidden;
-  /* Image source: https://commons.wikimedia.org/wiki/File:Great_Smoky_Mountains_National_Park_GRSM8830.jpg
-     Usage basis: public domain National Park Service image via Wikimedia Commons.
-     Safe use note: NPS materials are public domain in the U.S.; this use does not imply NPS endorsement. */
+  /* Image source: https://npgallery.nps.gov/AssetDetail/88a8eea1-1dd8-b71c-076e-e5a04e63bacb
+     Direct file: https://npgallery.nps.gov/GetAsset/88A8EEA1-1DD8-B71C-076EE5A04E63BACB/original.jpg
+     Usage basis: NPGallery lists this Great Smoky Mountains National Park asset as public domain with "Full Granting Rights."
+     Safe use note: NPS public-domain image; this use does not imply NPS endorsement. */
   background:
     linear-gradient(90deg, rgba(20, 55, 70, 0.78), rgba(20, 55, 70, 0.34) 56%, rgba(20, 55, 70, 0.18)),
-    url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Great_Smoky_Mountains_National_Park_GRSM8830.jpg/960px-Great_Smoky_Mountains_National_Park_GRSM8830.jpg");
+    url("https://npgallery.nps.gov/GetAsset/88A8EEA1-1DD8-B71C-076EE5A04E63BACB/original.jpg");
   background-position: center 44%;
   background-size: cover;
   color: #ffffff;
@@ -257,9 +258,10 @@ a {
 }
 
 .guide-tile.ridge {
+  /* Same NPS public-domain Newfound Gap Road fall image used for the hero above. */
   background:
     linear-gradient(180deg, rgba(20, 55, 70, 0.14), rgba(20, 55, 70, 0.74)),
-    url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Great_Smoky_Mountains_National_Park_GRSM8830.jpg/960px-Great_Smoky_Mountains_National_Park_GRSM8830.jpg");
+    url("https://npgallery.nps.gov/GetAsset/88A8EEA1-1DD8-B71C-076EE5A04E63BACB/original.jpg");
   background-position: center 38%;
   background-size: cover;
 }
