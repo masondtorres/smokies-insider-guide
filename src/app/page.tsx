@@ -7,11 +7,20 @@ const navTabs = [
 ];
 
 const utilityLinks = [
-  ["Plan Your Trip", "#hero"],
   ["Area Maps", "#explore-the-smokies"],
-  ["Events", "#visitor-resources"],
-  ["Coupons", "#coupons-deals"],
-  ["Advertise", "#business"],
+  ["Calendar of Events", "#visitor-resources"],
+  ["Area Webcams", "#visitor-resources"],
+  ["Coupon Book", "#coupons-deals"],
+  ["Plan Your Trip", "#hero"],
+];
+
+const utilityTiles = [
+  ["Area Maps", "Pick the town, road and park side that match your day.", "#explore-the-smokies"],
+  ["Coupons", "Check verified visitor offers before you spend.", "#coupons-deals"],
+  ["Events", "Watch for crowd drivers, festivals and busy weekends.", "#visitor-resources"],
+  ["Webcams", "Look at conditions before you leave the cabin.", "#visitor-resources"],
+  ["Things To Do", "Find attractions, rainy-day plans and scenic drives.", "#things-to-do"],
+  ["Restaurants", "Match meals to your town, timing and route.", "#eat-stay-shop"],
 ];
 
 const lookupButtons = [
@@ -280,6 +289,15 @@ export default function Home() {
         {insiderNotes.map((note) => (
           <a href="#" key={note}>
             {note}
+          </a>
+        ))}
+      </section>
+
+      <section className="utility-board" aria-label="Visitor utilities">
+        {utilityTiles.map(([title, text, href]) => (
+          <a className="utility-tile" href={href} key={title}>
+            <span>{title}</span>
+            <small>{text}</small>
           </a>
         ))}
       </section>
