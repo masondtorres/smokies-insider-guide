@@ -240,7 +240,6 @@ export default function Home() {
 
         <div className="brand-row">
           <a className="brand-mark" href="#hero" aria-label="Smokies Insider Guide home">
-            <span className="brand-icon">SIG</span>
             <span>
               <strong>Smokies Insider Guide</strong>
               <small>Local roots. Real connections. Better Smokies planning.</small>
