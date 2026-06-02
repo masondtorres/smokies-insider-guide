@@ -47,7 +47,9 @@ a {
   top: 0;
   z-index: 20;
   border-bottom: 1px solid rgba(60, 126, 161, 0.16);
-  background: rgba(255, 255, 255, 0.94);
+  background:
+    linear-gradient(90deg, rgba(127, 199, 230, 0.18), rgba(255, 247, 232, 0) 42%, rgba(228, 182, 74, 0.14)),
+    rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   box-shadow: 0 8px 24px rgba(31, 62, 80, 0.08);
 }
@@ -57,7 +59,7 @@ a {
   gap: 0.85rem;
   margin: 0 auto;
   max-width: 1180px;
-  padding: 1rem 1rem 0.95rem;
+  padding: 1.05rem 1rem 1rem;
 }
 
 .brand-mark {
@@ -70,11 +72,22 @@ a {
 }
 
 .brand-mark strong {
+  position: relative;
   color: var(--forest-dark);
   font-size: clamp(1.65rem, 4vw, 2.8rem);
   font-weight: 850;
   letter-spacing: 0;
   line-height: 1;
+}
+
+.brand-mark strong::after {
+  content: "";
+  display: block;
+  width: 7rem;
+  height: 0.2rem;
+  margin-top: 0.35rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sky), var(--gold), var(--forest));
 }
 
 .brand-mark small {
@@ -113,14 +126,14 @@ a {
   position: relative;
   min-height: 29rem;
   overflow: hidden;
-  /* Image source: https://www.pexels.com/photo/smokey-mountains-21907690/
-     Direct file: https://images.pexels.com/photos/21907690/pexels-photo-21907690.jpeg
+  /* Image source: https://www.pexels.com/photo/autumn-vista-in-great-smoky-mountains-36397149/
+     Direct file: https://images.pexels.com/photos/36397149/pexels-photo-36397149.jpeg
      Usage basis: Pexels free-to-use license, including commercial website use.
-     Why safe: Pexels lists this Gatlinburg, TN autumn Smokies image as free to use; no competitor, attraction, or business photo used. */
+     Why safe: Pexels lists this Great Smoky Mountains autumn vista as free to use; no competitor, attraction, or business photo used. */
   background:
-    linear-gradient(90deg, rgba(20, 55, 70, 0.76), rgba(20, 55, 70, 0.28) 58%, rgba(20, 55, 70, 0.08)),
-    url("https://images.pexels.com/photos/21907690/pexels-photo-21907690.jpeg?auto=compress&cs=tinysrgb&w=1800");
-  background-position: center 46%;
+    linear-gradient(90deg, rgba(20, 55, 70, 0.72), rgba(20, 55, 70, 0.22) 58%, rgba(20, 55, 70, 0.06)),
+    url("https://images.pexels.com/photos/36397149/pexels-photo-36397149.jpeg?auto=compress&cs=tinysrgb&w=1800");
+  background-position: center 50%;
   background-size: cover;
   color: #ffffff;
 }
@@ -259,19 +272,19 @@ a {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at center, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.54) 74%),
-    linear-gradient(180deg, rgba(11, 35, 29, 0.16), rgba(11, 35, 29, 0.38));
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.42) 74%),
+    linear-gradient(180deg, rgba(11, 35, 29, 0.08), rgba(11, 35, 29, 0.28));
 }
 
 .guide-tile.explore {
-  /* Image source: https://www.pexels.com/photo/smokey-mountains-21907690/
-     Direct file: https://images.pexels.com/photos/21907690/pexels-photo-21907690.jpeg
+  /* Image source: https://www.pexels.com/photo/autumn-vista-in-great-smoky-mountains-36397149/
+     Direct file: https://images.pexels.com/photos/36397149/pexels-photo-36397149.jpeg
      Usage basis: Pexels free-to-use license, including commercial website use.
-     Why safe: rights-safe autumn Gatlinburg/Smokies image, not copied from a competitor or local business. */
+     Why safe: rights-safe Great Smoky Mountains autumn vista, not copied from a competitor or local business. */
   background:
-    linear-gradient(180deg, rgba(20, 55, 70, 0.1), rgba(20, 55, 70, 0.5)),
-    url("https://images.pexels.com/photos/21907690/pexels-photo-21907690.jpeg?auto=compress&cs=tinysrgb&w=1400");
-  background-position: center 48%;
+    linear-gradient(180deg, rgba(20, 55, 70, 0.06), rgba(20, 55, 70, 0.38)),
+    url("https://images.pexels.com/photos/36397149/pexels-photo-36397149.jpeg?auto=compress&cs=tinysrgb&w=1400");
+  background-position: center 52%;
   background-size: cover;
 }
 
@@ -281,7 +294,7 @@ a {
      Usage basis: Pexels free-to-use license, including commercial website use.
      Why safe: Pexels identifies the image as Great Smoky Mountains National Park and free to use; no competitor or business photo used. */
   background:
-    linear-gradient(180deg, rgba(20, 55, 70, 0.08), rgba(20, 55, 70, 0.48)),
+    linear-gradient(180deg, rgba(20, 55, 70, 0.06), rgba(20, 55, 70, 0.38)),
     url("https://images.pexels.com/photos/36613599/pexels-photo-36613599.jpeg?auto=compress&cs=tinysrgb&w=1400");
   background-position: center 46%;
   background-size: cover;
@@ -290,22 +303,29 @@ a {
 .guide-tile.local {
   /* Fallback styling: no strong rights-safe Smokies-specific food/cabin/shop image selected yet. */
   background:
-    linear-gradient(180deg, rgba(20, 55, 70, 0.1), rgba(20, 55, 70, 0.56)),
+    linear-gradient(180deg, rgba(20, 55, 70, 0.08), rgba(20, 55, 70, 0.42)),
     linear-gradient(135deg, #8c6a46, #d9a957 52%, #245f42);
 }
 
 .guide-tile.resources {
   /* Fallback styling: no strong rights-safe road/map/resource photo selected yet. */
   background:
-    linear-gradient(180deg, rgba(20, 55, 70, 0.1), rgba(20, 55, 70, 0.54)),
+    linear-gradient(180deg, rgba(20, 55, 70, 0.08), rgba(20, 55, 70, 0.4)),
     linear-gradient(135deg, #3c7ea1, #7fc7e6 52%, #245f42);
 }
 
 .guide-tile.coupon {
   /* Fallback styling: clean coupon-card treatment until verified offer imagery is available. */
   background:
-    linear-gradient(180deg, rgba(20, 55, 70, 0.08), rgba(20, 55, 70, 0.5)),
+    linear-gradient(180deg, rgba(20, 55, 70, 0.06), rgba(20, 55, 70, 0.36)),
     linear-gradient(135deg, #d96b3a, #e4b64a);
+}
+
+.guide-tile.events {
+  /* Fallback styling: clean event-board treatment until verified event imagery is available. */
+  background:
+    linear-gradient(180deg, rgba(20, 55, 70, 0.06), rgba(20, 55, 70, 0.38)),
+    linear-gradient(135deg, #7fc7e6, #e4b64a 54%, #245f42);
 }
 
 .guide-tile span,

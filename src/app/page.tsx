@@ -37,6 +37,12 @@ const guideTiles = [
     href: "#shortcuts",
     tone: "coupon",
   },
+  {
+    title: "Events & What's Happening",
+    text: "Festivals, shows, seasonal events and local happenings.",
+    href: "#shortcuts",
+    tone: "events",
+  },
 ];
 
 const shortcutButtons = [
