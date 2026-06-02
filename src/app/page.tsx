@@ -4,7 +4,6 @@ const navItems = [
   ["Eat, Stay & Shop", "#guide"],
   ["Visitor Resources", "#guide"],
   ["Coupons & Deals", "#guide"],
-  ["Advertise", "#business"],
 ];
 
 const guideTiles = [
@@ -12,37 +11,31 @@ const guideTiles = [
     title: "Explore the Smokies",
     text: "Pick the right town, road or park area.",
     href: "#areas",
-    tone: "ridge",
+    tone: "explore",
   },
   {
     title: "Things To Do",
     text: "Attractions, trails, shows and rainy-day plans.",
     href: "#shortcuts",
-    tone: "forest",
+    tone: "activity",
   },
   {
     title: "Eat, Stay & Shop",
     text: "Restaurants, cabins, shopping and local stops.",
     href: "#shortcuts",
-    tone: "valley",
+    tone: "local",
   },
   {
     title: "Visitor Resources",
     text: "Parking, traffic, maps, weather and park basics.",
     href: "#shortcuts",
-    tone: "sky",
+    tone: "resources",
   },
   {
     title: "Coupons & Deals",
     text: "Verified local offers as businesses confirm them.",
     href: "#shortcuts",
     tone: "coupon",
-  },
-  {
-    title: "Advertise / Get Listed",
-    text: "Reach visitors before they choose where to go.",
-    href: "#business",
-    tone: "business",
   },
 ];
 
@@ -131,6 +124,9 @@ export default function Home() {
                 {label}
               </a>
             ))}
+            <a className="secondary-nav" href="#business">
+              Advertise / Get Listed
+            </a>
           </nav>
         </div>
       </header>
