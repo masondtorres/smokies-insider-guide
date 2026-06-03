@@ -139,17 +139,17 @@ export default function Home() {
 
       <section className="hero" id="hero">
         <div className="hero-inner">
-          <p className="eyebrow">Smoky Mountains visitor guide</p>
-          <h1>Know where to go before you get here.</h1>
+          <p className="hero-brand">SMOKIES INSIDER GUIDE</p>
+          <p className="hero-note">Local roots. Better Smokies planning.</p>
+          <h1>Plan the Smokies like you know the place.</h1>
           <p>
-            Pick the right town, find food and attractions, check useful deals
-            and avoid the common Smokies planning mistakes.
+            Pick the right town, find the right stops and build a trip that
+            actually works.
           </p>
           <div className="hero-actions">
             <GuideButton href="#areas">Explore the Smokies</GuideButton>
             <GuideButton href="#guide">Things To Do</GuideButton>
             <GuideButton href="#guide">Coupons & Deals</GuideButton>
-            <GuideButton href="#business">Advertise / Get Listed</GuideButton>
           </div>
         </div>
       </section>
