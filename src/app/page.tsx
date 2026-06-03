@@ -38,8 +38,8 @@ const guideTiles = [
     tone: "coupon",
   },
   {
-    title: "Events & What's Happening",
-    text: "Festivals, shows, seasonal events and local happenings.",
+    title: "Events & Shows",
+    text: "Festivals, shows, car shows and seasonal events.",
     href: "#shortcuts",
     tone: "events",
   },
@@ -246,8 +246,16 @@ export default function Home() {
       </section>
 
       <footer className="site-footer">
-        <strong>Smokies Insider Guide</strong>
-        <span>Local roots. Better Smokies planning.</span>
+        <div>
+          <strong>Smokies Insider Guide</strong>
+          <span>Local roots. Better Smokies planning.</span>
+        </div>
+        <nav aria-label="Footer navigation">
+          <a href="#">Contact</a>
+          <a href="#business">Advertise</a>
+          <a href="#">Privacy</a>
+          <a href="#">Disclaimer</a>
+        </nav>
       </footer>
     </main>
   );
