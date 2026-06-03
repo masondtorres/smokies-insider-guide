@@ -42,9 +42,9 @@ export default function Home() {
     <main>
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-content">
-          <h1 id="hero-title">Plan the Smokies like an insider.</h1>
+          <h1 id="hero-title">The insider’s guide to the Smokies:</h1>
           <p>
-            Pick the right town, find the right stops and build a trip that actually works.
+            Better routes, places to eat, deals, things to do, events and visitor resources without the guesswork.
           </p>
         </div>
       </section>
@@ -68,14 +68,16 @@ export default function Home() {
         <div>
           <p className="section-kicker">FOR SMOKIES BUSINESSES</p>
           <h2 id="business-title">
-            Put your business in front of people planning a Smokies trip.
+            Reach visitors before they choose where to eat, stay, shop or play.
           </h2>
           <p>
-            Restaurants, cabins, shops, attractions and local services can use Smokies Insider
-            Guide for listings, deal placements and sponsored guide spots as the site grows.
+            Smokies Insider Guide is built for people planning real trips to Gatlinburg, Pigeon Forge, Sevierville, Townsend and the National Park. If your business serves Smokies visitors, this is where you want to be seen.
+          </p>
+          <p className="action-line">
+            Get listed, share a deal or ask about sponsor spots.
           </p>
           <p className="trust-line">
-            No fake rankings. No fake coupons. Paid placements will be clearly labeled.
+            Sponsored placements are labeled. Offers should be current. Business details are reviewed before publishing.
           </p>
         </div>
         <div className="business-actions" aria-label="Business options">
