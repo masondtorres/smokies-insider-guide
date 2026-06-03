@@ -76,10 +76,10 @@ a {
   gap: 24px;
   margin-top: 14px;
   padding: 14px 18px;
-  border: 1px solid rgba(251, 247, 235, 0.38);
-  background: rgba(251, 247, 235, 0.68);
-  box-shadow: 0 12px 30px rgba(34, 69, 52, 0.16);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgba(251, 247, 235, 0.28);
+  background: rgba(251, 247, 235, 0.56);
+  box-shadow: 0 8px 24px rgba(34, 69, 52, 0.12);
+  backdrop-filter: blur(12px);
 }
 
 .wordmark {
@@ -119,29 +119,18 @@ a {
   align-items: center;
   padding: clamp(30px, 4vw, 46px);
   margin-top: 14px;
-  border: 1px solid rgba(251, 247, 235, 0.42);
-  border-top: 7px solid var(--forest);
+  border: 1px solid rgba(251, 247, 235, 0.24);
   background:
-    linear-gradient(90deg, rgba(19, 41, 31, 0.86) 0%, rgba(19, 41, 31, 0.66) 50%, rgba(19, 41, 31, 0.2) 100%),
-    linear-gradient(180deg, rgba(19, 41, 31, 0.16), rgba(19, 41, 31, 0.38));
-  box-shadow: var(--shadow);
-  backdrop-filter: saturate(1.08);
+    radial-gradient(circle at 24% 48%, rgba(19, 41, 31, 0.76), rgba(19, 41, 31, 0.42) 46%, rgba(19, 41, 31, 0.08) 78%),
+    linear-gradient(180deg, rgba(19, 41, 31, 0.12), rgba(19, 41, 31, 0.28));
+  box-shadow: 0 14px 36px rgba(34, 69, 52, 0.16);
+  backdrop-filter: saturate(1.06);
 }
 
 .hero-copy {
   max-width: 720px;
   color: var(--paper);
   text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
-}
-
-.hero-brand {
-  margin: 0 0 8px;
-  color: #ffffff;
-  font-size: clamp(1.65rem, 3vw, 2.65rem);
-  font-weight: 950;
-  letter-spacing: 0.04em;
-  line-height: 0.98;
-  text-transform: uppercase;
 }
 
 .eyebrow {
