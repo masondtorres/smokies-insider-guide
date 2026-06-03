@@ -13,7 +13,7 @@ const bases = [
     bestFor: "Family attractions, shows, Dollywood days and Parkway stops.",
     planAround: "Traffic, ticket timing and not overpacking the day.",
     next: "Find things to do.",
-    href: "/things-to-do",
+    href: "/pigeon-forge",
   },
   {
     title: "Sevierville",
