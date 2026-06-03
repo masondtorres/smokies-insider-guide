@@ -53,7 +53,7 @@ img {
   /* Owner-provided Smokies Insider Guide hero image with logo from public/images. */
   background:
     linear-gradient(180deg, rgba(18, 30, 51, 0.02) 0%, rgba(18, 30, 51, 0.12) 42%, rgba(15, 45, 38, 0.26) 68%, rgba(255, 247, 232, 0.95) 100%),
-    url("/images/smokies-hero-fall-logo-v1.png");
+    url("/images/smokies-hero-fall-logo.png");
   background-position: center top;
   background-size: cover;
 }
