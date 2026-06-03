@@ -75,7 +75,7 @@ export default function Home() {
             Guide for listings, deal placements and sponsored guide spots as the site grows.
           </p>
           <p className="trust-line">
-            No fake rankings. No fake coupons. No paid placement is shown without a clear label.
+            No fake rankings. No fake coupons. Paid placements will be clearly labeled.
           </p>
         </div>
         <div className="business-actions" aria-label="Business options">
