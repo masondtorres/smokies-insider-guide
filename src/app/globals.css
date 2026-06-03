@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #fff4de;
-  --paper: #fffaf0;
-  --forest: #173f2c;
-  --forest-soft: #245f42;
-  --brown: #4a321d;
-  --gold: #e6b84c;
-  --gold-light: #ffe08a;
-  --ink: #173026;
-  --muted: #5f6f67;
-  --line: rgba(74, 50, 29, 0.16);
-  --shadow: 0 18px 38px rgba(42, 25, 12, 0.16);
+  --forest: #224534;
+  --ridge: #566775;
+  --smoky: #7d8587;
+  --cabin: #6a4b38;
+  --cream: #f3ebd9;
+  --stone: #e7e0d4;
+  --gold: #c89a3c;
+  --copper: #8b4b3f;
+  --ink: #272522;
+  --paper: #fbf7eb;
+  --line: rgba(106, 75, 56, 0.22);
+  --shadow: 0 18px 42px rgba(44, 36, 26, 0.14);
 }
 
 * {
@@ -24,7 +25,11 @@ html {
 
 body {
   margin: 0;
-  background: var(--cream);
+  background:
+    linear-gradient(90deg, rgba(34, 69, 52, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(106, 75, 56, 0.04) 1px, transparent 1px),
+    var(--cream);
+  background-size: 72px 72px;
   color: var(--ink);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
@@ -34,304 +39,506 @@ a {
   text-decoration: none;
 }
 
-img {
-  display: block;
-  max-width: 100%;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-.page-shell {
+.home-page {
   min-height: 100vh;
-  background:
-    linear-gradient(180deg, rgba(255, 244, 222, 0) 0, rgba(255, 244, 222, 0.94) 34rem, rgba(255, 244, 222, 1) 100%),
-    url("/images/smokies-hero-fall.png");
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
+  overflow-x: clip;
+}
+
+.site-header,
+.hero-section,
+.section-block,
+.business-cta,
+.site-footer {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 0;
+}
+
+.wordmark {
+  color: var(--forest);
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.primary-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px 18px;
+  color: var(--cabin);
+  font-size: 0.93rem;
+  font-weight: 750;
+}
+
+.primary-nav a,
+.site-footer a {
+  border-radius: 999px;
+}
+
+.primary-nav a:hover,
+.site-footer a:hover {
+  color: var(--forest);
 }
 
 .hero-section {
-  min-height: clamp(31rem, 52vw, 43rem);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 0 1rem clamp(2rem, 5vw, 4rem);
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.08) 58%, rgba(255, 244, 222, 0.92) 100%),
-    url("/images/smokies-hero-fall-logo.png");
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.hero-inner {
-  width: min(62rem, 94vw);
-  text-align: center;
-  color: #ffffff;
-  text-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.68),
-    0 1px 2px rgba(0, 0, 0, 0.78);
-}
-
-.hero-inner h1 {
-  margin: 0;
-  color: #fff9e8;
-  font-size: clamp(2.2rem, 5vw, 4.4rem);
-  font-weight: 940;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
-}
-
-.hero-inner p {
-  max-width: 54rem;
-  margin: 0.9rem auto 0;
-  color: #fff2ce;
-  font-size: clamp(1.05rem, 1.8vw, 1.4rem);
-  font-weight: 760;
-  line-height: 1.36;
-}
-
-.main-menu {
-  padding: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 2vw, 2rem) 0;
-}
-
-.tile-grid {
   display: grid;
-  width: min(92vw, 78rem);
-  margin: 0 auto;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
-}
-
-.tile-card {
-  display: block;
-  overflow: hidden;
-  border: 0.42rem solid rgba(255, 255, 255, 0.94);
-  border-radius: 1rem;
-  background: #ffffff;
-  box-shadow: var(--shadow);
-  transition:
-    transform 160ms ease,
-    box-shadow 160ms ease,
-    border-color 160ms ease;
-}
-
-.tile-card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-}
-
-.tile-card:hover {
-  border-color: rgba(230, 184, 76, 0.95);
-  box-shadow: 0 28px 58px rgba(42, 25, 12, 0.22);
-  transform: translateY(-3px);
-}
-
-.business-section {
-  display: grid;
-  width: min(92vw, 78rem);
-  margin: clamp(2.25rem, 5vw, 4rem) auto 0;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(1.5rem, 3vw, 3rem);
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: clamp(24px, 4vw, 56px);
   align-items: center;
-  overflow: hidden;
+  min-height: 520px;
+  padding: clamp(44px, 7vw, 82px);
   border: 1px solid var(--line);
-  border-top: 0.35rem solid var(--gold);
-  border-radius: 1rem;
+  border-top: 7px solid var(--forest);
   background:
-    linear-gradient(90deg, rgba(255, 250, 240, 0.96), rgba(255, 250, 240, 0.88)),
-    url("/images/smokies-hero-fall.png");
-  background-position: center 64%;
-  background-size: cover;
-  padding: clamp(1.35rem, 3vw, 2.25rem);
-  box-shadow: 0 16px 34px rgba(74, 50, 29, 0.13);
+    radial-gradient(circle at 12% 12%, rgba(200, 154, 60, 0.22), transparent 34%),
+    linear-gradient(135deg, rgba(251, 247, 235, 0.98), rgba(231, 224, 212, 0.94));
+  box-shadow: var(--shadow);
 }
 
-.section-label {
-  margin: 0;
-  color: #c65d30;
-  font-size: 0.82rem;
+.hero-copy {
+  max-width: 720px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--copper);
+  font-size: 0.78rem;
   font-weight: 900;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.business-section h2 {
-  max-width: 58rem;
-  margin: 0.4rem 0 0;
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
   color: var(--forest);
-  font-size: clamp(1.7rem, 3vw, 2.9rem);
-  font-weight: 920;
-  letter-spacing: -0.035em;
-  line-height: 1.04;
+  font-size: clamp(3rem, 6vw, 5.9rem);
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 0.97;
 }
 
-.business-section p:not(.section-label) {
-  max-width: 68rem;
-  margin: 0.85rem 0 0;
-  color: var(--ink);
-  font-size: clamp(0.98rem, 1.25vw, 1.06rem);
-  line-height: 1.5;
+.hero-subhead {
+  max-width: 690px;
+  margin-bottom: 28px;
+  color: #3d3b36;
+  font-size: clamp(1.12rem, 1.8vw, 1.45rem);
+  font-weight: 650;
+  line-height: 1.48;
 }
 
-.business-note {
-  font-weight: 780;
-}
-
-.trust-line {
-  border-top: 1px solid var(--line);
-  padding-top: 0.75rem;
-  color: var(--muted) !important;
-  font-size: 0.9rem !important;
-}
-
+.hero-actions,
 .business-actions {
   display: flex;
-  min-width: 13rem;
-  flex-direction: column;
-  gap: 0.75rem;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.business-actions a {
+.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.8rem;
-  border: 1px solid rgba(74, 50, 29, 0.2);
+  min-height: 48px;
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.88);
-  color: var(--forest);
-  padding: 0.7rem 1.05rem;
-  font-size: 0.94rem;
+  padding: 13px 20px;
+  font-size: 0.98rem;
   font-weight: 850;
-  box-shadow: 0 10px 22px rgba(74, 50, 29, 0.12);
+  line-height: 1.1;
   transition:
-    transform 160ms ease,
     background 160ms ease,
-    box-shadow 160ms ease;
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
 }
 
-.business-actions .primary-action {
-  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+.button-primary {
+  background: var(--forest);
+  color: var(--paper);
+  box-shadow: 0 12px 28px rgba(34, 69, 52, 0.22);
+}
+
+.button-secondary {
+  border-color: rgba(34, 69, 52, 0.28);
+  background: rgba(251, 247, 235, 0.8);
   color: var(--forest);
 }
 
-.business-actions a:hover {
-  background: #ffffff;
-  box-shadow: 0 14px 28px rgba(74, 50, 29, 0.18);
+.button:hover {
   transform: translateY(-2px);
 }
 
-.tile-card:focus-visible,
-.business-actions a:focus-visible,
-.site-footer a:focus-visible {
-  outline: 3px solid #d96b3a;
-  outline-offset: 4px;
+.button-primary:hover {
+  background: #1a3829;
+}
+
+.button-secondary:hover {
+  border-color: var(--gold);
+  background: var(--paper);
+}
+
+.field-note {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 300px;
+  border: 1px solid rgba(106, 75, 56, 0.28);
+  background:
+    linear-gradient(180deg, rgba(34, 69, 52, 0.92), rgba(34, 69, 52, 0.82)),
+    repeating-linear-gradient(0deg, transparent 0 30px, rgba(243, 235, 217, 0.12) 30px 31px);
+  color: var(--paper);
+  padding: 24px;
+}
+
+.field-note::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 56px;
+  height: 5px;
+  background: var(--gold);
+}
+
+.field-note span {
+  margin-bottom: 10px;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.field-note p {
+  margin-bottom: 0;
+  font-size: 1.25rem;
+  font-weight: 760;
+  line-height: 1.42;
+}
+
+.section-block {
+  padding: clamp(54px, 7vw, 82px) 0 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.section-heading h2,
+.business-cta h2 {
+  max-width: 760px;
+  margin-bottom: 0;
+  color: var(--forest);
+  font-size: clamp(2rem, 4vw, 3.45rem);
+  font-weight: 930;
+  letter-spacing: 0;
+  line-height: 1.04;
+}
+
+.planning-grid,
+.area-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.lane-card,
+.note-card,
+.area-card {
+  border: 1px solid var(--line);
+  background: rgba(251, 247, 235, 0.76);
+  box-shadow: 0 12px 28px rgba(44, 36, 26, 0.08);
+}
+
+.lane-card {
+  min-height: 176px;
+  padding: 24px;
+  border-top: 5px solid var(--forest);
+}
+
+.lane-card h3,
+.note-card h3,
+.area-card h3 {
+  margin-bottom: 10px;
+  color: var(--forest);
+  font-size: 1.24rem;
+  font-weight: 900;
+  line-height: 1.18;
+}
+
+.lane-card p,
+.note-card p,
+.area-card p,
+.business-cta p,
+.site-footer span {
+  color: #46433d;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.lane-card p,
+.note-card p,
+.area-card p {
+  margin-bottom: 0;
+}
+
+.reality-section {
+  width: 100%;
+  max-width: none;
+  margin-top: clamp(54px, 7vw, 82px);
+  padding: clamp(54px, 7vw, 78px) max(20px, calc((100vw - 1120px) / 2));
+  background: var(--stone);
+  border-block: 1px solid var(--line);
+}
+
+.reality-section .section-heading,
+.reality-grid {
+  width: min(1120px, 100%);
+  margin-inline: auto;
+}
+
+.reality-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.note-card {
+  min-height: 190px;
+  padding: 22px;
+  border-left: 5px solid var(--gold);
+  background: rgba(251, 247, 235, 0.82);
+}
+
+.area-card {
+  min-height: 150px;
+  padding: 22px;
+  border-top: 4px solid var(--ridge);
+}
+
+.business-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: clamp(24px, 5vw, 56px);
+  align-items: center;
+  margin-top: clamp(54px, 7vw, 86px);
+  padding: clamp(30px, 5vw, 48px);
+  border: 1px solid rgba(34, 69, 52, 0.26);
+  border-left: 8px solid var(--gold);
+  background:
+    linear-gradient(135deg, rgba(34, 69, 52, 0.96), rgba(86, 103, 117, 0.92));
+  color: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.business-cta .eyebrow,
+.business-cta h2,
+.business-cta p {
+  color: var(--paper);
+}
+
+.business-cta .eyebrow {
+  color: var(--gold);
+}
+
+.business-cta p {
+  max-width: 760px;
+  margin: 18px 0 0;
+}
+
+.business-cta .trust-line {
+  border-top: 1px solid rgba(243, 235, 217, 0.24);
+  padding-top: 16px;
+  color: rgba(251, 247, 235, 0.82);
+  font-size: 0.93rem;
+}
+
+.business-actions {
+  flex-direction: column;
+}
+
+.business-actions .button-secondary {
+  background: rgba(251, 247, 235, 0.08);
+  border-color: rgba(251, 247, 235, 0.32);
+  color: var(--paper);
+}
+
+.business-actions .button-primary {
+  background: var(--gold);
+  color: var(--forest);
+  box-shadow: none;
 }
 
 .site-footer {
-  display: flex;
-  width: min(92vw, 78rem);
-  margin: 1.4rem auto 0;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 28px;
+  margin-top: 42px;
+  padding: 26px 0 36px;
   border-top: 1px solid var(--line);
-  padding: 1.2rem 0 2rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.site-footer strong,
-.site-footer span {
-  display: block;
 }
 
 .site-footer strong {
+  display: block;
   color: var(--forest);
+  font-size: 1rem;
+  font-weight: 900;
 }
 
 .site-footer nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 0.8rem 1rem;
+  gap: 9px 16px;
+  color: var(--cabin);
+  font-size: 0.92rem;
+  font-weight: 750;
 }
 
-.site-footer a {
-  color: var(--forest);
-  font-weight: 760;
+.wordmark:focus-visible,
+.primary-nav a:focus-visible,
+.button:focus-visible,
+.site-footer a:focus-visible {
+  outline: 3px solid var(--copper);
+  outline-offset: 4px;
 }
 
-@media (max-width: 960px) {
-  .tile-grid {
-    width: min(48rem, 100%);
+@media (max-width: 920px) {
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .primary-nav {
+    justify-content: flex-start;
+  }
+
+  .hero-section,
+  .business-cta,
+  .site-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .field-note {
+    min-height: 220px;
+  }
+
+  .planning-grid,
+  .area-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .business-section {
-    width: min(48rem, calc(100% - 2rem));
-    grid-template-columns: 1fr;
+  .reality-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .business-actions {
-    min-width: 0;
     flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .site-footer {
-    width: min(48rem, calc(100% - 2rem));
-  }
-}
-
-@media (max-width: 560px) {
-  .page-shell {
-    background-size: auto 42rem;
-  }
-
-  .hero-section {
-    min-height: min(72svh, 36rem);
-    padding: 0 1rem 1.65rem;
-  }
-
-  .hero-inner {
-    width: min(92vw, 25rem);
-  }
-
-  .hero-inner h1 {
-    font-size: clamp(2rem, 10vw, 2.8rem);
-  }
-
-  .hero-inner p {
-    font-size: clamp(1rem, 4.8vw, 1.18rem);
-  }
-
-  .main-menu {
-    padding-top: 1.25rem;
-  }
-
-  .tile-grid {
-    width: min(25rem, 100%);
-    grid-template-columns: 1fr;
-  }
-
-  .business-section {
-    width: min(25rem, calc(100% - 2rem));
-    padding: 1.2rem;
-  }
-
-  .business-actions {
-    flex-direction: column;
-  }
-
-  .site-footer {
-    width: min(25rem, calc(100% - 2rem));
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .site-footer nav {
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  .site-header,
+  .hero-section,
+  .section-block,
+  .business-cta,
+  .site-footer {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .site-header {
+    padding: 18px 0;
+  }
+
+  .primary-nav {
+    gap: 8px 14px;
+    font-size: 0.9rem;
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding: 28px 20px;
+  }
+
+  h1 {
+    font-size: clamp(2.42rem, 14vw, 3.6rem);
+  }
+
+  .hero-subhead {
+    font-size: 1.05rem;
+  }
+
+  .hero-actions,
+  .business-actions {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+    min-height: 52px;
+  }
+
+  .field-note {
+    min-height: 190px;
+    padding: 22px;
+  }
+
+  .field-note p {
+    font-size: 1.08rem;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .planning-grid,
+  .reality-grid,
+  .area-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lane-card,
+  .note-card,
+  .area-card {
+    min-height: auto;
+  }
+
+  .reality-section {
+    padding-inline: 14px;
+  }
+
+  .business-cta {
+    padding: 26px 20px;
   }
 }
