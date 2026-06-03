@@ -4,6 +4,7 @@ const navItems = [
   "Eat, Stay & Shop",
   "Visitor Resources",
   "Coupons & Deals",
+  "Events & Shows",
 ];
 
 const heroButtons = [
@@ -53,21 +54,9 @@ export default function Home() {
   return (
     <main>
       <header className="site-header" aria-label="Smokies Insider Guide header">
-        <div className="top-strip">
-          <a href="#tiles">Plan Your Trip</a>
-          <a href="#tiles">Area Maps</a>
-          <a href="#tiles">Events</a>
-          <a href="#tiles">Coupons</a>
-          <a href="#business">Advertise</a>
-        </div>
-
         <div className="masthead">
           <a className="brand" href="#" aria-label="Smokies Insider Guide home">
-            <span className="brand-mark">SIG</span>
-            <span>
-              <strong>Smokies Insider Guide</strong>
-              <small>Smoky Mountains trip planning, routes, food, deals and local tips.</small>
-            </span>
+            <img alt="Smokies Insider Guide" src="/images/smokies-logo-dark.png" />
           </a>
 
           <nav className="main-nav" aria-label="Main navigation">
