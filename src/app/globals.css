@@ -39,8 +39,13 @@ img {
   min-height: 100svh;
   overflow-x: hidden;
   background:
-    linear-gradient(180deg, rgba(10, 14, 20, 0.05), rgba(255, 144, 35, 0.1) 48%, rgba(23, 16, 10, 0.46) 100%),
-    url("/images/smokies-hero-fall.png");
+    linear-gradient(180deg, rgba(52, 26, 64, 0.55) 0%, rgba(216, 86, 32, 0.32) 22%, rgba(255, 173, 57, 0.2) 41%, rgba(35, 28, 24, 0.68) 100%),
+    radial-gradient(circle at 78% 22%, rgba(255, 212, 88, 0.78), transparent 10rem),
+    radial-gradient(circle at 30% 4%, rgba(197, 56, 99, 0.48), transparent 19rem),
+    linear-gradient(150deg, transparent 0 44%, rgba(61, 43, 83, 0.42) 45% 52%, transparent 53%),
+    linear-gradient(25deg, transparent 0 38%, rgba(42, 64, 81, 0.48) 39% 47%, transparent 48%),
+    linear-gradient(12deg, transparent 0 50%, rgba(119, 59, 38, 0.62) 51% 58%, transparent 59%),
+    linear-gradient(180deg, #423568 0%, #f06f2d 30%, #e9a64b 47%, #6f3e22 71%, #26170f 100%);
   background-attachment: scroll;
   background-position: center top;
   background-repeat: no-repeat;
