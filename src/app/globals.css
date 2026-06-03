@@ -91,18 +91,18 @@ img {
 .tile-section {
   position: relative;
   background:
-    linear-gradient(180deg, rgba(255, 244, 222, 0.96), rgba(255, 244, 222, 0.7)),
-    radial-gradient(circle at 8% 26%, rgba(230, 184, 76, 0.18), transparent 20rem),
-    radial-gradient(circle at 92% 38%, rgba(119, 190, 210, 0.18), transparent 20rem);
-  padding: clamp(2rem, 4vw, 3.6rem) 1rem 0;
+    linear-gradient(180deg, rgba(255, 244, 222, 0.96), rgba(255, 244, 222, 0.72)),
+    radial-gradient(circle at 8% 26%, rgba(230, 184, 76, 0.2), transparent 22rem),
+    radial-gradient(circle at 92% 38%, rgba(119, 190, 210, 0.2), transparent 22rem);
+  padding: clamp(2rem, 4vw, 3.6rem) clamp(1rem, 2vw, 2rem) 0;
 }
 
 .tile-grid {
   display: grid;
-  width: min(76rem, 100%);
+  width: min(94vw, 100rem);
   margin: 0 auto;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 2vw, 1.55rem);
+  gap: clamp(1rem, 2vw, 1.75rem);
 }
 
 .tile-card {
@@ -132,7 +132,7 @@ img {
 
 .business-card {
   display: grid;
-  width: min(76rem, calc(100% - 2rem));
+  width: min(94vw, 100rem);
   margin: clamp(2.25rem, 5vw, 4rem) auto 0;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: clamp(1.5rem, 3vw, 3rem);
@@ -146,7 +146,7 @@ img {
     url("/images/smokies-hero-fall.png");
   background-position: center 64%;
   background-size: cover;
-  padding: clamp(1.35rem, 3vw, 2.25rem);
+  padding: clamp(1.35rem, 3vw, 2.35rem);
   box-shadow: 0 18px 42px rgba(74, 50, 29, 0.14);
 }
 
@@ -160,7 +160,7 @@ img {
 }
 
 .business-card h2 {
-  max-width: 48rem;
+  max-width: 58rem;
   margin: 0.4rem 0 0;
   color: var(--forest);
   font-size: clamp(1.7rem, 3.2vw, 3rem);
@@ -170,7 +170,7 @@ img {
 }
 
 .business-card p:not(.business-eyebrow) {
-  max-width: 54rem;
+  max-width: 70rem;
   margin: 0.85rem 0 0;
   color: var(--ink);
   font-size: clamp(0.98rem, 1.3vw, 1.08rem);
@@ -234,7 +234,7 @@ img {
 
 .site-footer {
   display: flex;
-  width: min(76rem, calc(100% - 2rem));
+  width: min(94vw, 100rem);
   margin: 1.4rem auto 0;
   justify-content: space-between;
   align-items: center;
@@ -273,6 +273,7 @@ img {
   }
 
   .business-card {
+    width: min(48rem, calc(100% - 2rem));
     grid-template-columns: 1fr;
   }
 
@@ -280,6 +281,10 @@ img {
     min-width: 0;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .site-footer {
+    width: min(48rem, calc(100% - 2rem));
   }
 }
 
