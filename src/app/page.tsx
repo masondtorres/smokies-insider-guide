@@ -1,115 +1,58 @@
-const navItems = [
-  "Explore the Smokies",
-  "Things To Do",
-  "Eat, Stay & Shop",
-  "Visitor Resources",
-  "Coupons & Deals",
-  "Events & Shows",
-];
-
-const heroButtons = [
-  "Explore the Smokies",
-  "Things To Do",
-  "Coupons & Deals",
-];
-
 const guideTiles = [
   {
     title: "Explore the Smokies",
     src: "/images/explore-smokies-tile.png",
-    label: "Explore the Smokies visitor guide options.",
+    href: "/explore-the-smokies",
+    label: "Explore the Smokies.",
   },
   {
     title: "Things To Do",
     src: "/images/things-to-do-tile.png",
+    href: "/things-to-do",
     label: "Find things to do in the Smokies.",
   },
   {
     title: "Eat, Stay & Shop",
     src: "/images/eat-stay-shop-tile.png",
+    href: "/eat-stay-shop",
     label: "Find places to eat, stay and shop in the Smokies.",
   },
   {
     title: "Visitor Resources",
     src: "/images/visitor-resources-tile.png",
+    href: "/visitor-resources",
     label: "Open Smokies visitor resources.",
   },
   {
     title: "Coupons & Deals",
     src: "/images/coupons-deals-tile.png",
+    href: "/coupons-deals",
     label: "Check Smokies coupons and deals.",
   },
   {
     title: "Events & Shows",
     src: "/images/events-happening-tile.png",
+    href: "/events-shows",
     label: "Find Smokies events and shows.",
   },
 ];
 
-function anchorId(label: string) {
-  return label.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-}
-
 export default function Home() {
   return (
     <main>
-      <header className="site-header" aria-label="Smokies Insider Guide header">
-        <div className="masthead">
-          <a className="brand" href="#" aria-label="Smokies Insider Guide home">
-            <img alt="Smokies Insider Guide" src="/images/smokies-logo-dark.png" />
-          </a>
-
-          <nav className="main-nav" aria-label="Main navigation">
-            {navItems.map((item) => (
-              <a href="#tiles" key={item}>
-                {item}
-              </a>
-            ))}
-          </nav>
-
-          <a className="header-cta" href="#business">
-            Advertise / Get Listed
-          </a>
-        </div>
-      </header>
-
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-content">
-          <p className="hero-kicker">Smokies Insider Guide</p>
           <h1 id="hero-title">Plan the Smokies like an insider.</h1>
-          <p className="hero-copy">
+          <p>
             Pick the right town, find the right stops and build a trip that actually works.
           </p>
-
-          <div className="hero-actions" aria-label="Primary visitor options">
-            {heroButtons.map((button) => (
-              <a className="hero-button" href={`#${anchorId(button)}`} key={button}>
-                {button}
-              </a>
-            ))}
-          </div>
         </div>
       </section>
 
-      <section className="tile-section" id="tiles" aria-labelledby="tiles-title">
-        <div className="section-heading">
-          <p className="section-kicker">Start Here</p>
-          <h2 id="tiles-title">Choose what you need first.</h2>
-          <p>
-            Use the guide tiles to start with towns, things to do, food, visitor resources,
-            coupons or events.
-          </p>
-        </div>
-
+      <section className="tile-section" aria-label="Main Smokies guide options">
         <div className="tile-grid">
           {guideTiles.map((tile, index) => (
-            <a
-              aria-label={tile.label}
-              className="image-tile"
-              href={`#${anchorId(tile.title)}`}
-              id={anchorId(tile.title)}
-              key={tile.title}
-            >
+            <a aria-label={tile.label} className="image-tile" href={tile.href} key={tile.title}>
               <img
                 alt=""
                 decoding={index === 0 ? "sync" : "async"}
@@ -131,15 +74,23 @@ export default function Home() {
           </p>
         </div>
         <div className="business-actions" aria-label="Business options">
-          <a href="#">Advertise / Get Listed</a>
-          <a href="#">Submit a Deal</a>
-          <a href="#">Claim Your Listing</a>
+          <a href="#business">Advertise / Get Listed</a>
+          <a href="#business">Submit a Deal</a>
+          <a href="#business">Claim Your Listing</a>
         </div>
       </section>
 
-      <footer className="site-footer">
-        <strong>Smokies Insider Guide</strong>
-        <span>Smoky Mountains planning for Gatlinburg, Pigeon Forge, Sevierville, Townsend and the national park.</span>
+      <footer className="site-footer" id="footer">
+        <div>
+          <strong>Smokies Insider Guide</strong>
+          <span>Local roots. Better Smokies planning.</span>
+        </div>
+        <nav aria-label="Footer navigation">
+          <a href="#business">Contact</a>
+          <a href="#business">Advertise</a>
+          <a href="#footer">Privacy</a>
+          <a href="#footer">Disclaimer</a>
+        </nav>
       </footer>
     </main>
   );
