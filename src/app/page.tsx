@@ -13,26 +13,38 @@ const planningLanes = [
   {
     title: "Explore the Smokies",
     text: "Pick the right town, road or park area.",
+    label: "Start here",
+    note: "If you are choosing between towns, park areas or scenic drives.",
   },
   {
     title: "Things To Do",
     text: "Attractions, trails, shows and rainy-day plans.",
+    label: "Good if",
+    note: "You need attractions, trails, shows or an indoor backup.",
   },
   {
     title: "Eat, Stay & Shop",
     text: "Restaurants, cabins, shopping and local stops.",
+    label: "Best for",
+    note: "Meals, cabin areas, shopping stops and local services.",
   },
   {
     title: "Visitor Resources",
     text: "Parking, traffic, maps, weather and park basics.",
+    label: "Start here",
+    note: "Before park days, busy weekends or a first-time trip.",
   },
   {
     title: "Coupons & Deals",
     text: "Save on attractions, restaurants, shopping and more.",
+    label: "Good after",
+    note: "You know what kind of day you are planning.",
   },
   {
     title: "Events & What's Happening",
     text: "Find festivals, shows, seasonal events and things happening around the Smokies.",
+    label: "Best for",
+    note: "Trip dates, festivals, shows and seasonal timing.",
   },
 ];
 
@@ -40,18 +52,26 @@ const realityCards = [
   {
     title: "Parking matters",
     text: "Some park stops require planning around parking tags, crowds and timing.",
+    label: "Plan around",
+    note: "Parking tags, crowded pull-offs and timing.",
   },
   {
     title: "Town choice matters",
     text: "Gatlinburg, Pigeon Forge, Sevierville and Townsend do not work the same way.",
+    label: "Plan around",
+    note: "Different walking, driving and attraction patterns.",
   },
   {
     title: "Weather changes the day",
     text: "Have indoor and low-walking backups ready.",
+    label: "Rain backup",
+    note: "Keep one indoor or low-walking option ready.",
   },
   {
     title: "Do not overpack the day",
     text: "The Smokies punish rushed plans, especially with kids or older family members.",
+    label: "Leave room for",
+    note: "Traffic, meals, tired kids and slow roads.",
   },
 ];
 
@@ -59,26 +79,38 @@ const areaCards = [
   {
     title: "Gatlinburg",
     text: "Best when you want walkability, park access and downtown energy.",
+    label: "Skip if",
+    note: "You want the easiest driving day.",
   },
   {
     title: "Pigeon Forge",
     text: "Best for family attractions, shows, Dollywood and Parkway stops.",
+    label: "Plan around",
+    note: "Parkway traffic and spread-out stops.",
   },
   {
     title: "Sevierville",
     text: "Best for gateway access, local businesses, shopping and easier positioning.",
+    label: "Good if",
+    note: "You want easier positioning between trip areas.",
   },
   {
     title: "Townsend",
     text: "Best for a quieter pace, Cades Cove access and scenic drives.",
+    label: "Skip if",
+    note: "Your day depends on a heavy attraction schedule.",
   },
   {
     title: "National Park",
     text: "Best for trails, overlooks, waterfalls, wildlife rules and real planning.",
+    label: "Before you go",
+    note: "Check current conditions and choose a focused park area.",
   },
   {
     title: "Wears Valley / Cades Cove",
     text: "Best for slower drives, cabin trips and quieter mountain time.",
+    label: "Do not rush it",
+    note: "Allow time for slow roads and scenic stops.",
   },
 ];
 
@@ -147,6 +179,10 @@ export default function Home() {
             <article className="lane-card" key={card.title}>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
+              <p className="decision-note">
+                <strong>{card.label}</strong>
+                {card.note}
+              </p>
             </article>
           ))}
         </div>
@@ -162,6 +198,10 @@ export default function Home() {
             <article className="note-card" key={card.title}>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
+              <p className="decision-note">
+                <strong>{card.label}</strong>
+                {card.note}
+              </p>
             </article>
           ))}
         </div>
@@ -177,6 +217,10 @@ export default function Home() {
             <article className="area-card" key={card.title}>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
+              <p className="decision-note">
+                <strong>{card.label}</strong>
+                {card.note}
+              </p>
             </article>
           ))}
         </div>
