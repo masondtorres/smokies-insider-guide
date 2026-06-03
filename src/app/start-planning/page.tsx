@@ -6,7 +6,7 @@ const bases = [
     bestFor: "Walkability, downtown energy and quick park access.",
     planAround: "Parking, crowds and tight downtown movement.",
     next: "Explore Gatlinburg-style planning.",
-    href: "/explore",
+    href: "/gatlinburg",
   },
   {
     title: "Pigeon Forge",

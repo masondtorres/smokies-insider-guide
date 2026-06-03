@@ -687,6 +687,22 @@ h1 {
   font-weight: 760;
 }
 
+.area-list {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: #46433d;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.area-list li + li {
+  margin-top: 8px;
+}
+
+.area-list li::marker {
+  color: var(--copper);
+}
+
 .source-note {
   border-left: 6px solid var(--gold);
 }
