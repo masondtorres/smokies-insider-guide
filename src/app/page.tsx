@@ -66,17 +66,24 @@ export default function Home() {
 
       <section className="business-cta" id="business" aria-labelledby="business-title">
         <div>
-          <p className="section-kicker">For Local Businesses</p>
-          <h2 id="business-title">Get seen by Smokies visitors before they decide.</h2>
+          <p className="section-kicker">FOR SMOKIES BUSINESSES</p>
+          <h2 id="business-title">
+            Put your business in front of people planning a Smokies trip.
+          </h2>
           <p>
-            Smokies Insider Guide is being built to help restaurants, cabins, attractions, shops
-            and local services show up where visitors plan their trip.
+            Restaurants, cabins, shops, attractions and local services can use Smokies Insider
+            Guide for listings, deal placements and sponsored guide spots as the site grows.
+          </p>
+          <p className="trust-line">
+            No fake rankings. No fake coupons. No paid placement is shown without a clear label.
           </p>
         </div>
         <div className="business-actions" aria-label="Business options">
-          <a href="#business">Advertise / Get Listed</a>
+          <a className="business-primary" href="#business">
+            Advertise With Us
+          </a>
           <a href="#business">Submit a Deal</a>
-          <a href="#business">Claim Your Listing</a>
+          <a href="#business">Claim Your Business</a>
         </div>
       </section>
 
