@@ -316,7 +316,10 @@ img {
   overflow: hidden;
   border: 1px solid rgba(112, 84, 60, 0.12);
   border-radius: 1rem;
-  background: #ffffff;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 216, 117, 0.16), transparent 18rem),
+    #ffffff;
+  padding: clamp(0.45rem, 1.5vw, 0.7rem);
   box-shadow: var(--shadow);
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
@@ -337,8 +340,9 @@ img {
 
 .image-tile img {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.72rem;
+  object-fit: contain;
 }
 
 .business-cta {

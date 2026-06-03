@@ -9,10 +9,7 @@ const navItems = [
 const heroButtons = [
   "Explore the Smokies",
   "Things To Do",
-  "Eat, Stay & Shop",
-  "Visitor Resources",
   "Coupons & Deals",
-  "Events & Shows",
 ];
 
 const guideTiles = [
@@ -90,10 +87,9 @@ export default function Home() {
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-content">
           <p className="hero-kicker">Smokies Insider Guide</p>
-          <h1 id="hero-title">Plan the Smokies like you know the place.</h1>
+          <h1 id="hero-title">Plan the Smokies like an insider.</h1>
           <p className="hero-copy">
-            Pick where you're going first, then find the food, attractions, deals and local notes
-            that fit your trip.
+            Pick the right town, find the right stops and build a trip that actually works.
           </p>
 
           <div className="hero-actions" aria-label="Primary visitor options">
