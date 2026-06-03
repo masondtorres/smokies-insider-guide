@@ -31,18 +31,11 @@ const tiles = [
   },
 ];
 
-const footerLinks = [
-  { label: "Contact", href: "#business" },
-  { label: "Advertise", href: "#business" },
-  { label: "Privacy", href: "#footer" },
-  { label: "Disclaimer", href: "#footer" },
-];
-
 export default function Home() {
   return (
-    <main className="home-page">
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-copy">
+    <main className="page-shell">
+      <section className="hero-section" aria-labelledby="hero-title">
+        <div className="hero-inner">
           <h1 id="hero-title">The insider’s guide to the Smokies:</h1>
           <p>
             Better routes, places to eat, deals, things to do, events and visitor resources without the guesswork.
@@ -50,7 +43,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="tile-section" aria-label="Main Smokies guide options">
+      <section className="main-menu" aria-label="Smokies guide sections">
         <div className="tile-grid">
           {tiles.map((tile, index) => (
             <a className="tile-card" href={tile.href} key={tile.title} aria-label={tile.title}>
@@ -65,19 +58,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="business-card" id="business" aria-labelledby="business-heading">
-        <div className="business-copy">
-          <p className="business-eyebrow">FOR SMOKIES BUSINESSES</p>
-          <h2 id="business-heading">
-            Reach visitors before they choose where to eat, stay, shop or play.
-          </h2>
+      <section className="business-section" id="business" aria-labelledby="business-title">
+        <div>
+          <p className="section-label">FOR SMOKIES BUSINESSES</p>
+          <h2 id="business-title">Reach visitors before they choose where to eat, stay, shop or play.</h2>
           <p>
             Smokies Insider Guide is built for people planning real trips to Gatlinburg, Pigeon Forge, Sevierville, Townsend and the National Park. If your business serves Smokies visitors, this is where you want to be seen.
           </p>
-          <p className="business-subhead">Get listed, share a deal or ask about sponsor spots.</p>
-          <p className="trust-line">
-            Sponsored placements are labeled. Offers should be current. Business details are reviewed before publishing.
-          </p>
+          <p className="business-note">Get listed, share a deal or ask about sponsor spots.</p>
+          <p className="trust-line">Sponsored placements are labeled. Offers should be current. Business details are reviewed before publishing.</p>
         </div>
         <div className="business-actions" aria-label="Business actions">
           <a className="primary-action" href="#business">Advertise With Us</a>
@@ -86,17 +75,16 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="site-footer" id="footer">
+      <footer className="site-footer">
         <div>
           <strong>Smokies Insider Guide</strong>
           <span>Local roots. Better Smokies planning.</span>
         </div>
         <nav aria-label="Footer navigation">
-          {footerLinks.map((link) => (
-            <a href={link.href} key={link.label}>
-              {link.label}
-            </a>
-          ))}
+          <a href="#business">Contact</a>
+          <a href="#business">Advertise</a>
+          <a href="#">Privacy</a>
+          <a href="#">Disclaimer</a>
         </nav>
       </footer>
     </main>
