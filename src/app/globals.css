@@ -143,8 +143,7 @@ a {
   text-align: center;
 }
 
-.eyebrow,
-.hero-note {
+.eyebrow {
   margin: 0;
   color: var(--gold);
   font-size: 0.82rem;
@@ -158,34 +157,39 @@ a {
   color: #ffffff;
   font-size: clamp(2rem, 9vw, 5.8rem);
   font-weight: 900;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   line-height: 0.92;
   text-shadow: 0 3px 24px rgba(0, 0, 0, 0.38);
 }
 
-.hero-note {
-  margin-top: 0.75rem;
-  color: #ffe8ad;
-  font-size: clamp(0.78rem, 2vw, 1rem);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-}
-
 .hero h1 {
   max-width: 46rem;
-  margin: 1.35rem auto 0;
+  margin: 1.15rem auto 0;
   font-size: clamp(2rem, 5vw, 3.75rem);
   font-weight: 850;
   letter-spacing: 0;
   line-height: 1.02;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.34);
 }
 
-.hero p:not(.eyebrow) {
+.hero-subhead {
   max-width: 42rem;
   margin: 0.9rem auto 0;
   color: #f6fbfb;
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   font-weight: 480;
   line-height: 1.65;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.32);
+}
+
+.hero-geo {
+  max-width: 48rem;
+  margin: 1.05rem auto 0;
+  color: #ffe8ad;
+  font-size: clamp(0.82rem, 2vw, 1rem);
+  font-weight: 700;
+  line-height: 1.45;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.36);
 }
 
 .hero-actions,
