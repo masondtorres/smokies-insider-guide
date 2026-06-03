@@ -1,8 +1,19 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 :root {
-  --background: #f3ebd9;
-  --foreground: #17251d;
+  --cream: #fff7e8;
+  --paper: #ffffff;
+  --sky: #8ed0ee;
+  --forest: #245f42;
+  --forest-dark: #183f2d;
+  --gold: #e6b84c;
+  --gold-light: #ffd875;
+  --brown: #70543c;
+  --orange: #d96b3a;
+  --ink: #1d3027;
+  --muted: #61716a;
+  --line: rgba(36, 95, 66, 0.14);
+  --shadow: 0 18px 38px rgba(28, 57, 74, 0.16);
 }
 
 * {
@@ -15,6 +26,327 @@ html {
 
 body {
   margin: 0;
-  background: var(--background);
-  color: var(--foreground);
+  background:
+    radial-gradient(circle at 12% 30rem, rgba(255, 216, 117, 0.32), transparent 22rem),
+    radial-gradient(circle at 90% 48rem, rgba(142, 208, 238, 0.28), transparent 24rem),
+    linear-gradient(180deg, #fff0cf 0, #eaf8ff 31rem, var(--cream) 58rem),
+    var(--cream);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(38.75rem, 76vh, 47.5rem);
+  color: #ffffff;
+  /* Owner-provided Smokies Insider Guide hero image from public/images. */
+  background:
+    linear-gradient(180deg, rgba(18, 30, 51, 0.02) 0%, rgba(18, 30, 51, 0.12) 42%, rgba(15, 45, 38, 0.26) 68%, rgba(255, 247, 232, 0.95) 100%),
+    url("/images/smokies-hero-fall.png");
+  background-position: center 24%;
+  background-size: cover;
+}
+
+.hero-content {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(2.25rem, 7vw, 4.8rem);
+  width: min(92%, 46rem);
+  transform: translateX(-50%);
+  padding-inline: 1rem;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  color: #fff9e8;
+  font-size: clamp(2rem, 5.2vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  text-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.48),
+    0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+  max-width: 38rem;
+  margin: 0.82rem auto 0;
+  color: #fff2cf;
+  font-size: clamp(0.98rem, 2.4vw, 1.22rem);
+  font-weight: 620;
+  line-height: 1.48;
+  text-shadow:
+    0 3px 18px rgba(0, 0, 0, 0.46),
+    0 1px 2px rgba(0, 0, 0, 0.52);
+}
+
+.tile-section,
+.business-cta,
+.site-footer {
+  max-width: 1180px;
+  margin-inline: auto;
+}
+
+.tile-section {
+  position: relative;
+  padding: clamp(1.6rem, 5vw, 3.4rem) 1rem 0;
+}
+
+.tile-section::before {
+  content: "";
+  position: absolute;
+  inset: 0 max(-2rem, -4vw) auto;
+  height: min(70vw, 36rem);
+  background:
+    linear-gradient(180deg, rgba(255, 247, 232, 0.9), rgba(255, 247, 232, 0.58)),
+    url("/images/smokies-hero-fall.png");
+  background-position: center 62%;
+  background-size: cover;
+  border-radius: 0 0 2rem 2rem;
+  filter: saturate(1.08);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.tile-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(0.9rem, 2vw, 1.25rem);
+}
+
+.image-tile {
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(112, 84, 60, 0.13);
+  border-radius: 1.05rem;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(255, 216, 117, 0.16), transparent 18rem),
+    #ffffff;
+  padding: clamp(0.45rem, 1.5vw, 0.7rem);
+  box-shadow: var(--shadow);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.image-tile:hover {
+  border-color: rgba(217, 107, 58, 0.34);
+  box-shadow: 0 24px 42px rgba(28, 57, 74, 0.2);
+  transform: translateY(-2px);
+}
+
+.image-tile:focus-visible,
+.business-actions a:focus-visible,
+.site-footer a:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.image-tile img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.78rem;
+  object-fit: contain;
+}
+
+.business-cta {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 1.05rem;
+  margin-top: clamp(2.25rem, 6vw, 4.5rem);
+  margin-bottom: 1.8rem;
+  border: 1px solid rgba(112, 84, 60, 0.24);
+  border-top: 0.34rem solid var(--gold);
+  border-radius: 0.9rem;
+  background:
+    linear-gradient(rgba(112, 84, 60, 0.035) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(255, 247, 232, 0.96), rgba(255, 255, 255, 0.92));
+  background-size: 100% 1.7rem;
+  padding: clamp(1.1rem, 3.5vw, 1.65rem);
+  box-shadow: 0 14px 28px rgba(112, 84, 60, 0.11);
+}
+
+.business-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 247, 232, 0.96), rgba(255, 247, 232, 0.78)),
+    url("/images/smokies-hero-fall.png");
+  background-position: center 64%;
+  background-size: cover;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.business-cta > * {
+  position: relative;
+  z-index: 1;
+}
+
+.section-kicker {
+  margin: 0;
+  color: var(--orange);
+  font-size: 0.8rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.business-cta h2 {
+  margin: 0.35rem 0 0;
+  color: var(--forest-dark);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 850;
+  line-height: 1.12;
+}
+
+.business-cta p:not(.section-kicker) {
+  margin: 0.72rem 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+.trust-line {
+  border-top: 1px solid rgba(112, 84, 60, 0.18);
+  padding-top: 0.7rem;
+  color: var(--forest-dark);
+  font-size: 0.9rem;
+  font-weight: 720;
+}
+
+.business-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem 0.95rem;
+}
+
+.business-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.65rem;
+  color: var(--forest-dark);
+  font-size: 0.92rem;
+  font-weight: 780;
+  text-decoration: underline;
+  text-decoration-color: rgba(36, 95, 66, 0.32);
+  text-underline-offset: 0.22rem;
+  transition: transform 160ms ease, color 160ms ease;
+}
+
+.business-actions .business-primary {
+  border: 1px solid rgba(112, 84, 60, 0.22);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  color: var(--forest-dark);
+  padding: 0.72rem 1.05rem;
+  font-weight: 880;
+  text-decoration: none;
+  box-shadow: 0 10px 18px rgba(112, 84, 60, 0.15);
+}
+
+.business-actions a:hover {
+  color: var(--brown);
+  transform: translateY(-2px);
+}
+
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border-top: 1px solid var(--line);
+  padding: 1.25rem 1rem 2rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.site-footer strong,
+.site-footer span {
+  display: block;
+}
+
+.site-footer strong {
+  color: var(--forest-dark);
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.site-footer a {
+  color: var(--forest-dark);
+  font-weight: 700;
+}
+
+@media (min-width: 760px) {
+  .tile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .business-cta {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .business-actions {
+    justify-content: flex-end;
+    max-width: 18rem;
+  }
+
+  .site-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1080px) {
+  .tile-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    min-height: min(70svh, 34rem);
+    background-position: center top;
+  }
+
+  .hero-content {
+    bottom: 1.35rem;
+    width: min(92%, 24rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 9vw, 2.65rem);
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 4.5vw, 1.12rem);
+  }
+
+  .business-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
