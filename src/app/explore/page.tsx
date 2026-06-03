@@ -1,0 +1,24 @@
+import Link from "next/link";
+
+const areas = [
+  ["Gatlinburg", "Walkable downtown, park access and a busy town-day feel."],
+  ["Pigeon Forge", "Family attractions, shows and Parkway stops."],
+  ["Sevierville", "Gateway positioning, shopping and local services."],
+  ["Townsend", "Quiet-side access, scenic drives and a slower pace."],
+  ["National Park", "Trails, overlooks, waterfalls and focused park days."],
+  ["Wears Valley / Cades Cove", "Cabin trips, slower roads and quieter mountain time."],
+];
+
+export default function ExplorePage() {
+  return (
+    <main className="destination-page">
+      <header className="destination-header"><Link className="wordmark" href="/">Smokies Insider Guide</Link><Link className="back-link" href="/start-planning">Start Planning</Link></header>
+      <section className="destination-hero"><p className="eyebrow">Explore the Smokies</p><h1>Choose the right Smokies area</h1><p>Compare towns, park areas and scenic-drive days before you start stacking stops.</p></section>
+      <section className="destination-section">
+        <div className="destination-heading"><p className="eyebrow">Best starting points</p><h2>Match the base to the day you want</h2></div>
+        <div className="destination-grid">{areas.map(([title, text]) => <article className="destination-card" key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
+      </section>
+      <section className="destination-section destination-coming"><p className="eyebrow">Coming soon</p><h2>Scenic drives and focused park-area guides</h2><p>These guides will help compare route shape, pace and practical planning needs without inventing current conditions.</p></section>
+    </main>
+  );
+}

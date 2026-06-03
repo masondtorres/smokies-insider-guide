@@ -1,12 +1,12 @@
 import Link from "next/link";
 
 const navLinks = [
-  "Explore",
-  "Things To Do",
-  "Eat, Stay & Shop",
-  "Deals",
-  "Events",
-  "Advertise",
+  { label: "Explore", href: "/explore" },
+  { label: "Things To Do", href: "/things-to-do" },
+  { label: "Eat, Stay & Shop", href: "/eat-stay-shop" },
+  { label: "Deals", href: "/deals" },
+  { label: "Events", href: "/events" },
+  { label: "Advertise", href: "/advertise" },
 ];
 
 const planningLanes = [
@@ -15,36 +15,42 @@ const planningLanes = [
     text: "Pick the right town, road or park area.",
     label: "Start here",
     note: "If you are choosing between towns, park areas or scenic drives.",
+    href: "/explore",
   },
   {
     title: "Things To Do",
     text: "Attractions, trails, shows and rainy-day plans.",
     label: "Good if",
     note: "You need attractions, trails, shows or an indoor backup.",
+    href: "/things-to-do",
   },
   {
     title: "Eat, Stay & Shop",
     text: "Restaurants, cabins, shopping and local stops.",
     label: "Best for",
     note: "Meals, cabin areas, shopping stops and local services.",
+    href: "/eat-stay-shop",
   },
   {
     title: "Visitor Resources",
     text: "Parking, traffic, maps, weather and park basics.",
     label: "Start here",
     note: "Before park days, busy weekends or a first-time trip.",
+    href: "/visitor-resources",
   },
   {
     title: "Coupons & Deals",
     text: "Save on attractions, restaurants, shopping and more.",
     label: "Good after",
     note: "You know what kind of day you are planning.",
+    href: "/deals",
   },
   {
     title: "Events & What's Happening",
     text: "Find festivals, shows, seasonal events and things happening around the Smokies.",
     label: "Best for",
     note: "Trip dates, festivals, shows and seasonal timing.",
+    href: "/events",
   },
 ];
 
@@ -115,16 +121,14 @@ const areaCards = [
 ];
 
 const footerLinks = [
-  "Explore the Smokies",
-  "Things To Do",
-  "Eat, Stay & Shop",
-  "Visitor Resources",
-  "Coupons & Deals",
-  "Events & Shows",
-  "Advertise With Us",
-  "Privacy",
-  "Terms",
-  "Disclosure",
+  { label: "Start Planning", href: "/start-planning" },
+  { label: "Explore the Smokies", href: "/explore" },
+  { label: "Things To Do", href: "/things-to-do" },
+  { label: "Eat, Stay & Shop", href: "/eat-stay-shop" },
+  { label: "Visitor Resources", href: "/visitor-resources" },
+  { label: "Coupons & Deals", href: "/deals" },
+  { label: "Events & Shows", href: "/events" },
+  { label: "Advertise With Us", href: "/advertise" },
 ];
 
 export default function Home() {
@@ -136,9 +140,9 @@ export default function Home() {
         </Link>
         <nav className="primary-nav" aria-label="Primary navigation">
           {navLinks.map((link) => (
-            <a href="#" key={link}>
-              {link}
-            </a>
+            <Link href={link.href} key={link.href}>
+              {link.label}
+            </Link>
           ))}
         </nav>
       </header>
@@ -152,12 +156,12 @@ export default function Home() {
             resources without the guesswork.
           </p>
           <div className="hero-actions" aria-label="Homepage actions">
-            <a className="button button-primary" href="#planning">
+            <Link className="button button-primary" href="/start-planning">
               Start Planning
-            </a>
-            <a className="button button-secondary" href="#advertise">
+            </Link>
+            <Link className="button button-secondary" href="/advertise">
               Advertise With Us
-            </a>
+            </Link>
           </div>
         </div>
         <aside className="field-note" aria-label="Planning field note">
@@ -176,14 +180,14 @@ export default function Home() {
         </div>
         <div className="planning-grid">
           {planningLanes.map((card) => (
-            <article className="lane-card" key={card.title}>
+            <Link className="lane-card" href={card.href} key={card.title}>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
               <p className="decision-note">
                 <strong>{card.label}</strong>
                 {card.note}
               </p>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -244,15 +248,15 @@ export default function Home() {
           </p>
         </div>
         <div className="business-actions" aria-label="Business actions">
-          <a className="button button-primary" href="#">
+          <Link className="button button-primary" href="/advertise">
             Advertise With Us
-          </a>
-          <a className="button button-secondary" href="#">
+          </Link>
+          <Link className="button button-secondary" href="/deals">
             Submit a Deal
-          </a>
-          <a className="button button-secondary" href="#">
+          </Link>
+          <Link className="button button-secondary" href="/advertise">
             Claim Your Business
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -263,9 +267,9 @@ export default function Home() {
         </div>
         <nav aria-label="Footer navigation">
           {footerLinks.map((link) => (
-            <a href="#" key={link}>
-              {link}
-            </a>
+            <Link href={link.href} key={link.href}>
+              {link.label}
+            </Link>
           ))}
         </nav>
       </footer>
