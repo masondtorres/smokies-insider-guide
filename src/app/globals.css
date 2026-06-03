@@ -101,6 +101,8 @@ a {
 }
 
 .hero-section {
+  position: relative;
+  overflow: hidden;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
   gap: clamp(20px, 3vw, 36px);
@@ -109,13 +111,28 @@ a {
   border: 1px solid var(--line);
   border-top: 7px solid var(--forest);
   background:
-    radial-gradient(circle at 12% 12%, rgba(200, 154, 60, 0.22), transparent 34%),
-    linear-gradient(135deg, rgba(251, 247, 235, 0.98), rgba(231, 224, 212, 0.94));
+    linear-gradient(90deg, rgba(19, 41, 31, 0.88) 0%, rgba(19, 41, 31, 0.68) 48%, rgba(19, 41, 31, 0.34) 100%),
+    linear-gradient(180deg, rgba(19, 41, 31, 0.18), rgba(19, 41, 31, 0.56)),
+    url("/images/smokies-hero-fall.png");
+  background-position: center;
+  background-size: cover;
   box-shadow: var(--shadow);
 }
 
 .hero-copy {
   max-width: 720px;
+  color: var(--paper);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
+}
+
+.hero-brand {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: clamp(1.65rem, 3vw, 2.65rem);
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  line-height: 0.98;
+  text-transform: uppercase;
 }
 
 .eyebrow {
@@ -137,7 +154,7 @@ p {
 h1 {
   max-width: 760px;
   margin-bottom: 12px;
-  color: var(--forest);
+  color: var(--paper);
   font-size: clamp(2.4rem, 4.2vw, 4rem);
   font-weight: 950;
   letter-spacing: 0;
@@ -147,7 +164,7 @@ h1 {
 .hero-subhead {
   max-width: 690px;
   margin-bottom: 18px;
-  color: #3d3b36;
+  color: rgba(251, 247, 235, 0.94);
   font-size: clamp(1.05rem, 1.45vw, 1.24rem);
   font-weight: 650;
   line-height: 1.48;
@@ -179,9 +196,20 @@ h1 {
 }
 
 .button-primary {
-  background: var(--forest);
+  background: var(--gold);
+  color: var(--forest);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.hero-section .button-primary {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.hero-section .button-secondary {
+  border-color: rgba(251, 247, 235, 0.5);
+  background: rgba(251, 247, 235, 0.14);
   color: var(--paper);
-  box-shadow: 0 12px 28px rgba(34, 69, 52, 0.22);
+  backdrop-filter: blur(8px);
 }
 
 .button-secondary {
@@ -195,7 +223,7 @@ h1 {
 }
 
 .button-primary:hover {
-  background: #1a3829;
+  background: #d4aa48;
 }
 
 .button-secondary:hover {
@@ -209,12 +237,13 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  border: 1px solid rgba(106, 75, 56, 0.28);
+  border: 1px solid rgba(251, 247, 235, 0.44);
   background:
-    linear-gradient(180deg, rgba(34, 69, 52, 0.92), rgba(34, 69, 52, 0.82)),
-    repeating-linear-gradient(0deg, transparent 0 30px, rgba(243, 235, 217, 0.12) 30px 31px);
-  color: var(--paper);
+    linear-gradient(180deg, rgba(251, 247, 235, 0.9), rgba(231, 224, 212, 0.86));
+  color: var(--forest);
   padding: 20px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  text-shadow: none;
 }
 
 .field-note::before {
@@ -229,7 +258,7 @@ h1 {
 
 .field-note span {
   margin-bottom: 10px;
-  color: var(--gold);
+  color: var(--copper);
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.1em;
@@ -238,6 +267,7 @@ h1 {
 
 .field-note p {
   margin-bottom: 0;
+  color: #273d32;
   font-size: 1.04rem;
   font-weight: 760;
   line-height: 1.42;

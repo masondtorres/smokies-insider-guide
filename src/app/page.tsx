@@ -113,6 +113,7 @@ export default function Home() {
 
       <section className="hero-section" aria-labelledby="hero-title">
         <div className="hero-copy">
+          <p className="hero-brand">Smokies Insider Guide</p>
           <p className="eyebrow">Smoky Mountain trip planning</p>
           <h1 id="hero-title">The insider&apos;s guide to the Smokies</h1>
           <p className="hero-subhead">
