@@ -2,15 +2,14 @@
 
 :root {
   --cream: #fff4de;
-  --paper: rgba(255, 248, 235, 0.94);
+  --paper: #fffaf0;
   --forest: #173f2c;
-  --forest-light: #245f42;
   --brown: #4a321d;
   --gold: #e6b84c;
   --gold-light: #ffe08a;
   --ink: #173026;
   --muted: #5f6f67;
-  --shadow: 0 22px 52px rgba(42, 25, 12, 0.18);
+  --shadow: 0 20px 46px rgba(42, 25, 12, 0.18);
 }
 
 * {
@@ -24,9 +23,9 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 8% 34rem, rgba(230, 184, 76, 0.22), transparent 23rem),
-    radial-gradient(circle at 92% 52rem, rgba(96, 170, 190, 0.24), transparent 24rem),
-    linear-gradient(180deg, #fff1cf 0, #f6fbff 38rem, var(--cream) 70rem);
+    radial-gradient(circle at 10% 42rem, rgba(230, 184, 76, 0.18), transparent 24rem),
+    radial-gradient(circle at 90% 62rem, rgba(119, 190, 210, 0.2), transparent 24rem),
+    linear-gradient(180deg, #fff1cf 0, #f8fbff 42rem, var(--cream) 76rem);
   color: var(--ink);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
@@ -49,14 +48,14 @@ img {
 .hero {
   position: relative;
   display: flex;
-  min-height: clamp(33rem, 58vw, 42rem);
+  min-height: clamp(34rem, 48vw, 42rem);
   align-items: flex-end;
   justify-content: center;
   overflow: hidden;
-  padding: 0 1rem clamp(2.4rem, 5vw, 4.25rem);
+  padding: 0 1rem clamp(2.5rem, 5vw, 4rem);
   color: #ffffff;
   background:
-    linear-gradient(180deg, rgba(11, 13, 28, 0.03) 0%, rgba(11, 13, 28, 0.04) 38%, rgba(26, 31, 26, 0.16) 62%, rgba(255, 244, 222, 0.9) 100%),
+    linear-gradient(180deg, rgba(10, 12, 20, 0) 0%, rgba(10, 12, 20, 0.04) 42%, rgba(20, 30, 24, 0.2) 68%, rgba(255, 244, 222, 0.92) 100%),
     url("/images/smokies-hero-fall-logo.png");
   background-position: center top;
   background-repeat: no-repeat;
@@ -65,65 +64,52 @@ img {
 
 .hero-copy {
   width: min(58rem, 94vw);
-  margin-top: 20rem;
   text-align: center;
   text-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.6),
-    0 1px 2px rgba(0, 0, 0, 0.72);
+    0 4px 22px rgba(0, 0, 0, 0.68),
+    0 1px 2px rgba(0, 0, 0, 0.75);
 }
 
 .hero-copy h1 {
   margin: 0;
   color: #fff9e8;
-  font-size: clamp(2.2rem, 5.6vw, 5.1rem);
+  font-size: clamp(2.15rem, 4.8vw, 4.4rem);
   font-weight: 940;
   letter-spacing: -0.035em;
-  line-height: 0.95;
+  line-height: 0.97;
 }
 
 .hero-copy p {
   max-width: 52rem;
-  margin: 0.85rem auto 0;
+  margin: 0.9rem auto 0;
   color: #fff3cf;
-  font-size: clamp(1.05rem, 2vw, 1.55rem);
+  font-size: clamp(1.05rem, 1.65vw, 1.38rem);
   font-weight: 760;
-  line-height: 1.32;
+  line-height: 1.35;
 }
 
 .tile-section {
   position: relative;
-  padding: clamp(1.75rem, 4vw, 3.75rem) 1rem 0;
-}
-
-.tile-section::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: 30rem;
   background:
-    linear-gradient(180deg, rgba(255, 244, 222, 0.94), rgba(255, 244, 222, 0.68)),
-    url("/images/smokies-hero-fall.png");
-  background-position: center 58%;
-  background-size: cover;
-  opacity: 0.33;
-  pointer-events: none;
+    linear-gradient(180deg, rgba(255, 244, 222, 0.96), rgba(255, 244, 222, 0.7)),
+    radial-gradient(circle at 8% 26%, rgba(230, 184, 76, 0.18), transparent 20rem),
+    radial-gradient(circle at 92% 38%, rgba(119, 190, 210, 0.18), transparent 20rem);
+  padding: clamp(2rem, 4vw, 3.6rem) 1rem 0;
 }
 
 .tile-grid {
-  position: relative;
-  z-index: 1;
   display: grid;
-  width: min(74rem, 100%);
+  width: min(76rem, 100%);
   margin: 0 auto;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(1rem, 2vw, 1.55rem);
 }
 
 .tile-card {
   display: block;
   overflow: hidden;
-  border: 0.45rem solid rgba(255, 255, 255, 0.92);
-  border-radius: 1rem;
+  border: 0.42rem solid rgba(255, 255, 255, 0.94);
+  border-radius: 1.05rem;
   background: #ffffff;
   box-shadow: var(--shadow);
   transition:
@@ -145,11 +131,9 @@ img {
 }
 
 .business-card {
-  position: relative;
-  z-index: 1;
   display: grid;
-  width: min(74rem, calc(100% - 2rem));
-  margin: clamp(2rem, 5vw, 4rem) auto 0;
+  width: min(76rem, calc(100% - 2rem));
+  margin: clamp(2.25rem, 5vw, 4rem) auto 0;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: clamp(1.5rem, 3vw, 3rem);
   align-items: center;
@@ -158,7 +142,7 @@ img {
   border-top: 0.38rem solid var(--gold);
   border-radius: 1.1rem;
   background:
-    linear-gradient(90deg, rgba(255, 248, 235, 0.96), rgba(255, 248, 235, 0.86)),
+    linear-gradient(90deg, rgba(255, 250, 240, 0.96), rgba(255, 250, 240, 0.88)),
     url("/images/smokies-hero-fall.png");
   background-position: center 64%;
   background-size: cover;
@@ -179,10 +163,10 @@ img {
   max-width: 48rem;
   margin: 0.4rem 0 0;
   color: var(--forest);
-  font-size: clamp(1.7rem, 3.5vw, 3.25rem);
+  font-size: clamp(1.7rem, 3.2vw, 3rem);
   font-weight: 920;
   letter-spacing: -0.035em;
-  line-height: 1.02;
+  line-height: 1.03;
 }
 
 .business-card p:not(.business-eyebrow) {
@@ -218,7 +202,7 @@ img {
   min-height: 2.85rem;
   border: 1px solid rgba(74, 50, 29, 0.2);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.88);
   color: var(--forest);
   padding: 0.7rem 1.05rem;
   font-size: 0.94rem;
@@ -250,7 +234,7 @@ img {
 
 .site-footer {
   display: flex;
-  width: min(74rem, calc(100% - 2rem));
+  width: min(76rem, calc(100% - 2rem));
   margin: 1.4rem auto 0;
   justify-content: space-between;
   align-items: center;
