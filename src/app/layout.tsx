@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Smokies Insider Guide | Better Smoky Mountains Planning",
+  title: "Smokies Insider Guide",
   description:
-    "Plan the Smokies with local-style guidance for towns, things to do, restaurants, visitor resources, coupons and local businesses.",
+    "Better routes, places to eat, deals, things to do, events and visitor resources for the Smokies without the guesswork.",
 };
 
 export default function RootLayout({
