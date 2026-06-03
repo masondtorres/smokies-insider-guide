@@ -103,9 +103,9 @@ a {
 .hero-section {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
-  gap: clamp(24px, 3vw, 40px);
+  gap: clamp(20px, 3vw, 36px);
   align-items: center;
-  padding: clamp(34px, 5vw, 58px);
+  padding: clamp(30px, 4vw, 46px);
   border: 1px solid var(--line);
   border-top: 7px solid var(--forest);
   background:
@@ -119,7 +119,7 @@ a {
 }
 
 .eyebrow {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   color: var(--copper);
   font-size: 0.78rem;
   font-weight: 900;
@@ -136,9 +136,9 @@ p {
 
 h1 {
   max-width: 760px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   color: var(--forest);
-  font-size: clamp(2.75rem, 5.2vw, 4.85rem);
+  font-size: clamp(2.4rem, 4.2vw, 4rem);
   font-weight: 950;
   letter-spacing: 0;
   line-height: 1;
@@ -146,9 +146,9 @@ h1 {
 
 .hero-subhead {
   max-width: 690px;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
   color: #3d3b36;
-  font-size: clamp(1.12rem, 1.8vw, 1.45rem);
+  font-size: clamp(1.05rem, 1.45vw, 1.24rem);
   font-weight: 650;
   line-height: 1.48;
 }
@@ -214,7 +214,7 @@ h1 {
     linear-gradient(180deg, rgba(34, 69, 52, 0.92), rgba(34, 69, 52, 0.82)),
     repeating-linear-gradient(0deg, transparent 0 30px, rgba(243, 235, 217, 0.12) 30px 31px);
   color: var(--paper);
-  padding: 22px;
+  padding: 20px;
 }
 
 .field-note::before {
@@ -238,13 +238,13 @@ h1 {
 
 .field-note p {
   margin-bottom: 0;
-  font-size: 1.12rem;
+  font-size: 1.04rem;
   font-weight: 760;
   line-height: 1.42;
 }
 
 .section-block {
-  padding: clamp(38px, 5vw, 58px) 0 0;
+  padding: clamp(26px, 3.2vw, 40px) 0 0;
 }
 
 .section-heading {
@@ -252,7 +252,7 @@ h1 {
   align-items: end;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 
 .section-heading h2,
@@ -260,7 +260,7 @@ h1 {
   max-width: 760px;
   margin-bottom: 0;
   color: var(--forest);
-  font-size: clamp(2rem, 4vw, 3.45rem);
+  font-size: clamp(1.8rem, 3vw, 3.1rem);
   font-weight: 930;
   letter-spacing: 0;
   line-height: 1.04;
@@ -270,7 +270,7 @@ h1 {
 .area-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 16px;
 }
 
 .lane-card,
@@ -282,8 +282,8 @@ h1 {
 }
 
 .lane-card {
-  min-height: 176px;
-  padding: 24px;
+  min-height: 154px;
+  padding: 20px;
   border-top: 5px solid var(--forest);
 }
 
@@ -316,8 +316,8 @@ h1 {
 .reality-section {
   width: 100%;
   max-width: none;
-  margin-top: clamp(38px, 5vw, 58px);
-  padding: clamp(42px, 5vw, 62px) max(20px, calc((100vw - 1120px) / 2));
+  margin-top: clamp(32px, 4vw, 48px);
+  padding: clamp(34px, 4vw, 50px) max(20px, calc((100vw - 1120px) / 2));
   background: var(--stone);
   border-block: 1px solid var(--line);
 }
@@ -335,15 +335,15 @@ h1 {
 }
 
 .note-card {
-  min-height: 190px;
-  padding: 22px;
+  min-height: 170px;
+  padding: 20px;
   border-left: 5px solid var(--gold);
   background: rgba(251, 247, 235, 0.82);
 }
 
 .area-card {
-  min-height: 150px;
-  padding: 22px;
+  min-height: 136px;
+  padding: 20px;
   border-top: 4px solid var(--ridge);
 }
 
