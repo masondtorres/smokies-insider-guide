@@ -106,10 +106,13 @@ export default function Home() {
           <span>Local roots. Better Smokies planning.</span>
         </div>
         <nav aria-label="Footer navigation">
-          <a href="#business">Contact</a>
-          <a href="#business">Advertise</a>
-          <a href="#footer">Privacy</a>
-          <a href="#footer">Disclaimer</a>
+          <a href="/explore-the-smokies">Explore the Smokies</a>
+          <a href="/things-to-do">Things To Do</a>
+          <a href="/eat-stay-shop">Eat, Stay & Shop</a>
+          <a href="/visitor-resources">Visitor Resources</a>
+          <a href="/coupons-deals">Coupons & Deals</a>
+          <a href="/events-shows">Events & Shows</a>
+          <a href="#business">Advertise With Us</a>
         </nav>
       </footer>
     </main>
