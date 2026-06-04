@@ -27,7 +27,7 @@ const bases = [
     bestFor: "Quiet-side trips, Cades Cove access and slower mountain time.",
     planAround: "Fewer attraction-style stops and more drive-based planning.",
     next: "Explore quieter Smokies options.",
-    href: "/explore",
+    href: "/townsend",
   },
   {
     title: "National Park",
