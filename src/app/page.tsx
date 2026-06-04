@@ -298,8 +298,8 @@ export default function Home() {
             seen.
           </p>
           <p className="trust-line">
-            Sponsored placements are labeled. Offers should be current. Business
-            details are reviewed before publishing.
+            Deal submissions and business listings are being built carefully so
+            offers stay current and useful.
           </p>
         </div>
         <div className="business-actions" aria-label="Business actions">
@@ -307,10 +307,7 @@ export default function Home() {
             Advertise With Us
           </Link>
           <Link className="button button-secondary" href="/deals">
-            Submit a Deal
-          </Link>
-          <Link className="button button-secondary" href="/advertise">
-            Claim Your Business
+            View Deals
           </Link>
         </div>
       </section>
