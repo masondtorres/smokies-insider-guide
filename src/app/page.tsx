@@ -15,6 +15,7 @@ const planningLanes = [
     text: "Pick the right town, road or park area.",
     label: "Start here",
     note: "If you are choosing between towns, park areas or scenic drives.",
+    cta: "Open guide",
     href: "/explore",
   },
   {
@@ -22,6 +23,7 @@ const planningLanes = [
     text: "Attractions, trails, shows and rainy-day plans.",
     label: "Good if",
     note: "You need attractions, trails, shows or an indoor backup.",
+    cta: "View activities",
     href: "/things-to-do",
   },
   {
@@ -29,6 +31,7 @@ const planningLanes = [
     text: "Restaurants, cabins, shopping and local stops.",
     label: "Best for",
     note: "Meals, cabin areas, shopping stops and local services.",
+    cta: "View guide",
     href: "/eat-stay-shop",
   },
   {
@@ -36,6 +39,7 @@ const planningLanes = [
     text: "Parking, traffic, maps, weather and park basics.",
     label: "Start here",
     note: "Before park days, busy weekends or a first-time trip.",
+    cta: "Open resources",
     href: "/visitor-resources",
   },
   {
@@ -43,6 +47,7 @@ const planningLanes = [
     text: "Reviewed Smokies offers will appear here once they are current and verified.",
     label: "Good after",
     note: "You know what kind of day you are planning.",
+    cta: "View deals page",
     href: "/deals",
   },
   {
@@ -50,6 +55,7 @@ const planningLanes = [
     text: "Find festivals, shows, seasonal events and things happening around the Smokies.",
     label: "Best for",
     note: "Trip dates, festivals, shows and seasonal timing.",
+    cta: "View events",
     href: "/events",
   },
 ];
@@ -87,6 +93,7 @@ const areaCards = [
     text: "Best when you want walkability, park access and downtown energy.",
     label: "Skip if",
     note: "You want the easiest driving day.",
+    cta: "Open Gatlinburg guide",
     href: "/gatlinburg",
   },
   {
@@ -94,6 +101,7 @@ const areaCards = [
     text: "Best for family attractions, shows, Dollywood and Parkway stops.",
     label: "Plan around",
     note: "Parkway traffic and spread-out stops.",
+    cta: "Open Pigeon Forge guide",
     href: "/pigeon-forge",
   },
   {
@@ -101,6 +109,7 @@ const areaCards = [
     text: "Best for gateway access, local businesses, shopping and easier positioning.",
     label: "Good if",
     note: "You want easier positioning between trip areas.",
+    cta: "Open Sevierville guide",
     href: "/sevierville",
   },
   {
@@ -108,6 +117,7 @@ const areaCards = [
     text: "Best for a quieter pace, Cades Cove access and scenic drives.",
     label: "Skip if",
     note: "Your day depends on a heavy attraction schedule.",
+    cta: "Open Townsend guide",
     href: "/townsend",
   },
   {
@@ -115,6 +125,7 @@ const areaCards = [
     text: "Best for trails, overlooks, waterfalls, wildlife rules and real planning.",
     label: "Before you go",
     note: "Check current conditions and choose a focused park area.",
+    cta: "Open park resources",
     href: "/visitor-resources",
   },
   {
@@ -122,6 +133,7 @@ const areaCards = [
     text: "Best for slower drives, cabin trips and quieter mountain time.",
     label: "Do not rush it",
     note: "Allow time for slow roads and scenic stops.",
+    cta: "Explore the area",
     href: "/explore",
   },
 ];
@@ -201,6 +213,7 @@ export default function Home() {
                 <strong>{card.label}</strong>
                 {card.note}
               </p>
+              <span className="card-cta">{card.cta} <span aria-hidden="true">→</span></span>
             </Link>
           ))}
         </div>
@@ -239,6 +252,7 @@ export default function Home() {
                 <strong>{card.label}</strong>
                 {card.note}
               </p>
+              <span className="card-cta">{card.cta} <span aria-hidden="true">→</span></span>
             </Link>
           ))}
         </div>

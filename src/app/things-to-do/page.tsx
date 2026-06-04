@@ -23,7 +23,7 @@ export default function ThingsToDoPage() {
         <p>Build the day around one indoor anchor, a food stop, realistic walking and one backup.</p>
         <div className="destination-actions">
           <Link className="button button-primary" href="/rainy-day-smokies-with-kids">
-            Rainy Day Smokies With Kids
+            Plan a rainy day <span aria-hidden="true">→</span>
           </Link>
         </div>
       </section>
