@@ -122,6 +122,7 @@ const checklist = [
 
 const nextSteps = [
   { prompt: "Need the main town guide?", next: "Pigeon Forge Guide", href: "/pigeon-forge" },
+  { prompt: "Planning a final-season Track visit?", next: "The Track Closing Guide", href: "/the-track-pigeon-forge-closing" },
   { prompt: "Planning Dollywood?", next: "Dollywood Day Plan", href: "/dollywood-day-plan" },
   { prompt: "Need a rainy-day backup?", next: "Rainy Day Smokies With Kids", href: "/rainy-day-smokies-with-kids" },
   { prompt: "Traveling with toddlers?", next: "Smokies With Toddlers", href: "/smokies-with-toddlers" },

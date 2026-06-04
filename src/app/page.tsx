@@ -203,6 +203,25 @@ export default function Home() {
         <span />
       </div>
 
+      <section className="section-block featured-article-section" aria-labelledby="featured-article-title">
+        <div className="featured-article-label">
+          <p className="eyebrow">Featured visitor update</p>
+          <span>Final season in Pigeon Forge</span>
+        </div>
+        <Link className="featured-article-card" href="/the-track-pigeon-forge-closing">
+          <div>
+            <h2 id="featured-article-title">
+              The Track in Pigeon Forge Is Closing November 1, 2026
+            </h2>
+            <p>
+              A practical family guide to what the closure means, who should
+              visit before it closes and what to do nearby.
+            </p>
+          </div>
+          <span className="featured-article-cta">Read the guide <span aria-hidden="true">→</span></span>
+        </Link>
+      </section>
+
       <section className="section-block brochure-section" id="planning" aria-labelledby="planning-title">
         <div className="section-heading">
           <div>
