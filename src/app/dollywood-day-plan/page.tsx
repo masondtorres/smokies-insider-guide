@@ -359,6 +359,21 @@ export default function DollywoodDayPlanPage() {
           operations can change. Check official Dollywood sources before final
           decisions.
         </p>
+        <article className="destination-card router-card-compact">
+          <p className="eyebrow">Before you buy tickets</p>
+          <h3>Military and veteran discounts</h3>
+          <p>
+            Eligible U.S. military members, veterans, reservists, spouses and
+            dependents should check Dollywood&apos;s official military discount
+            page before buying tickets or passes. Verification and offer
+            details can change.
+          </p>
+          <div className="source-links">
+            <a href="https://www.dollywood.com/deals/special-offers/military-discount/">
+              Official Dollywood Military Discount
+            </a>
+          </div>
+        </article>
         <div className="source-links">
           <a href="https://www.dollywood.com/plan-your-visit/">
             Official Dollywood Plan Your Visit
