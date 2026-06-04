@@ -3,42 +3,42 @@ import Link from "next/link";
 const decisions = [
   {
     title: "Choosing a town",
-    note: "Use this if you are deciding between Gatlinburg, Pigeon Forge, Sevierville or Townsend.",
+    note: "Compare the four main bases before the lodging and driving plan hardens.",
     label: "Best starting point",
     cta: "Compare towns",
     href: "/gatlinburg-vs-pigeon-forge",
   },
   {
     title: "Choosing where to stay",
-    note: "Use this before booking lodging or planning drive times.",
+    note: "Start here before booking a cabin or committing to long drive times.",
     label: "Start here",
     cta: "Choose your base",
     href: "/where-to-stay-in-the-smokies-by-trip-type",
   },
   {
     title: "Planning with kids",
-    note: "Use this if attractions, Dollywood, rain backups and kid energy matter.",
+    note: "Balance attractions, Dollywood, rain backups and real kid energy.",
     label: "Good fit",
     cta: "Plan with kids",
     href: "/pigeon-forge-with-kids",
   },
   {
     title: "Planning with toddlers",
-    note: "Use this if naps, snacks, bathrooms and short stops matter.",
+    note: "Keep naps, snacks, bathrooms and short stops in the center of the day.",
     label: "Use this when",
     cta: "Plan with toddlers",
     href: "/smokies-with-toddlers",
   },
   {
     title: "Saving money",
-    note: "Use this before stacking paid attractions.",
+    note: "Check this before stacking paid attractions.",
     label: "Watch for",
     cta: "Find free and cheap ideas",
     href: "/free-and-cheap-smokies",
   },
   {
     title: "Avoiding too much walking",
-    note: "Use this for grandparents, toddlers or lower-stamina groups.",
+    note: "Best when walking distance is the real problem.",
     label: "Good fit",
     cta: "Plan less walking",
     href: "/gatlinburg-without-walking-too-much",
@@ -85,7 +85,7 @@ const otherGuides = [
 
 export default function StartPlanningPage() {
   return (
-    <main className="destination-page">
+    <main className="destination-page planning-hub-page">
       <header className="destination-header">
         <Link className="wordmark" href="/">
           Smokies Insider Guide
@@ -96,7 +96,7 @@ export default function StartPlanningPage() {
       </header>
 
       <section className="destination-hero">
-        <div className="page-identity">
+        <div className="page-identity page-identity-strong">
           <p className="eyebrow">Planning Hub</p>
           <p className="page-breadcrumb">
             <Link href="/">Home</Link>
@@ -117,14 +117,14 @@ export default function StartPlanningPage() {
           <p className="eyebrow">First decision</p>
           <h2>Start with the decision that matters most</h2>
           <p className="router-section-intro">
-            Choose the card that sounds most like the question holding up your
-            trip.
+            Pick the problem closest to your trip. You can always move sideways
+            after the first guide.
           </p>
         </div>
         <div className="destination-grid">
-          {decisions.map((decision) => (
+          {decisions.map((decision, index) => (
             <Link
-              className="destination-card router-card"
+              className={`destination-card router-card${index < 2 ? " priority-card" : ""}`}
               href={decision.href}
               key={decision.href}
             >

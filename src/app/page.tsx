@@ -193,20 +193,31 @@ export default function Home() {
         <aside className="field-note" aria-label="Planning field note">
           <span>Field note</span>
           <p>
-            Plan by town, weather, parking, walking distance and what your group
-            can actually handle.
+            The Smokies are easier when you plan by town, weather, parking,
+            walking distance and what your group can handle.
           </p>
         </aside>
       </section>
 
+      <div className="map-divider" aria-hidden="true">
+        <span />
+      </div>
+
       <section className="section-block brochure-section" id="planning" aria-labelledby="planning-title">
         <div className="section-heading">
-          <p className="eyebrow">Quick planning lanes</p>
-          <h2 id="planning-title">Start with what you need</h2>
+          <div>
+            <p className="eyebrow">Quick planning lanes</p>
+            <h2 id="planning-title">Start with what you need</h2>
+          </div>
+          <p className="section-route-note">Pick one lane first. The rest can wait.</p>
         </div>
         <div className="planning-grid">
-          {planningLanes.map((card) => (
-            <Link className="lane-card" href={card.href} key={card.title}>
+          {planningLanes.map((card, index) => (
+            <Link
+              className={`lane-card${index < 3 ? " priority-card" : ""}`}
+              href={card.href}
+              key={card.title}
+            >
               <h3>{card.title}</h3>
               <p>{card.text}</p>
               <p className="decision-note">
