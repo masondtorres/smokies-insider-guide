@@ -166,7 +166,7 @@ export default function TownsendPage() {
         </p>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section comparison-section">
         <div className="destination-heading">
           <p className="eyebrow">Choose your base</p>
           <h2>Is Townsend the right base?</h2>
@@ -185,7 +185,7 @@ export default function TownsendPage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section guide-card-section">
         <div className="destination-heading">
           <p className="eyebrow">Build the day</p>
           <h2>Good Townsend trip shapes</h2>
@@ -211,7 +211,7 @@ export default function TownsendPage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section pairing-section">
         <div className="destination-heading">
           <p className="eyebrow">Keep the day realistic</p>
           <h2>What to pair with Townsend</h2>
@@ -230,7 +230,7 @@ export default function TownsendPage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section field-notes-section">
         <div className="destination-heading">
           <p className="eyebrow">Before the day starts</p>
           <h2>Townsend planning notes</h2>
@@ -245,7 +245,7 @@ export default function TownsendPage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section next-step-panel">
         <div className="destination-heading">
           <p className="eyebrow">Next steps from Townsend</p>
           <h2>Go to the guide your day needs</h2>

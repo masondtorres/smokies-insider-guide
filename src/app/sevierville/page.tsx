@@ -163,7 +163,7 @@ export default function SeviervillePage() {
         </p>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section comparison-section">
         <div className="destination-heading">
           <p className="eyebrow">Choose your base</p>
           <h2>Is Sevierville the right base?</h2>
@@ -182,7 +182,7 @@ export default function SeviervillePage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section guide-card-section">
         <div className="destination-heading">
           <p className="eyebrow">Build the day</p>
           <h2>Good Sevierville trip shapes</h2>
@@ -208,7 +208,7 @@ export default function SeviervillePage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section pairing-section">
         <div className="destination-heading">
           <p className="eyebrow">Keep the day realistic</p>
           <h2>What to pair with Sevierville</h2>
@@ -227,7 +227,7 @@ export default function SeviervillePage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section field-notes-section">
         <div className="destination-heading">
           <p className="eyebrow">Before the day starts</p>
           <h2>Sevierville planning notes</h2>
@@ -242,7 +242,7 @@ export default function SeviervillePage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section next-step-panel">
         <div className="destination-heading">
           <p className="eyebrow">Next steps from Sevierville</p>
           <h2>Go to the guide your day needs</h2>

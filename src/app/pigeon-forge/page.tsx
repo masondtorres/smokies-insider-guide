@@ -157,7 +157,7 @@ export default function PigeonForgePage() {
         </p>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section comparison-section">
         <div className="destination-heading">
           <p className="eyebrow">Choose your base</p>
           <h2>Is Pigeon Forge the right base?</h2>
@@ -176,7 +176,7 @@ export default function PigeonForgePage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section guide-card-section">
         <div className="destination-heading">
           <p className="eyebrow">Build the day</p>
           <h2>Good Pigeon Forge trip shapes</h2>
@@ -202,7 +202,7 @@ export default function PigeonForgePage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section pairing-section">
         <div className="destination-heading">
           <p className="eyebrow">Keep the day realistic</p>
           <h2>What to pair with Pigeon Forge</h2>
@@ -221,7 +221,7 @@ export default function PigeonForgePage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section field-notes-section">
         <div className="destination-heading">
           <p className="eyebrow">Before the day starts</p>
           <h2>Pigeon Forge planning notes</h2>
@@ -236,7 +236,7 @@ export default function PigeonForgePage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section next-step-panel">
         <div className="destination-heading">
           <p className="eyebrow">Next steps from Pigeon Forge</p>
           <h2>Go to the guide your day needs</h2>

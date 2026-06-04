@@ -87,36 +87,42 @@ const areaCards = [
     text: "Best when you want walkability, park access and downtown energy.",
     label: "Skip if",
     note: "You want the easiest driving day.",
+    href: "/gatlinburg",
   },
   {
     title: "Pigeon Forge",
     text: "Best for family attractions, shows, Dollywood and Parkway stops.",
     label: "Plan around",
     note: "Parkway traffic and spread-out stops.",
+    href: "/pigeon-forge",
   },
   {
     title: "Sevierville",
     text: "Best for gateway access, local businesses, shopping and easier positioning.",
     label: "Good if",
     note: "You want easier positioning between trip areas.",
+    href: "/sevierville",
   },
   {
     title: "Townsend",
     text: "Best for a quieter pace, Cades Cove access and scenic drives.",
     label: "Skip if",
     note: "Your day depends on a heavy attraction schedule.",
+    href: "/townsend",
   },
   {
     title: "National Park",
     text: "Best for trails, overlooks, waterfalls, wildlife rules and real planning.",
     label: "Before you go",
     note: "Check current conditions and choose a focused park area.",
+    href: "/visitor-resources",
   },
   {
     title: "Wears Valley / Cades Cove",
     text: "Best for slower drives, cabin trips and quieter mountain time.",
     label: "Do not rush it",
     note: "Allow time for slow roads and scenic stops.",
+    href: "/explore",
   },
 ];
 
@@ -173,7 +179,7 @@ export default function Home() {
         </aside>
       </section>
 
-      <section className="section-block" id="planning" aria-labelledby="planning-title">
+      <section className="section-block brochure-section" id="planning" aria-labelledby="planning-title">
         <div className="section-heading">
           <p className="eyebrow">Quick planning lanes</p>
           <h2 id="planning-title">Start with what you need</h2>
@@ -192,7 +198,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-block reality-section" aria-labelledby="reality-title">
+      <section className="section-block reality-section field-note-section" aria-labelledby="reality-title">
         <div className="section-heading">
           <p className="eyebrow">Planning reality</p>
           <h2 id="reality-title">Plan around the real Smokies</h2>
@@ -211,26 +217,26 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-block" aria-labelledby="areas-title">
+      <section className="section-block area-rack-section" aria-labelledby="areas-title">
         <div className="section-heading">
           <p className="eyebrow">Area starter</p>
           <h2 id="areas-title">Pick the right Smokies base</h2>
         </div>
         <div className="area-grid">
           {areaCards.map((card) => (
-            <article className="area-card" key={card.title}>
+            <Link className="area-card brochure-tile" href={card.href} key={card.title}>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
               <p className="decision-note">
                 <strong>{card.label}</strong>
                 {card.note}
               </p>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section className="business-cta" id="advertise" aria-labelledby="business-title">
+      <section className="business-cta planning-desk-cta" id="advertise" aria-labelledby="business-title">
         <div>
           <p className="eyebrow">For Smokies businesses</p>
           <h2 id="business-title">

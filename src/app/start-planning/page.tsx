@@ -178,7 +178,7 @@ export default function StartPlanningPage() {
         </p>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section primary-decision-section">
         <div className="destination-heading">
           <p className="eyebrow">Start with your base</p>
           <h2>Where are you staying or starting?</h2>
@@ -225,7 +225,7 @@ export default function StartPlanningPage() {
         </div>
       </aside>
 
-      <section className="destination-section">
+      <section className="destination-section planning-layer-section">
         <div className="destination-heading">
           <p className="eyebrow">Pick your trip shape</p>
           <h2>What kind of day do you actually want?</h2>
@@ -254,7 +254,7 @@ export default function StartPlanningPage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section warning-section">
         <div className="destination-heading">
           <p className="eyebrow">Plan around what can ruin the day</p>
           <h2>What could mess up the day?</h2>
@@ -277,7 +277,7 @@ export default function StartPlanningPage() {
         </div>
       </section>
 
-      <section className="destination-section">
+      <section className="destination-section next-step-panel">
         <div className="destination-heading">
           <p className="eyebrow">What should I click next?</p>
           <h2>Go straight to the guide your trip needs</h2>
