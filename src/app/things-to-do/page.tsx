@@ -17,7 +17,16 @@ export default function ThingsToDoPage() {
         <div className="destination-heading"><p className="eyebrow">Choose a direction</p><h2>Start with the kind of day you need</h2></div>
         <div className="destination-grid">{choices.map(([title, text]) => <article className="destination-card" key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
-      <section className="destination-section destination-coming"><p className="eyebrow">Coming soon</p><h2>Practical activity guides and comparisons</h2><p>Listings will be added after their details can be reviewed.</p></section>
+      <section className="destination-section destination-coming">
+        <p className="eyebrow">Featured planning guide</p>
+        <h2>Save a rainy Smokies day with kids</h2>
+        <p>Build the day around one indoor anchor, a food stop, realistic walking and one backup.</p>
+        <div className="destination-actions">
+          <Link className="button button-primary" href="/rainy-day-smokies-with-kids">
+            Rainy Day Smokies With Kids
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }
