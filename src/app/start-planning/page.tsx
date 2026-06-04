@@ -123,6 +123,63 @@ const planningRisks = [
   },
 ];
 
+const popularGuides = [
+  {
+    title: "Gatlinburg vs Pigeon Forge",
+    note: "Best when you are choosing where to base the trip.",
+    cta: "Compare towns",
+    href: "/gatlinburg-vs-pigeon-forge",
+  },
+  {
+    title: "Where to Stay by Trip Type",
+    note: "Best when lodging location is the main decision.",
+    cta: "Choose your base",
+    href: "/where-to-stay-in-the-smokies-by-trip-type",
+  },
+  {
+    title: "Rainy Day Smokies With Kids",
+    note: "Best when weather changes the plan.",
+    cta: "Plan a rainy day",
+    href: "/rainy-day-smokies-with-kids",
+  },
+  {
+    title: "Dollywood Day Plan",
+    note: "Best when Dollywood is the main event.",
+    cta: "Plan Dollywood day",
+    href: "/dollywood-day-plan",
+  },
+  {
+    title: "Cades Cove First-Time Guide",
+    note: "Best when you want the loop without wasting the day.",
+    cta: "Plan Cades Cove",
+    href: "/cades-cove-first-time-guide",
+  },
+  {
+    title: "Free and Cheap Things to Do",
+    note: "Best when you want a good trip without ticketing every stop.",
+    cta: "Save money",
+    href: "/free-and-cheap-smokies",
+  },
+  {
+    title: "Smokies With Toddlers",
+    note: "Best when naps, snacks and short stops matter.",
+    cta: "Plan with toddlers",
+    href: "/smokies-with-toddlers",
+  },
+  {
+    title: "Pigeon Forge With Kids",
+    note: "Best when attractions, Dollywood and indoor backups are on the table.",
+    cta: "Plan family fun",
+    href: "/pigeon-forge-with-kids",
+  },
+  {
+    title: "Gatlinburg Without Walking Too Much",
+    note: "Best for grandparents, toddlers or lower-stamina groups.",
+    cta: "Plan less walking",
+    href: "/gatlinburg-without-walking-too-much",
+  },
+];
+
 const nextSteps = [
   {
     prompt: "If you are choosing where to stay",
@@ -280,6 +337,30 @@ export default function StartPlanningPage() {
               <p className="router-detail router-next">
                 <strong>Plan next</strong>
                 Open the related guide
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="destination-section guide-card-section">
+        <div className="destination-heading">
+          <p className="eyebrow">Guide index</p>
+          <h2>Popular Planning Guides</h2>
+          <p className="router-section-intro">
+            Start with the guide that matches the problem you are trying to
+            solve: toddlers, rainy days, budget, Dollywood, Cades Cove, Pigeon
+            Forge with kids or Gatlinburg without too much walking.
+          </p>
+        </div>
+        <div className="destination-grid">
+          {popularGuides.map((guide) => (
+            <Link className="destination-card router-card" href={guide.href} key={guide.href}>
+              <h3>{guide.title}</h3>
+              <p>{guide.note}</p>
+              <p className="router-detail router-next">
+                <strong>Open guide</strong>
+                {guide.cta}
               </p>
             </Link>
           ))}
