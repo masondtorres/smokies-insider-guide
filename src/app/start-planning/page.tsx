@@ -125,6 +125,11 @@ const planningRisks = [
 
 const nextSteps = [
   {
+    prompt: "If you are choosing where to stay",
+    next: "Compare bases by trip type",
+    href: "/where-to-stay-in-the-smokies-by-trip-type",
+  },
+  {
     prompt: "If you are choosing a town",
     next: "Compare Gatlinburg and Pigeon Forge",
     href: "/gatlinburg-vs-pigeon-forge",
