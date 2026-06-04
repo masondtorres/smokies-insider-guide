@@ -256,6 +256,21 @@ export default function Home() {
         </div>
       </section>
 
+      <aside className="homepage-park-links" aria-label="Official park links">
+        <div>
+          <strong>Official park links</strong>
+          <span>Park roads, closures and parking needs can change.</span>
+        </div>
+        <nav aria-label="Great Smoky Mountains National Park resources">
+          <a href="https://www.nps.gov/grsm/planyourvisit/conditions.htm">
+            Current conditions
+          </a>
+          <a href="https://www.nps.gov/grsm/planyourvisit/fees.htm">
+            Parking tags
+          </a>
+        </nav>
+      </aside>
+
       <section className="business-cta planning-desk-cta" id="advertise" aria-labelledby="business-title">
         <div>
           <p className="eyebrow">For Smokies businesses</p>

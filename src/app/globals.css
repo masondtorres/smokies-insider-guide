@@ -895,6 +895,58 @@ h1 {
   background: var(--copper);
 }
 
+.homepage-park-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 28px;
+  width: min(1120px, calc(100% - 40px));
+  margin: 14px auto 0;
+  padding: 14px 18px;
+  border: 1px solid rgba(251, 247, 235, 0.42);
+  background: rgba(251, 247, 235, 0.68);
+  box-shadow: 0 10px 24px rgba(34, 69, 52, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.homepage-park-links strong {
+  display: block;
+  color: var(--forest);
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.homepage-park-links span {
+  color: #46433d;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.homepage-park-links nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.homepage-park-links a {
+  color: var(--forest);
+  font-size: 0.88rem;
+  font-weight: 850;
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.homepage-park-links a:hover {
+  color: var(--copper);
+}
+
+.homepage-park-links a:focus-visible {
+  outline: 3px solid var(--copper);
+  outline-offset: 4px;
+}
+
 .area-card {
   position: relative;
   display: block;
@@ -1308,10 +1360,16 @@ h1 {
   .section-block,
   .business-cta,
   .site-footer,
+  .homepage-park-links,
   .destination-header,
   .destination-hero,
   .destination-section {
     width: min(100% - 28px, 1120px);
+  }
+
+  .homepage-park-links {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .site-header {
