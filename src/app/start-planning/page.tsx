@@ -126,8 +126,8 @@ const planningRisks = [
 const nextSteps = [
   {
     prompt: "If you are choosing a town",
-    next: "Go to Explore",
-    href: "/explore",
+    next: "Compare Gatlinburg and Pigeon Forge",
+    href: "/gatlinburg-vs-pigeon-forge",
   },
   {
     prompt: "If you need activities",
