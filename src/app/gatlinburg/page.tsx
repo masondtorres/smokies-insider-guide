@@ -34,8 +34,8 @@ const tripShapes = [
     title: "Downtown walking day",
     goodIf: "You want food, shops and short-distance stops.",
     planAround: "Parking and how much walking your group can handle.",
-    next: "Eat, Stay & Shop",
-    href: "/eat-stay-shop",
+    next: "Lower-Walking Gatlinburg Guide",
+    href: "/gatlinburg-without-walking-too-much",
   },
   {
     title: "Park access day",
