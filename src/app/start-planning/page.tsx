@@ -20,7 +20,7 @@ const bases = [
     bestFor: "Gateway access, shopping, local businesses and easier positioning.",
     planAround: "Drive time between stops.",
     next: "Compare eat, stay and shop options.",
-    href: "/eat-stay-shop",
+    href: "/sevierville",
   },
   {
     title: "Townsend",
