@@ -85,8 +85,8 @@ const tripShapes = [
     title: "Free and cheap day",
     goodIf: "You want to control cost before adding paid stops.",
     planAround: "Parking, driving and what is actually worth the time.",
-    next: "Deals",
-    href: "/deals",
+    next: "Free and Cheap Smokies Guide",
+    href: "/free-and-cheap-smokies",
   },
 ];
 
