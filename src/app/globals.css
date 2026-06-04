@@ -337,33 +337,19 @@ h1 {
 }
 
 .featured-article-section {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.45fr) minmax(0, 1.55fr);
-  gap: 24px;
-  align-items: stretch;
-  border-top: 7px solid var(--copper) !important;
-}
-
-.featured-article-label {
-  padding: 20px;
-  border: 1px solid var(--line);
-  background:
-    repeating-linear-gradient(0deg, transparent 0 29px, rgba(106, 75, 56, 0.06) 29px 30px),
-    rgba(231, 224, 212, 0.74);
-}
-
-.featured-article-label span {
-  color: var(--cabin);
-  font-size: 0.92rem;
-  font-weight: 800;
-  line-height: 1.45;
+  margin-top: 14px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
 }
 
 .featured-article-card {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px 28px;
+  align-items: center;
   padding: clamp(22px, 3vw, 34px);
   border: 1px solid rgba(34, 69, 52, 0.22);
   border-left: 7px solid var(--gold);
@@ -379,6 +365,12 @@ h1 {
 .featured-article-card:hover {
   box-shadow: 9px 11px 0 rgba(106, 75, 56, 0.16);
   transform: translateY(-2px);
+}
+
+.featured-article-card .eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+  color: var(--gold);
 }
 
 .featured-article-card h2 {
@@ -399,9 +391,12 @@ h1 {
 
 .featured-article-cta {
   flex: 0 0 auto;
+  padding: 10px 0;
+  border-bottom: 2px solid var(--gold);
   color: var(--gold);
   font-size: 0.9rem;
   font-weight: 900;
+  white-space: nowrap;
 }
 
 .featured-article-card:focus-visible {
@@ -1738,9 +1733,6 @@ h1 {
     justify-content: flex-start;
   }
 
-  .featured-article-section {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 620px) {
@@ -1763,7 +1755,16 @@ h1 {
 
   .featured-article-card {
     align-items: flex-start;
+    grid-template-columns: 1fr;
     flex-direction: column;
+  }
+
+  .featured-article-card .eyebrow {
+    grid-column: auto;
+  }
+
+  .featured-article-cta {
+    white-space: normal;
   }
 
   .site-header {

@@ -199,17 +199,10 @@ export default function Home() {
         </aside>
       </section>
 
-      <div className="map-divider" aria-hidden="true">
-        <span />
-      </div>
-
       <section className="section-block featured-article-section" aria-labelledby="featured-article-title">
-        <div className="featured-article-label">
-          <p className="eyebrow">Featured visitor update</p>
-          <span>Final season in Pigeon Forge</span>
-        </div>
         <Link className="featured-article-card" href="/the-track-pigeon-forge-closing">
-          <div>
+          <p className="eyebrow">Featured visitor update</p>
+          <div className="featured-article-content">
             <h2 id="featured-article-title">
               The Track in Pigeon Forge Is Closing November 1, 2026
             </h2>
@@ -218,9 +211,13 @@ export default function Home() {
               visit before it closes and what to do nearby.
             </p>
           </div>
-          <span className="featured-article-cta">Read the guide <span aria-hidden="true">→</span></span>
+          <span className="featured-article-cta">Read the Track closing guide <span aria-hidden="true">→</span></span>
         </Link>
       </section>
+
+      <div className="map-divider" aria-hidden="true">
+        <span />
+      </div>
 
       <section className="section-block brochure-section" id="planning" aria-labelledby="planning-title">
         <div className="section-heading">
