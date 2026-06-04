@@ -50,8 +50,8 @@ const tripShapes = [
     title: "Family day",
     goodIf: "You have kids, mixed ages or need simple stops.",
     planAround: "Meals, bathrooms, tired legs and backup options.",
-    next: "Things To Do",
-    href: "/things-to-do",
+    next: "Smokies With Toddlers",
+    href: "/smokies-with-toddlers",
   },
   {
     title: "Rainy day",
