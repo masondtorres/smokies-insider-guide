@@ -215,6 +215,10 @@ export default function StartPlanningPage() {
           Park roads, parking needs, weather and closures can change. Parking
           tags may be needed for park stops.
         </p>
+        <p>
+          Planning pages are general guidance. Check official park sources
+          before final National Park decisions.
+        </p>
         <div className="source-links">
           <a href="https://www.nps.gov/grsm/planyourvisit/conditions.htm">
             Great Smoky Mountains National Park current conditions

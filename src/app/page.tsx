@@ -40,7 +40,7 @@ const planningLanes = [
   },
   {
     title: "Coupons & Deals",
-    text: "Save on attractions, restaurants, shopping and more.",
+    text: "Reviewed Smokies offers will appear here once they are current and verified.",
     label: "Good after",
     note: "You know what kind of day you are planning.",
     href: "/deals",
@@ -135,6 +135,14 @@ const footerLinks = [
   { label: "Coupons & Deals", href: "/deals" },
   { label: "Events & Shows", href: "/events" },
   { label: "Advertise With Us", href: "/advertise" },
+  { label: "About", href: "/about" },
+];
+
+const trustPoints = [
+  "Planning advice is separated from reviewed business data.",
+  "Park conditions, roads and parking needs can change.",
+  "Deals and sponsored placements should be labeled when they go live.",
+  "The goal is practical trip planning, not generic travel filler.",
 ];
 
 export default function Home() {
@@ -232,6 +240,18 @@ export default function Home() {
                 {card.note}
               </p>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block homepage-trust-strip" aria-labelledby="trust-title">
+        <div className="section-heading">
+          <p className="eyebrow">Guide standards</p>
+          <h2 id="trust-title">How this guide stays useful</h2>
+        </div>
+        <div className="trust-point-grid">
+          {trustPoints.map((point) => (
+            <p key={point}>{point}</p>
           ))}
         </div>
       </section>

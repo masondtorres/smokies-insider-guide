@@ -863,6 +863,38 @@ h1 {
   background: rgba(251, 247, 235, 0.72);
 }
 
+.homepage-trust-strip {
+  border-left: 7px solid var(--gold);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(106, 75, 56, 0.05) 31px 32px),
+    rgba(243, 235, 217, 0.82);
+}
+
+.trust-point-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 28px;
+}
+
+.trust-point-grid p {
+  margin: 0;
+  padding: 14px 0 14px 24px;
+  border-bottom: 1px solid rgba(106, 75, 56, 0.16);
+  color: #46433d;
+  line-height: 1.5;
+  position: relative;
+}
+
+.trust-point-grid p::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  left: 2px;
+  width: 10px;
+  height: 4px;
+  background: var(--copper);
+}
+
 .area-card {
   position: relative;
   display: block;
@@ -1052,7 +1084,8 @@ h1 {
 }
 
 .next-step-panel .eyebrow,
-.next-step-panel .destination-heading h2 {
+.next-step-panel .destination-heading h2,
+.next-step-panel .router-section-intro {
   color: var(--paper);
 }
 
@@ -1215,6 +1248,10 @@ h1 {
   .primary-decision-section .destination-grid,
   .comparison-section .destination-grid,
   .pairing-section .destination-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-point-grid {
     grid-template-columns: 1fr;
   }
 
