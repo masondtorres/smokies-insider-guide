@@ -41,8 +41,8 @@ const tripShapes = [
     title: "Family attraction day",
     goodIf: "Kids, mixed ages or groups need simple choices.",
     planAround: "Energy, meal breaks and one backup activity.",
-    next: "Things To Do",
-    href: "/things-to-do",
+    next: "Pigeon Forge With Kids",
+    href: "/pigeon-forge-with-kids",
   },
   {
     title: "Show and dinner day",
