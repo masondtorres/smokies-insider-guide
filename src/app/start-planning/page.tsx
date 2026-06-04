@@ -94,7 +94,7 @@ const planningRisks = [
   {
     title: "Parking",
     text: "Check what you need before park stops and busy town days.",
-    href: "/visitor-resources",
+    href: "/smokies-parking-trolley-guide",
   },
   {
     title: "Traffic",
