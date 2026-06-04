@@ -1,355 +1,203 @@
 import Link from "next/link";
 
 const navLinks = [
-  { label: "Explore", href: "/explore" },
+  { label: "Start Planning", href: "/start-planning" },
   { label: "Things To Do", href: "/things-to-do" },
   { label: "Eat, Stay & Shop", href: "/eat-stay-shop" },
-  { label: "Deals", href: "/deals" },
-  { label: "Events", href: "/events" },
   { label: "Advertise", href: "/advertise" },
 ];
 
-const planningLanes = [
+const dayCards = [
   {
-    title: "Explore the Smokies",
-    text: "Pick the right town, road or park area.",
-    label: "Start here",
-    note: "If you are choosing between towns, park areas or scenic drives.",
-    cta: "Open guide",
-    href: "/explore",
+    title: "First-time Smokies trip",
+    start: "Compare Gatlinburg, Pigeon Forge, Sevierville and Townsend.",
+    fit: "Visitors choosing a base and trying to understand the area.",
+    watch: "Booking first, then discovering every day requires a long drive.",
+    cta: "Start planning",
+    href: "/start-planning",
   },
   {
-    title: "Things To Do",
-    text: "Attractions, trails, shows and rainy-day plans.",
-    label: "Good if",
-    note: "You need attractions, trails, shows or an indoor backup.",
-    cta: "View activities",
-    href: "/things-to-do",
+    title: "Family with kids",
+    start: "Build around one anchor such as Dollywood, The Island or WonderWorks.",
+    fit: "Families balancing attractions, food, rest and a backup plan.",
+    watch: "Stacking too many paid stops along the Pigeon Forge Parkway.",
+    cta: "Plan Pigeon Forge with kids",
+    href: "/pigeon-forge-with-kids",
   },
   {
-    title: "Eat, Stay & Shop",
-    text: "Restaurants, cabins, shopping and local stops.",
-    label: "Best for",
-    note: "Meals, cabin areas, shopping stops and local services.",
-    cta: "View guide",
+    title: "Rainy day",
+    start: "Choose one indoor anchor and keep the driving simple.",
+    fit: "Families considering WonderWorks or another indoor stop.",
+    watch: "Crossing town repeatedly because every outdoor plan changed.",
+    cta: "Build a rainy-day plan",
+    href: "/rainy-day-smokies-with-kids",
+  },
+  {
+    title: "Low-walking day",
+    start: "Plan around driving, seating, easy exits and short stops.",
+    fit: "Mixed-age groups and visitors who need less time on foot.",
+    watch: "Assuming the Gatlinburg strip will be the easiest option.",
+    cta: "Plan a lower-walking day",
+    href: "/gatlinburg-without-walking-too-much",
+  },
+  {
+    title: "Dollywood day",
+    start: "Let Dollywood be the main event and keep the evening light.",
+    fit: "Families ready to give the park most of the day.",
+    watch: "Adding several Parkway attractions before or after.",
+    cta: "Plan Dollywood day",
+    href: "/dollywood-day-plan",
+  },
+  {
+    title: "Cades Cove day",
+    start: "Use Townsend or Wears Valley as the practical side of the trip.",
+    fit: "Visitors who want a slower Great Smoky Mountains National Park day.",
+    watch: "Treating the loop like a quick stop between busy town plans.",
+    cta: "Plan Cades Cove",
+    href: "/cades-cove-first-time-guide",
+  },
+  {
+    title: "Free and cheap day",
+    start: "Choose a scenic or town-based anchor before adding paid stops.",
+    fit: "Visitors protecting the trip budget without wasting the day.",
+    watch: "Letting small add-ons turn into another expensive day.",
+    cta: "Find lower-cost ideas",
+    href: "/free-and-cheap-smokies",
+  },
+  {
+    title: "Food-first day",
+    start: "Choose the meal area first, then add one nearby stop.",
+    fit: "Groups that care more about a good meal than a packed itinerary.",
+    watch: "Driving across the whole area between food and activities.",
+    cta: "Open the food guide",
     href: "/eat-stay-shop",
   },
   {
-    title: "Visitor Resources",
-    text: "Parking, traffic, maps, weather and park basics.",
-    label: "Start here",
-    note: "Before park days, busy weekends or a first-time trip.",
-    cta: "Open resources",
-    href: "/visitor-resources",
+    title: "Avoid the worst crowds",
+    start: "Choose one area and stop crossing between busy towns.",
+    fit: "Visitors who value a workable route over a long wish list.",
+    watch: "Building a day that depends on the Gatlinburg strip and Parkway traffic.",
+    cta: "Plan parking and movement",
+    href: "/smokies-parking-trolley-guide",
   },
   {
-    title: "Coupons & Deals",
-    text: "Reviewed Smokies offers will appear here once they are current and verified.",
-    label: "Good after",
-    note: "You know what kind of day you are planning.",
-    cta: "View deals page",
-    href: "/deals",
-  },
-  {
-    title: "Events & What's Happening",
-    text: "Find festivals, shows, seasonal events and things happening around the Smokies.",
-    label: "Best for",
-    note: "Trip dates, festivals, shows and seasonal timing.",
-    cta: "View events",
-    href: "/events",
+    title: "Not sure where to stay",
+    start: "Match the base to the days you actually want.",
+    fit: "Trips split between attractions, the national park and quieter time.",
+    watch: "Choosing a cabin view without checking the route.",
+    cta: "Choose your base",
+    href: "/where-to-stay-in-the-smokies-by-trip-type",
   },
 ];
 
-const realityCards = [
-  {
-    title: "Parking matters",
-    text: "Some park stops require planning around parking tags, crowds and timing.",
-    label: "Plan around",
-    note: "Parking tags, crowded pull-offs and timing.",
-  },
-  {
-    title: "Town choice matters",
-    text: "Gatlinburg, Pigeon Forge, Sevierville and Townsend do not work the same way.",
-    label: "Plan around",
-    note: "Different walking, driving and attraction patterns.",
-  },
-  {
-    title: "Weather changes the day",
-    text: "Have indoor and low-walking backups ready.",
-    label: "Rain backup",
-    note: "Keep one indoor or low-walking option ready.",
-  },
-  {
-    title: "Do not overpack the day",
-    text: "The Smokies punish rushed plans, especially with kids or older family members.",
-    label: "Leave room for",
-    note: "Traffic, meals, tired kids and slow roads.",
-  },
-];
-
-const areaCards = [
-  {
-    title: "Gatlinburg",
-    text: "Best when you want walkability, park access and downtown energy.",
-    label: "Skip if",
-    note: "You want the easiest driving day.",
-    cta: "Open Gatlinburg guide",
-    href: "/gatlinburg",
-  },
-  {
-    title: "Pigeon Forge",
-    text: "Best for family attractions, shows, Dollywood and Parkway stops.",
-    label: "Plan around",
-    note: "Parkway traffic and spread-out stops.",
-    cta: "Open Pigeon Forge guide",
-    href: "/pigeon-forge",
-  },
-  {
-    title: "Sevierville",
-    text: "Best for gateway access, local businesses, shopping and easier positioning.",
-    label: "Good if",
-    note: "You want easier positioning between trip areas.",
-    cta: "Open Sevierville guide",
-    href: "/sevierville",
-  },
-  {
-    title: "Townsend",
-    text: "Best for a quieter pace, Cades Cove access and scenic drives.",
-    label: "Skip if",
-    note: "Your day depends on a heavy attraction schedule.",
-    cta: "Open Townsend guide",
-    href: "/townsend",
-  },
-  {
-    title: "National Park",
-    text: "Best for trails, overlooks, waterfalls, wildlife rules and real planning.",
-    label: "Before you go",
-    note: "Check current conditions and choose a focused park area.",
-    cta: "Open park resources",
-    href: "/visitor-resources",
-  },
-  {
-    title: "Wears Valley / Cades Cove",
-    text: "Best for slower drives, cabin trips and quieter mountain time.",
-    label: "Do not rush it",
-    note: "Allow time for slow roads and scenic stops.",
-    cta: "Explore the area",
-    href: "/explore",
-  },
-];
-
-const footerLinks = [
-  { label: "Start Planning", href: "/start-planning" },
-  { label: "Explore the Smokies", href: "/explore" },
-  { label: "Things To Do", href: "/things-to-do" },
-  { label: "Eat, Stay & Shop", href: "/eat-stay-shop" },
-  { label: "Visitor Resources", href: "/visitor-resources" },
-  { label: "Coupons & Deals", href: "/deals" },
-  { label: "Events & Shows", href: "/events" },
-  { label: "Advertise With Us", href: "/advertise" },
-  { label: "About", href: "/about" },
-];
-
-const trustPoints = [
-  "Planning advice is separated from reviewed business data.",
-  "Park conditions, roads and parking needs can change.",
-  "Deals and sponsored placements should be labeled when they go live.",
-  "The goal is practical trip planning, not generic travel filler.",
+const popularGuides = [
+  { title: "Start Planning", text: "Use the simple concierge flow.", href: "/start-planning" },
+  { title: "Things To Do", text: "Choose activities that fit the day.", href: "/things-to-do" },
+  { title: "Pigeon Forge With Kids", text: "Build a family day without overloading it.", href: "/pigeon-forge-with-kids" },
+  { title: "Cades Cove First-Time Guide", text: "Plan the loop without rushing it.", href: "/cades-cove-first-time-guide" },
+  { title: "Parking and Trolley Guide", text: "Plan around town movement and parking.", href: "/smokies-parking-trolley-guide" },
+  { title: "Eat, Stay & Shop", text: "Plan meals, lodging areas and local stops.", href: "/eat-stay-shop" },
 ];
 
 export default function Home() {
   return (
-    <main className="home-page">
+    <main className="home-page concierge-home">
       <header className="site-header">
         <Link className="wordmark" href="/" aria-label="Smokies Insider Guide home">
           Smokies Insider Guide
         </Link>
         <nav className="primary-nav" aria-label="Primary navigation">
-          {navLinks.map((link) => (
-            <Link href={link.href} key={link.href}>
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => <Link href={link.href} key={link.href}>{link.label}</Link>)}
         </nav>
       </header>
 
-      <section className="hero-section" aria-labelledby="hero-title">
+      <section className="hero-section concierge-hero" aria-labelledby="hero-title">
         <div className="hero-copy">
-          <p className="eyebrow">Smoky Mountain trip planning</p>
-          <h1 id="hero-title">The insider&apos;s guide to the Smokies</h1>
+          <p className="eyebrow">Practical Smoky Mountain trip planning</p>
+          <h1 id="hero-title">Plan the Smokies like you know the place.</h1>
           <p className="hero-subhead">
-            Better routes, places to eat, deals, things to do, events and visitor
-            resources without the guesswork.
+            Pick the right town, avoid the wrong traffic, find better family
+            stops and build a day that actually works.
           </p>
-          <div className="hero-actions" aria-label="Homepage actions">
-            <Link className="button button-primary" href="/start-planning">
-              Start Planning
-            </Link>
-            <Link className="button button-secondary" href="/advertise">
-              Advertise With Us
-            </Link>
+          <div className="hero-actions">
+            <Link className="button button-primary" href="/start-planning">Start Planning</Link>
+            <Link className="button button-secondary" href="/things-to-do">Things To Do</Link>
           </div>
         </div>
-        <aside className="field-note" aria-label="Planning field note">
-          <span>Field note</span>
-          <p>
-            The Smokies are easier when you plan by town, weather, parking,
-            walking distance and what your group can handle.
-          </p>
+        <aside className="field-note">
+          <span>Local planning rule</span>
+          <p>Choose the shape of the day before choosing every stop.</p>
         </aside>
       </section>
 
-      <section className="section-block featured-article-section" aria-labelledby="featured-article-title">
-        <Link className="featured-article-card" href="/the-track-pigeon-forge-closing">
-          <p className="eyebrow">Featured visitor update</p>
-          <div className="featured-article-content">
-            <h2 id="featured-article-title">
-              The Track in Pigeon Forge Is Closing November 1, 2026
-            </h2>
-            <p>
-              A practical family guide to what the closure means, who should
-              visit before it closes and what to do nearby.
-            </p>
+      <section className="section-block concierge-builder" aria-labelledby="builder-title">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Concierge desk</p>
+            <h2 id="builder-title">Build your Smokies day</h2>
           </div>
-          <span className="featured-article-cta">Read the Track closing guide <span aria-hidden="true">→</span></span>
+          <p className="section-route-note">
+            Start with the kind of trip you are actually planning. We&apos;ll point
+            you toward the right town, route, activity and backup plan.
+          </p>
+        </div>
+        <div className="concierge-card-grid">
+          {dayCards.map((card) => (
+            <Link className="concierge-card" href={card.href} key={card.title}>
+              <h3>{card.title}</h3>
+              <dl>
+                <div><dt>Best starting point</dt><dd>{card.start}</dd></div>
+                <div><dt>Good fit for</dt><dd>{card.fit}</dd></div>
+                <div><dt>Watch out for</dt><dd>{card.watch}</dd></div>
+              </dl>
+              <span className="card-cta">{card.cta} <span aria-hidden="true">→</span></span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block local-updates-section" aria-labelledby="updates-title">
+        <div className="section-heading">
+          <div><p className="eyebrow">Visitor updates</p><h2 id="updates-title">Local planning updates</h2></div>
+        </div>
+        <Link className="local-update-card" href="/the-track-pigeon-forge-closing">
+          <div>
+            <h3>The Track in Pigeon Forge Is Closing November 1, 2026</h3>
+            <p>If this was part of your Pigeon Forge plan, here is what to know, who should visit before it closes and what to do nearby.</p>
+          </div>
+          <strong>Read the Track closing guide <span aria-hidden="true">→</span></strong>
         </Link>
       </section>
 
-      <div className="map-divider" aria-hidden="true">
-        <span />
-      </div>
-
-      <section className="section-block brochure-section" id="planning" aria-labelledby="planning-title">
+      <section className="section-block popular-guides-section" aria-labelledby="popular-title">
         <div className="section-heading">
-          <div>
-            <p className="eyebrow">Quick planning lanes</p>
-            <h2 id="planning-title">Start with what you need</h2>
-          </div>
-          <p className="section-route-note">Pick one lane first. The rest can wait.</p>
+          <div><p className="eyebrow">Useful next steps</p><h2 id="popular-title">Popular planning guides</h2></div>
         </div>
-        <div className="planning-grid">
-          {planningLanes.map((card, index) => (
-            <Link
-              className={`lane-card${index < 3 ? " priority-card" : ""}`}
-              href={card.href}
-              key={card.title}
-            >
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-              <p className="decision-note">
-                <strong>{card.label}</strong>
-                {card.note}
-              </p>
-              <span className="card-cta">{card.cta} <span aria-hidden="true">→</span></span>
+        <div className="popular-guide-grid">
+          {popularGuides.map((guide) => (
+            <Link href={guide.href} key={guide.href}>
+              <h3>{guide.title}</h3><p>{guide.text}</p><strong>Open guide →</strong>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="section-block reality-section field-note-section" aria-labelledby="reality-title">
-        <div className="section-heading">
-          <p className="eyebrow">Planning reality</p>
-          <h2 id="reality-title">Plan around the real Smokies</h2>
-        </div>
-        <div className="reality-grid">
-          {realityCards.map((card) => (
-            <article className="note-card" key={card.title}>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-              <p className="decision-note">
-                <strong>{card.label}</strong>
-                {card.note}
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-block area-rack-section" aria-labelledby="areas-title">
-        <div className="section-heading">
-          <p className="eyebrow">Area starter</p>
-          <h2 id="areas-title">Pick the right Smokies base</h2>
-        </div>
-        <div className="area-grid">
-          {areaCards.map((card) => (
-            <Link className="area-card brochure-tile" href={card.href} key={card.title}>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-              <p className="decision-note">
-                <strong>{card.label}</strong>
-                {card.note}
-              </p>
-              <span className="card-cta">{card.cta} <span aria-hidden="true">→</span></span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-block homepage-trust-strip" aria-labelledby="trust-title">
-        <div className="section-heading">
-          <p className="eyebrow">Guide standards</p>
-          <h2 id="trust-title">How this guide stays useful</h2>
-        </div>
-        <div className="trust-point-grid">
-          {trustPoints.map((point) => (
-            <p key={point}>{point}</p>
-          ))}
-        </div>
-      </section>
-
-      <aside className="homepage-park-links" aria-label="Official park links">
+      <section className="business-cta compact-business-cta" aria-labelledby="business-title">
         <div>
-          <strong>Official park links</strong>
-          <span>Park roads, closures and parking needs can change.</span>
+          <p className="eyebrow">For local businesses</p>
+          <h2 id="business-title">Own a Smokies business?</h2>
+          <p>Get in front of visitors while they are choosing where to go, what to do and where to spend money.</p>
         </div>
-        <nav aria-label="Great Smoky Mountains National Park resources">
-          <a href="https://www.nps.gov/grsm/planyourvisit/conditions.htm">
-            Current conditions
-          </a>
-          <a href="https://www.nps.gov/grsm/planyourvisit/fees.htm">
-            Parking tags
-          </a>
-        </nav>
-      </aside>
-
-      <section className="business-cta planning-desk-cta" id="advertise" aria-labelledby="business-title">
-        <div>
-          <p className="eyebrow">For Smokies businesses</p>
-          <h2 id="business-title">
-            Reach visitors before they choose where to eat, stay, shop or play.
-          </h2>
-          <p>
-            Smokies Insider Guide is built for people planning real trips to
-            Gatlinburg, Pigeon Forge, Sevierville, Townsend and the National Park.
-            If your business serves Smokies visitors, this is where you want to be
-            seen.
-          </p>
-          <p className="trust-line">
-            Deal submissions and business listings are being built carefully so
-            offers stay current and useful.
-          </p>
-        </div>
-        <div className="business-actions" aria-label="Business actions">
-          <Link className="button button-primary" href="/advertise">
-            Advertise With Us
-          </Link>
-          <Link className="button button-secondary" href="/deals">
-            View Deals
-          </Link>
+        <div className="business-actions">
+          <Link className="button button-primary" href="/advertise">Advertise With Us</Link>
         </div>
       </section>
 
       <footer className="site-footer">
-        <div>
-          <strong>Smokies Insider Guide</strong>
-          <span>Decision-first planning for Smoky Mountain visitors.</span>
-        </div>
+        <div><strong>Smokies Insider Guide</strong><span>Decision-first planning for Smoky Mountain visitors.</span></div>
         <nav aria-label="Footer navigation">
-          {footerLinks.map((link) => (
-            <Link href={link.href} key={link.href}>
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => <Link href={link.href} key={link.href}>{link.label}</Link>)}
+          <Link href="/advertise">Advertise With Us</Link>
         </nav>
       </footer>
     </main>
