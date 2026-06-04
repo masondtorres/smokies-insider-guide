@@ -827,25 +827,18 @@ h1 {
   opacity: 0.72;
 }
 
-.brochure-section .lane-card:first-child {
-  grid-column: span 2;
-  padding: clamp(24px, 3vw, 32px);
-  border-top-color: var(--gold);
-  background: linear-gradient(135deg, rgba(34, 69, 52, 0.98), rgba(70, 84, 70, 0.94));
+.brochure-section .planning-grid {
+  grid-auto-rows: 1fr;
 }
 
-.brochure-section .lane-card:first-child h3,
-.brochure-section .lane-card:first-child p {
-  color: var(--paper);
+.brochure-section .lane-card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 }
 
-.brochure-section .lane-card:first-child .decision-note {
-  border-top-color: rgba(251, 247, 235, 0.24);
-  color: rgba(251, 247, 235, 0.88);
-}
-
-.brochure-section .lane-card:first-child .decision-note strong {
-  color: var(--gold);
+.brochure-section .lane-card .decision-note {
+  margin-top: auto;
 }
 
 .field-note-section {
@@ -1327,10 +1320,6 @@ h1 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .brochure-section .lane-card:first-child {
-    grid-column: span 2;
-  }
-
   .primary-decision-section .destination-card,
   .comparison-section .destination-card {
     border-right: 1px solid var(--line);
@@ -1423,10 +1412,6 @@ h1 {
   .destination-grid,
   .destination-link-grid {
     grid-template-columns: 1fr;
-  }
-
-  .brochure-section .lane-card:first-child {
-    grid-column: span 1;
   }
 
   .brochure-tile:nth-child(2n),
