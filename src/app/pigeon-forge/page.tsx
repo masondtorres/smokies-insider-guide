@@ -34,8 +34,8 @@ const tripShapes = [
     title: "Dollywood day",
     goodIf: "Dollywood is the anchor of the trip.",
     planAround: "Arrival timing, meals, traffic and not adding too much after.",
-    next: "Things To Do",
-    href: "/things-to-do",
+    next: "Dollywood Day Plan",
+    href: "/dollywood-day-plan",
   },
   {
     title: "Family attraction day",
