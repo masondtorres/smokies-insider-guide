@@ -59,14 +59,14 @@ function buildProfile(answers: ResearchPlannerAnswers, plan: ResearchPlannerPlan
     answers.risk ? `Watch: ${answers.risk}` : "Risk open",
   ];
 
-  return pieces.join(" · ");
+  return pieces.join(" / ");
 }
 
 function explainFit(answers: ResearchPlannerAnswers, plan: ResearchPlannerPlan) {
   const chosen = researchPlannerQuestions
     .filter((question) => answers[question.key])
     .map((question) => `${answerLabels[question.key]}: ${answers[question.key]}`)
-    .join(" · ");
+    .join(" / ");
 
   return `${plan.whyItFits} Your inputs: ${chosen || "starter defaults"}.`;
 }
@@ -77,7 +77,8 @@ export function TripPlanner() {
   const [showResult, setShowResult] = useState(false);
   const currentQuestion = researchPlannerQuestions[stepIndex];
   const selectedAnswer = answers[currentQuestion.key];
-  const completedCount = researchPlannerQuestions.filter((question) => answers[question.key]).length;
+  const answeredQuestions = researchPlannerQuestions.filter((question) => answers[question.key]);
+  const completedCount = answeredQuestions.length;
   const progressPercent = showResult ? 100 : (completedCount / researchPlannerQuestions.length) * 100;
   const plan = useMemo(() => choosePlan(answers), [answers]);
   const profile = useMemo(() => buildProfile(answers, plan), [answers, plan]);
@@ -166,6 +167,7 @@ export function TripPlanner() {
 
             <div className="wizard-controls">
               <button disabled={stepIndex === 0} onClick={goBack} type="button">Back</button>
+              <button className="wizard-reset" onClick={restartPlan} type="button">Start Over</button>
               <button disabled={!selectedAnswer} onClick={goNext} type="button">
                 {stepIndex === researchPlannerQuestions.length - 1 ? "Build my plan" : "Next"}
               </button>
@@ -175,17 +177,22 @@ export function TripPlanner() {
           <aside className="trip-so-far-panel" aria-live="polite">
             <p className="eyebrow">Your plan so far</p>
             <h2>{profile}</h2>
-            <dl>
-              {researchPlannerQuestions.map((question) => (
-                <div key={question.key}>
-                  <dt>{answerLabels[question.key]}</dt>
-                  <dd>{answers[question.key] ?? "Not chosen yet"}</dd>
-                </div>
-              ))}
-            </dl>
+            {answeredQuestions.length ? (
+              <dl>
+                {answeredQuestions.map((question) => (
+                  <div key={question.key}>
+                    <dt>{answerLabels[question.key]}</dt>
+                    <dd>{answers[question.key]}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <p className="trip-summary-empty">Choose the first answer and this panel will start building your plan.</p>
+            )}
             <div className="live-preview">
-              <span>Live plan preview</span>
+              <span>Current recommendation</span>
               <strong>{plan.title}</strong>
+              <p>{plan.bestStartingBase}</p>
               <p>{plan.mainAnchor}</p>
             </div>
           </aside>
@@ -224,68 +231,65 @@ function FinalPlan({
         <span>{profile}</span>
       </div>
 
-      <div className="final-plan-grid research-plan-grid">
-        <article className="final-plan-primary">
-          <span>Best starting base</span>
-          <p>{plan.bestStartingBase}</p>
-        </article>
-        <article>
-          <span>Best for</span>
-          <p>{plan.bestFor}</p>
-        </article>
-        <article className="final-plan-warning">
-          <span>Weak fit / skip if</span>
-          <p>{plan.weakFit}</p>
-        </article>
-        <article className="final-plan-primary">
-          <span>Main anchor</span>
-          <p>{plan.mainAnchor}</p>
-        </article>
-        <article>
-          <span>Secondary stop</span>
-          <p>{plan.secondaryStop}</p>
-        </article>
-        <article>
-          <span>Optional add-on</span>
-          <p>{plan.optionalAddOn}</p>
-        </article>
-        <article>
-          <span>Food / rest strategy</span>
-          <p>{plan.foodRestStrategy}</p>
-        </article>
-        <article className="final-plan-warning">
-          <span>Parking / traffic / movement warning</span>
-          <p>{plan.parkingMovementWarning}</p>
-        </article>
-        <article>
-          <span>Crowd strategy</span>
-          <p>{plan.crowdStrategy}</p>
-        </article>
-        <article>
-          <span>Rain backup</span>
-          <p>{plan.rainBackup}</p>
-        </article>
-        <article>
-          <span>Mobility note</span>
-          <p>{plan.mobilityNote}</p>
-        </article>
-        <article>
-          <span>Budget note</span>
-          <p>{plan.budgetNote}</p>
-        </article>
-        <article className="final-plan-warning">
-          <span>What to skip</span>
-          <p>{plan.whatToSkip}</p>
-        </article>
+      <div className="final-plan-sections">
+        <section className="plan-section plan-section-primary" aria-labelledby="plan-start-here">
+          <span>Start here</span>
+          <h3 id="plan-start-here">{plan.bestStartingBase}</h3>
+          <dl>
+            <div>
+              <dt>Best for</dt>
+              <dd>{plan.bestFor}</dd>
+            </div>
+            <div>
+              <dt>Weak fit / skip if</dt>
+              <dd>{plan.weakFit}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section className="plan-section" aria-labelledby="plan-main-here">
+          <span>Main plan</span>
+          <h3 id="plan-main-here">{plan.mainAnchor}</h3>
+          <ul className="plan-point-list">
+            <li><strong>Secondary stop:</strong> {plan.secondaryStop}</li>
+            <li><strong>Optional add-on:</strong> {plan.optionalAddOn}</li>
+            <li><strong>Food / rest strategy:</strong> {plan.foodRestStrategy}</li>
+          </ul>
+        </section>
+
+        <section className="plan-section" aria-labelledby="plan-backup-here">
+          <span>Backup plan</span>
+          <h3 id="plan-backup-here">{plan.rainBackup}</h3>
+          <ul className="plan-point-list">
+            <li><strong>Crowd strategy:</strong> {plan.crowdStrategy}</li>
+            <li><strong>Mobility note:</strong> {plan.mobilityNote}</li>
+            <li><strong>Budget note:</strong> {plan.budgetNote}</li>
+          </ul>
+        </section>
+
+        <section className="plan-section plan-warning-band" aria-labelledby="plan-avoid-here">
+          <span>Avoid this</span>
+          <h3 id="plan-avoid-here">{plan.whatToSkip}</h3>
+        </section>
+
+        <section className="plan-section plan-warning-band" aria-labelledby="plan-movement-here">
+          <span>Movement warning</span>
+          <h3 id="plan-movement-here">{plan.parkingMovementWarning}</h3>
+        </section>
+
+        <section className="plan-section plan-why-section" aria-labelledby="plan-why-here">
+          <span>Why this fits</span>
+          <h3 id="plan-why-here">{plan.title}</h3>
+          <p>{explainFit(answers, plan)}</p>
+          <p className="planner-disclaimer">
+            {plan.officialSourceCaution || officialSourceCaution}
+          </p>
+        </section>
       </div>
 
-      <p className="planner-disclaimer">
-        {plan.officialSourceCaution || officialSourceCaution}
-      </p>
-
-      <section className="best-next-panel" aria-labelledby="best-next-title">
+      <section className="best-next-panel final-next-section" aria-labelledby="best-next-title">
         <div>
-          <p className="eyebrow">Best next link</p>
+          <p className="eyebrow">Next steps</p>
           <h3 id="best-next-title">{plan.bestNextLink.title}</h3>
           {plan.bestNextLink.description ? <p>{plan.bestNextLink.description}</p> : null}
         </div>

@@ -76,11 +76,11 @@ const tripTypes = [
   },
 ];
 
-const quickDecisions = [
-  ["Base", "Gatlinburg for walking, Pigeon Forge for attractions, Townsend for Cades Cove, Sevierville for value."],
-  ["Anchor", "Pick one main thing first. Everything else has to earn its drive time."],
-  ["Backup", "Rain, heat, parking and tired kids need a second plan before the day starts."],
-  ["Skip", "Cut cross-town filler. The Smokies punish plans that look efficient only on a map."],
+const plannerPreview = [
+  ["Best base", "Pigeon Forge for attraction-heavy families. Townsend or Wears Valley for slower park days."],
+  ["Main anchor", "Choose one: Dollywood, WonderWorks, Cades Cove, Roaring Fork, Anakeesta or a simple town route."],
+  ["Backup plan", "Rain with kids? Start indoors. Scenic day? Keep a visitor center or food reset ready."],
+  ["What to avoid", "Do not cross town twice if traffic, parking or tired kids are already the stress point."],
 ];
 
 const practicalGuides = [
@@ -98,29 +98,32 @@ export default function Home() {
       <section className="home-tool-hero" aria-labelledby="home-title">
         <div className="home-tool-copy">
           <p className="eyebrow">Smokies planning tool</p>
-          <h1 id="home-title">Get a Smokies day plan before the trip gets expensive.</h1>
+          <h1 id="home-title">Answer a few questions. Get a practical Smokies day plan.</h1>
           <p className="home-tool-promise">
-            Tell us who you are traveling with and what kind of day you want. We&apos;ll point you toward the right Smokies plan.
+            Tell us who you are traveling with, where you are starting and what could ruin the day. We&apos;ll point you toward a base, an anchor, a backup and the mistake to avoid.
           </p>
           <LastUpdated />
           <div className="hero-actions">
-            <Link className="button button-primary" href="/start-planning">Start with your trip type</Link>
-            <Link className="button button-secondary" href="/where-to-stay">Compare base towns</Link>
+            <Link className="button button-primary" href="/start-planning">Build My Smokies Day Plan</Link>
+            <Link className="button button-secondary" href="/things-to-do">Browse Things To Do</Link>
           </div>
         </div>
 
-        <aside className="decision-console" aria-label="Smokies decision console">
-          <div className="desk-pin">60-second planning desk</div>
-          <h2>Answer five questions. Leave with a usable day.</h2>
-          <div className="decision-console-list">
-            {quickDecisions.map(([label, copy]) => (
+        <aside className="decision-console planner-preview-module" aria-label="Smokies planner preview">
+          <div className="desk-pin">Planner preview</div>
+          <h2>One usable day, not a stack of stops.</h2>
+          <p>
+            It weighs base town, season, crowds, mobility, rain and budget before recommending the day shape.
+          </p>
+          <div className="decision-console-list planner-preview-list">
+            {plannerPreview.map(([label, copy]) => (
               <div key={label}>
                 <span>{label}</span>
                 <p>{copy}</p>
               </div>
             ))}
           </div>
-          <Link className="button button-primary" href="/start-planning">Open planner</Link>
+          <Link className="button button-primary" href="/start-planning">Open the Planner</Link>
         </aside>
       </section>
 
