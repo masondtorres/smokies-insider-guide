@@ -3,243 +3,507 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
-type PlannerAnswers = {
-  group: string;
-  length: string;
-  energy: string;
-  weather: string;
-  interest: string;
-  budget: string;
-  town: string;
-};
+type AnswerKey = "group" | "length" | "energy" | "weather" | "interest" | "budget" | "town";
 
-type Recommendation = {
-  bestFirstPick: string;
-  backupPick: string;
-  rainyDayOption: string;
-  familyOption: string;
-  caution: string;
-  why: string;
-};
+type PlannerAnswers = Partial<Record<AnswerKey, string>>;
 
-const questionGroups: {
-  key: keyof PlannerAnswers;
+type Option = {
   label: string;
-  options: string[];
-}[] = [
+  detail: string;
+};
+
+type Question = {
+  key: AnswerKey;
+  label: string;
+  helper: string;
+  options: Option[];
+};
+
+type Plan = {
+  title: string;
+  fitReason: string;
+  townRecommendation: string;
+  bestFirstStop: string;
+  morning: string;
+  afternoon: string;
+  evening: string;
+  backup: string;
+  rainySwap: string;
+  localCaution: string;
+  avoid: string;
+  familyNote: string;
+  budgetNote: string;
+};
+
+const questions: Question[] = [
   {
     key: "group",
     label: "Who is going?",
-    options: ["Adults", "Young kids", "Teens", "Seniors", "Mixed group"],
+    helper: "Choose the group that needs the most planning protection.",
+    options: [
+      { label: "Adults", detail: "Food, scenery and fewer kid-driven stops." },
+      { label: "Young kids", detail: "Shorter blocks, snacks, indoor backup." },
+      { label: "Teens", detail: "Active stops, food and evening options." },
+      { label: "Seniors", detail: "Less walking, easier parking, calmer pace." },
+      { label: "Mixed group", detail: "A little bit of everything, but not too much." },
+    ],
   },
   {
     key: "length",
-    label: "Trip length",
-    options: ["One day", "Weekend", "Three days", "Longer trip"],
+    label: "How much time do you have?",
+    helper: "This controls how much the day can realistically carry.",
+    options: [
+      { label: "One day", detail: "One anchor, one meal zone, one backup." },
+      { label: "Weekend", detail: "A scenic day plus one town or attraction day." },
+      { label: "Three days", detail: "Park/scenery, attractions, and flexible reset." },
+      { label: "Longer trip", detail: "Room for Cades Cove, Dollywood and slower routes." },
+    ],
   },
   {
     key: "energy",
-    label: "Energy level",
-    options: ["Easy pace", "Moderate day", "Packed day", "Low walking"],
+    label: "What pace feels right?",
+    helper: "Be honest. Smokies plans go wrong when the pace is fake.",
+    options: [
+      { label: "Easy pace", detail: "Fewer stops and more breathing room." },
+      { label: "Medium energy", detail: "One anchor plus a practical add-on." },
+      { label: "Packed day", detail: "More movement, but still one main route." },
+      { label: "Low walking", detail: "Scenic drives, seats, short walks and easy exits." },
+    ],
   },
   {
     key: "weather",
-    label: "Weather situation",
-    options: ["Clear day", "Rain likely", "Heat or storms", "Not sure"],
+    label: "What is the weather doing?",
+    helper: "Pick the situation you are planning around.",
+    options: [
+      { label: "Clear day", detail: "Scenery, town walking and outdoor anchors." },
+      { label: "Rain likely", detail: "Indoor anchor with nearby food." },
+      { label: "Heat or storms", detail: "Short outdoor windows and indoor backup." },
+      { label: "Not sure", detail: "Keep both outdoor and indoor options ready." },
+    ],
   },
   {
     key: "interest",
-    label: "Main interest",
-    options: ["Scenery", "Kid activities", "Indoor attractions", "Dollywood", "Food and shopping", "Cades Cove"],
+    label: "What does the group care about most?",
+    helper: "This picks the main anchor for the day.",
+    options: [
+      { label: "Scenery", detail: "Drives, overlooks and calmer routes." },
+      { label: "Kid activities", detail: "WonderWorks, Parrot Mountain, arcades, mini golf." },
+      { label: "Indoor attractions", detail: "Rain-safe categories and food nearby." },
+      { label: "Dollywood", detail: "Treat the park as the main event." },
+      { label: "Food and shopping", detail: "Meal zone first, then one nearby activity." },
+      { label: "Cades Cove", detail: "Slow scenic loop and quiet-side planning." },
+    ],
   },
   {
     key: "budget",
-    label: "Budget comfort",
-    options: ["Keep it low", "Mix free and paid", "Paid attractions OK"],
+    label: "How comfortable is the budget?",
+    helper: "This decides whether paid stops should lead or support the day.",
+    options: [
+      { label: "Keep it low", detail: "Free scenery first, paid stops only if they fit." },
+      { label: "Mix free and paid", detail: "One paid anchor plus free or cheap support." },
+      { label: "Paid attractions OK", detail: "Tickets are fine, but avoid stacking too many." },
+    ],
   },
   {
     key: "town",
-    label: "Town preference",
-    options: ["Not sure", "Gatlinburg", "Pigeon Forge", "Townsend", "Sevierville"],
+    label: "Where are you based?",
+    helper: "If you are not sure yet, the planner will choose the easiest fit.",
+    options: [
+      { label: "Not sure", detail: "Let the planner pick by trip shape." },
+      { label: "Gatlinburg", detail: "Walkable downtown, park access, tighter parking." },
+      { label: "Pigeon Forge", detail: "Family attractions, Dollywood and Parkway stops." },
+      { label: "Townsend", detail: "Quiet side, Cades Cove and scenic drives." },
+      { label: "Sevierville", detail: "Value base, outlets, food and gateway access." },
+    ],
   },
 ];
 
-const defaultAnswers: PlannerAnswers = {
-  group: "Mixed group",
-  length: "Weekend",
-  energy: "Moderate day",
-  weather: "Not sure",
-  interest: "Scenery",
-  budget: "Mix free and paid",
-  town: "Not sure",
+const answerLabels: Record<AnswerKey, string> = {
+  group: "Group",
+  length: "Length",
+  energy: "Pace",
+  weather: "Weather",
+  interest: "Interest",
+  budget: "Budget",
+  town: "Base",
 };
 
-function getRecommendation(answers: PlannerAnswers): Recommendation {
-  const rainy = answers.weather === "Rain likely" || answers.interest === "Indoor attractions";
-  const kids = answers.group === "Young kids" || answers.group === "Mixed group" || answers.interest === "Kid activities";
-  const teens = answers.group === "Teens";
-  const lowWalking = answers.energy === "Low walking" || answers.group === "Seniors";
-  const lowBudget = answers.budget === "Keep it low";
-  const paidOk = answers.budget === "Paid attractions OK";
-  const pigeonForge = answers.town === "Pigeon Forge" || answers.interest === "Dollywood" || kids;
-  const gatlinburg = answers.town === "Gatlinburg";
-  const townsend = answers.town === "Townsend" || answers.interest === "Cades Cove";
+function answerFor(answers: PlannerAnswers, key: AnswerKey, fallback: string) {
+  return answers[key] ?? fallback;
+}
+
+function inferTown(answers: PlannerAnswers) {
+  if (answers.town && answers.town !== "Not sure") return answers.town;
+  if (answers.interest === "Dollywood" || answers.interest === "Kid activities" || answers.interest === "Indoor attractions") return "Pigeon Forge";
+  if (answers.interest === "Cades Cove") return "Townsend";
+  if (answers.interest === "Food and shopping") return "Gatlinburg or Sevierville";
+  if (answers.energy === "Low walking") return "Townsend or Gatlinburg";
+  return "Gatlinburg or Pigeon Forge";
+}
+
+function buildProfile(answers: PlannerAnswers) {
+  const pieces = [
+    answers.group ? `${answers.group} trip` : "Trip type open",
+    answers.weather ?? "Weather open",
+    answers.energy ?? "Pace open",
+    answers.town && answers.town !== "Not sure" ? `${answers.town} base` : `${inferTown(answers)} base`,
+  ];
+
+  return pieces.join(" · ");
+}
+
+function buildPlan(answers: PlannerAnswers): Plan {
+  const group = answerFor(answers, "group", "Mixed group");
+  const length = answerFor(answers, "length", "Weekend");
+  const energy = answerFor(answers, "energy", "Medium energy");
+  const weather = answerFor(answers, "weather", "Not sure");
+  const interest = answerFor(answers, "interest", "Scenery");
+  const budget = answerFor(answers, "budget", "Mix free and paid");
+  const town = inferTown(answers);
+
+  const rainy = weather === "Rain likely" || interest === "Indoor attractions";
+  const heat = weather === "Heat or storms";
+  const kids = group === "Young kids" || group === "Mixed group" || interest === "Kid activities";
+  const teens = group === "Teens";
+  const seniors = group === "Seniors" || energy === "Low walking";
+  const lowBudget = budget === "Keep it low";
+  const paidOk = budget === "Paid attractions OK";
+  const dollywood = interest === "Dollywood";
+  const cadesCove = interest === "Cades Cove";
+  const food = interest === "Food and shopping";
+  const scenery = interest === "Scenery";
+
+  let title = `${town} starter day`;
+  let bestFirstStop = "Choose one main anchor before adding smaller stops.";
+  let morning = "Start with the stop that matters most, then keep the next move close.";
+  let afternoon = "Add one nearby activity or scenic reset instead of crossing the county.";
+  let evening = "Keep dinner near the same town or route so the day does not unravel late.";
+  let backup = "Use food, shopping or a shorter scenic stop if the main plan feels too heavy.";
+  let rainySwap = "Keep WonderWorks, indoor mini golf, arcades, aquarium-style attractions or a food-first plan ready.";
+  let localCaution = "Traffic, parking and weather can make short map distances feel longer.";
+  let avoid = "Avoid stacking stops from different towns just because they look close online.";
+  const familyNote = "For families, one anchor plus nearby food usually beats a long attraction list.";
+  let budgetNote = "Use deals only after the route makes sense.";
 
   if (rainy) {
-    return {
-      bestFirstPick: "Pick one indoor anchor near your base. WonderWorks works best from Pigeon Forge. Ripley-style Gatlinburg categories work better if you can park once and stay walkable.",
-      backupPick: "Use food and shopping as the reset instead of adding another cross-town drive.",
-      rainyDayOption: "WonderWorks, indoor mini golf, arcades, aquarium-style attractions or a dinner-show category, depending on town and current hours.",
-      familyOption: kids || teens ? "For kids or teens, choose one active indoor stop, then a nearby meal. Do not stack three paid stops in wet traffic." : "For adults, use a slower food-first day with one indoor stop and a short weather-window walk.",
-      caution: "Rain makes short drives feel longer around Gatlinburg and Pigeon Forge. Verify hours before leaving lodging.",
-      why: "Your answers point to a weather-protected day where route control matters more than a long list.",
-    };
+    title = `${town} rainy-day rescue plan`;
+    bestFirstStop = town.includes("Gatlinburg")
+      ? "Park once and choose one walkable indoor Gatlinburg anchor."
+      : "Start with WonderWorks or another indoor Pigeon Forge anchor near food.";
+    morning = "Choose one indoor attraction category first. Do not begin with a county-wide list.";
+    afternoon = "Use lunch as the reset, then add an arcade, indoor mini golf or covered shopping only if the group still has energy.";
+    evening = "Keep dinner close to the indoor anchor or lodging.";
+    backup = "If crowds stack indoors, switch to a food-and-shopping route rather than chasing another attraction across town.";
+    rainySwap = "WonderWorks, indoor mini golf, arcades, aquarium-style attractions and dinner-show categories are the safer rainy-day pool.";
+    localCaution = "Rain makes Gatlinburg and Pigeon Forge traffic feel slower. Verify hours before leaving lodging.";
+    avoid = "Avoid trying to save every outdoor plan in the same wet day.";
+  } else if (dollywood) {
+    title = "Dollywood-centered Pigeon Forge day";
+    bestFirstStop = "Make Dollywood the main event and keep the rest of the day nearby.";
+    morning = "Start with Dollywood or the ticketed anchor while the group is fresh.";
+    afternoon = "Stay with the park plan or take a lodging reset before adding anything else.";
+    evening = "Choose a simple Pigeon Forge meal or one nearby activity if everyone still has energy.";
+    backup = "If the park plan shifts, use WonderWorks, indoor mini golf or a dinner-show category in Pigeon Forge.";
+    rainySwap = "Keep a Pigeon Forge indoor attraction category ready, but verify current hours and policies.";
+    localCaution = "Do not build a full Parkway attraction list around a Dollywood day.";
+    avoid = "Avoid treating Dollywood as a half-day add-on unless your group already knows that pace works.";
+  } else if (cadesCove) {
+    title = "Townsend and Cades Cove slow-day plan";
+    bestFirstStop = "Start with Cades Cove only if you can give the loop real time.";
+    morning = "Go early for the loop or choose a quiet-side scenic start from Townsend.";
+    afternoon = "Pair the loop with Townsend, Wears Valley or Foothills Parkway rather than a busy attraction list.";
+    evening = "Use a quiet meal or cabin reset after the slow park route.";
+    backup = "If the loop is too slow or weather turns, choose Foothills Parkway or a Townsend-area meal.";
+    rainySwap = "Save Cades Cove for a better window if rain makes the loop unpleasant.";
+    localCaution = "Cades Cove is slow by design. Verify road status and current park guidance before going.";
+    avoid = "Avoid adding Cades Cove between Dollywood, Gatlinburg and a dinner show.";
+  } else if (seniors) {
+    title = `${town} low-walking Smokies plan`;
+    bestFirstStop = "Start with a scenic drive, overlook or town route with a simple parking plan.";
+    morning = "Choose Foothills Parkway, an overlook, a visitor-center-style stop or a short town walk.";
+    afternoon = "Add a seated meal, easy shopping area or low-walking attraction category.";
+    evening = "Stay near lodging or pick a dinner spot with the least parking friction.";
+    backup = "Use a seated indoor attraction, covered shopping or slow meal if walking or weather gets harder.";
+    rainySwap = "Choose indoor, seated or covered options close to your base.";
+    localCaution = "Low walking does not automatically mean accessible. Verify surfaces, bathrooms and parking.";
+    avoid = "Avoid vague easy-hike promises unless the exact stop has current access details.";
+  } else if (food) {
+    title = `${town} food-and-shopping route`;
+    bestFirstStop = "Pick the meal or shopping area first, then add one nearby activity.";
+    morning = "Start near the town or corridor where you want to eat.";
+    afternoon = "Add shopping, a short walk or one attraction close to the meal zone.";
+    evening = "Use dinner as the anchor instead of driving across town for one more stop.";
+    backup = "Sevierville can work for outlets and value-oriented stops if your route already points that way.";
+    rainySwap = "Covered shopping and a slower meal can carry the day when weather turns.";
+    localCaution = "A good restaurant can become a bad plan if it sends you across traffic at the wrong time.";
+    avoid = "Avoid chasing ratings across towns when your group is already hungry.";
+  } else if (kids || teens) {
+    title = `${town} family activity plan`;
+    bestFirstStop = paidOk
+      ? "Choose one strong family anchor: WonderWorks, Parrot Mountain, Dollywood or a Parkway activity that fits the day."
+      : "Start with a free or lower-cost scenic stop, then add one paid family activity if it still fits.";
+    morning = "Start with the anchor while the group has the most patience.";
+    afternoon = "Use food, rest or one lighter add-on instead of stacking paid stops.";
+    evening = teens ? "Teens may still want food and one active evening option." : "Young kids usually need a simpler evening and an easy exit.";
+    backup = "Use Sevierville, a simple Parkway meal or a lower-pressure shopping stop if the group needs a reset.";
+    rainySwap = "WonderWorks, arcades, indoor mini golf and aquarium-style categories work better than forcing wet outdoor plans.";
+    localCaution = "Pigeon Forge is easy to overstack. One anchor, one meal and one lighter add-on is usually enough.";
+    avoid = "Avoid promising every kid-friendly stop in one day.";
+  } else if (scenery) {
+    title = `${town} scenic Smokies day`;
+    bestFirstStop = "Choose one scenic route first: Foothills Parkway, Cades Cove, Newfound Gap or a town-based overlook plan.";
+    morning = "Start with scenery before the day gets crowded or hot.";
+    afternoon = "Pair the drive with a meal, overlook or short walk instead of another long route.";
+    evening = "Choose a town meal close to the way back.";
+    backup = "If roads or weather do not cooperate, shift to Gatlinburg, Sevierville or Pigeon Forge food/shopping.";
+    rainySwap = "Use indoor attractions or a food-first town route if visibility or storms make scenery weak.";
+    localCaution = "Scenic does not mean quick. Verify road conditions and give the route time.";
+    avoid = "Avoid trying to sample every scenic drive in one day.";
   }
 
-  if (answers.interest === "Dollywood") {
-    return {
-      bestFirstPick: "Make Dollywood the main event, not one stop in a packed Pigeon Forge day.",
-      backupPick: "If the park day shifts, use a Pigeon Forge indoor attraction or dinner-show category near the same corridor.",
-      rainyDayOption: "Keep WonderWorks, indoor mini golf or an arcade category as the nearby backup.",
-      familyOption: "Young kids usually need a simpler evening after Dollywood. Teens may still have energy for food or one nearby activity.",
-      caution: "Verify current Dollywood hours, schedules, tickets and weather policies before building the day around it.",
-      why: "A Dollywood-centered trip works best when the rest of the day stays close and simple.",
-    };
+  if (length === "One day") {
+    localCaution += " With one day, cut the plan before the plan cuts you.";
+    avoid = "Avoid crossing between every major town in one day.";
   }
 
-  if (townsend || answers.interest === "Cades Cove") {
-    return {
-      bestFirstPick: "Build the day around Cades Cove or a quiet-side scenic route from Townsend.",
-      backupPick: "Use Foothills Parkway, Wears Valley or a quiet meal if the loop feels too slow for your group.",
-      rainyDayOption: "If rain makes the loop unpleasant, shift to a lower-driving town meal and save the Cove for a better window.",
-      familyOption: "For families, keep Cades Cove to one major outing and avoid promising kids a packed attraction day afterward.",
-      caution: "Cades Cove is slow by design. Verify road status, vehicle-free schedules and current park guidance before you go.",
-      why: "Your answers point to scenery and quiet-side planning, where patience matters more than quantity.",
-    };
+  if (energy === "Packed day") {
+    avoid += " A packed day still needs one main route, not random stops.";
   }
 
-  if (lowWalking) {
-    return {
-      bestFirstPick: "Choose a scenic-drive day: Foothills Parkway, overlooks, visitor-center-style stops and a meal with easy parking.",
-      backupPick: "Use Gatlinburg only if you can park once and keep the route short. Otherwise, choose a less crowded base.",
-      rainyDayOption: "Pick a seated indoor attraction, meal, show category or covered shopping plan close to lodging.",
-      familyOption: "For mixed ages, pair one scenic stop with one easy food or shopping area. Do not force a trail-heavy day.",
-      caution: "Low walking does not automatically mean accessible. Verify surfaces, bathrooms and parking for the exact stop.",
-      why: "Your answers point to a lower-friction day where walking load and parking matter most.",
-    };
-  }
-
-  if (answers.interest === "Food and shopping" || gatlinburg) {
-    return {
-      bestFirstPick: gatlinburg ? "Park once in Gatlinburg and build the day around a walkable downtown route." : "Choose the food or shopping area first, then add one nearby activity.",
-      backupPick: "Sevierville can work for outlet and value-oriented stops if your route already points that way.",
-      rainyDayOption: "Use covered shopping, a slower meal and one indoor category near the same corridor.",
-      familyOption: "For families, anchor the day with food timing first. Hungry kids make every parking decision worse.",
-      caution: "Do not cross town for one meal unless it is clearly worth the traffic and parking tradeoff.",
-      why: "Your answers point to a town-based day where the meal and parking plan should drive the route.",
-    };
-  }
-
-  if (kids || pigeonForge) {
-    return {
-      bestFirstPick: paidOk ? "Choose one Pigeon Forge anchor: Dollywood, WonderWorks, Parrot Mountain or another family attraction category that fits current hours and your group." : "Start with a free or lower-cost scenic stop, then add one paid Pigeon Forge activity only if it still fits.",
-      backupPick: "Use Sevierville or a simple Parkway food stop if the group needs a lower-pressure reset.",
-      rainyDayOption: "WonderWorks, arcades, indoor mini golf or aquarium-style categories work better than forcing wet outdoor plans.",
-      familyOption: "Parrot Mountain can be a good family-style category when your group wants animals and slower pacing; verify current hours before going.",
-      caution: "Pigeon Forge is easy to overstack. One anchor, one meal and one lighter add-on is usually enough.",
-      why: "Your answers point to family-friendly planning where one strong anchor beats a long paid list.",
-    };
+  if (heat) {
+    rainySwap = "Use indoor midday breaks, shaded food stops and shorter outdoor windows if heat or storms build.";
+    localCaution += " Heat and storms make midday outdoor plans less reliable.";
   }
 
   if (lowBudget) {
-    return {
-      bestFirstPick: "Start with a scenic drive, overlook, visitor-center-style stop or town walk before buying tickets.",
-      backupPick: "Use food and one low-cost activity near your base instead of chasing coupons across town.",
-      rainyDayOption: "Covered shopping, a simple meal and one indoor category can keep the day useful without blowing the budget.",
-      familyOption: "For kids, pick one paid activity at most and protect time for snacks, rest and a free scenic stop.",
-      caution: "A discount is not a savings if it sends you across traffic for something your group did not need.",
-      why: "Your answers point to budget control, so the planner should protect both money and driving time.",
-    };
+    budgetNote = "Lead with scenic drives, overlooks, town walks and meals. Add one paid stop only if it is worth the time and money.";
+  } else if (paidOk) {
+    budgetNote = "Paid attractions are fine here, but the planner still limits the day to one main ticketed anchor.";
+  } else {
+    budgetNote = "Mix one paid anchor with free scenery, food or a town walk.";
   }
 
   return {
-    bestFirstPick: "Choose a scenic-drive or town-based anchor first: Gatlinburg for walkability, Pigeon Forge for family attractions, Townsend for Cades Cove and quiet scenery.",
-    backupPick: "Use Anakeesta, Parrot Mountain, a food/shopping area or a shorter scenic route depending on your base and current conditions.",
-    rainyDayOption: "Keep WonderWorks, indoor mini golf, arcades, aquarium-style categories or a food-first plan ready.",
-    familyOption: teens ? "For teens, pair one active attraction with food and a clear evening plan." : "For families, one anchor plus nearby food usually beats a long attraction list.",
-    caution: "Pick the base town before stacking stops. Traffic, parking and weather can change what looks easy on a map.",
-    why: "Your answers are balanced, so the best recommendation is a flexible route with one main anchor.",
+    title,
+    fitReason: `This fits a ${group.toLowerCase()} trip with ${energy.toLowerCase()}, ${weather.toLowerCase()} planning and a ${budget.toLowerCase()} budget posture.`,
+    townRecommendation: town,
+    bestFirstStop,
+    morning,
+    afternoon,
+    evening,
+    backup,
+    rainySwap,
+    localCaution,
+    avoid,
+    familyNote,
+    budgetNote,
   };
 }
 
 export function TripPlanner() {
-  const [answers, setAnswers] = useState<PlannerAnswers>(defaultAnswers);
-  const recommendation = useMemo(() => getRecommendation(answers), [answers]);
+  const [answers, setAnswers] = useState<PlannerAnswers>({});
+  const [stepIndex, setStepIndex] = useState(0);
+  const [showResult, setShowResult] = useState(false);
+  const currentQuestion = questions[stepIndex];
+  const selectedAnswer = answers[currentQuestion.key];
+  const completedCount = questions.filter((question) => answers[question.key]).length;
+  const progressPercent = showResult ? 100 : (completedCount / questions.length) * 100;
+  const plan = useMemo(() => buildPlan(answers), [answers]);
+  const profile = useMemo(() => buildProfile(answers), [answers]);
 
-  function updateAnswer(key: keyof PlannerAnswers, value: string) {
+  function chooseAnswer(key: AnswerKey, value: string) {
     setAnswers((current) => ({ ...current, [key]: value }));
   }
 
-  return (
-    <section className="concierge-planner" aria-label="Interactive Smokies trip planner">
-      <div className="planner-workbench">
-        <div className="planner-question-panel">
-          <div className="planner-panel-heading">
-            <p className="eyebrow">Quick planner</p>
-            <h2>Answer a few trip questions.</h2>
-            <p>Use the closest match. The goal is a useful first move, not a perfect schedule.</p>
-          </div>
-          <div className="planner-question-grid">
-            {questionGroups.map((question) => (
-              <fieldset className="planner-choice-group" key={question.key}>
-                <legend>{question.label}</legend>
-                <div>
-                  {question.options.map((option) => (
-                    <button
-                      className={answers[question.key] === option ? "active" : ""}
-                      key={option}
-                      onClick={() => updateAnswer(question.key, option)}
-                      type="button"
-                    >
-                      {option}
-                    </button>
-                  ))}
-                </div>
-              </fieldset>
-            ))}
-          </div>
-        </div>
+  function goNext() {
+    if (stepIndex === questions.length - 1) {
+      setShowResult(true);
+      return;
+    }
 
-        <aside className="planner-recommendations" aria-live="polite">
-          <p className="eyebrow">Your starter plan</p>
-          <h2>{recommendation.bestFirstPick}</h2>
-          <p>{recommendation.why}</p>
-          <div className="recommendation-grid">
-            <article>
-              <span>Backup pick</span>
-              <p>{recommendation.backupPick}</p>
-            </article>
-            <article>
-              <span>Rainy-day option</span>
-              <p>{recommendation.rainyDayOption}</p>
-            </article>
-            <article>
-              <span>Good family option</span>
-              <p>{recommendation.familyOption}</p>
-            </article>
-            <article className="planner-caution">
-              <span>Local caution</span>
-              <p>{recommendation.caution}</p>
-            </article>
-          </div>
-          <div className="planner-cta-row">
-            <Link href="/things-to-do">View things to do</Link>
-            <Link href="/explore">Explore towns</Link>
-            <Link href="/deals">Find deals</Link>
-            <Link href="/smokies-parking-trolley-guide">Read parking/trolley guide</Link>
-          </div>
-        </aside>
+    setStepIndex((current) => current + 1);
+  }
+
+  function goBack() {
+    if (showResult) {
+      setShowResult(false);
+      setStepIndex(questions.length - 1);
+      return;
+    }
+
+    setStepIndex((current) => Math.max(0, current - 1));
+  }
+
+  function restartPlan() {
+    setAnswers({});
+    setStepIndex(0);
+    setShowResult(false);
+  }
+
+  return (
+    <section className="concierge-planner wizard-planner" aria-label="Interactive Smokies trip planner">
+      <div className="wizard-status-bar">
+        <div>
+          <p className="eyebrow">Planning mode</p>
+          <strong>{showResult ? "Final plan" : `Step ${stepIndex + 1} of ${questions.length}`}</strong>
+          <span>{showResult ? "Your custom starter plan is ready" : "You are still building your plan"}</span>
+        </div>
+        <div className="wizard-progress" aria-label={`Planner progress ${Math.round(progressPercent)} percent`}>
+          <span style={{ width: `${progressPercent}%` }} />
+        </div>
       </div>
+
+      {!showResult ? (
+        <div className="wizard-shell">
+          <article className="wizard-question-card">
+            <div className="wizard-step-rail" aria-label="Planner steps">
+              {questions.map((question, index) => (
+                <button
+                  className={[
+                    index === stepIndex ? "current" : "",
+                    answers[question.key] ? "answered" : "",
+                  ].filter(Boolean).join(" ")}
+                  key={question.key}
+                  onClick={() => setStepIndex(index)}
+                  type="button"
+                >
+                  <span>{index + 1}</span>
+                  <b>{answerLabels[question.key]}</b>
+                </button>
+              ))}
+            </div>
+
+            <div className="wizard-question-heading">
+              <p className="eyebrow">Question {stepIndex + 1}</p>
+              <h2>{currentQuestion.label}</h2>
+              <p>{currentQuestion.helper}</p>
+            </div>
+
+            <div className="wizard-option-grid">
+              {currentQuestion.options.map((option) => (
+                <button
+                  className={selectedAnswer === option.label ? "selected" : ""}
+                  key={option.label}
+                  onClick={() => chooseAnswer(currentQuestion.key, option.label)}
+                  type="button"
+                >
+                  <strong>{option.label}</strong>
+                  <span>{option.detail}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="wizard-controls">
+              <button disabled={stepIndex === 0} onClick={goBack} type="button">Back</button>
+              <button disabled={!selectedAnswer} onClick={goNext} type="button">
+                {stepIndex === questions.length - 1 ? "Build my plan" : "Next"}
+              </button>
+            </div>
+          </article>
+
+          <aside className="trip-so-far-panel" aria-live="polite">
+            <p className="eyebrow">Your trip so far</p>
+            <h2>{profile}</h2>
+            <dl>
+              {questions.map((question) => (
+                <div key={question.key}>
+                  <dt>{answerLabels[question.key]}</dt>
+                  <dd>{answers[question.key] ?? "Not chosen yet"}</dd>
+                </div>
+              ))}
+            </dl>
+            <div className="live-preview">
+              <span>Live recommendation preview</span>
+              <strong>{plan.title}</strong>
+              <p>{plan.bestFirstStop}</p>
+            </div>
+          </aside>
+        </div>
+      ) : (
+        <FinalPlan plan={plan} profile={profile} restartPlan={restartPlan} goBack={goBack} />
+      )}
+    </section>
+  );
+}
+
+function FinalPlan({
+  plan,
+  profile,
+  restartPlan,
+  goBack,
+}: {
+  plan: Plan;
+  profile: string;
+  restartPlan: () => void;
+  goBack: () => void;
+}) {
+  return (
+    <section className="final-plan-screen" aria-live="polite">
+      <div className="final-plan-hero">
+        <p className="eyebrow">Custom plan built</p>
+        <h2>{plan.title}</h2>
+        <p>{plan.fitReason}</p>
+        <span>{profile}</span>
+      </div>
+
+      <div className="final-plan-grid">
+        <article className="final-plan-primary">
+          <span>Best first stop</span>
+          <p>{plan.bestFirstStop}</p>
+        </article>
+        <article>
+          <span>Town recommendation</span>
+          <p>{plan.townRecommendation}</p>
+        </article>
+        <article>
+          <span>Morning plan</span>
+          <p>{plan.morning}</p>
+        </article>
+        <article>
+          <span>Afternoon plan</span>
+          <p>{plan.afternoon}</p>
+        </article>
+        <article>
+          <span>Evening plan</span>
+          <p>{plan.evening}</p>
+        </article>
+        <article>
+          <span>Backup option</span>
+          <p>{plan.backup}</p>
+        </article>
+        <article>
+          <span>Rainy-day swap</span>
+          <p>{plan.rainySwap}</p>
+        </article>
+        <article>
+          <span>Family note</span>
+          <p>{plan.familyNote}</p>
+        </article>
+        <article className="final-plan-warning">
+          <span>Local caution</span>
+          <p>{plan.localCaution}</p>
+        </article>
+        <article className="final-plan-warning">
+          <span>What to avoid</span>
+          <p>{plan.avoid}</p>
+        </article>
+        <article className="final-plan-warning">
+          <span>Budget warning</span>
+          <p>{plan.budgetNote}</p>
+        </article>
+      </div>
+
+      <div className="final-plan-actions">
+        <button onClick={goBack} type="button">Back to answers</button>
+        <button onClick={restartPlan} type="button">Restart plan</button>
+      </div>
+
+      <nav className="planner-exit-links" aria-label="Leave planner links">
+        <Link href="/things-to-do">Leave planner and view Things To Do</Link>
+        <Link href="/smokies-parking-trolley-guide">Leave planner and open Parking Guide</Link>
+        <Link href="/where-to-stay">Leave planner and compare towns</Link>
+        <Link href="/deals">Leave planner and find deals</Link>
+      </nav>
     </section>
   );
 }
