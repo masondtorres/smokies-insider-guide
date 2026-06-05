@@ -376,6 +376,415 @@ export const plannerResultTemplates: PlannerTemplate[] = [
   },
 ];
 
+export type ResearchPlannerAnswerKey =
+  | "group"
+  | "base"
+  | "day"
+  | "risk"
+  | "paceBudget"
+  | "tripLength"
+  | "season"
+  | "mobility"
+  | "crowd"
+  | "rainNeed";
+
+export type ResearchPlannerOption = {
+  label: string;
+  detail: string;
+};
+
+export type ResearchPlannerQuestion = {
+  key: ResearchPlannerAnswerKey;
+  label: string;
+  helper: string;
+  options: ResearchPlannerOption[];
+};
+
+export type ResearchPlannerAnswers = Partial<Record<ResearchPlannerAnswerKey, string>>;
+
+export type ResearchPlannerPlan = {
+  id: string;
+  title: string;
+  match: Partial<Record<ResearchPlannerAnswerKey, string[]>>;
+  bestStartingBase: string;
+  bestFor: string;
+  weakFit: string;
+  mainAnchor: string;
+  secondaryStop: string;
+  optionalAddOn: string;
+  foodRestStrategy: string;
+  parkingMovementWarning: string;
+  crowdStrategy: string;
+  rainBackup: string;
+  mobilityNote: string;
+  budgetNote: string;
+  whatToSkip: string;
+  officialSourceCaution: string;
+  whyItFits: string;
+  bestNextLink: LinkItem;
+  relatedGuideLinks: LinkItem[];
+};
+
+export const officialSourceCaution =
+  "Check official status before you go. Do not rely on this for current hours, prices or closures. Road, weather and park conditions can change.";
+
+const plannerRelated = (...hrefs: string[]) => guideLinks.filter((link) => hrefs.includes(link.href));
+
+export const researchPlannerQuestions: ResearchPlannerQuestion[] = [
+  {
+    key: "group",
+    label: "Who is going?",
+    helper: "Pick the group that changes the plan the most.",
+    options: [
+      { label: "Family with kids", detail: "Kid patience, bathrooms, food timing and one strong anchor." },
+      { label: "Toddlers / stroller", detail: "Short blocks, stroller reality, easy exits and indoor backup." },
+      { label: "Grandparents / limited mobility", detail: "Parking, bathrooms, benches, short walks and seated resets." },
+      { label: "Adults / couples", detail: "Scenery, food, calmer pacing and fewer kid-driven stops." },
+      { label: "First-time mixed group", detail: "A simple plan that avoids common first-trip mistakes." },
+    ],
+  },
+  {
+    key: "base",
+    label: "Where are you starting?",
+    helper: "The same activity can be smart or messy depending on the base.",
+    options: [
+      { label: "Not sure yet", detail: "Let the planner choose the least-friction base." },
+      { label: "Gatlinburg", detail: "Walkable strip, park access, tighter parking." },
+      { label: "Pigeon Forge", detail: "Family attractions, Dollywood, Parkway corridor." },
+      { label: "Sevierville", detail: "Value base, outlets, local-business pacing." },
+      { label: "Townsend", detail: "Quiet side, Cades Cove, scenic drives." },
+      { label: "Wears Valley", detail: "Cabins, views, Foothills Parkway, slower route logic." },
+      { label: "Cherokee / Bryson City", detail: "NC-side access, Deep Creek, elk, Cataloochee-style planning." },
+    ],
+  },
+  {
+    key: "day",
+    label: "What kind of day do you want?",
+    helper: "This chooses the anchor. Everything else has to fit around it.",
+    options: [
+      { label: "First-time overview", detail: "One town anchor, one scenic piece, one backup." },
+      { label: "Kid attraction day", detail: "WonderWorks, Parrot Mountain, The Island or a Parkway anchor." },
+      { label: "Dollywood / attraction day", detail: "Treat Dollywood or another paid anchor as the main event." },
+      { label: "Cades Cove / park day", detail: "Slow scenic loop, Townsend/Wears Valley, early timing." },
+      { label: "Scenic drive / park roads", detail: "Roaring Fork, Foothills Parkway, Kuwohi, Newfound Gap or NC-side routes." },
+      { label: "Food and shopping", detail: "Pick a meal or town corridor first, then add one nearby stop." },
+      { label: "NC-side park day", detail: "Cherokee, Bryson City, Deep Creek, Cataloochee or elk-style planning." },
+    ],
+  },
+  {
+    key: "risk",
+    label: "What could ruin the day?",
+    helper: "The plan should protect against the pain point, not ignore it.",
+    options: [
+      { label: "Traffic / parking", detail: "Avoid town-hopping and repeated parking changes." },
+      { label: "Rain", detail: "Use indoor anchors and keep outdoor swaps realistic." },
+      { label: "Overspending", detail: "Lead with free scenery, visitor centers and one paid stop only if it earns the day." },
+      { label: "Too much walking", detail: "Plan parking, bathrooms and short stops first." },
+      { label: "Crowds / long lines", detail: "Use early timing, quieter bases and fewer anchors." },
+      { label: "Mountain roads / bad GPS", detail: "Download maps and avoid casual cross-mountain routing." },
+    ],
+  },
+  {
+    key: "paceBudget",
+    label: "What is your budget and pace?",
+    helper: "This decides whether paid attractions lead or support the day.",
+    options: [
+      { label: "Low cost / easy pace", detail: "Free or cheap first, fewer stops, simple food." },
+      { label: "Mixed budget / medium pace", detail: "One paid anchor plus nearby support." },
+      { label: "Paid attractions OK / full day", detail: "Tickets are fine, but do not stack blindly." },
+      { label: "Comfort over quantity", detail: "Shorter moves, seats, resets and less backtracking." },
+    ],
+  },
+  {
+    key: "tripLength",
+    label: "How much time do you have?",
+    helper: "Half-day and three-day plans should not get the same recommendation.",
+    options: [
+      { label: "Half day", detail: "One anchor, one meal or reset, one backup." },
+      { label: "One day", detail: "One main route with a realistic secondary stop." },
+      { label: "Two days", detail: "Split park/scenery and attraction/town time." },
+      { label: "Three-plus days", detail: "Room for park, attractions and a flexible weather day." },
+    ],
+  },
+  {
+    key: "season",
+    label: "When are you visiting?",
+    helper: "Season changes crowds, road/weather risk and what to verify.",
+    options: [
+      { label: "Spring", detail: "Blooms, changing weather, closures and road checks." },
+      { label: "Summer", detail: "Heat, storms, crowds and midday indoor resets." },
+      { label: "Fall", detail: "Crowds, color-chasing, scenic-drive pressure." },
+      { label: "Winter", detail: "Road/weather checks, Winterfest, fewer daylight hours." },
+      { label: "Not sure", detail: "Keep the plan season-flexible." },
+    ],
+  },
+  {
+    key: "mobility",
+    label: "Any walking limits?",
+    helper: "Low-walking days need parking and access logic, not vague easy labels.",
+    options: [
+      { label: "No issue", detail: "Normal walking is fine." },
+      { label: "Light walking only", detail: "Short walks, overlooks and fewer parking changes." },
+      { label: "Stroller", detail: "Stroller truth matters; paved does not always mean stroller-simple." },
+      { label: "Grandparents / limited mobility", detail: "Bathrooms, benches, short stops and verified access matter." },
+    ],
+  },
+  {
+    key: "crowd",
+    label: "How do you feel about crowds?",
+    helper: "Crowd tolerance changes the town, timing and route.",
+    options: [
+      { label: "Avoid crowds", detail: "Early starts, quieter bases, fewer popular add-ons." },
+      { label: "Balanced", detail: "Use popular places, but keep the route disciplined." },
+      { label: "Do not care", detail: "Bigger attractions and busy towns are fine." },
+    ],
+  },
+  {
+    key: "rainNeed",
+    label: "How rain-safe does the day need to be?",
+    helper: "Rain can change the day without killing it if the backup is close.",
+    options: [
+      { label: "Must stay indoors", detail: "Indoor anchor first, nearby food, no wishful outdoor plan." },
+      { label: "Flexible backup", detail: "Keep an indoor swap and one short outdoor window." },
+      { label: "Outdoor if weather allows", detail: "Start outdoors if conditions cooperate, but keep a route-safe fallback." },
+    ],
+  },
+];
+
+export const researchPlannerPlans: ResearchPlannerPlan[] = [
+  {
+    id: "family-rain-pigeon-forge",
+    title: "Pigeon Forge rainy-day family decision plan",
+    match: {
+      group: ["Family with kids", "Toddlers / stroller"],
+      base: ["Pigeon Forge", "Sevierville", "Not sure yet"],
+      day: ["Kid attraction day", "First-time overview"],
+      risk: ["Rain", "Traffic / parking"],
+      rainNeed: ["Must stay indoors", "Flexible backup"],
+      paceBudget: ["Mixed budget / medium pace", "Paid attractions OK / full day"],
+    },
+    bestStartingBase: "Pigeon Forge or Sevierville, depending on lodging and food plans.",
+    bestFor: "Families that need one indoor-friendly anchor, nearby food and a clear exit if kids fade.",
+    weakFit: "Weak fit if the group wants quiet park scenery as the whole point of the day.",
+    mainAnchor: "WonderWorks, The Island area, indoor mini golf/arcades or a Ripley's-style indoor category after checking current details.",
+    secondaryStop: "Parrot Mountain or a simple Parkway stop only if weather and kid energy still cooperate.",
+    optionalAddOn: "Use Dollywood only as a full-day anchor, not as a rainy-day add-on after multiple smaller tickets.",
+    foodRestStrategy: "Eat near the indoor anchor or lodging. A hungry family should not cross the county for one more stop.",
+    parkingMovementWarning: "Pigeon Forge works for attraction days, but the Parkway punishes backtracking and repeated parking changes.",
+    crowdStrategy: "When rain hits, everyone looks indoors. Pick one anchor early and keep the rest flexible.",
+    rainBackup: "This is the rain-safe plan. If showers break, use a short outdoor window instead of rebuilding the whole day.",
+    mobilityNote: "For toddlers or strollers, verify surfaces and keep bathroom breaks close. Paved does not automatically mean stroller-simple.",
+    budgetNote: "One paid anchor plus food is usually better than three smaller impulse tickets.",
+    whatToSkip: "Skip trying to rescue every outdoor plan in the same wet day.",
+    officialSourceCaution,
+    whyItFits: "It matches the research path for family + rain + Pigeon Forge: indoor anchor, nearby food, no county-wide list, and one flexible outdoor swap.",
+    bestNextLink: { title: "Rainy day guide", href: "/rainy-day", description: "Build the wet-weather day by town." },
+    relatedGuideLinks: plannerRelated("/things-to-do", "/things-to-do/pigeon-forge", "/smokies-parking-trolley-guide", "/deals"),
+  },
+  {
+    id: "low-walking-townsend",
+    title: "Townsend low-walking quiet-side plan",
+    match: {
+      group: ["Grandparents / limited mobility", "Adults / couples"],
+      base: ["Townsend", "Wears Valley", "Not sure yet"],
+      day: ["Cades Cove / park day", "Scenic drive / park roads"],
+      risk: ["Too much walking", "Crowds / long lines"],
+      mobility: ["Light walking only", "Grandparents / limited mobility"],
+      crowd: ["Avoid crowds"],
+      paceBudget: ["Comfort over quantity", "Low cost / easy pace"],
+    },
+    bestStartingBase: "Townsend or Wears Valley.",
+    bestFor: "Visitors who want scenery, calmer pacing and less walking before anything else.",
+    weakFit: "Weak fit for visitors who want constant entertainment, nightlife or a packed paid-attraction day.",
+    mainAnchor: "Foothills Parkway, a Townsend-side scenic stop or Cades Cove only if the group can give the loop real time.",
+    secondaryStop: "Sugarlands Visitor Center, a quiet meal, a short overlook or Wears Valley reset depending on the route.",
+    optionalAddOn: "Sugarlands Valley Nature Trail can be a better low-walking nature option than vague easy-hike promises, but verify current access.",
+    foodRestStrategy: "Plan the meal before or after the scenic route, not as a late cross-county detour.",
+    parkingMovementWarning: "Low-walking days need parking, bathrooms and short stops planned first. Scenic does not mean parking-free.",
+    crowdStrategy: "Start early for Cades Cove or popular overlooks; avoid forcing peak-window scenic routes.",
+    rainBackup: "Use Townsend, visitor-center-style stops or a slow food route if rain makes the loop unpleasant.",
+    mobilityNote: "Accessibility varies by exact stop. Verify surfaces, bathrooms, benches and parking before relying on the plan.",
+    budgetNote: "This plan can stay low-cost because scenery, overlooks and visitor centers can carry the day.",
+    whatToSkip: "Skip any plan that promises easy access without naming the parking and walking reality.",
+    officialSourceCaution,
+    whyItFits: "It follows the research recommendation for seniors/mobility-limited visitors: scenic drives, short stops, bathrooms, benches and quiet-side pacing.",
+    bestNextLink: { title: "Accessible Smokies", href: "/accessible-smokies", description: "Low-walking ideas with cautions." },
+    relatedGuideLinks: plannerRelated("/cades-cove", "/scenic-drives", "/where-to-stay", "/restaurants"),
+  },
+  {
+    id: "gatlinburg-first-time-scenic",
+    title: "Gatlinburg first-time scenery-and-walkability plan",
+    match: {
+      group: ["First-time mixed group", "Adults / couples"],
+      base: ["Gatlinburg"],
+      day: ["First-time overview", "Scenic drive / park roads", "Food and shopping"],
+      risk: ["Traffic / parking", "Crowds / long lines"],
+      tripLength: ["One day", "Two days"],
+      crowd: ["Balanced", "Do not care"],
+    },
+    bestStartingBase: "Gatlinburg.",
+    bestFor: "First-time visitors who want a town-and-park sampler without moving the car all day.",
+    weakFit: "Weak fit if the group hates crowds, tight streets or downtown walking.",
+    mainAnchor: "Park once for the Gatlinburg strip, then pair it with Sugarlands Visitor Center or Roaring Fork Motor Nature Trail if conditions fit.",
+    secondaryStop: "Use Anakeesta, Ripley's or Ober as a single paid category only if it matches the group's energy and budget.",
+    optionalAddOn: "Kuwohi or Newfound Gap can be a bigger scenic move on a longer day, but current road/weather status matters.",
+    foodRestStrategy: "Choose food near the walking route. Lunch should not become a new parking mission.",
+    parkingMovementWarning: "Gatlinburg works best when visitors park once and walk. Moving the car between tiny downtown stops can waste the day.",
+    crowdStrategy: "Use an earlier start or a calmer park-side reset when the strip gets tight.",
+    rainBackup: "If rain tightens the day, use Ripley's-style indoor categories, food and shopping near the same parking plan.",
+    mobilityNote: "Downtown walkability is useful, but limited-mobility groups still need verified parking, surfaces and rest points.",
+    budgetNote: "A walkable town plan can stay moderate if you pick one paid category and skip the add-on pile.",
+    whatToSkip: "Skip a four-town sampler. Gatlinburg, Pigeon Forge, Cades Cove and Dollywood do not belong in one first-time day.",
+    officialSourceCaution,
+    whyItFits: "It uses the research distinction that Gatlinburg is strongest as a park-once, walkable gateway with park access nearby.",
+    bestNextLink: { title: "Gatlinburg vs Pigeon Forge", href: "/gatlinburg-vs-pigeon-forge", description: "Choose the better town for the trip." },
+    relatedGuideLinks: plannerRelated("/things-to-do/gatlinburg", "/restaurants/gatlinburg", "/scenic-drives", "/smokies-parking-trolley-guide"),
+  },
+  {
+    id: "budget-sevierville-not-sure",
+    title: "Budget-conscious Sevierville corridor plan",
+    match: {
+      group: ["Family with kids", "First-time mixed group", "Toddlers / stroller"],
+      base: ["Sevierville", "Not sure yet"],
+      day: ["Kid attraction day", "Food and shopping", "First-time overview"],
+      risk: ["Overspending", "Traffic / parking"],
+      paceBudget: ["Low cost / easy pace", "Mixed budget / medium pace"],
+      tripLength: ["Half day", "One day"],
+    },
+    bestStartingBase: "Sevierville or the least-congested side of your lodging route.",
+    bestFor: "Families trying to avoid overspending while still giving the day a real anchor.",
+    weakFit: "Weak fit if the group wants the full Gatlinburg strip or a Dollywood-centered day.",
+    mainAnchor: "Start with a free or lower-cost scenic/town stop, outlet/local-business pacing or one paid family category that truly fits.",
+    secondaryStop: "Use Pigeon Forge Parkway only for one chosen anchor, not a string of impulse stops.",
+    optionalAddOn: "The Island, WonderWorks or Parrot Mountain can work if it replaces other paid stops instead of adding to them.",
+    foodRestStrategy: "Pick a simple meal near the route. Savings vanish fast when a deal sends the group across town.",
+    parkingMovementWarning: "Parking costs, park tags and repeated moves can still affect a low-budget day.",
+    crowdStrategy: "Cheap does not always mean low-crowd. Keep the route short and avoid chasing every coupon.",
+    rainBackup: "Use covered shopping, indoor family categories or a food-first reset if weather turns.",
+    mobilityNote: "For stroller or grandparent needs, choose fewer stops with simpler parking and bathrooms.",
+    budgetNote: "Lead with free scenery, visitor centers, town walks and one paid stop only if it earns the time.",
+    whatToSkip: "Skip coupon-chasing across town and stacking small paid stops because each one looks affordable.",
+    officialSourceCaution,
+    whyItFits: "It matches the research budget path: free/cheap first, route discipline, one paid anchor at most, and no deal-led itinerary.",
+    bestNextLink: { title: "Deals", href: "/deals", description: "Use savings only when they fit the trip." },
+    relatedGuideLinks: plannerRelated("/things-to-do", "/what-to-skip", "/where-to-stay", "/rainy-day"),
+  },
+  {
+    id: "fall-cades-cove-crowd-sensitive",
+    title: "Crowd-sensitive Cades Cove and scenic-drive plan",
+    match: {
+      group: ["Adults / couples", "First-time mixed group"],
+      base: ["Townsend", "Wears Valley", "Not sure yet"],
+      day: ["Cades Cove / park day", "Scenic drive / park roads"],
+      risk: ["Crowds / long lines", "Traffic / parking", "Mountain roads / bad GPS"],
+      paceBudget: ["Low cost / easy pace", "Comfort over quantity"],
+      season: ["Fall", "Summer", "Spring"],
+      mobility: ["No issue", "Light walking only"],
+      crowd: ["Avoid crowds"],
+      tripLength: ["One day", "Two days", "Three-plus days"],
+    },
+    bestStartingBase: "Townsend or Wears Valley.",
+    bestFor: "Park-heavy visitors who care more about scenery, timing and crowd avoidance than attractions.",
+    weakFit: "Weak fit if the group wants a quick scenic stop between Pigeon Forge tickets.",
+    mainAnchor: "Cades Cove with an early start, or Foothills Parkway/Roaring Fork if the loop timing does not fit.",
+    secondaryStop: "Use a Townsend meal, Wears Valley reset, Sugarlands Visitor Center or a shorter scenic stop.",
+    optionalAddOn: "Kuwohi/Newfound Gap can be powerful on the right day, but verify road and weather conditions before routing there.",
+    foodRestStrategy: "Eat before or after the scenic route. Do not put lunch in the middle of a rushed loop.",
+    parkingMovementWarning: "Cades Cove can take longer than visitors expect. Cell service and GPS reliability can be issues around park/scenic routes, so download maps.",
+    crowdStrategy: "Early timing matters. Fall color and peak weekends can turn scenic drives into slow traffic.",
+    rainBackup: "Rain may reduce visibility, but it does not always kill the day. Shift to visitor centers, a shorter route or a food-first town reset.",
+    mobilityNote: "Use overlooks and visitor-center-style stops for lower walking; verify exact access and bathrooms.",
+    budgetNote: "This plan can stay mostly free, but parking tags and route logistics still matter.",
+    whatToSkip: "Skip treating Cades Cove as a quick add-on or mixing it casually with a packed TN-side attraction day.",
+    officialSourceCaution,
+    whyItFits: "It follows the research warning that Cades Cove and scenic-drive days are timing-sensitive, slow by design and best from the quiet side.",
+    bestNextLink: { title: "Cades Cove", href: "/cades-cove", description: "Plan the loop with time." },
+    relatedGuideLinks: plannerRelated("/scenic-drives", "/smokies-parking-trolley-guide", "/accessible-smokies", "/what-to-skip"),
+  },
+  {
+    id: "nc-side-deep-creek-cataloochee",
+    title: "NC-side Cherokee and Bryson City plan",
+    match: {
+      base: ["Cherokee / Bryson City"],
+      day: ["NC-side park day", "Scenic drive / park roads"],
+      risk: ["Mountain roads / bad GPS", "Crowds / long lines"],
+      crowd: ["Avoid crowds", "Balanced"],
+    },
+    bestStartingBase: "Cherokee, Bryson City or another NC-side base.",
+    bestFor: "Visitors focused on Deep Creek, Cataloochee elk, NC-side scenery or a trip that should not be forced through Pigeon Forge.",
+    weakFit: "Weak fit for a Dollywood-heavy or Pigeon Forge-heavy day.",
+    mainAnchor: "Deep Creek, Cherokee-area park access or Cataloochee-style elk/scenic planning after checking current status.",
+    secondaryStop: "Use a same-side meal, visitor center, river area or scenic road instead of crossing the mountains late.",
+    optionalAddOn: "Kuwohi/Newfound Gap can connect sides only when time, roads and weather make sense.",
+    foodRestStrategy: "Keep food on the NC side. A cross-mountain meal detour can wreck the route.",
+    parkingMovementWarning: "NC-side trips need their own logic. Do not casually mix them into a packed TN-side day.",
+    crowdStrategy: "The NC side can still crowd in peak windows. Start with the route that matters most.",
+    rainBackup: "Use town-based indoor categories, visitor centers or food-first pacing if weather weakens scenery.",
+    mobilityNote: "River, trail and elk-viewing areas vary by surface and access. Verify exact conditions.",
+    budgetNote: "Scenery and visitor-center-style stops can keep the day moderate if paid add-ons stay optional.",
+    whatToSkip: "Skip treating Cherokee, Bryson City, Deep Creek or Cataloochee as quick side trips from a full TN attraction plan.",
+    officialSourceCaution,
+    whyItFits: "It protects the both-states strategy from the research: NC-side trips are valid, but they need separate routing and current road/status checks.",
+    bestNextLink: { title: "Scenic drives", href: "/scenic-drives", description: "Choose the right road and verify conditions." },
+    relatedGuideLinks: plannerRelated("/where-to-stay", "/accessible-smokies", "/first-time-smokies", "/smokies-parking-trolley-guide"),
+  },
+  {
+    id: "dollywood-full-day",
+    title: "Dollywood-centered Pigeon Forge day",
+    match: {
+      base: ["Pigeon Forge"],
+      day: ["Dollywood / attraction day"],
+      paceBudget: ["Paid attractions OK / full day", "Mixed budget / medium pace"],
+      risk: ["Crowds / long lines", "Traffic / parking"],
+      tripLength: ["One day", "Two days", "Three-plus days"],
+    },
+    bestStartingBase: "Pigeon Forge or nearby lodging.",
+    bestFor: "Visitors who want Dollywood or a major paid attraction to be the main event.",
+    weakFit: "Weak fit for low-cost, low-walking or quiet scenic days.",
+    mainAnchor: "Dollywood as the core plan, with current park details checked before final plans.",
+    secondaryStop: "A simple Pigeon Forge meal or lodging reset. Add The Island or another Parkway stop only if the group has real energy.",
+    optionalAddOn: "WonderWorks, dinner-show categories or indoor mini golf can become the backup, not an extra pile-on.",
+    foodRestStrategy: "Keep food close to the park or lodging. Leaving for a complicated detour usually costs more than it helps.",
+    parkingMovementWarning: "Do not add Gatlinburg, Cades Cove or a long scenic drive around a Dollywood day.",
+    crowdStrategy: "Long lines can make add-ons unrealistic. Protect the anchor first.",
+    rainBackup: "Use a Pigeon Forge indoor category if the park day needs to shift after checking current details.",
+    mobilityNote: "A full attraction day can be physically long. Plan rests and verify access needs.",
+    budgetNote: "Paid attractions are fine here, but the budget should center on one main ticketed anchor.",
+    whatToSkip: "Skip stacking multiple extra paid attractions around the park.",
+    officialSourceCaution,
+    whyItFits: "It follows the research rule that paid attraction days need one anchor, nearby food and no overstacked Parkway plan.",
+    bestNextLink: { title: "Dollywood day plan", href: "/dollywood-day-plan", description: "Treat the park as the main event." },
+    relatedGuideLinks: plannerRelated("/things-to-do/pigeon-forge", "/restaurants/pigeon-forge", "/rainy-day", "/what-to-skip"),
+  },
+  {
+    id: "laurel-kuwohi-current-status",
+    title: "Scenic-drive plan with current-status cautions",
+    match: {
+      day: ["Scenic drive / park roads", "First-time overview"],
+      risk: ["Mountain roads / bad GPS", "Traffic / parking"],
+      season: ["Spring", "Summer", "Fall", "Winter"],
+      rainNeed: ["Outdoor if weather allows", "Flexible backup"],
+    },
+    bestStartingBase: "Gatlinburg for Sugarlands/Roaring Fork, Townsend/Wears Valley for Foothills Parkway, or NC side for Cherokee/Bryson City routes.",
+    bestFor: "Visitors who want scenery but need the plan to respect road, weather and closure uncertainty.",
+    weakFit: "Weak fit for groups that need guaranteed indoor entertainment or fixed schedules.",
+    mainAnchor: "Roaring Fork Motor Nature Trail, Foothills Parkway, Newfound Gap/Kuwohi or another scenic route chosen by base and current conditions.",
+    secondaryStop: "Sugarlands Visitor Center, an overlook, a same-side meal or a short town reset.",
+    optionalAddOn: "Laurel Falls should be treated with closure caution; verify official status before building a waterfall plan around it.",
+    foodRestStrategy: "Pair scenery with food on the return route, not a far detour.",
+    parkingMovementWarning: "Road, weather and park conditions can change. Cell service and GPS can be unreliable, so download maps before park routes.",
+    crowdStrategy: "Start earlier for popular scenic roads and fall-color windows; do not try to sample every drive.",
+    rainBackup: "If visibility drops, switch to visitor centers, food/shopping or a shorter same-side route.",
+    mobilityNote: "Scenic drives can reduce walking, but overlooks and visitor centers still need access checks.",
+    budgetNote: "Scenic routes are often budget-friendly, but parking tags and route logistics still matter.",
+    whatToSkip: "Skip old advice that ignores Kuwohi naming, Laurel Falls closure cautions or current road impacts.",
+    officialSourceCaution,
+    whyItFits: "It brings the research accuracy traps into the planner: Kuwohi, Laurel Falls, road/weather checks and map-download logic.",
+    bestNextLink: { title: "Scenic drives", href: "/scenic-drives", description: "Choose drives by base and conditions." },
+    relatedGuideLinks: plannerRelated("/parking-tag", "/accessible-smokies", "/first-time-smokies", "/smokies-parking-trolley-guide"),
+  },
+];
+
 export const dealPlaceholders = [
   {
     offer: "No verified public deals listed yet.",
