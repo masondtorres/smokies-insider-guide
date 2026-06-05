@@ -1,6 +1,16 @@
 @import "tailwindcss";
 
 :root {
+  --forest-pine: #224534;
+  --ridge-blue: #566775;
+  --smoky-gray: #7D8587;
+  --cabin-brown: #6A4B38;
+  --map-cream: #F3EBD9;
+  --stone-surface: #E7E0D4;
+  --sunrise-gold: #C89A3C;
+  --laurel-bloom: #A65E78;
+  --barn-copper: #8B4B3F;
+  --charcoal-text: #22262A;
   --forest: #224534;
   --ridge: #566775;
   --smoky: #7d8587;
@@ -30,15 +40,10 @@ body {
   min-width: 0;
   margin: 0;
   background:
-    linear-gradient(180deg, rgba(34, 69, 52, 0.26), rgba(243, 235, 217, 0.48) 38%, rgba(34, 69, 52, 0.38) 100%),
-    linear-gradient(90deg, rgba(34, 69, 52, 0.12), rgba(243, 235, 217, 0.24), rgba(34, 69, 52, 0.14)),
-    url("/images/smokies-hero-fall.png");
-  background-attachment: fixed;
-  background-color: var(--cream);
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: var(--ink);
+    linear-gradient(180deg, rgba(231, 224, 212, 0.72), rgba(243, 235, 217, 0.96) 32%),
+    var(--map-cream);
+  background-color: var(--map-cream);
+  color: var(--charcoal-text);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
@@ -2092,5 +2097,491 @@ h1 {
 
   .business-cta {
     padding: 26px 20px;
+  }
+}
+
+/* Decision-engine foundation. */
+.guide-page,
+.guide-home {
+  min-height: 100vh;
+  color: var(--charcoal-text);
+  background:
+    linear-gradient(90deg, rgba(106, 75, 56, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(106, 75, 56, 0.035) 1px, transparent 1px),
+    var(--map-cream);
+  background-size: 42px 42px;
+  overflow-x: clip;
+}
+
+.guide-site-header,
+.guide-site-footer,
+.guide-article,
+.home-hero,
+.internal-link-grid,
+.deal-list-after {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.guide-site-header {
+  border-color: rgba(106, 75, 56, 0.22);
+  background: rgba(243, 235, 217, 0.92);
+  box-shadow: 0 8px 0 rgba(86, 103, 117, 0.08);
+  backdrop-filter: none;
+}
+
+.nav-secondary {
+  color: var(--cabin-brown);
+  opacity: 0.82;
+}
+
+.guide-article {
+  padding: 26px 0 40px;
+}
+
+.guide-hero,
+.home-hero {
+  margin-top: 18px;
+  padding: clamp(26px, 4vw, 46px);
+  border: 1px solid rgba(106, 75, 56, 0.22);
+  border-top: 8px solid var(--forest-pine);
+  background:
+    linear-gradient(135deg, rgba(34, 69, 52, 0.96), rgba(86, 103, 117, 0.9)),
+    var(--forest-pine);
+  color: var(--map-cream);
+  box-shadow: 7px 9px 0 rgba(106, 75, 56, 0.14);
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 310px);
+  gap: 24px;
+  align-items: end;
+}
+
+.guide-hero h1,
+.home-hero h1 {
+  max-width: 860px;
+  color: var(--map-cream);
+  font-size: clamp(2.3rem, 5vw, 4.2rem);
+  line-height: 1.02;
+}
+
+.guide-hero p,
+.home-hero p {
+  max-width: 760px;
+  color: rgba(243, 235, 217, 0.92);
+  font-size: clamp(1rem, 1.5vw, 1.16rem);
+  line-height: 1.58;
+}
+
+.last-updated {
+  margin: 14px 0 0;
+  color: var(--cabin-brown);
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.guide-hero .last-updated,
+.home-hero .last-updated {
+  color: var(--sunrise-gold);
+}
+
+.home-hero-note,
+.direct-answer,
+.source-box,
+.local-note,
+.guide-content-section,
+.best-skip-grid > div,
+.planner-question,
+.planner-result,
+.decision-card,
+.town-preview-card,
+.deal-card,
+.business-card,
+.guide-panel {
+  border: 1px solid rgba(106, 75, 56, 0.22);
+  background: rgba(231, 224, 212, 0.88);
+  box-shadow: 4px 6px 0 rgba(86, 103, 117, 0.08);
+}
+
+.home-hero-note {
+  padding: 20px;
+  background: var(--stone-surface);
+  color: var(--charcoal-text);
+}
+
+.home-hero-note strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--barn-copper);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.direct-answer {
+  margin: 18px 0;
+  padding: 22px;
+  border-left: 7px solid var(--sunrise-gold);
+}
+
+.direct-answer p {
+  margin-bottom: 0;
+  color: #363a39;
+  font-size: 1.06rem;
+  font-weight: 680;
+  line-height: 1.6;
+}
+
+.guide-section-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.guide-content-section {
+  padding: 22px;
+  background: rgba(243, 235, 217, 0.82);
+}
+
+.guide-content-section h2,
+.internal-link-grid h2,
+.best-skip-grid h2,
+.planner-result h2 {
+  margin-bottom: 10px;
+  color: var(--forest-pine);
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  line-height: 1.16;
+}
+
+.guide-content-section p,
+.guide-content-section li,
+.source-box p,
+.local-note p,
+.result-facts dd,
+.itinerary-timeline p,
+.guide-copy {
+  color: #3f4542;
+  line-height: 1.62;
+}
+
+.best-skip-grid,
+.decision-grid,
+.town-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.best-skip-grid > div {
+  padding: 20px;
+}
+
+.best-skip-grid ul,
+.guide-content-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.internal-link-grid {
+  margin-block: 24px;
+  padding: 24px;
+  border: 1px solid rgba(106, 75, 56, 0.2);
+  background: rgba(243, 235, 217, 0.78);
+}
+
+.internal-link-grid > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.internal-link-grid a,
+.trip-selector a {
+  display: block;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid rgba(34, 69, 52, 0.22);
+  border-left: 5px solid var(--forest-pine);
+  background: rgba(231, 224, 212, 0.62);
+  color: var(--charcoal-text);
+}
+
+.internal-link-grid a:hover,
+.trip-selector a:hover,
+.town-preview-card a:hover {
+  border-color: var(--sunrise-gold);
+  color: var(--forest-pine);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.internal-link-grid strong,
+.internal-link-grid span {
+  display: block;
+}
+
+.internal-link-grid span {
+  margin-top: 6px;
+  color: #4d5651;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.source-box {
+  margin-top: 20px;
+  padding: 18px;
+  border-left: 7px solid var(--barn-copper);
+}
+
+.source-box strong,
+.sponsored-label,
+.decision-meta {
+  color: var(--barn-copper);
+  font-size: 0.76rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sponsored-label {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 10px;
+  padding: 5px 8px;
+  border: 1px solid rgba(139, 75, 63, 0.32);
+  background: rgba(139, 75, 63, 0.08);
+}
+
+.decision-card,
+.town-preview-card,
+.deal-card,
+.business-card {
+  display: block;
+  padding: 20px;
+  border-top: 5px solid var(--forest-pine);
+}
+
+.decision-card h3,
+.town-preview-card h3,
+.deal-card h3,
+.business-card h3 {
+  margin-bottom: 10px;
+  color: var(--forest-pine);
+  font-size: 1.17rem;
+  line-height: 1.22;
+}
+
+.decision-card p,
+.town-preview-card p,
+.deal-card p,
+.business-card p {
+  color: #3f4542;
+  line-height: 1.52;
+}
+
+.decision-card b,
+.town-preview-card a {
+  color: var(--forest-pine);
+  text-decoration: underline;
+  text-decoration-color: var(--sunrise-gold);
+  text-underline-offset: 4px;
+}
+
+.trip-selector {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.planner-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.planner-questions {
+  display: grid;
+  gap: 12px;
+}
+
+.planner-question {
+  margin: 0;
+  padding: 18px;
+}
+
+.planner-question legend {
+  margin-bottom: 10px;
+  color: var(--forest-pine);
+  font-weight: 900;
+}
+
+.planner-question div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.planner-question button,
+.planner-question a,
+.planner-actions button {
+  min-height: 42px;
+  border: 1px solid rgba(34, 69, 52, 0.28);
+  background: rgba(243, 235, 217, 0.72);
+  color: var(--forest-pine);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: 9px 12px;
+}
+
+.planner-question a {
+  text-decoration: none;
+}
+
+.planner-question button.active,
+.planner-actions button:first-child {
+  background: var(--forest-pine);
+  color: var(--map-cream);
+}
+
+.planner-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.planner-result {
+  padding: 22px;
+  border-top: 7px solid var(--sunrise-gold);
+  scroll-margin-top: 18px;
+}
+
+.planner-result-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.static-planner {
+  grid-template-columns: minmax(250px, 0.7fr) minmax(0, 1.3fr);
+}
+
+.planner-option-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.planner-option-list dt {
+  color: var(--forest-pine);
+  font-weight: 900;
+}
+
+.planner-option-list dd {
+  margin: 4px 0 0;
+  color: #3f4542;
+  line-height: 1.5;
+}
+
+.result-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.result-facts div {
+  padding: 12px;
+  background: rgba(243, 235, 217, 0.72);
+}
+
+.result-facts dt {
+  margin-bottom: 4px;
+  color: var(--barn-copper);
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.result-facts dd {
+  margin: 0;
+}
+
+.itinerary-timeline {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.itinerary-timeline li {
+  padding: 14px;
+  border-left: 5px solid var(--ridge-blue);
+  background: rgba(243, 235, 217, 0.72);
+}
+
+.itinerary-timeline span {
+  color: var(--forest-pine);
+  font-weight: 950;
+}
+
+.planner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.policy-page .guide-content-section {
+  border-top: 5px solid var(--forest-pine);
+}
+
+.deal-list-after {
+  margin-top: -20px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 900px) {
+  .home-hero,
+  .planner-shell,
+  .best-skip-grid,
+  .decision-grid,
+  .town-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .internal-link-grid > div,
+  .trip-selector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .result-facts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .guide-site-header,
+  .guide-site-footer,
+  .guide-article,
+  .home-hero,
+  .internal-link-grid,
+  .deal-list-after {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .guide-hero,
+  .home-hero,
+  .internal-link-grid,
+  .guide-panel {
+    padding: 20px;
+  }
+
+  .internal-link-grid > div,
+  .trip-selector {
+    grid-template-columns: 1fr;
   }
 }
