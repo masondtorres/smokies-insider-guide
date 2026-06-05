@@ -51,10 +51,13 @@ export function SiteHeader() {
   return (
     <header className="site-header guide-site-header">
       <div className="brand-lockup">
-        <Link className="wordmark" href="/" aria-label="Smokies Insider Guide home">
-          Smokies Insider Guide
+        <Link className="brand-mark" href="/" aria-label="Smokies Insider Guide home">
+          <span className="brand-badge">SIG</span>
+          <span className="brand-text">
+            <strong>Smokies Insider Guide</strong>
+            <small>Free Smokies planning help</small>
+          </span>
         </Link>
-        <span>Free Smokies planning help</span>
       </div>
       <nav className="primary-nav" aria-label="Primary navigation">
         {primaryNav.map((link) => (

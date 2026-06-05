@@ -7,10 +7,10 @@ export function TripPlanner() {
   return (
     <section className="planner-tool" aria-label="Manual Smokies trip planner">
       <div className="planner-step-rail" aria-label="Planner steps">
-        <span>Step 1: Choose your base</span>
-        <span>Step 2: Choose your group</span>
-        <span>Step 3: Choose your day</span>
-        <span>Step 4: Avoid the mistake</span>
+        <span><strong>Step 1</strong><em>Choose your base</em></span>
+        <span><strong>Step 2</strong><em>Choose your group</em></span>
+        <span><strong>Step 3</strong><em>Choose your day</em></span>
+        <span><strong>Step 4</strong><em>Avoid the mistake</em></span>
       </div>
       <div className="planner-shell static-planner">
         <aside className="planner-menu">

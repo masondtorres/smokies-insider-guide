@@ -51,9 +51,10 @@ const practicalGuides = [
 
 const deskRows = [
   ["Staying in", "Gatlinburg / Pigeon Forge / Townsend / Not sure"],
-  ["Trip type", "family / rainy day / low crowds / first time"],
-  ["Pace", "easy / packed / low walking"],
-  ["Watch out for", "traffic / rain / parking / overspending"],
+  ["Trip length", "One day / Weekend / Three days / Longer"],
+  ["Group", "Adults / Young kids / Teens / Seniors / Low-walking"],
+  ["Day type", "First-time / Rainy day / Cades Cove / Dollywood / Scenic"],
+  ["Avoid", "Traffic / Parking stress / Overspending / Too much walking"],
 ];
 
 export default function Home() {
@@ -71,13 +72,13 @@ export default function Home() {
           </p>
           <LastUpdated />
           <div className="hero-actions">
-            <Link className="button button-primary" href="/plan-your-trip">Start the trip planner</Link>
-            <Link className="button button-secondary" href="/where-to-stay">Choose where to stay</Link>
+            <Link className="button button-primary" href="/plan-your-trip">Start planning</Link>
+            <Link className="button button-secondary" href="/where-to-stay">Compare towns</Link>
           </div>
         </div>
         <aside className="planning-desk" aria-label="Smokies Planning Desk">
-          <div className="desk-pin">Smokies Planning Desk</div>
-          <h2>Build your day</h2>
+          <div className="desk-pin">Planning console</div>
+          <h2>Build your Smokies day</h2>
           <div className="desk-rows">
             {deskRows.map(([label, value]) => (
               <div className="desk-row" key={label}>
@@ -88,7 +89,7 @@ export default function Home() {
           </div>
           <div className="desk-result">
             <span>Best first move</span>
-            <p>Pick your base town before picking attractions.</p>
+            <p>Pick your base town before picking attractions. Gatlinburg, Pigeon Forge, Townsend and Sevierville create different trips.</p>
           </div>
           <Link className="button button-primary" href="/plan-your-trip">Open planner</Link>
         </aside>

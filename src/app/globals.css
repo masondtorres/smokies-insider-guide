@@ -2684,7 +2684,8 @@ h1 {
   color: var(--forest-pine);
   font-size: clamp(2.75rem, 6vw, 5.8rem);
   line-height: 0.96;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .hero-console-copy > p:not(.eyebrow):not(.last-updated) {
@@ -3166,7 +3167,8 @@ h1 {
   .hero-console h1 {
     font-size: clamp(2.05rem, 9.5vw, 2.8rem);
     max-width: calc(100vw - 72px);
-    word-break: break-word;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .hero-console-copy > p:not(.eyebrow):not(.last-updated) {
@@ -3228,5 +3230,406 @@ h1 {
     grid-column: 1 / -1;
     margin-left: 0;
     text-align: center;
+  }
+}
+
+/* Product-quality visual upgrade: strong Smokies planning desk. */
+.site-header.guide-site-header {
+  width: min(1180px, calc(100% - 36px));
+  min-height: 86px;
+  padding: 16px 18px;
+  border: 1px solid rgba(34, 69, 52, 0.24);
+  border-top: 6px solid var(--forest-pine);
+  background:
+    linear-gradient(90deg, rgba(251, 247, 235, 0.98), rgba(231, 224, 212, 0.94)),
+    var(--map-cream);
+  box-shadow: 0 10px 0 rgba(34, 69, 52, 0.08);
+}
+
+.brand-lockup {
+  min-width: 280px;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--forest-pine);
+}
+
+.brand-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(200, 154, 60, 0.78);
+  background:
+    linear-gradient(135deg, var(--forest-pine), #163629);
+  color: var(--map-cream);
+  font-size: 0.82rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  box-shadow: 4px 5px 0 rgba(106, 75, 56, 0.18);
+}
+
+.brand-text {
+  display: grid;
+  gap: 2px;
+}
+
+.brand-text strong {
+  color: var(--forest-pine);
+  font-size: clamp(1.08rem, 1.7vw, 1.38rem);
+  line-height: 1.02;
+}
+
+.brand-text small {
+  color: var(--cabin-brown);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.guide-site-header .wordmark {
+  display: none;
+}
+
+.primary-nav {
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.primary-nav a:not(.nav-cta) {
+  padding: 9px 3px;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+}
+
+.primary-nav a:not(.nav-cta):hover {
+  border-bottom-color: var(--sunrise-gold);
+}
+
+.nav-cta {
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--forest-pine);
+  box-shadow: 0 5px 0 rgba(106, 75, 56, 0.22);
+}
+
+.hero-console {
+  width: min(1180px, calc(100% - 36px));
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 0.68fr);
+  min-height: min(700px, calc(100vh - 120px));
+  border: 0;
+  border-top: 8px solid var(--sunrise-gold);
+  background:
+    linear-gradient(90deg, rgba(14, 37, 28, 0.95) 0%, rgba(28, 66, 50, 0.88) 46%, rgba(86, 103, 117, 0.48) 100%),
+    radial-gradient(ellipse at 76% 24%, rgba(200, 154, 60, 0.42), transparent 24%),
+    linear-gradient(165deg, #18382b 0%, #244f3b 38%, #566775 100%);
+  box-shadow: 0 20px 44px rgba(34, 69, 52, 0.26);
+}
+
+.hero-console::before {
+  background:
+    linear-gradient(155deg, transparent 0 56%, rgba(6, 24, 18, 0.32) 56% 62%, transparent 62%),
+    linear-gradient(145deg, transparent 0 64%, rgba(243, 235, 217, 0.1) 64% 65%, transparent 65%),
+    repeating-linear-gradient(150deg, transparent 0 21px, rgba(243, 235, 217, 0.06) 22px 23px);
+}
+
+.hero-console::after {
+  right: -12%;
+  bottom: 2%;
+  width: 72%;
+  height: 30%;
+  border-top: 18px solid rgba(243, 235, 217, 0.16);
+  border-radius: 55% 0 0 0;
+  box-shadow:
+    -130px -28px 0 rgba(17, 48, 36, 0.24),
+    -260px -8px 0 rgba(86, 103, 117, 0.18);
+}
+
+.hero-console .eyebrow {
+  color: var(--sunrise-gold);
+}
+
+.hero-console h1 {
+  max-width: 720px;
+  color: var(--map-cream);
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.26);
+}
+
+.hero-console-copy > p:not(.eyebrow):not(.last-updated) {
+  color: rgba(251, 247, 235, 0.93);
+}
+
+.hero-console .last-updated {
+  color: rgba(243, 235, 217, 0.82);
+}
+
+.hero-console .button-primary {
+  background: var(--sunrise-gold);
+  color: #142f24;
+}
+
+.hero-console .button-secondary {
+  border-color: rgba(243, 235, 217, 0.52);
+  background: rgba(243, 235, 217, 0.12);
+  color: var(--map-cream);
+}
+
+.planning-desk {
+  border: 1px solid rgba(243, 235, 217, 0.38);
+  border-left: 8px solid var(--sunrise-gold);
+  background:
+    linear-gradient(180deg, rgba(251, 247, 235, 0.96), rgba(231, 224, 212, 0.94));
+  box-shadow:
+    10px 12px 0 rgba(0, 0, 0, 0.16),
+    0 22px 48px rgba(0, 0, 0, 0.2);
+}
+
+.desk-pin {
+  background: var(--ridge-blue);
+}
+
+.desk-row {
+  border-color: rgba(86, 103, 117, 0.28);
+  background: rgba(251, 247, 235, 0.78);
+}
+
+.desk-result {
+  background: rgba(200, 154, 60, 0.22);
+}
+
+.decision-strip,
+.town-board,
+.route-board,
+.practical-guide-module,
+.trust-panel,
+.comparison-panel,
+.choose-by-trip,
+.guide-route-board {
+  border-color: rgba(34, 69, 52, 0.24);
+  background: rgba(251, 247, 235, 0.8);
+  box-shadow: 0 12px 0 rgba(34, 69, 52, 0.08);
+}
+
+.decision-panel {
+  background:
+    linear-gradient(90deg, rgba(34, 69, 52, 0.08), rgba(251, 247, 235, 0.9));
+}
+
+.route-board {
+  background:
+    linear-gradient(135deg, rgba(34, 69, 52, 0.96), rgba(86, 103, 117, 0.9));
+  color: var(--map-cream);
+}
+
+.route-board .eyebrow,
+.route-board h2 {
+  color: var(--map-cream);
+}
+
+.route-board .route-line {
+  border-color: rgba(243, 235, 217, 0.22);
+  background: rgba(243, 235, 217, 0.1);
+}
+
+.route-board .route-line strong,
+.route-board .route-line span,
+.route-board .route-line b {
+  color: var(--map-cream);
+}
+
+.route-board .route-line b {
+  text-decoration-color: var(--sunrise-gold);
+}
+
+.direct-answer {
+  width: min(880px, 100%);
+  padding: clamp(18px, 3vw, 26px) clamp(20px, 4vw, 34px);
+  border: 0;
+  border-left: 8px solid var(--sunrise-gold);
+  background:
+    linear-gradient(90deg, rgba(251, 247, 235, 0.96), rgba(231, 224, 212, 0.82));
+  box-shadow: 0 8px 0 rgba(86, 103, 117, 0.08);
+}
+
+.direct-answer .eyebrow {
+  margin-bottom: 8px;
+  color: var(--ridge-blue);
+  font-size: 0.72rem;
+}
+
+.direct-answer p {
+  color: #26342d;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.58;
+}
+
+.guide-hero {
+  background:
+    linear-gradient(135deg, rgba(34, 69, 52, 0.96), rgba(86, 103, 117, 0.88));
+  box-shadow: 0 14px 0 rgba(34, 69, 52, 0.1);
+}
+
+.planner-page .guide-hero {
+  display: grid;
+  gap: 10px;
+  border-top-color: var(--sunrise-gold);
+  background:
+    radial-gradient(circle at 86% 12%, rgba(200, 154, 60, 0.26), transparent 28%),
+    linear-gradient(135deg, #17382a, #3f5e62 72%);
+}
+
+.planner-step-rail {
+  gap: 10px;
+  border: 0;
+  background: transparent;
+}
+
+.planner-step-rail span {
+  display: grid;
+  gap: 5px;
+  min-height: 74px;
+  padding: 14px 16px;
+  border: 1px solid rgba(243, 235, 217, 0.18);
+  background:
+    linear-gradient(180deg, var(--forest-pine), #17382a);
+  box-shadow: 0 5px 0 rgba(106, 75, 56, 0.16);
+}
+
+.planner-step-rail strong {
+  color: var(--sunrise-gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.planner-step-rail em {
+  color: var(--map-cream);
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.planner-menu,
+.planner-result {
+  background: rgba(251, 247, 235, 0.9);
+  box-shadow: 0 9px 0 rgba(86, 103, 117, 0.09);
+}
+
+.planner-result.itinerary-card {
+  border-top: 0;
+  border-left: 9px solid var(--sunrise-gold);
+}
+
+.result-facts div,
+.itinerary-timeline li,
+.route-extra div {
+  background: rgba(231, 224, 212, 0.58);
+}
+
+.site-footer.guide-site-footer {
+  width: min(1180px, calc(100% - 36px));
+  border-top: 6px solid var(--forest-pine);
+  background:
+    linear-gradient(135deg, rgba(34, 69, 52, 0.96), rgba(86, 103, 117, 0.9));
+}
+
+.site-footer.guide-site-footer strong,
+.site-footer.guide-site-footer span,
+.site-footer.guide-site-footer a {
+  color: var(--map-cream);
+}
+
+.site-footer.guide-site-footer a:hover {
+  color: var(--sunrise-gold);
+}
+
+@media (max-width: 700px) {
+  .site-header.guide-site-header {
+    width: min(100% - 24px, 1180px);
+    padding: 14px;
+  }
+
+  .brand-lockup {
+    min-width: 0;
+  }
+
+  .brand-mark {
+    align-items: flex-start;
+  }
+
+  .brand-badge {
+    width: 42px;
+    height: 42px;
+    font-size: 0.72rem;
+  }
+
+  .brand-text strong {
+    font-size: 1.04rem;
+  }
+
+  .hero-console {
+    width: min(100% - 24px, 1180px);
+    max-width: calc(100vw - 24px);
+    border-top-width: 6px;
+  }
+
+  .hero-console-copy,
+  .planning-desk,
+  .hero-console h1 {
+    max-width: calc(100vw - 68px);
+  }
+
+  .hero-console h1 {
+    color: var(--map-cream);
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(2.2rem, 8.6vw, 2.75rem);
+    line-height: 1.02;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .planning-desk {
+    padding: 16px;
+  }
+
+  .planner-step-rail {
+    gap: 8px;
+  }
+
+  .planner-step-rail span {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-console {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .hero-console-copy,
+  .planning-desk {
+    grid-column: 1;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-console h1 {
+    max-width: 100%;
+    font-size: clamp(2.35rem, 10vw, 3.15rem);
+    line-height: 1.02;
+  }
+
+  .hero-console-copy > p:not(.eyebrow):not(.last-updated) {
+    max-width: 100%;
+  }
+
+  .planning-desk {
+    margin-top: 4px;
   }
 }
