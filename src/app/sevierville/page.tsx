@@ -62,7 +62,7 @@ const tripShapes = [
     title: "First-time planning day",
     goodIf: "You are still deciding between towns.",
     planAround: "Picking one main direction before adding extras.",
-    next: "Explore",
+    next: "Compare areas",
     href: "/explore",
   },
 ];

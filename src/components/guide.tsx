@@ -28,13 +28,12 @@ export type GuidePageData = {
 };
 
 export const primaryNav = [
-  { label: "Plan Your Trip", href: "/plan-your-trip" },
-  { label: "Where to Stay", href: "/where-to-stay" },
+  { label: "Plan", href: "/plan-your-trip" },
+  { label: "Stay", href: "/where-to-stay" },
   { label: "Things To Do", href: "/things-to-do" },
   { label: "Restaurants", href: "/restaurants" },
   { label: "Scenic Drives", href: "/scenic-drives" },
   { label: "Deals", href: "/deals" },
-  { label: "About", href: "/about" },
 ];
 
 export const footerLinks = [
@@ -51,17 +50,20 @@ export const footerLinks = [
 export function SiteHeader() {
   return (
     <header className="site-header guide-site-header">
-      <Link className="wordmark" href="/" aria-label="Smokies Insider Guide home">
-        Smokies Insider Guide
-      </Link>
+      <div className="brand-lockup">
+        <Link className="wordmark" href="/" aria-label="Smokies Insider Guide home">
+          Smokies Insider Guide
+        </Link>
+        <span>Free Smokies planning help</span>
+      </div>
       <nav className="primary-nav" aria-label="Primary navigation">
         {primaryNav.map((link) => (
           <Link href={link.href} key={link.href}>
             {link.label}
           </Link>
         ))}
-        <Link className="nav-secondary" href="/advertise">
-          Local Business / Advertise
+        <Link className="nav-cta" href="/plan-your-trip">
+          Start Planning
         </Link>
       </nav>
     </header>
@@ -73,7 +75,7 @@ export function SiteFooter() {
     <footer className="site-footer guide-site-footer">
       <div>
         <strong>Smokies Insider Guide</strong>
-        <span>Free decision-first planning for Smoky Mountain visitors.</span>
+        <span>Free planning help for choosing the right town, route and day shape.</span>
       </div>
       <nav aria-label="Footer navigation">
         {footerLinks.map((link) => (
@@ -377,12 +379,16 @@ export function guideSchema(page: GuidePageData, path: string) {
 }
 
 export function GuidePage({ page, path }: { page: GuidePageData; path: string }) {
+  const primarySections = page.sections.slice(0, 3);
+  const routeSections = page.sections.slice(3, -2);
+  const closingSections = page.sections.slice(-2);
+
   return (
     <main className="guide-page">
       <SiteHeader />
       <article className="guide-article">
         <header className="guide-hero">
-          <p className="eyebrow">Smokies decision guide</p>
+          <p className="eyebrow">Smokies field guide</p>
           <h1>{page.title}</h1>
           <p>{page.description}</p>
           <LastUpdated />
@@ -393,14 +399,42 @@ export function GuidePage({ page, path }: { page: GuidePageData; path: string })
         {page.bestFor && page.skipIf ? (
           <BestForSkipIf bestFor={page.bestFor} skipIf={page.skipIf} />
         ) : null}
-        <div className="guide-section-stack">
-          {page.sections.map((section) => (
-            <section className="guide-content-section" key={section.title}>
-              <h2>{section.title}</h2>
-              <p>{section.body}</p>
-            </section>
-          ))}
-        </div>
+        <section className="guide-route-board" aria-label="Planning route board">
+          <div className="route-board-title">
+            <p className="eyebrow">Route board</p>
+            <h2>Start here, then protect the day.</h2>
+          </div>
+          <div className="route-priority-strip">
+            {primarySections.map((section, index) => (
+              <section className="route-priority-panel" key={section.title}>
+                <span>0{index + 1}</span>
+                <h3>{section.title}</h3>
+                <p>{section.body}</p>
+              </section>
+            ))}
+          </div>
+          {routeSections.length ? (
+            <div className="route-row-list">
+              {routeSections.map((section) => (
+                <section className="route-row" key={section.title}>
+                  <h3>{section.title}</h3>
+                  <p>{section.body}</p>
+                </section>
+              ))}
+            </div>
+          ) : null}
+        </section>
+        {closingSections.length ? (
+          <section className="warning-note" aria-label="Planning cautions">
+            <p className="eyebrow">Watch for</p>
+            {closingSections.map((section) => (
+              <div key={section.title}>
+                <strong>{section.title}</strong>
+                <p>{section.body}</p>
+              </div>
+            ))}
+          </section>
+        ) : null}
         <InternalLinkGrid links={page.links} />
         <SourceBox />
       </article>

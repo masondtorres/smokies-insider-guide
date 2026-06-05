@@ -1,189 +1,203 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { DecisionCard, InternalLinkGrid, LastUpdated, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
-import { guideLinks, towns } from "@/lib/smokiesData";
+import { LastUpdated, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
+import { towns } from "@/lib/smokiesData";
 
 export const metadata: Metadata = {
-  title: "Smokies Insider Guide: Free Smoky Mountains Trip Planning",
+  title: "Smokies Insider Guide: Free Smoky Mountains Trip Planner",
   description:
-    "Free, practical Smoky Mountains planning help for choosing the right town, building a better day, avoiding common mistakes and finding useful local guides.",
+    "Plan a Smokies trip by base town, route, weather, crowds, parking and group fit before you buy tickets or stack stops.",
 };
 
-const tripOptions = [
-  { title: "First time", href: "/first-time-smokies" },
-  { title: "Family with kids", href: "/pigeon-forge-with-kids" },
-  { title: "Rainy day", href: "/rainy-day" },
-  { title: "Low-crowd trip", href: "/scenic-drives" },
-  { title: "Cades Cove day", href: "/cades-cove" },
-  { title: "Dollywood day", href: "/dollywood-day-plan" },
-  { title: "Free or cheap", href: "/free-and-cheap-smokies" },
-  { title: "Food-first trip", href: "/restaurants" },
-  { title: "Low-walking day", href: "/accessible-smokies" },
-];
-
-const decisionCards = [
+const decisionPanels = [
   {
     title: "Where should we stay?",
-    description: "Choose Gatlinburg, Pigeon Forge, Sevierville, Townsend, Wears Valley or the NC side by trip shape.",
+    copy: "Gatlinburg works for walkability. Pigeon Forge works for family attractions. Townsend works for quiet Cades Cove days.",
     href: "/where-to-stay",
-    bestFor: "Visitors choosing a base before booking.",
-    skipIf: "You only need live hotel rates.",
+    cta: "Compare towns",
+    tags: ["Base town", "Driving load", "Walkability"],
   },
   {
-    title: "How many days do we need?",
-    description: "Set a realistic trip length before trying to fit every town and park road.",
-    href: "/how-many-days",
-    bestFor: "First-timers and families.",
-    skipIf: "Your dates and route are already fixed.",
+    title: "What kind of day do we need?",
+    copy: "Rainy day, first-time day, low-walking day and Cades Cove day should not be planned the same way.",
+    href: "/plan-your-trip",
+    cta: "Use the planner",
+    tags: ["Group fit", "Weather", "Pace"],
   },
   {
-    title: "What if it rains?",
-    description: "Use one indoor anchor, nearby food and a short outdoor backup if showers pass.",
-    href: "/rainy-day",
-    bestFor: "Families and mixed groups.",
-    skipIf: "You are hiking no matter what.",
-  },
-  {
-    title: "How do we avoid crowds?",
-    description: "Choose slower scenic routes, quieter bases and fewer cross-county moves.",
-    href: "/scenic-drives",
-    bestFor: "Crowd-avoiders.",
-    skipIf: "You want peak downtown energy.",
-  },
-  {
-    title: "What should we do with kids?",
-    description: "Pick one anchor, protect meal timing and do not stack the whole Parkway.",
-    href: "/things-to-do",
-    bestFor: "Families with kids or teens.",
-    skipIf: "You want an adults-only quiet route.",
-  },
-  {
-    title: "What should we skip?",
-    description: "Avoid time traps, bad routing, unknown parking and coupon-chasing.",
+    title: "What should we avoid?",
+    copy: "Too many paid stops, bad parking assumptions and crossing town all day are how Smokies trips go sideways.",
     href: "/what-to-skip",
-    bestFor: "Short trips and overwhelmed planners.",
-    skipIf: "You have a long flexible stay.",
+    cta: "See what to skip",
+    tags: ["Traffic", "Parking", "Budget"],
   },
 ];
 
-const tools = [
-  { title: "Planner", href: "/plan-your-trip", description: "Get a manual rule-based starter plan." },
-  { title: "First-time guide", href: "/first-time-smokies", description: "Start with a simple three-day shape." },
-  { title: "Parking tag guide", href: "/parking-tag", description: "Verify the parking rules before you go." },
-  { title: "Rainy-day guide", href: "/rainy-day", description: "Keep the day useful when weather shifts." },
-  { title: "Cades Cove guide", href: "/cades-cove", description: "Give the loop the time it needs." },
+const plannerRoutes = [
+  ["First-time trip", "Gatlinburg or Pigeon Forge", "Trying to see every town", "/first-time-smokies"],
+  ["Rainy-day plan", "Pigeon Forge or walkable Gatlinburg", "Driving across the county in rain", "/rainy-day"],
+  ["Low-crowd scenic day", "Townsend or Wears Valley", "Treating Cades Cove as a quick stop", "/scenic-drives"],
+  ["Family with kids", "Pigeon Forge corridor", "Stacking every paid attraction", "/things-to-do"],
+  ["Cades Cove day", "Townsend side", "Rushing the loop", "/cades-cove"],
+  ["Food-first trip", "Where your day already is", "Chasing ratings across town", "/restaurants"],
+];
+
+const practicalGuides = [
+  { title: "Parking tag", href: "/parking-tag", text: "Verify the park parking rule before you leave town." },
+  { title: "How many days", href: "/how-many-days", text: "Choose a trip length that will not cram the map." },
+  { title: "Best time to visit", href: "/best-time-to-visit", text: "Match season, crowd risk and weather backup." },
+  { title: "Scenic drives", href: "/scenic-drives", text: "Pick a road by base town and patience level." },
+];
+
+const deskRows = [
+  ["Staying in", "Gatlinburg / Pigeon Forge / Townsend / Not sure"],
+  ["Trip type", "family / rainy day / low crowds / first time"],
+  ["Pace", "easy / packed / low walking"],
+  ["Watch out for", "traffic / rain / parking / overspending"],
 ];
 
 export default function Home() {
   return (
-    <main className="home-page guide-home">
+    <main className="home-page guide-home field-guide-home">
       <SiteHeader />
 
-      <section className="home-hero" aria-labelledby="home-title">
-        <div>
-          <p className="eyebrow">Free Smoky Mountains decision engine</p>
+      <section className="hero-console" aria-labelledby="home-title">
+        <div className="hero-console-copy">
+          <p className="eyebrow">Free Smokies trip planner</p>
           <h1 id="home-title">Plan a Smokies trip you won&apos;t second-guess.</h1>
           <p>
-            Free, practical Smoky Mountains planning help for choosing the right
-            town, building a better day, avoiding common mistakes and finding
-            useful local guides.
+            Choose your base town, match the day to your group and avoid the
+            mistakes that waste half a trip.
           </p>
           <LastUpdated />
           <div className="hero-actions">
-            <Link className="button button-primary" href="/plan-your-trip">Plan my Smokies trip</Link>
-            <Link className="button button-secondary" href="/where-to-stay">Where should I stay?</Link>
+            <Link className="button button-primary" href="/plan-your-trip">Start the trip planner</Link>
+            <Link className="button button-secondary" href="/where-to-stay">Choose where to stay</Link>
           </div>
         </div>
-        <aside className="home-hero-note">
-          <strong>Planning rule</strong>
-          <p>Choose the town and day shape before you choose every stop.</p>
+        <aside className="planning-desk" aria-label="Smokies Planning Desk">
+          <div className="desk-pin">Smokies Planning Desk</div>
+          <h2>Build your day</h2>
+          <div className="desk-rows">
+            {deskRows.map(([label, value]) => (
+              <div className="desk-row" key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </div>
+            ))}
+          </div>
+          <div className="desk-result">
+            <span>Best first move</span>
+            <p>Pick your base town before picking attractions.</p>
+          </div>
+          <Link className="button button-primary" href="/plan-your-trip">Open planner</Link>
         </aside>
       </section>
 
-      <section className="section-block guide-panel">
-        <div className="section-heading">
+      <section className="decision-strip" aria-labelledby="decision-strip-title">
+        <div className="section-heading field-heading">
           <div>
-            <p className="eyebrow">Trip selector</p>
-            <h2>What kind of trip are you planning?</h2>
+            <p className="eyebrow">Start with the decision that changes the whole trip</p>
+            <h2 id="decision-strip-title">Three choices before any ticket or cabin looks good.</h2>
           </div>
         </div>
-        <div className="trip-selector">
-          {tripOptions.map((option) => (
-            <Link href={option.href} key={option.title}>{option.title}</Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-block guide-panel">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">Start here</p>
-            <h2>Start with the decision that matters most</h2>
-          </div>
-        </div>
-        <div className="decision-grid">
-          {decisionCards.map((card) => (
-            <DecisionCard key={card.href} {...card} />
-          ))}
-        </div>
-      </section>
-
-      <section className="section-block guide-panel">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">Town chooser</p>
-            <h2>Choose the base that makes the day easier</h2>
-          </div>
-        </div>
-        <div className="town-preview-grid">
-          {towns.map((town) => (
-            <article className="town-preview-card" key={town.name}>
-              <h3>{town.name}</h3>
-              <p><strong>Best for:</strong> {town.bestFor}</p>
-              <p><strong>Skip if:</strong> {town.skipIf}</p>
-              <Link href={town.href}>Open town guidance</Link>
+        <div className="decision-panel-stack">
+          {decisionPanels.map((panel) => (
+            <article className="decision-panel" key={panel.title}>
+              <div>
+                <h3>{panel.title}</h3>
+                <p>{panel.copy}</p>
+                <div className="tag-row">
+                  {panel.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                </div>
+              </div>
+              <Link href={panel.href}>{panel.cta}</Link>
             </article>
           ))}
         </div>
       </section>
 
-      <InternalLinkGrid links={guideLinks} title="Current planning guides" />
-      <InternalLinkGrid links={tools} title="Free planning tools" />
-
-      <section className="section-block guide-panel">
-        <div className="section-heading">
+      <section className="town-board" aria-labelledby="town-board-title">
+        <div className="section-heading field-heading">
           <div>
-            <p className="eyebrow">Deals and savings</p>
-            <h2>Use deals without building your whole trip around coupons</h2>
+            <p className="eyebrow">Town chooser</p>
+            <h2 id="town-board-title">Pick the base that makes your main day easier.</h2>
           </div>
         </div>
-        <p className="guide-copy">
-          Deals can help when they fit the route, group and timing. They become
-          a problem when they send you across town for a small savings.
-        </p>
-        <Link className="button button-secondary" href="/deals">Check the deals guide</Link>
+        <div className="town-board-grid">
+          {towns.map((town) => (
+            <article className="town-board-column" key={town.name}>
+              <h3>{town.name}</h3>
+              <dl>
+                <div><dt>Best for</dt><dd>{town.bestFor}</dd></div>
+                <div><dt>Skip if</dt><dd>{town.skipIf}</dd></div>
+                <div><dt>Common mistake</dt><dd>{town.mistake}</dd></div>
+              </dl>
+              <Link href={town.href}>Read guide</Link>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section className="section-block guide-panel">
-        <div className="section-heading">
+      <section className="route-board" aria-labelledby="route-board-title">
+        <div className="section-heading field-heading">
           <div>
-            <p className="eyebrow">Trust</p>
-            <h2>Planning pages include last-updated notes and source reminders</h2>
+            <p className="eyebrow">Featured planner routes</p>
+            <h2 id="route-board-title">Choose your day by starting point and mistake risk.</h2>
           </div>
+        </div>
+        <div className="route-board-table">
+          {plannerRoutes.map(([route, start, avoid, href]) => (
+            <Link className="route-line" href={href} key={route}>
+              <strong>{route}</strong>
+              <span>{start}</span>
+              <span>Avoid: {avoid}</span>
+              <b>Open route</b>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="practical-guide-module" aria-labelledby="practical-guides-title">
+        <div>
+          <p className="eyebrow">Current practical guides</p>
+          <h2 id="practical-guides-title">Four checks that save more time than another list.</h2>
+        </div>
+        <div className="practical-guide-list">
+          {practicalGuides.map((guide) => (
+            <Link href={guide.href} key={guide.href}>
+              <strong>{guide.title}</strong>
+              <span>{guide.text}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="trust-panel" aria-labelledby="trust-title">
+        <div>
+          <p className="eyebrow">Built for planning, not hype</p>
+          <h2 id="trust-title">Useful pages say what can change.</h2>
+          <p>
+            Guide pages carry update notes, source reminders for park and road
+            details, sponsored-placement labels when used and a clear no-official
+            park-affiliation posture.
+          </p>
         </div>
         <SourceBox />
       </section>
 
       <section className="business-cta compact-business-cta">
         <div>
-          <p className="eyebrow">Local business?</p>
-          <h2>Get on the future partner list.</h2>
+          <p className="eyebrow">For businesses</p>
+          <h2>Own a Smokies business?</h2>
           <p>
-            Future sponsorship stays clearly labeled and secondary to useful visitor planning.
+            Get on the list for future sponsor placements after the visitor guide
+            is built out. Businesses can buy visibility, not editorial truth.
           </p>
         </div>
         <div className="business-actions">
-          <Link className="button button-primary" href="/advertise">Local Business / Advertise</Link>
+          <Link className="button button-primary" href="/advertise">Advertise later</Link>
+          <Link className="button button-secondary" href="/contact">Join future partner list</Link>
         </div>
       </section>
 

@@ -57,7 +57,7 @@ const tripShapes = [
     title: "Scenic drive day",
     goodIf: "The drive is part of the plan, not just transportation.",
     planAround: "Daylight, slow roads and fewer stops.",
-    next: "Explore",
+    next: "Compare areas",
     href: "/explore",
   },
   {
@@ -138,7 +138,7 @@ const nextSteps = [
   },
   {
     prompt: "Looking for area comparisons?",
-    next: "Go to Explore",
+    next: "Compare areas",
     href: "/explore",
   },
 ];

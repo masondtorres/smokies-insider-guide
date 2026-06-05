@@ -14,11 +14,11 @@ export default function PlanYourTripPage() {
       <SiteHeader />
       <article className="guide-article">
         <header className="guide-hero">
-          <p className="eyebrow">Manual trip planner</p>
-          <h1>Plan Your Smokies Trip</h1>
+          <p className="eyebrow">Manual planning board</p>
+          <h1>Plan your Smokies day</h1>
           <p>
-            Answer a few practical questions. The planner gives a rule-based starter plan,
-            not AI, bookings or paid recommendations.
+            Pick the closest match below. The goal is not a perfect schedule. It is
+            to stop building the wrong day.
           </p>
           <LastUpdated />
         </header>
