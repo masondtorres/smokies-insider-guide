@@ -134,6 +134,7 @@ const parkingFaqs = [
 
 const relatedGuides = [
   { prompt: "Need the full planning router?", next: "Start Planning", href: "/start-planning" },
+  { prompt: "Choosing activities?", next: "Things To Do Decision Hub", href: "/things-to-do" },
   { prompt: "Choosing where to stay?", next: "Where To Stay by Trip Type", href: "/where-to-stay-in-the-smokies-by-trip-type" },
   { prompt: "Need the Gatlinburg town guide?", next: "Gatlinburg Guide", href: "/gatlinburg" },
   { prompt: "Need the Pigeon Forge town guide?", next: "Pigeon Forge Guide", href: "/pigeon-forge" },

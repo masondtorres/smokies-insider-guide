@@ -160,6 +160,12 @@ export default function Home() {
             </p>
           </article>
           <article>
+            <h3>What the planner does</h3>
+            <p>
+              It compares base town, group, trip length, season, walking limits, crowd tolerance, rainy-day need and budget/pace, then points visitors toward a practical anchor, backup and movement warning.
+            </p>
+          </article>
+          <article>
             <h3>What this planner does not do</h3>
             <p>
               It does not claim live traffic, current hours, current prices, road status, closures, trolley routes or attraction availability. Check official sources before you go.

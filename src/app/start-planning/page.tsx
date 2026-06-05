@@ -7,7 +7,7 @@ import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/seoSchema";
 export const metadata: Metadata = {
   title: "Smoky Mountains Trip Planner | Start Planning",
   description:
-    "Use a client-side Smokies itinerary planner for Gatlinburg, Pigeon Forge, Cades Cove, rainy days, families, walking limits, crowds and budget.",
+    "Use a 10-step client-side Smokies itinerary planner for Gatlinburg, Pigeon Forge, Cades Cove, rainy days, families, walking limits, crowds and budget.",
 };
 
 const plannerInputs = [
@@ -32,7 +32,7 @@ const plannerFaqs = [
   {
     question: "Can this planner give live hours, prices or road status?",
     answer:
-      "No. This page gives planning guidance, not live status. Hours, prices, road status and availability can change. Check official sources before you go.",
+      "No. This page gives planning guidance, not live status. Hours, prices, road status, closures and availability can change. Check official sources before you go.",
   },
   {
     question: "Does the planner work for Cades Cove, Dollywood and rainy days?",
@@ -51,7 +51,7 @@ export default function StartPlanningPage() {
             <p className="eyebrow">Smokies concierge planner</p>
             <h1>Start planning with the day you actually need.</h1>
             <p>
-              Answer a few practical questions and get a starter route: a first pick,
+              Answer 10 practical questions and get a starter route: a first pick,
               a backup, a rainy-day move, a family option and one planning caution.
             </p>
             <LastUpdated />
@@ -68,11 +68,11 @@ export default function StartPlanningPage() {
           <p className="eyebrow">Direct answer</p>
           <h2 id="planner-direct-answer">What does this Smokies trip planner do?</h2>
           <p>
-            This planner helps visitors build a Smoky Mountains day plan by weighing group type, starting base, trip length, season, walking limits, crowd tolerance, rainy-day needs and budget. It suggests a practical base, anchor, backup, movement warning and next guide links.
+            This 10-step planner helps visitors build a Smoky Mountains day plan by weighing group type, starting base, trip length, season, walking limits, crowd tolerance, rainy-day needs and budget. It suggests a practical base, anchor, backup, movement warning and next guide links.
           </p>
           <aside className="flagship-warning-note">
             <strong>This is planning guidance, not live status</strong>
-            <p>Hours, prices, road status and availability can change. Check official sources before relying on current details.</p>
+            <p>Hours, prices, road status, closures and availability can change. Check official sources before relying on current details.</p>
           </aside>
         </section>
 

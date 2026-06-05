@@ -5424,6 +5424,20 @@ h1 {
   width: min(1120px, calc(100% - 40px));
 }
 
+.seo-wide-table {
+  min-width: 980px;
+}
+
+.seo-wide-table tbody th,
+.seo-wide-table tbody td {
+  width: auto;
+  min-width: 150px;
+}
+
+.seo-wide-table tbody th {
+  min-width: 180px;
+}
+
 @media (max-width: 760px) {
   .seo-answer-panel,
   .seo-faq-panel,
@@ -5442,5 +5456,14 @@ h1 {
 
   .seo-link-row a {
     width: 100%;
+  }
+
+  .seo-wide-table {
+    min-width: 0;
+  }
+
+  .seo-wide-table tbody th,
+  .seo-wide-table tbody td {
+    min-width: 0;
   }
 }
