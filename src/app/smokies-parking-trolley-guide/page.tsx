@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/guide";
+import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/seoSchema";
 
 export const metadata: Metadata = {
   title: "Smokies Parking, Trolleys and Getting Around | Gatlinburg, Pigeon Forge and the Park",
@@ -99,6 +101,37 @@ const movementPlans = [
   },
 ];
 
+const movementComparison = [
+  ["Gatlinburg", "Park once and walk when the group can handle it.", "Trolley and parking details can change. Verify official details."],
+  ["Pigeon Forge", "Pick one Parkway zone or anchor before driving.", "Do not bounce across the Parkway for small add-ons."],
+  ["Sevierville", "Use as a practical base, food/shopping reset or gateway.", "Not the same as immediate park or downtown Gatlinburg access."],
+  ["Townsend", "Use for Cades Cove, quieter park access and slower scenic days.", "Not built for heavy attraction stacking."],
+  ["Park areas", "Check official NPS conditions, tags, roads and closures before the park day.", "Cell service and road/weather conditions can affect plans."],
+];
+
+const parkingFaqs = [
+  {
+    question: "What is the best way to handle parking in Gatlinburg?",
+    answer:
+      "Plan parking and walking together. Gatlinburg usually works better when visitors park once and keep stops close, but current parking and trolley details should be checked with official sources.",
+  },
+  {
+    question: "Should visitors rely on trolleys in Gatlinburg or Pigeon Forge?",
+    answer:
+      "Trolleys can help some plans, but they do not fix an overpacked route. Check official route, fare and service details before relying on transit.",
+  },
+  {
+    question: "Do Smokies park days need official checks?",
+    answer:
+      "Yes. Park rules, parking tags, road conditions, closures and weather can change. Check official Great Smoky Mountains National Park sources before you go.",
+  },
+  {
+    question: "What is the biggest getting-around mistake?",
+    answer:
+      "The biggest mistake is trying to solve too many stops with transportation. Simplify the day first: one base, one anchor, nearby food and a backup that fits the same route.",
+  },
+];
+
 const relatedGuides = [
   { prompt: "Need the full planning router?", next: "Start Planning", href: "/start-planning" },
   { prompt: "Choosing where to stay?", next: "Where To Stay by Trip Type", href: "/where-to-stay-in-the-smokies-by-trip-type" },
@@ -148,9 +181,12 @@ export default function SmokiesParkingTrolleyGuidePage() {
 
       <section className="destination-section quick-answer-panel" id="start-with-town">
         <div className="destination-heading">
-          <p className="eyebrow">Planning guidance</p>
+          <p className="eyebrow">Direct answer</p>
           <h2>Best way to think about getting around the Smokies</h2>
         </div>
+        <p className="seo-direct-copy">
+          The best Smokies transportation plan starts by simplifying the day. Gatlinburg works best when parking and walking are planned together. Pigeon Forge works better by corridor. Park days need official checks for parking tags, roads, closures and conditions before you go.
+        </p>
         <div className="destination-grid">
           {quickAreas.map((area) => {
             const content = (
@@ -175,6 +211,33 @@ export default function SmokiesParkingTrolleyGuidePage() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section className="destination-section comparison-section" aria-labelledby="movement-table-title">
+        <div className="destination-heading">
+          <p className="eyebrow">Comparison table</p>
+          <h2 id="movement-table-title">Parking and movement by gateway area</h2>
+        </div>
+        <div className="comparison-table-wrap">
+          <table className="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Area</th>
+                <th scope="col">Use this movement logic</th>
+                <th scope="col">Caution</th>
+              </tr>
+            </thead>
+            <tbody>
+              {movementComparison.map(([area, logic, caution]) => (
+                <tr key={area}>
+                  <th scope="row">{area}</th>
+                  <td data-label="Use this movement logic">{logic}</td>
+                  <td data-label="Caution">{caution}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -396,6 +459,19 @@ export default function SmokiesParkingTrolleyGuidePage() {
         </nav>
       </section>
 
+      <section className="destination-section seo-faq-panel" aria-labelledby="parking-faq-title">
+        <p className="eyebrow">Parking and trolley FAQ</p>
+        <h2 id="parking-faq-title">Questions visitors ask before moving around the Smokies</h2>
+        <div className="seo-faq-list">
+          {parkingFaqs.map((item) => (
+            <article key={item.question}>
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="business-cta planning-desk-cta" aria-labelledby="transport-business-title">
         <div>
           <p className="eyebrow">Local businesses</p>
@@ -435,6 +511,16 @@ export default function SmokiesParkingTrolleyGuidePage() {
           <a href="https://www.dollywood.com/">Official Dollywood site</a>
         </div>
       </aside>
+      <JsonLd data={webPageSchema({
+        path: "/smokies-parking-trolley-guide",
+        title: "Smokies Parking, Trolleys and Getting Around | Gatlinburg, Pigeon Forge and the Park",
+        description: metadata.description ?? "",
+      })} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Smokies Parking and Trolley Guide", url: "/smokies-parking-trolley-guide" },
+      ])} />
+      <JsonLd data={faqSchema(parkingFaqs)} />
     </main>
   );
 }

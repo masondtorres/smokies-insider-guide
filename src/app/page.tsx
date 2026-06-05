@@ -1,12 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { LastUpdated, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
+import { JsonLd, LastUpdated, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
+import { breadcrumbSchema, faqSchema, webPageSchema, webSiteSchema } from "@/lib/seoSchema";
 import { towns } from "@/lib/smokiesData";
 
 export const metadata: Metadata = {
-  title: "Smokies Insider Guide: Free Smoky Mountains Trip Planner",
+  title: "Smoky Mountains Trip Planner | Smokies Insider Guide",
   description:
-    "Choose your Smokies base town, day type, backup plan and mistake to avoid before you buy tickets or stack stops.",
+    "Build a practical Smokies day plan by base town, group, weather, walking limits, crowds and budget before you stack attractions.",
 };
 
 const tripTypes = [
@@ -90,6 +91,24 @@ const practicalGuides = [
   { title: "What to skip", href: "/what-to-skip", text: "Avoid the traps that drain time, money and patience." },
 ];
 
+const homepageFaqs = [
+  {
+    question: "What is Smokies Insider Guide?",
+    answer:
+      "Smokies Insider Guide is a planning-first guide for choosing a Smoky Mountains day by base town, group, weather, walking limits, crowd tolerance and budget. It gives planning guidance, not live hours, prices, road status or attraction availability.",
+  },
+  {
+    question: "Who is the Smokies planner for?",
+    answer:
+      "The planner is for first-time visitors, families, rainy-day groups, low-walking groups, budget travelers and visitors choosing between Gatlinburg, Pigeon Forge, Sevierville, Townsend, Wears Valley and NC-side routes.",
+  },
+  {
+    question: "What should visitors verify before relying on a plan?",
+    answer:
+      "Hours, prices, road status, trolley details, parking rules, closures and availability can change. Check official sources before relying on a final plan.",
+  },
+];
+
 export default function Home() {
   return (
     <main className="home-page guide-home field-guide-home product-home">
@@ -125,6 +144,28 @@ export default function Home() {
           </div>
           <Link className="button button-primary" href="/start-planning">Open the Planner</Link>
         </aside>
+      </section>
+
+      <section className="seo-answer-panel product-seo-panel" aria-labelledby="what-is-sig">
+        <p className="eyebrow">Direct answer</p>
+        <h2 id="what-is-sig">What is Smokies Insider Guide?</h2>
+        <p>
+          Smokies Insider Guide helps visitors choose a practical Smoky Mountains day plan based on who is going, where they are starting, walking limits, weather, crowd tolerance and budget. It is planning guidance, not a live source for hours, prices, road closures or attraction availability.
+        </p>
+        <div className="seo-two-column">
+          <article>
+            <h3>Who this planner is for</h3>
+            <p>
+              Use it for family trips, rainy days, first visits, low-walking days, budget days, Cades Cove plans, Dollywood or Pigeon Forge attraction days and town-base decisions.
+            </p>
+          </article>
+          <article>
+            <h3>What this planner does not do</h3>
+            <p>
+              It does not claim live traffic, current hours, current prices, road status, closures, trolley routes or attraction availability. Check official sources before you go.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section className="trip-type-section" aria-labelledby="trip-type-title">
@@ -207,6 +248,28 @@ export default function Home() {
         </div>
         <SourceBox />
       </section>
+
+      <section className="seo-faq-panel" aria-labelledby="home-faq-title">
+        <p className="eyebrow">Smokies planning FAQ</p>
+        <h2 id="home-faq-title">Questions this guide is built to answer</h2>
+        <div className="seo-faq-list">
+          {homepageFaqs.map((item) => (
+            <article key={item.question}>
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <JsonLd data={webSiteSchema()} />
+      <JsonLd data={webPageSchema({
+        path: "/",
+        title: "Smoky Mountains Trip Planner | Smokies Insider Guide",
+        description: metadata.description ?? "",
+      })} />
+      <JsonLd data={breadcrumbSchema([{ name: "Home", url: "/" }])} />
+      <JsonLd data={faqSchema(homepageFaqs)} />
 
       <SiteFooter />
     </main>

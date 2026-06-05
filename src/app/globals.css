@@ -5302,3 +5302,145 @@ h1 {
     grid-column: auto;
   }
 }
+
+/* SEO/GEO answer architecture. */
+.seo-answer-panel,
+.seo-faq-panel,
+.seo-input-panel {
+  width: min(1120px, calc(100% - 40px));
+  margin: clamp(28px, 4vw, 48px) auto 0;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid rgba(34, 69, 52, 0.16);
+  border-radius: 22px;
+  background: #fffaf0;
+  box-shadow: 0 14px 34px rgba(44, 55, 45, 0.08);
+}
+
+.guide-article .seo-answer-panel,
+.guide-article .seo-faq-panel,
+.guide-article .seo-input-panel {
+  width: 100%;
+}
+
+.seo-answer-panel h2,
+.seo-faq-panel h2,
+.seo-input-panel h2 {
+  max-width: 840px;
+  color: var(--forest-pine);
+  font-size: clamp(1.55rem, 3vw, 2.4rem);
+  line-height: 1.08;
+}
+
+.seo-answer-panel > p:not(.eyebrow),
+.seo-direct-copy {
+  max-width: 860px;
+  color: #26342d;
+  font-size: clamp(1rem, 1.45vw, 1.12rem);
+  line-height: 1.62;
+}
+
+.seo-two-column,
+.seo-faq-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.seo-two-column article,
+.seo-faq-list article {
+  padding: 18px;
+  border: 1px solid rgba(34, 69, 52, 0.13);
+  border-radius: 16px;
+  background: rgba(243, 235, 217, 0.62);
+}
+
+.seo-two-column h3,
+.seo-faq-list h3 {
+  margin: 0 0 8px;
+  color: var(--forest-pine);
+  font-size: 1.05rem;
+}
+
+.seo-two-column p,
+.seo-faq-list p {
+  margin: 0;
+  color: #31443b;
+  line-height: 1.55;
+}
+
+.seo-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.seo-chip-list li {
+  padding: 9px 12px;
+  border: 1px solid rgba(34, 69, 52, 0.16);
+  border-radius: 999px;
+  background: rgba(243, 235, 217, 0.78);
+  color: var(--forest-pine);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.seo-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.seo-link-row a {
+  padding: 10px 13px;
+  border: 1px solid rgba(34, 69, 52, 0.18);
+  border-radius: 999px;
+  background: var(--forest-pine);
+  color: #fffaf0;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.planner-seo-panel {
+  border-left: 6px solid var(--sunrise-gold);
+}
+
+.things-decision-page .guide-article {
+  max-width: none;
+}
+
+.things-decision-page .guide-hero,
+.things-decision-page .direct-answer,
+.things-decision-page .source-box {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.things-decision-page .destination-section {
+  width: min(1120px, calc(100% - 40px));
+}
+
+@media (max-width: 760px) {
+  .seo-answer-panel,
+  .seo-faq-panel,
+  .seo-input-panel,
+  .things-decision-page .guide-hero,
+  .things-decision-page .direct-answer,
+  .things-decision-page .source-box,
+  .things-decision-page .destination-section {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .seo-two-column,
+  .seo-faq-list {
+    grid-template-columns: 1fr;
+  }
+
+  .seo-link-row a {
+    width: 100%;
+  }
+}
