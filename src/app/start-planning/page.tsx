@@ -1,42 +1,47 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { DirectAnswer, InternalLinkGrid, LastUpdated, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
+import { LastUpdated, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
+import { TripPlanner } from "@/components/TripPlanner";
 
 export const metadata: Metadata = {
   title: "Start Planning Your Smokies Trip",
-  description: "A bridge to the free Smokies trip planner, town chooser and first-time planning guides.",
+  description:
+    "Answer a few practical Smokies trip questions and get starter recommendations for attractions, towns, rainy days, scenery and planning cautions.",
 };
 
 export default function StartPlanningPage() {
   return (
-    <main className="guide-page">
+    <main className="guide-page start-planning-page">
       <SiteHeader />
-      <article className="guide-article">
-        <header className="guide-hero">
-          <p className="eyebrow">Planning bridge</p>
-          <h1>Start Planning Your Smokies Trip</h1>
-          <p>The main planning tool now lives at /plan-your-trip.</p>
-          <LastUpdated />
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/plan-your-trip">Open the trip planner</Link>
-            <Link className="button button-secondary" href="/where-to-stay">Choose where to stay</Link>
+      <article className="guide-article start-planning-article">
+        <header className="planner-hero">
+          <div>
+            <p className="eyebrow">Smokies concierge planner</p>
+            <h1>Start planning with the day you actually need.</h1>
+            <p>
+              Answer a few practical questions and get a starter route: a first pick,
+              a backup, a rainy-day move, a family option and one planning caution.
+            </p>
+            <LastUpdated />
           </div>
+          <aside>
+            <strong>Good first rule</strong>
+            <p>Pick the town and day shape before you start buying tickets or stacking stops.</p>
+          </aside>
         </header>
-        <DirectAnswer>
-          <p>
-            Use this page as a bridge if you had the older planning route saved.
-            The new manual planner gives a starter plan based on base town, time,
-            group, day style and what could ruin the day.
-          </p>
-        </DirectAnswer>
-        <InternalLinkGrid
-          links={[
-            { title: "Plan your trip", href: "/plan-your-trip", description: "Manual starter planner." },
-            { title: "Where to stay", href: "/where-to-stay", description: "Choose the right town." },
-            { title: "First-time Smokies", href: "/first-time-smokies", description: "Simple first-trip plan." },
-            { title: "Rainy day", href: "/rainy-day", description: "Weather backup." },
-          ]}
-        />
+
+        <TripPlanner />
+
+        <section className="planner-trust-strip" aria-label="Planner limits">
+          <div>
+            <strong>No fake partnerships</strong>
+            <p>Recommendations are planning categories and known Smokies visitor options, not paid rankings.</p>
+          </div>
+          <div>
+            <strong>Verify before you go</strong>
+            <p>Hours, roads, parking, prices and closures can change. Check current sources before final plans.</p>
+          </div>
+        </section>
+
         <SourceBox />
       </article>
       <SiteFooter />
