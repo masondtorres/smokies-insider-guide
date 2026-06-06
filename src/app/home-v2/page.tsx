@@ -69,7 +69,6 @@ return ( <span className="homeV2Logo" aria-label="Smokies Insider Guide"> <span 
 export default function HomeV2Page() {
 return ( <main className="homeV2"> <header className="homeV2Header"> <Link className="homeV2Brand" href="/" aria-label="Smokies Insider Guide home"> <Logo /> </Link>
 
-```
     <nav className="homeV2Nav" aria-label="Primary navigation">
       {navItems.map((item) => (
         <Link key={item.href} href={item.href}>
@@ -611,7 +610,6 @@ return ( <main className="homeV2"> <header className="homeV2Header"> <Link class
     }
   `}</style>
 </main>
-```
 
 );
 }
