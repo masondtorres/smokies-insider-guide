@@ -17,7 +17,7 @@ const tripTypes = [
     fit: "One strong kid anchor such as WonderWorks, Parrot Mountain, The Island or a Dollywood day.",
     avoid: "Do not stack every kid stop because they are close on the map.",
     href: "/start-planning",
-    cta: "Build a family plan",
+    cta: "Build a family day",
   },
   {
     title: "Toddlers or grandparents",
@@ -25,7 +25,7 @@ const tripTypes = [
     fit: "Shorter walks, seated meals, scenic drives and easy exits.",
     avoid: "Do not call a plan low-walking until you know the parking and surfaces.",
     href: "/start-planning",
-    cta: "Build an easy-pace plan",
+    cta: "Build an easy-pace day",
   },
   {
     title: "Rainy day",
@@ -33,7 +33,7 @@ const tripTypes = [
     fit: "WonderWorks, arcades, indoor mini golf, covered shopping and a food-first backup.",
     avoid: "Do not try to rescue a full outdoor itinerary in the rain.",
     href: "/rainy-day",
-    cta: "See rainy-day moves",
+    cta: "Save a rainy day",
   },
   {
     title: "First-time visitor",
@@ -57,7 +57,7 @@ const tripTypes = [
     fit: "Scenic routes, short stops, seated attractions and fewer parking changes.",
     avoid: "Do not assume every popular overlook or town block is easy for every visitor.",
     href: "/start-planning",
-    cta: "Build a low-walking plan",
+    cta: "Build a low-walking day",
   },
   {
     title: "Cades Cove / park day",
@@ -83,6 +83,8 @@ const featureTiles = [
     image: "/images/explore-smokies-tile.png",
     alt: "Smoky Mountains ridges at sunrise",
     text: "Ridge roads, Cades Cove routes and pull-off views worth planning around.",
+    bestFor: "Morning drives, slow-pace days, photography stops",
+    watchOut: "Cades Cove loop closes to cars Wednesday and Saturday mornings",
     href: "/scenic-drives",
     cta: "See Scenic Drives",
   },
@@ -91,6 +93,8 @@ const featureTiles = [
     image: "/images/things-to-do-tile.png",
     alt: "Family-friendly Smokies attraction scene",
     text: "Attractions, trails, shows, rides and rainy-day plans.",
+    bestFor: "Anchoring your day around one strong activity",
+    watchOut: "Stacking multiple paid stops adds up fast in time and money",
     href: "/things-to-do",
     cta: "Find Things To Do",
   },
@@ -99,6 +103,8 @@ const featureTiles = [
     image: "/images/eat-stay-shop-tile.png",
     alt: "Smokies food and shopping scene",
     text: "Breakfast stops, BBQ, family meals and places close to your day plan.",
+    bestFor: "Building meals around where you already are",
+    watchOut: "Peak-hour waits in Gatlinburg and Pigeon Forge can run 45–90 minutes",
     href: "/restaurants",
     cta: "Find Restaurants",
   },
@@ -107,6 +113,8 @@ const featureTiles = [
     image: "/images/smokies-hero-fall.png",
     alt: "Smoky Mountains sunset view",
     text: "Cabins, hotels and town choices based on how you want the trip to move.",
+    bestFor: "Choosing a base that cuts your daily driving",
+    watchOut: "Cabin locations vary widely — check actual drive times, not map distance",
     href: "/where-to-stay",
     cta: "Compare Stays",
   },
@@ -115,6 +123,8 @@ const featureTiles = [
     image: "/images/visitor-resources-tile.png",
     alt: "Smokies visitor map and planning materials",
     text: "Parking, traffic, maps, weather backup and park basics.",
+    bestFor: "Avoiding the parking and traffic mistakes most first-timers make",
+    watchOut: "Peak-season traffic in Gatlinburg can add an hour to short drives",
     href: "/visitor-resources",
     cta: "Read Visitor Tips",
   },
@@ -123,6 +133,8 @@ const featureTiles = [
     image: "/images/coupons-deals-tile.png",
     alt: "Smokies coupons and deal cards",
     text: "Deals that fit attractions, restaurants, shopping and family plans.",
+    bestFor: "Stretching a budget day or finding a discount on a paid anchor",
+    watchOut: "Not every deal saves meaningful money — check the total before committing",
     href: "/deals",
     cta: "View Deals",
   },
@@ -146,17 +158,24 @@ export default function Home() {
       <SiteHeader />
 
       <section className="home-tool-hero" aria-labelledby="home-title">
-        <p className="hero-kicker">THE INSIDER&rsquo;S GUIDE TO THE</p>
-
         <div className="home-tool-copy">
-          <h1 id="home-title">The Insider&rsquo;s Guide to the Smokies</h1>
+          <h1 id="home-title">Plan the Smokies without wasting half your trip guessing.</h1>
           <p className="home-tool-promise">
-            Pick the right town, avoid wasted drive time and build a Smokies day that fits your group, your time and the weather.
+            Tell us where you&rsquo;re staying, who&rsquo;s coming and what kind of day you want. We&rsquo;ll point you toward the right town, route, stops and backup plan.
           </p>
         </div>
 
-        <Link className="button button-primary" href="/start-planning">Plan My Smokies Trip</Link>
-        <p className="hero-support-note">No account needed. Start with your town, group and time.</p>
+        <Link className="button button-primary" href="/start-planning">Plan My Smokies Trip &rarr;</Link>
+
+        <div className="hero-day-row" aria-label="Start with your day type">
+          <span className="hero-day-label">Start with your day:</span>
+          <nav>
+            <Link href="/start-planning">Family day</Link>
+            <Link href="/rainy-day">Rainy day</Link>
+            <Link href="/start-planning">Low walking</Link>
+            <Link href="/cades-cove">Cades Cove</Link>
+          </nav>
+        </div>
       </section>
 
       <section className="home-feature-grid" aria-label="Smokies guide categories">
@@ -172,7 +191,17 @@ export default function Home() {
             <div>
               <h2>{tile.title}</h2>
               <p>{tile.text}</p>
-              <span>{tile.cta}</span>
+              <dl className="feature-card-meta">
+                <div>
+                  <dt>Best for</dt>
+                  <dd>{tile.bestFor}</dd>
+                </div>
+                <div>
+                  <dt>Watch out for</dt>
+                  <dd>{tile.watchOut}</dd>
+                </div>
+              </dl>
+              <span>{tile.cta} &rarr;</span>
             </div>
           </Link>
         ))}
@@ -241,7 +270,7 @@ export default function Home() {
         <p className="eyebrow">For local businesses</p>
         <h2 id="business-cta-title">Reach visitors before they choose where to eat, stay, shop or play.</h2>
         <p>
-          Get listed, share a deal or ask about sponsor spots that put your business in front of people planning their Smokies trip.
+          Smokies Insider Guide puts local businesses inside planning moments: family days, rainy-day backups, food near attractions, town guides, deals and itinerary pages.
         </p>
         <div className="business-action-row">
           {businessActions.map(([title, text, href]) => (
