@@ -6410,3 +6410,85 @@ h1 {
 
 modified: src/app/globals.css
 
+
+/* Homepage: hero rhythm, card hover, mobile grid scanning. */
+
+/* Hero: visual gap between copy block and CTA button */
+.home-tool-hero .button-primary {
+  margin-top: 8px;
+  min-width: 224px;
+}
+
+.home-tool-copy h1 {
+  margin-bottom: 18px;
+}
+
+/* Feature cards: hover lift */
+.home-feature-card {
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.home-feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 48px rgba(12, 18, 15, 0.38);
+}
+
+/* Remove image height cap so cards breathe at mid widths */
+.home-feature-card img {
+  max-height: none;
+}
+
+/* Mobile: 2-col feature grid overrides 760px and 680px 1-col rules */
+@media (max-width: 760px) {
+  .home-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .home-feature-card img {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .home-feature-card div {
+    padding: 10px 12px 14px;
+  }
+
+  .home-feature-card h2 {
+    font-size: 1.05rem;
+  }
+
+  .home-feature-card p {
+    font-size: 0.86rem;
+    line-height: 1.38;
+  }
+
+  .feature-card-meta {
+    margin: 6px 0 8px;
+    padding-top: 7px;
+  }
+
+  .feature-card-meta dd {
+    font-size: 0.82rem;
+  }
+}
+
+/* Tablet: trip-type stays 2-col between 541px and 900px */
+@media (max-width: 900px) and (min-width: 541px) {
+  .trip-type-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Very small phones: revert feature grid to 1-col */
+@media (max-width: 480px) {
+  .home-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-feature-card img {
+    aspect-ratio: 3 / 2;
+    max-height: 200px;
+  }
+}
