@@ -165,7 +165,7 @@ export default function Home() {
           </p>
         </div>
 
-        <Link className="button button-primary" href="/start-planning">Plan My Smokies Trip &rarr;</Link>
+        <Link className="button button-primary" href="/start-planning">Plan My Smokies Trip</Link>
 
     
       </section>
@@ -193,7 +193,7 @@ export default function Home() {
                   <dd>{tile.watchOut}</dd>
                 </div>
               </dl>
-              <span>{tile.cta} &rarr;</span>
+              <span>{tile.cta}</span>
             </div>
           </Link>
         ))}
