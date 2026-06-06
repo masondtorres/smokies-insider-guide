@@ -29,23 +29,52 @@ export type GuidePageData = {
 };
 
 export const primaryNav = [
-  { label: "Plan", href: "/plan-your-trip" },
-  { label: "Stay", href: "/where-to-stay" },
   { label: "Things To Do", href: "/things-to-do" },
-  { label: "Restaurants", href: "/restaurants" },
+  { label: "Places To Eat", href: "/restaurants" },
+  { label: "Where To Stay", href: "/where-to-stay" },
   { label: "Scenic Drives", href: "/scenic-drives" },
   { label: "Deals", href: "/deals" },
+  { label: "Guides", href: "/visitor-resources" },
+  { label: "Directory", href: "/eat-stay-shop" },
 ];
 
-export const footerLinks = [
-  ...primaryNav,
-  { label: "Local Business / Advertise", href: "/advertise" },
-  { label: "Editorial Policy", href: "/editorial-policy" },
-  { label: "Sponsored Content Policy", href: "/sponsored-content-policy" },
-  { label: "Affiliate Disclosure", href: "/affiliate-disclosure" },
-  { label: "Corrections", href: "/corrections" },
-  { label: "Disclaimer", href: "/disclaimer" },
-  { label: "Contact", href: "/contact" },
+const footerGroups = [
+  {
+    title: "Explore",
+    links: [
+      { label: "Things To Do", href: "/things-to-do" },
+      { label: "Places To Eat", href: "/restaurants" },
+      { label: "Where To Stay", href: "/where-to-stay" },
+      { label: "Scenic Drives", href: "/scenic-drives" },
+      { label: "Deals", href: "/deals" },
+    ],
+  },
+  {
+    title: "Plan",
+    links: [
+      { label: "Start Planning", href: "/start-planning" },
+      { label: "Visitor Resources", href: "/visitor-resources" },
+      { label: "Parking & Trolley Guide", href: "/smokies-parking-trolley-guide" },
+      { label: "How Many Days?", href: "/how-many-days" },
+    ],
+  },
+  {
+    title: "About",
+    links: [
+      { label: "Contact", href: "/contact" },
+      { label: "Advertise", href: "/advertise" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Editorial Policy", href: "/editorial-policy" },
+      { label: "Sponsored Content Policy", href: "/sponsored-content-policy" },
+      { label: "Affiliate Disclosure", href: "/affiliate-disclosure" },
+      { label: "Corrections", href: "/corrections" },
+      { label: "Disclaimer", href: "/disclaimer" },
+    ],
+  },
 ];
 
 export function SiteHeader() {
@@ -70,7 +99,7 @@ export function SiteHeader() {
           </Link>
         ))}
         <Link className="nav-cta" href="/start-planning">
-          Start Planning
+          Plan My Smokies Trip
         </Link>
       </nav>
     </header>
@@ -80,17 +109,28 @@ export function SiteHeader() {
 export function SiteFooter() {
   return (
     <footer className="site-footer guide-site-footer">
-      <div>
-        <strong>Smokies Insider Guide</strong>
-        <span>Free planning help for choosing the right town, route and day shape.</span>
+      <div className="footer-brand-panel">
+        <Image
+          className="footer-logo-image"
+          src="/images/smokies-logo-white.png"
+          alt="Smokies Insider Guide"
+          width={320}
+          height={180}
+        />
+        <span>Decision-first planning help for choosing the right town, route, restaurant, deal and day shape.</span>
       </div>
-      <nav aria-label="Footer navigation">
-        {footerLinks.map((link) => (
-          <Link href={link.href} key={link.href}>
-            {link.label}
-          </Link>
+      <div className="footer-link-groups">
+        {footerGroups.map((group) => (
+          <nav aria-label={group.title} key={group.title}>
+            <h2>{group.title}</h2>
+            {group.links.map((link) => (
+              <Link href={link.href} key={link.href}>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
         ))}
-      </nav>
+      </div>
     </footer>
   );
 }

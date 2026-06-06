@@ -80,52 +80,58 @@ const tripTypes = [
 
 const heroPlannerFields = [
   ["Where are you staying?", "Select a town"],
-  ["Who's coming?", "Families, couples, grandparents"],
-  ["How many days?", "Half day, 1, 2, 3+"],
+  ["Who’s coming?", "Families, couples, etc."],
+  ["How many days?", "2, 3, 4, 5+"],
 ];
 
 const featureTiles = [
   {
-    title: "Explore the Smokies",
-    image: "/images/explore-smokies-tile.png",
-    text: "Scenic drives, park days and local route logic.",
+    title: "Scenic Drives",
+    image: "/images/smokies-hero-fall.png",
+    alt: "Smoky Mountains ridges at sunrise",
+    text: "Ridge roads, Cades Cove routes and pull-off views worth planning around.",
     href: "/scenic-drives",
-    cta: "Explore routes",
+    cta: "See Scenic Drives",
   },
   {
     title: "Things To Do",
     image: "/images/things-to-do-tile.png",
-    text: "Pick attractions by group, weather and walking limits.",
+    alt: "Family-friendly Smokies attraction scene",
+    text: "Attractions, trails, shows, rides and rainy-day plans.",
     href: "/things-to-do",
-    cta: "Compare options",
+    cta: "Find Things To Do",
   },
   {
-    title: "Eat, Stay & Shop",
+    title: "Places To Eat",
     image: "/images/eat-stay-shop-tile.png",
-    text: "Use food, lodging and shops as practical trip anchors.",
-    href: "/eat-stay-shop",
-    cta: "See local favorites",
+    alt: "Smokies food and shopping scene",
+    text: "Breakfast stops, BBQ, family meals and places close to your day plan.",
+    href: "/restaurants",
+    cta: "Find Restaurants",
+  },
+  {
+    title: "Where To Stay",
+    image: "/images/smokies-hero-fall-logo.png",
+    alt: "Smoky Mountains sunset view",
+    text: "Cabins, hotels and town choices based on how you want the trip to move.",
+    href: "/where-to-stay",
+    cta: "Compare Stays",
   },
   {
     title: "Visitor Resources",
     image: "/images/visitor-resources-tile.png",
-    text: "Parking, trolleys, maps, weather cautions and park basics.",
-    href: "/smokies-parking-trolley-guide",
-    cta: "Plan movement",
+    alt: "Smokies visitor map and planning materials",
+    text: "Parking, traffic, maps, weather backup and park basics.",
+    href: "/visitor-resources",
+    cta: "Read Visitor Tips",
   },
   {
     title: "Coupons & Deals",
     image: "/images/coupons-deals-tile.png",
-    text: "Lower-cost ideas without chasing deals across town.",
+    alt: "Smokies coupons and deal cards",
+    text: "Deals that fit attractions, restaurants, shopping and family plans.",
     href: "/deals",
-    cta: "View deals",
-  },
-  {
-    title: "Events & What's Happening",
-    image: "/images/events-happening-tile.png",
-    text: "Seasonal planning notes and event-aware route choices.",
-    href: "/events",
-    cta: "See events",
+    cta: "View Deals",
   },
 ];
 
@@ -133,25 +139,29 @@ const quickPlanCards = [
   {
     title: "I have kids",
     image: "/images/things-to-do-tile.png",
-    text: "Kid-friendly anchors and easier backup plans.",
-    href: "/start-planning",
+    alt: "Smokies attraction scene for families",
+    text: "Kid-friendly attractions and easy days.",
+    href: "/pigeon-forge-with-kids",
   },
   {
     title: "I need rainy-day ideas",
     image: "/images/visitor-resources-tile.png",
-    text: "Indoor anchors and food-first resets.",
+    alt: "Smokies planning materials for rainy-day backups",
+    text: "Indoor plans when weather changes.",
     href: "/rainy-day",
   },
   {
     title: "I want scenic views",
-    image: "/images/explore-smokies-tile.png",
-    text: "Drives, overlooks and park-side routes.",
+    image: "/images/smokies-hero-fall.png",
+    alt: "Smoky Mountains scenic road and fall color",
+    text: "Drives, overlooks and photo stops.",
     href: "/scenic-drives",
   },
   {
     title: "I want deals",
     image: "/images/coupons-deals-tile.png",
-    text: "Discount-aware plans that do not waste the day.",
+    alt: "Smokies coupons and savings cards",
+    text: "Current deals on attractions and more.",
     href: "/deals",
   },
 ];
@@ -178,10 +188,10 @@ const linkColumns = [
     title: "Plan by trip type",
     links: [
       ["Families with Kids", "/pigeon-forge-with-kids"],
+      ["Couples & Romance", "/start-planning"],
       ["Rainy Day Plans", "/rainy-day"],
       ["Free & Cheap", "/free-and-cheap-smokies"],
       ["First Time Visitors", "/first-time-smokies"],
-      ["Low Walking", "/gatlinburg-without-walking-too-much"],
     ],
   },
   {
@@ -189,9 +199,9 @@ const linkColumns = [
     links: [
       ["Restaurants", "/restaurants"],
       ["Scenic Drives", "/scenic-drives"],
-      ["Trails & Hikes", "/hiking"],
+      ["Trails & Hikes", "/things-to-do"],
       ["Parking & Traffic", "/smokies-parking-trolley-guide"],
-      ["Visitor Resources", "/visitor-resources"],
+      ["Trolleys & Shuttles", "/smokies-parking-trolley-guide"],
     ],
   },
   {
@@ -204,12 +214,22 @@ const linkColumns = [
       ["Dollywood Day Plan", "/dollywood-day-plan"],
     ],
   },
+  {
+    title: "Trending",
+    links: [
+      ["Dollywood Day Plan", "/dollywood-day-plan"],
+      ["Cades Cove", "/cades-cove"],
+      ["Free & Cheap", "/free-and-cheap-smokies"],
+      ["Rainy Day Plans", "/rainy-day"],
+      ["Visitor Resources", "/visitor-resources"],
+    ],
+  },
 ];
 
 const businessActions = [
   ["Advertise With Us", "Sponsorships and opportunities", "/advertise"],
-  ["Submit a Deal", "Share a current offer", "/deals"],
-  ["Contact Us", "Ask about listing updates", "/contact"],
+  ["Submit a Deal", "Share a current offer", "/contact"],
+  ["Claim Your Business", "Ask about listing updates", "/contact"],
 ];
 
 const homepageFaqs = [
@@ -236,7 +256,7 @@ export default function Home() {
       <SiteHeader />
 
       <section className="home-tool-hero" aria-labelledby="home-title">
-        <p className="hero-kicker">Smokies planning tool</p>
+        <p className="hero-kicker">THE INSIDER&rsquo;S GUIDE TO THE</p>
 
         <div className="hero-logo-block" aria-label="Smokies Insider Guide">
           <Image
@@ -251,7 +271,7 @@ export default function Home() {
         <div className="home-tool-copy">
           <h1 id="home-title">The Insider&rsquo;s Guide to the Smokies</h1>
           <p className="home-tool-promise">
-            Better routes, places to eat, deals, things to do and practical planning help without the guesswork.
+            Pick the right town, avoid wasted drive time and build a Smokies day that fits your group, your time and the weather.
           </p>
         </div>
 
@@ -272,7 +292,7 @@ export default function Home() {
       <section className="home-feature-grid" aria-label="Smokies guide categories">
         {featureTiles.map((tile) => (
           <Link className="home-feature-card" href={tile.href} key={tile.title}>
-            <Image src={tile.image} alt="" width={480} height={320} />
+            <Image src={tile.image} alt={tile.alt} width={480} height={320} />
             <div>
               <h2>{tile.title}</h2>
               <p>{tile.text}</p>
@@ -287,14 +307,14 @@ export default function Home() {
           <p className="eyebrow">Local planning shortcut</p>
           <h2 id="insider-strip-title">Plan your Smokies day by what actually fits.</h2>
           <p>
-            Choose the group, route and constraint first. Then pick the attraction or scenic anchor.
+            Answer a few quick questions and get a plan that fits your group, your time, the weather and your starting point.
           </p>
-          <Link className="button button-primary" href="/start-planning">Start My Plan</Link>
+          <Link className="button button-primary" href="/start-planning">Plan My Smokies Trip</Link>
         </div>
         <div className="quick-plan-grid">
           {quickPlanCards.map((card) => (
             <Link className="quick-plan-card" href={card.href} key={card.title}>
-              <Image src={card.image} alt="" width={420} height={260} />
+              <Image src={card.image} alt={card.alt} width={420} height={260} />
               <h3>{card.title}</h3>
               <p>{card.text}</p>
             </Link>
@@ -320,25 +340,25 @@ export default function Home() {
         <p className="eyebrow">Direct answer</p>
         <h2 id="what-is-sig">What is Smokies Insider Guide?</h2>
         <p>
-          Smokies Insider Guide helps visitors choose a practical Smoky Mountains day plan based on who is going, where they are starting, walking limits, weather, crowd tolerance and budget. It is planning guidance, not a live source for hours, prices, road closures or attraction availability.
+          Smokies Insider Guide helps visitors choose the right town, route, restaurant, deal and day plan for a Smoky Mountains trip. Start with where you’re staying, who is coming and how much time you have.
         </p>
         <div className="seo-two-column">
           <article>
-            <h3>Who this planner is for</h3>
+            <h3>Sponsored placements are labeled</h3>
             <p>
-              Use it for family trips, rainy days, first visits, low-walking days, budget days, Cades Cove plans, Dollywood or Pigeon Forge attraction days and town-base decisions.
+              Business exposure should be clear. Sponsored placements are labeled so visitors know what is editorial guidance and what is paid visibility.
             </p>
           </article>
           <article>
-            <h3>What the planner does</h3>
+            <h3>Offers should be current</h3>
             <p>
-              It compares base town, group, trip length, season, walking limits, crowd tolerance, rainy-day need and budget/pace, then points visitors toward a practical anchor, backup and movement warning.
+              Deals and business details can change. Offers should be current before publishing, and listing updates are reviewed before they go live.
             </p>
           </article>
           <article>
-            <h3>What this planner does not do</h3>
+            <h3>Check park conditions before you go</h3>
             <p>
-              It does not claim live traffic, current hours, current prices, road status, closures, trolley routes or attraction availability. Check official sources before you go.
+              Park conditions, roads, closures, hours and availability can change. Use this guide for planning direction and check official sources before relying on time-sensitive details.
             </p>
           </article>
         </div>
@@ -429,7 +449,7 @@ export default function Home() {
         <p className="eyebrow">For local businesses</p>
         <h2 id="business-cta-title">Reach visitors before they choose where to eat, stay, shop or play.</h2>
         <p>
-          Get listed, share a current deal or ask about sponsor spots that put your business in front of people planning their Smokies trip.
+          Get listed, share a deal or ask about sponsor spots that put your business in front of people planning their Smokies trip.
         </p>
         <div className="business-action-row">
           {businessActions.map(([title, text, href]) => (
