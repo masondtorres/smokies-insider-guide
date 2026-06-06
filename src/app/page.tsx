@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
-import { JsonLd, LastUpdated, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
+import { JsonLd, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
 import { breadcrumbSchema, faqSchema, webPageSchema, webSiteSchema } from "@/lib/seoSchema";
 import { towns } from "@/lib/smokiesData";
 
@@ -77,11 +78,82 @@ const tripTypes = [
   },
 ];
 
-const plannerPreview = [
-  ["Best base", "Pigeon Forge for attraction-heavy families. Townsend or Wears Valley for slower park days."],
-  ["Main anchor", "Choose one: Dollywood, WonderWorks, Cades Cove, Roaring Fork, Anakeesta or a simple town route."],
-  ["Backup plan", "Rain with kids? Start indoors. Scenic day? Keep a visitor center or food reset ready."],
-  ["What to avoid", "Do not cross town twice if traffic, parking or tired kids are already the stress point."],
+const heroPlannerFields = [
+  ["Where are you staying?", "Select a town"],
+  ["Who's coming?", "Families, couples, grandparents"],
+  ["How many days?", "Half day, 1, 2, 3+"],
+];
+
+const featureTiles = [
+  {
+    title: "Explore the Smokies",
+    image: "/images/explore-smokies-tile.png",
+    text: "Scenic drives, park days and local route logic.",
+    href: "/scenic-drives",
+    cta: "Explore routes",
+  },
+  {
+    title: "Things To Do",
+    image: "/images/things-to-do-tile.png",
+    text: "Pick attractions by group, weather and walking limits.",
+    href: "/things-to-do",
+    cta: "Compare options",
+  },
+  {
+    title: "Eat, Stay & Shop",
+    image: "/images/eat-stay-shop-tile.png",
+    text: "Use food, lodging and shops as practical trip anchors.",
+    href: "/eat-stay-shop",
+    cta: "See local favorites",
+  },
+  {
+    title: "Visitor Resources",
+    image: "/images/visitor-resources-tile.png",
+    text: "Parking, trolleys, maps, weather cautions and park basics.",
+    href: "/smokies-parking-trolley-guide",
+    cta: "Plan movement",
+  },
+  {
+    title: "Coupons & Deals",
+    image: "/images/coupons-deals-tile.png",
+    text: "Lower-cost ideas without chasing deals across town.",
+    href: "/deals",
+    cta: "View deals",
+  },
+  {
+    title: "Events & What's Happening",
+    image: "/images/events-happening-tile.png",
+    text: "Seasonal planning notes and event-aware route choices.",
+    href: "/events",
+    cta: "See events",
+  },
+];
+
+const quickPlanCards = [
+  {
+    title: "I have kids",
+    image: "/images/things-to-do-tile.png",
+    text: "Kid-friendly anchors and easier backup plans.",
+    href: "/start-planning",
+  },
+  {
+    title: "I need rainy-day ideas",
+    image: "/images/visitor-resources-tile.png",
+    text: "Indoor anchors and food-first resets.",
+    href: "/rainy-day",
+  },
+  {
+    title: "I want scenic views",
+    image: "/images/explore-smokies-tile.png",
+    text: "Drives, overlooks and park-side routes.",
+    href: "/scenic-drives",
+  },
+  {
+    title: "I want deals",
+    image: "/images/coupons-deals-tile.png",
+    text: "Discount-aware plans that do not waste the day.",
+    href: "/deals",
+  },
 ];
 
 const practicalGuides = [
@@ -89,6 +161,55 @@ const practicalGuides = [
   { title: "Where to stay", href: "/where-to-stay", text: "Pick the town that reduces your driving, not the one with the loudest listing." },
   { title: "Things to do", href: "/things-to-do", text: "Use attractions as anchors, not a giant checklist." },
   { title: "What to skip", href: "/what-to-skip", text: "Avoid the traps that drain time, money and patience." },
+];
+
+const linkColumns = [
+  {
+    title: "Plan by town",
+    links: [
+      ["Gatlinburg", "/gatlinburg"],
+      ["Pigeon Forge", "/pigeon-forge"],
+      ["Sevierville", "/sevierville"],
+      ["Townsend", "/townsend"],
+      ["Cades Cove", "/cades-cove"],
+    ],
+  },
+  {
+    title: "Plan by trip type",
+    links: [
+      ["Families with Kids", "/pigeon-forge-with-kids"],
+      ["Rainy Day Plans", "/rainy-day"],
+      ["Free & Cheap", "/free-and-cheap-smokies"],
+      ["First Time Visitors", "/first-time-smokies"],
+      ["Low Walking", "/gatlinburg-without-walking-too-much"],
+    ],
+  },
+  {
+    title: "Plan by need",
+    links: [
+      ["Restaurants", "/restaurants"],
+      ["Scenic Drives", "/scenic-drives"],
+      ["Trails & Hikes", "/hiking"],
+      ["Parking & Traffic", "/smokies-parking-trolley-guide"],
+      ["Visitor Resources", "/visitor-resources"],
+    ],
+  },
+  {
+    title: "Popular guides",
+    links: [
+      ["How Many Days?", "/how-many-days"],
+      ["Gatlinburg vs Pigeon Forge", "/gatlinburg-vs-pigeon-forge"],
+      ["Smokies with Toddlers", "/smokies-with-toddlers"],
+      ["What to Skip", "/what-to-skip"],
+      ["Dollywood Day Plan", "/dollywood-day-plan"],
+    ],
+  },
+];
+
+const businessActions = [
+  ["Advertise With Us", "Sponsorships and opportunities", "/advertise"],
+  ["Submit a Deal", "Share a current offer", "/deals"],
+  ["Contact Us", "Ask about listing updates", "/contact"],
 ];
 
 const homepageFaqs = [
@@ -115,35 +236,84 @@ export default function Home() {
       <SiteHeader />
 
       <section className="home-tool-hero" aria-labelledby="home-title">
-        <div className="home-tool-copy">
-          <p className="eyebrow">Smokies planning tool</p>
-          <h1 id="home-title">Answer a few questions. Get a practical Smokies day plan.</h1>
-          <p className="home-tool-promise">
-            Tell us who you are traveling with, where you are starting and what could ruin the day. We&apos;ll point you toward a base, an anchor, a backup and the mistake to avoid.
-          </p>
-          <LastUpdated />
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/start-planning">Build My Smokies Day Plan</Link>
-            <Link className="button button-secondary" href="/things-to-do">Browse Things To Do</Link>
-          </div>
+        <p className="hero-kicker">Smokies planning tool</p>
+
+        <div className="hero-logo-block" aria-label="Smokies Insider Guide">
+          <Image
+            src="/images/smokies-logo-white.png"
+            alt="Smokies Insider Guide"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
-        <aside className="decision-console planner-preview-module" aria-label="Smokies planner preview">
-          <div className="desk-pin">Planner preview</div>
-          <h2>One usable day, not a stack of stops.</h2>
-          <p>
-            It weighs base town, season, crowds, mobility, rain and budget before recommending the day shape.
+        <div className="home-tool-copy">
+          <h1 id="home-title">The Insider&rsquo;s Guide to the Smokies</h1>
+          <p className="home-tool-promise">
+            Better routes, places to eat, deals, things to do and practical planning help without the guesswork.
           </p>
-          <div className="decision-console-list planner-preview-list">
-            {plannerPreview.map(([label, copy]) => (
-              <div key={label}>
+        </div>
+
+        <form className="hero-planner-strip" aria-label="Quick Smokies trip planner preview">
+          <div className="hero-planner-fields">
+            {heroPlannerFields.map(([label, value]) => (
+              <div className="hero-planner-field" key={label}>
                 <span>{label}</span>
-                <p>{copy}</p>
+                <strong>{value}</strong>
               </div>
             ))}
           </div>
-          <Link className="button button-primary" href="/start-planning">Open the Planner</Link>
-        </aside>
+          <Link className="button button-primary" href="/start-planning">Plan My Smokies Trip</Link>
+        </form>
+        <p className="hero-support-note">No account needed. Start with your town, group and time.</p>
+      </section>
+
+      <section className="home-feature-grid" aria-label="Smokies guide categories">
+        {featureTiles.map((tile) => (
+          <Link className="home-feature-card" href={tile.href} key={tile.title}>
+            <Image src={tile.image} alt="" width={480} height={320} />
+            <div>
+              <h2>{tile.title}</h2>
+              <p>{tile.text}</p>
+              <span>{tile.cta}</span>
+            </div>
+          </Link>
+        ))}
+      </section>
+
+      <section className="home-insider-strip" aria-labelledby="insider-strip-title">
+        <div className="insider-strip-copy">
+          <p className="eyebrow">Local planning shortcut</p>
+          <h2 id="insider-strip-title">Plan your Smokies day by what actually fits.</h2>
+          <p>
+            Choose the group, route and constraint first. Then pick the attraction or scenic anchor.
+          </p>
+          <Link className="button button-primary" href="/start-planning">Start My Plan</Link>
+        </div>
+        <div className="quick-plan-grid">
+          {quickPlanCards.map((card) => (
+            <Link className="quick-plan-card" href={card.href} key={card.title}>
+              <Image src={card.image} alt="" width={420} height={260} />
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-link-columns" aria-label="Smokies quick planning links">
+        {linkColumns.map((column) => (
+          <nav className="home-link-column" aria-label={column.title} key={column.title}>
+            <h2>{column.title}</h2>
+            {column.links.map(([label, href]) => (
+              <Link href={href} key={href}>
+                <span>{label}</span>
+                <strong aria-hidden="true">-&gt;</strong>
+              </Link>
+            ))}
+          </nav>
+        ))}
       </section>
 
       <section className="seo-answer-panel product-seo-panel" aria-labelledby="what-is-sig">
@@ -253,6 +423,23 @@ export default function Home() {
           </p>
         </div>
         <SourceBox />
+      </section>
+
+      <section className="home-business-cta" aria-labelledby="business-cta-title">
+        <p className="eyebrow">For local businesses</p>
+        <h2 id="business-cta-title">Reach visitors before they choose where to eat, stay, shop or play.</h2>
+        <p>
+          Get listed, share a current deal or ask about sponsor spots that put your business in front of people planning their Smokies trip.
+        </p>
+        <div className="business-action-row">
+          {businessActions.map(([title, text, href]) => (
+            <Link href={href} key={title}>
+              <strong>{title}</strong>
+              <span>{text}</span>
+            </Link>
+          ))}
+        </div>
+        <small>Sponsored placements are labeled. Offers should be current. Business details are reviewed before publishing.</small>
       </section>
 
       <section className="seo-faq-panel" aria-labelledby="home-faq-title">

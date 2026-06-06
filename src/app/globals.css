@@ -5462,8 +5462,532 @@ h1 {
     min-width: 0;
   }
 
-  .seo-wide-table tbody th,
-  .seo-wide-table tbody td {
+.seo-wide-table tbody th,
+.seo-wide-table tbody td {
     min-width: 0;
+  }
+}
+
+/* Mockup-aligned homepage presentation. */
+.product-home {
+  background:
+    linear-gradient(180deg, #101813 0%, #1c2d22 18%, #f3ecdd 18%, #fffaf0 100%);
+}
+
+.product-home .guide-site-header {
+  position: static;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 44px);
+  align-items: center;
+  min-height: 78px;
+  padding: 10px clamp(18px, 4vw, 42px);
+  border-bottom: 1px solid rgba(255, 250, 240, 0.14);
+  background: rgba(12, 18, 15, 0.94);
+  color: #fffaf0;
+}
+
+.brand-mark {
+  min-width: 0;
+}
+
+.brand-logo-image {
+  display: block;
+  width: clamp(132px, 16vw, 205px);
+  height: auto;
+  object-fit: contain;
+}
+
+.product-home .primary-nav {
+  justify-content: flex-end;
+}
+
+.product-home .primary-nav a {
+  color: rgba(255, 250, 240, 0.9);
+}
+
+.product-home .primary-nav .nav-cta {
+  border-color: rgba(246, 199, 86, 0.42);
+  background: rgba(246, 199, 86, 0.16);
+  color: #fffaf0;
+}
+
+.home-tool-hero {
+  display: flex;
+  width: 100%;
+  min-height: clamp(560px, 72vw, 820px);
+  margin: 0;
+  padding: clamp(34px, 5vw, 70px) clamp(18px, 4vw, 42px) clamp(34px, 5vw, 66px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3vw, 30px);
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(180deg, rgba(12, 18, 15, 0.42), rgba(12, 18, 15, 0.18) 36%, rgba(12, 18, 15, 0.68)),
+    url("/images/smokies-hero-fall.png") center / cover no-repeat;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.home-tool-hero::before {
+  content: none;
+}
+
+.hero-kicker,
+.hero-logo-block {
+  text-align: center;
+}
+
+.hero-kicker {
+  margin: 0;
+  color: #f6c756;
+  font-size: clamp(0.95rem, 1.8vw, 1.45rem);
+  font-weight: 950;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-logo-block {
+  width: min(700px, 82vw);
+  padding: clamp(6px, 1.5vw, 14px) 0 clamp(4px, 1.2vw, 10px);
+}
+
+.hero-logo-block img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.38));
+}
+
+.home-tool-copy {
+  width: min(980px, 100%);
+  padding: 0;
+  text-align: center;
+}
+
+.home-tool-copy h1 {
+  max-width: 1040px;
+  margin: 0 auto 12px;
+  color: #fffaf0;
+  font-size: clamp(2.35rem, 6.8vw, 6rem);
+  line-height: 0.95;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, 0.62);
+}
+
+.home-tool-promise {
+  max-width: 780px;
+  margin: 0 auto;
+  color: #fffaf0;
+  font-size: clamp(1.02rem, 2vw, 1.45rem);
+  font-weight: 850;
+  line-height: 1.42;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.62);
+}
+
+.hero-planner-strip {
+  display: grid;
+  width: min(920px, 100%);
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0;
+  align-items: stretch;
+  margin-top: clamp(8px, 2vw, 18px);
+  border: 1px solid rgba(255, 250, 240, 0.72);
+  border-radius: 12px;
+  background: rgba(255, 250, 240, 0.93);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32);
+  overflow: hidden;
+}
+
+.hero-planner-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hero-planner-field {
+  display: flex;
+  min-height: 76px;
+  padding: 15px 18px;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(64, 62, 50, 0.18);
+}
+
+.hero-planner-field span {
+  color: #1f2d25;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.hero-planner-field strong {
+  color: #253a2e;
+  font-size: 0.95rem;
+}
+
+.hero-planner-strip .button {
+  min-width: 210px;
+  min-height: 76px;
+  border: 0;
+  border-radius: 0;
+  background: #55762c;
+  color: #fffaf0;
+  font-size: 1rem;
+  box-shadow: none;
+}
+
+.hero-support-note {
+  margin: 0;
+  color: #fffaf0;
+  font-weight: 800;
+  text-align: center;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+}
+
+.home-feature-grid,
+.home-insider-strip,
+.home-link-columns {
+  width: min(1220px, calc(100% - 28px));
+  margin-inline: auto;
+}
+
+.home-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.home-feature-card {
+  display: flex;
+  min-width: 0;
+  min-height: 100%;
+  flex-direction: column;
+  border: 4px solid rgba(255, 250, 240, 0.9);
+  border-radius: 10px;
+  background: #fffaf0;
+  color: #1f2d25;
+  text-decoration: none;
+  box-shadow: 0 12px 26px rgba(12, 18, 15, 0.28);
+  overflow: hidden;
+}
+
+.home-feature-card img {
+  width: 100%;
+  aspect-ratio: 1.18;
+  height: auto;
+  object-fit: cover;
+}
+
+.home-feature-card div {
+  display: flex;
+  padding: 14px 14px 16px;
+  flex: 1;
+  flex-direction: column;
+}
+
+.home-feature-card h2 {
+  margin: 0 0 7px;
+  color: #17281e;
+  font-size: clamp(1.02rem, 1.4vw, 1.28rem);
+  line-height: 1.1;
+}
+
+.home-feature-card p {
+  margin: 0 0 12px;
+  color: #2f3b34;
+  font-size: 0.91rem;
+  line-height: 1.42;
+}
+
+.home-feature-card span {
+  margin-top: auto;
+  color: #55762c;
+  font-weight: 900;
+}
+
+.home-insider-strip {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.42fr) minmax(0, 1fr);
+  gap: 18px;
+  margin-top: 14px;
+  padding: 18px;
+  border: 1px solid rgba(246, 199, 86, 0.45);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(18, 32, 24, 0.92), rgba(65, 42, 23, 0.82)),
+    #1e231b;
+  color: #fffaf0;
+  box-shadow: 0 18px 38px rgba(12, 18, 15, 0.2);
+}
+
+.insider-strip-copy {
+  display: flex;
+  padding: clamp(18px, 3vw, 28px);
+  flex-direction: column;
+  justify-content: center;
+}
+
+.insider-strip-copy .eyebrow {
+  color: #f6c756;
+}
+
+.insider-strip-copy h2 {
+  margin: 0 0 10px;
+  color: #fffaf0;
+  font-size: clamp(1.55rem, 3vw, 2.5rem);
+  line-height: 1.05;
+}
+
+.insider-strip-copy p {
+  color: rgba(255, 250, 240, 0.84);
+  line-height: 1.55;
+}
+
+.insider-strip-copy .button {
+  width: fit-content;
+  margin-top: 12px;
+}
+
+.quick-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.quick-plan-card {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  border: 3px solid rgba(255, 250, 240, 0.86);
+  border-radius: 10px;
+  background: #fffaf0;
+  color: #1f2d25;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.quick-plan-card img {
+  width: 100%;
+  aspect-ratio: 1.45;
+  height: auto;
+  object-fit: cover;
+}
+
+.quick-plan-card h3 {
+  margin: 12px 14px 4px;
+  color: #17281e;
+  font-size: 1.05rem;
+}
+
+.quick-plan-card p {
+  margin: 0 14px 16px;
+  color: #324239;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.home-link-columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 34px);
+  margin-top: 14px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid rgba(82, 68, 48, 0.16);
+  background: #f4ecdc;
+}
+
+.home-link-column h2 {
+  margin: 0 0 12px;
+  color: #263a2f;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.home-link-column a {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(82, 68, 48, 0.14);
+  color: #1f2d25;
+  font-weight: 760;
+  text-decoration: none;
+}
+
+.home-link-column strong {
+  color: #55762c;
+}
+
+.product-home .seo-answer-panel,
+.product-home .trip-type-section,
+.product-home .town-board,
+.product-home .practical-guide-module,
+.product-home .trust-panel,
+.product-home .home-business-cta,
+.product-home .seo-faq-panel {
+  margin-top: clamp(26px, 4vw, 48px);
+}
+
+.home-business-cta {
+  width: min(1220px, calc(100% - 28px));
+  margin-inline: auto;
+  padding: clamp(28px, 4vw, 46px);
+  border: 1px solid rgba(246, 199, 86, 0.42);
+  background:
+    linear-gradient(135deg, rgba(24, 36, 28, 0.96), rgba(80, 47, 24, 0.88)),
+    #1d241c;
+  color: #fffaf0;
+  text-align: center;
+}
+
+.home-business-cta .eyebrow {
+  color: #f6c756;
+}
+
+.home-business-cta h2 {
+  max-width: 900px;
+  margin: 0 auto 10px;
+  color: #fffaf0;
+  font-size: clamp(1.55rem, 3vw, 2.55rem);
+}
+
+.home-business-cta > p {
+  max-width: 780px;
+  margin: 0 auto 22px;
+  color: rgba(255, 250, 240, 0.86);
+  font-weight: 760;
+  line-height: 1.5;
+}
+
+.business-action-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 940px;
+  margin: 0 auto 14px;
+}
+
+.business-action-row a {
+  display: flex;
+  min-height: 72px;
+  padding: 14px 16px;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid rgba(255, 250, 240, 0.22);
+  background: #55762c;
+  color: #fffaf0;
+  text-decoration: none;
+}
+
+.business-action-row a:nth-child(2) {
+  background: #a25b2f;
+}
+
+.business-action-row a:nth-child(3) {
+  background: #2f6273;
+}
+
+.business-action-row strong,
+.business-action-row span {
+  display: block;
+}
+
+.business-action-row span,
+.home-business-cta small {
+  color: rgba(255, 250, 240, 0.82);
+}
+
+@media (max-width: 1050px) {
+  .home-feature-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-insider-strip,
+  .home-link-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-plan-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .product-home {
+    overflow-x: hidden;
+  }
+
+  .product-home .guide-site-header {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .product-home .primary-nav {
+    justify-content: center;
+  }
+
+  .home-tool-hero {
+    min-height: auto;
+    padding: 28px 18px 34px;
+    background:
+      linear-gradient(180deg, rgba(12, 18, 15, 0.56), rgba(12, 18, 15, 0.26) 38%, rgba(12, 18, 15, 0.72)),
+      url("/images/smokies-hero-fall.png") center / cover no-repeat;
+  }
+
+  .hero-logo-block {
+    width: min(300px, 74vw);
+    padding-block: 8px;
+  }
+
+  .home-tool-copy,
+  .home-tool-promise,
+  .hero-support-note {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .home-tool-copy h1 {
+    max-width: 340px;
+    font-size: clamp(2.1rem, 11vw, 2.9rem);
+    line-height: 1;
+  }
+
+  .home-tool-promise {
+    font-size: 1rem;
+  }
+
+  .hero-planner-strip,
+  .hero-planner-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-planner-field {
+    min-height: 64px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(64, 62, 50, 0.18);
+  }
+
+  .hero-planner-strip .button {
+    width: 100%;
+    min-height: 62px;
+  }
+
+  .home-feature-grid,
+  .home-insider-strip,
+  .home-link-columns,
+  .quick-plan-grid,
+  .business-action-row {
+    grid-template-columns: 1fr;
+  }
+
+  .home-feature-grid {
+    margin-top: 16px;
+  }
+
+  .home-link-columns {
+    padding: 18px;
   }
 }

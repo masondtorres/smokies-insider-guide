@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export type LinkItem = {
   title: string;
@@ -52,11 +53,14 @@ export function SiteHeader() {
     <header className="site-header guide-site-header">
       <div className="brand-lockup">
         <Link className="brand-mark" href="/" aria-label="Smokies Insider Guide home">
-          <span className="brand-badge">SIG</span>
-          <span className="brand-text">
-            <strong>Smokies Insider Guide</strong>
-            <small>Free Smokies planning help</small>
-          </span>
+          <Image
+            className="brand-logo-image"
+            src="/images/smokies-logo-white.png"
+            alt="Smokies Insider Guide"
+            width={320}
+            height={180}
+            priority
+          />
         </Link>
       </div>
       <nav className="primary-nav" aria-label="Primary navigation">
@@ -65,7 +69,7 @@ export function SiteHeader() {
             {link.label}
           </Link>
         ))}
-        <Link className="nav-cta" href="/plan-your-trip">
+        <Link className="nav-cta" href="/start-planning">
           Start Planning
         </Link>
       </nav>
