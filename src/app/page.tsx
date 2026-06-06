@@ -104,7 +104,7 @@ const featureTiles = [
     alt: "Smokies food and shopping scene",
     text: "Breakfast stops, BBQ, family meals and places close to your day plan.",
     bestFor: "Building meals around where you already are",
-    watchOut: "Peak-hour waits in Gatlinburg and Pigeon Forge can run 45–90 minutes",
+    watchOut: "Peak-hour waits in Gatlinburg and Pigeon Forge can run 45-90 minutes",
     href: "/restaurants",
     cta: "Find Restaurants",
   },
@@ -114,7 +114,7 @@ const featureTiles = [
     alt: "Smoky Mountains sunset view",
     text: "Cabins, hotels and town choices based on how you want the trip to move.",
     bestFor: "Choosing a base that cuts your daily driving",
-    watchOut: "Cabin locations vary widely — check actual drive times, not map distance",
+    watchOut: "Cabin locations vary widely - check actual drive times, not map distance",
     href: "/where-to-stay",
     cta: "Compare Stays",
   },
@@ -134,7 +134,7 @@ const featureTiles = [
     alt: "Smokies coupons and deal cards",
     text: "Deals that fit attractions, restaurants, shopping and family plans.",
     bestFor: "Stretching a budget day or finding a discount on a paid anchor",
-    watchOut: "Not every deal saves meaningful money — check the total before committing",
+    watchOut: "Not every deal saves meaningful money - check the total before committing",
     href: "/deals",
     cta: "View Deals",
   },
@@ -161,7 +161,7 @@ export default function Home() {
         <div className="home-tool-copy">
           <h1 id="home-title">Plan the Smokies without wasting half your trip guessing.</h1>
           <p className="home-tool-promise">
-            Tell us where you&rsquo;re staying, who&rsquo;s coming and what kind of day you want. We&rsquo;ll point you toward the right town, route, stops and backup plan.
+            Tell us where you&apos;re staying, who&apos;s coming and what kind of day you want. We&apos;ll point you toward the right town, route, stops and backup plan.
           </p>
         </div>
 
