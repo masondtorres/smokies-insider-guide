@@ -6408,9 +6408,6 @@ h1 {
   }
 }
 
-modified: src/app/globals.css
-
-
 /* Homepage: hero rhythm, card hover, mobile grid scanning. */
 
 /* Hero: visual gap between copy block and CTA button */
@@ -6450,27 +6447,9 @@ modified: src/app/globals.css
     min-height: 0;
     max-height: none;
   }
-
-  .home-feature-card div {
-    padding: 10px 12px 14px;
-  }
-
-  .home-feature-card h2 {
-    font-size: 1.05rem;
-  }
-
-  .home-feature-card p {
-    font-size: 0.86rem;
-    line-height: 1.38;
-  }
-
   .feature-card-meta {
     margin: 6px 0 8px;
     padding-top: 7px;
-  }
-
-  .feature-card-meta dd {
-    font-size: 0.82rem;
   }
 }
 
