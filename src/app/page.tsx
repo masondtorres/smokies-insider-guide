@@ -167,15 +167,7 @@ export default function Home() {
 
         <Link className="button button-primary" href="/start-planning">Plan My Smokies Trip &rarr;</Link>
 
-        <div className="hero-day-row" aria-label="Start with your day type">
-          <span className="hero-day-label">Start with your day:</span>
-          <nav>
-            <Link href="/start-planning">Family day</Link>
-            <Link href="/rainy-day">Rainy day</Link>
-            <Link href="/start-planning">Low walking</Link>
-            <Link href="/cades-cove">Cades Cove</Link>
-          </nav>
-        </div>
+    
       </section>
 
       <section className="home-feature-grid" aria-label="Smokies guide categories">
