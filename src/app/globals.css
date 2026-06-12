@@ -3804,6 +3804,12 @@ h1 {
   background: rgba(231, 224, 212, 0.58);
 }
 
+.recommendation-grid h3 {
+  margin: 0 0 7px;
+  color: var(--forest-pine);
+  font-size: 1.15rem;
+}
+
 .recommendation-grid span {
   display: block;
   margin-bottom: 5px;
@@ -3815,13 +3821,23 @@ h1 {
 }
 
 .recommendation-grid p {
-  margin: 0;
+  margin: 0 0 12px;
   color: #303a35;
   line-height: 1.5;
 }
 
+.recommendation-grid .save-plan-button {
+  width: 100%;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--forest-pine);
+}
+
 .planner-caution {
+  padding: 12px 14px;
   border-left: 6px solid var(--barn-copper) !important;
+  background: rgba(180, 107, 29, 0.1);
+  line-height: 1.5;
 }
 
 .planner-cta-row {
@@ -3830,7 +3846,9 @@ h1 {
   gap: 10px;
 }
 
-.planner-cta-row a {
+.planner-cta-row a,
+.planner-cta-row button,
+.planner-form-actions button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3842,12 +3860,34 @@ h1 {
   font-size: 0.9rem;
   font-weight: 900;
   text-align: center;
+  cursor: pointer;
 }
 
-.planner-cta-row a:nth-child(2),
-.planner-cta-row a:nth-child(3) {
+.planner-cta-row button {
   background: rgba(34, 69, 52, 0.1);
   color: var(--forest-pine);
+}
+
+.planner-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.planner-form-actions button:first-child {
+  background: var(--forest-pine);
+  color: var(--map-cream);
+}
+
+.planner-form-actions button:last-child {
+  background: transparent;
+  color: var(--forest-pine);
+}
+
+.planner-form-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
 }
 
 .planner-trust-strip {
@@ -6493,11 +6533,19 @@ h1 {
 .my-plan-summary button { background: transparent; color: inherit; }
 .my-plan-warnings { background: #fff4d7; border-left: 5px solid #b46b1d; margin: 2rem 0; padding: 1.25rem 1.5rem; }
 .my-plan-warnings h2 { margin-top: 0; }
+.my-plan-warnings ul { margin-bottom: 0; padding-left: 1.2rem; }
+.my-plan-warnings li + li { margin-top: 0.55rem; }
+.my-plan-groups { display: grid; gap: 2.5rem; }
+.my-plan-group-heading { border-bottom: 1px solid rgba(36, 74, 56, 0.18); margin-bottom: 1rem; padding-bottom: 0.65rem; }
+.my-plan-group-heading p { margin-bottom: 0.2rem; }
+.my-plan-group-heading h2 { margin: 0; color: #244a38; }
 .my-plan-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .my-plan-card,
 .my-plan-empty { background: #fff; border: 1px solid rgba(36, 74, 56, 0.18); border-radius: 18px; padding: 1.5rem; }
-.my-plan-card h2,
+.my-plan-card h3,
 .my-plan-empty h2 { margin-top: 0; }
+.my-plan-card-area { color: #526a67; font-size: 0.76rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+.my-plan-card-check { border-left: 4px solid #c89a3c; margin-top: 1rem; padding-left: 0.8rem; }
 .my-plan-card-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
 .my-plan-storage-note { color: #59635d; margin: 2rem 0; }
 

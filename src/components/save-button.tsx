@@ -2,7 +2,7 @@
 
 import { usePlanIds, writePlanIds } from "@/lib/use-plan";
 
-export function SaveButton({ id }: { id: string }) {
+export function SaveButton({ id, removeOnly = false }: { id: string; removeOnly?: boolean }) {
   const ids = usePlanIds();
   const saved = ids.includes(id);
 
@@ -17,7 +17,7 @@ export function SaveButton({ id }: { id: string }) {
       type="button"
       onClick={toggle}
     >
-      {saved ? "Remove from My Plan" : "Save to My Plan"}
+      {saved ? (removeOnly ? "Remove" : "Saved - Remove") : "Add to My Plan"}
     </button>
   );
 }

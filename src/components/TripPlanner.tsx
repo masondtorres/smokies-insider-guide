@@ -2,315 +2,165 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { cards, categoryInfo, type GuideCard } from "@/data/cards";
 import { SaveButton } from "@/components/save-button";
-import {
-  officialSourceCaution,
-  researchPlannerPlans,
-  researchPlannerQuestions,
-  type ResearchPlannerAnswerKey,
-  type ResearchPlannerAnswers,
-  type ResearchPlannerPlan,
-} from "@/lib/smokiesData";
 
-const answerLabels: Record<ResearchPlannerAnswerKey, string> = {
-  group: "Group",
-  base: "Start",
-  day: "Day",
-  risk: "Risk",
-  paceBudget: "Pace",
-  tripLength: "Length",
-  season: "Season",
-  mobility: "Walking",
-  crowd: "Crowds",
-  rainNeed: "Rain",
-};
+type AnswerKey = "base" | "group" | "time" | "day" | "avoid";
+type Answers = Partial<Record<AnswerKey, string>>;
 
-const fallbackPlan = researchPlannerPlans[0];
+const questions: Array<{ key: AnswerKey; label: string; options: string[] }> = [
+  { key: "base", label: "Where are you staying?", options: ["Gatlinburg", "Pigeon Forge", "Sevierville", "Townsend", "Wears Valley", "Not sure"] },
+  { key: "group", label: "Who is going?", options: ["Adults", "Couple", "Family with young kids", "Family with teens", "Grandparents", "Mixed group"] },
+  { key: "time", label: "How much time?", options: ["Half day", "One day", "Two days", "Three days or more"] },
+  { key: "day", label: "What kind of day?", options: ["Easy", "Scenic", "Kid-friendly", "Rainy-day", "Low-cost", "Attractions", "Food-focused", "Quiet side"] },
+  { key: "avoid", label: "What do you want to avoid?", options: ["Heavy walking", "High crowds", "Expensive tickets", "Long drives", "Bad weather risk"] },
+];
 
-function scorePlan(plan: ResearchPlannerPlan, answers: ResearchPlannerAnswers) {
-  return researchPlannerQuestions.reduce((score, question) => {
-    const answer = answers[question.key];
-    if (!answer) return score;
+function scoreCard(card: GuideCard, answers: Answers) {
+  let score = 0;
+  const base = answers.base;
+  const group = answers.group;
+  const time = answers.time;
+  const day = answers.day;
+  const avoid = answers.avoid;
 
-    const matches = plan.match[question.key] ?? [];
-    if (matches.includes(answer)) return score + 8;
-    if (matches.includes("Not sure yet") && answer === "Not sure yet") return score + 4;
-    return score;
-  }, 0);
+  if (base && base !== "Not sure") {
+    if (card.area.includes(base)) score += 7;
+    if (base === "Townsend" && card.area === "Townsend side") score += 7;
+    if (card.area === "One town" || card.area === "Any area" || card.area === "Any base") score += 2;
+  }
+
+  if (time === "Half day" && card.duration !== "full-day") score += 4;
+  if (time === "One day") score += card.duration === "full-day" ? 3 : 2;
+  if (time === "Two days" || time === "Three days or more") score += 2;
+
+  if (/Family/.test(group ?? "") && ["do-family-buffer", "eat-backup", "go-town-loop"].includes(card.id)) score += 6;
+  if (group === "Grandparents" && !card.mobilityCaution) score += 4;
+  if (group === "Couple" && ["see-overlook", "go-quiet-side", "stay-quiet"].includes(card.id)) score += 3;
+  if (group === "Mixed group" && ["do-family-buffer", "go-town-loop", "eat-one-area"].includes(card.id)) score += 4;
+
+  if (day === "Easy" && (!card.mobilityCaution || card.duration === "short")) score += 4;
+  if (day === "Scenic" && card.category === "see") score += 7;
+  if (day === "Kid-friendly" && ["do-family-buffer", "do-indoor-anchor", "eat-backup"].includes(card.id)) score += 7;
+  if (day === "Rainy-day" && !card.outdoor) score += 7;
+  if (day === "Low-cost" && !card.paid) score += 7;
+  if (day === "Attractions" && card.category === "do") score += 7;
+  if (day === "Food-focused" && card.category === "eat") score += 8;
+  if (day === "Quiet side" && ["go-quiet-side", "stay-quiet", "do-low-cost"].includes(card.id)) score += 8;
+
+  if (avoid === "Heavy walking" && !card.mobilityCaution) score += 5;
+  if (avoid === "Heavy walking" && card.mobilityCaution) score -= 6;
+  if (avoid === "High crowds" && card.crowdRisk === "low") score += 6;
+  if (avoid === "High crowds" && card.crowdRisk === "high") score -= 5;
+  if (avoid === "Expensive tickets" && !card.paid) score += 6;
+  if (avoid === "Expensive tickets" && card.paid) score -= 4;
+  if (avoid === "Long drives" && ["One town", base, `${base} side`].includes(card.area)) score += 6;
+  if (avoid === "Bad weather risk" && !card.outdoor) score += 6;
+  if (avoid === "Bad weather risk" && card.outdoor) score -= 3;
+
+  return score;
 }
 
-function choosePlan(answers: ResearchPlannerAnswers) {
-  return researchPlannerPlans.reduce(
-    (best, plan) => {
-      const score = scorePlan(plan, answers);
-      if (score > best.score) return { plan, score };
-      return best;
-    },
-    { plan: fallbackPlan, score: -1 },
-  ).plan;
-}
+function getRecommendations(answers: Answers) {
+  const ranked = cards
+    .map((card, index) => ({ card, index, score: scoreCard(card, answers) }))
+    .sort((a, b) => b.score - a.score || a.index - b.index);
+  const selected: GuideCard[] = [];
 
-function buildProfile(answers: ResearchPlannerAnswers, plan: ResearchPlannerPlan) {
-  const pieces = [
-    answers.group ?? "Group open",
-    answers.base && answers.base !== "Not sure yet" ? `${answers.base} start` : plan.bestStartingBase,
-    answers.day ?? "Day type open",
-    answers.tripLength ?? "Length open",
-    answers.season ?? "Season open",
-    answers.risk ? `Watch: ${answers.risk}` : "Risk open",
-  ];
+  for (const item of ranked) {
+    if (selected.length === 5) break;
+    if (selected.some((card) => card.category === item.card.category)) continue;
+    selected.push(item.card);
+  }
 
-  return pieces.join(" / ");
-}
+  for (const item of ranked) {
+    if (selected.length === 5) break;
+    if (!selected.includes(item.card)) selected.push(item.card);
+  }
 
-function explainFit(answers: ResearchPlannerAnswers, plan: ResearchPlannerPlan) {
-  const chosen = researchPlannerQuestions
-    .filter((question) => answers[question.key])
-    .map((question) => `${answerLabels[question.key]}: ${answers[question.key]}`)
-    .join(" / ");
-
-  return `${plan.whyItFits} Your inputs: ${chosen || "starter defaults"}.`;
+  return selected;
 }
 
 export function TripPlanner() {
-  const [answers, setAnswers] = useState<ResearchPlannerAnswers>({});
-  const [stepIndex, setStepIndex] = useState(0);
-  const [showResult, setShowResult] = useState(false);
-  const currentQuestion = researchPlannerQuestions[stepIndex];
-  const selectedAnswer = answers[currentQuestion.key];
-  const answeredQuestions = researchPlannerQuestions.filter((question) => answers[question.key]);
-  const completedCount = answeredQuestions.length;
-  const progressPercent = showResult ? 100 : (completedCount / researchPlannerQuestions.length) * 100;
-  const plan = useMemo(() => choosePlan(answers), [answers]);
-  const profile = useMemo(() => buildProfile(answers, plan), [answers, plan]);
+  const [answers, setAnswers] = useState<Answers>({});
+  const [showRecommendations, setShowRecommendations] = useState(false);
+  const complete = questions.every((question) => answers[question.key]);
+  const recommendations = useMemo(() => getRecommendations(answers), [answers]);
 
-  function chooseAnswer(key: ResearchPlannerAnswerKey, value: string) {
+  function choose(key: AnswerKey, value: string) {
     setAnswers((current) => ({ ...current, [key]: value }));
+    setShowRecommendations(false);
   }
 
-  function goNext() {
-    if (stepIndex === researchPlannerQuestions.length - 1) {
-      setShowResult(true);
-      return;
-    }
-
-    setStepIndex((current) => current + 1);
-  }
-
-  function goBack() {
-    if (showResult) {
-      setShowResult(false);
-      setStepIndex(researchPlannerQuestions.length - 1);
-      return;
-    }
-
-    setStepIndex((current) => Math.max(0, current - 1));
-  }
-
-  function restartPlan() {
+  function reset() {
     setAnswers({});
-    setStepIndex(0);
-    setShowResult(false);
+    setShowRecommendations(false);
   }
 
   return (
-    <section className="concierge-planner wizard-planner" aria-label="Interactive Smokies trip planner">
-      <div className="wizard-status-bar">
-        <div>
-          <p className="eyebrow">Planning mode</p>
-          <strong>{showResult ? "Final plan" : `Step ${stepIndex + 1} of ${researchPlannerQuestions.length}`}</strong>
-          <span>{showResult ? "Your research-backed starter plan is ready" : "You are still building your plan"}</span>
-        </div>
-        <div className="wizard-progress" aria-label={`Planner progress ${Math.round(progressPercent)} percent`}>
-          <span style={{ width: `${progressPercent}%` }} />
-        </div>
-      </div>
+    <section className="concierge-planner" aria-label="Interactive Smokies trip planner">
+      <div className="planner-workbench">
+        <section className="planner-question-panel">
+          <div className="planner-panel-heading">
+            <p className="eyebrow">Five quick questions</p>
+            <h2>Shape a practical starting plan</h2>
+            <p>Choose one answer in each group. Recommendations use only the planning cards already in this field guide.</p>
+          </div>
 
-      {!showResult ? (
-        <div className="wizard-shell">
-          <article className="wizard-question-card">
-            <div className="wizard-step-rail research-step-rail" aria-label="Planner steps">
-              {researchPlannerQuestions.map((question, index) => (
-                <button
-                  className={[
-                    index === stepIndex ? "current" : "",
-                    answers[question.key] ? "answered" : "",
-                  ].filter(Boolean).join(" ")}
-                  key={question.key}
-                  onClick={() => setStepIndex(index)}
-                  type="button"
-                >
-                  <span>{index + 1}</span>
-                  <b>{answerLabels[question.key]}</b>
-                </button>
-              ))}
-            </div>
+          <div className="planner-question-grid">
+            {questions.map((question) => (
+              <fieldset className="planner-choice-group" key={question.key}>
+                <legend>{question.label}</legend>
+                <div>
+                  {question.options.map((option) => (
+                    <button
+                      aria-pressed={answers[question.key] === option}
+                      className={answers[question.key] === option ? "active" : ""}
+                      key={option}
+                      onClick={() => choose(question.key, option)}
+                      type="button"
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+            ))}
+          </div>
 
-            <div className="wizard-question-heading">
-              <p className="eyebrow">Question {stepIndex + 1}</p>
-              <h2>{currentQuestion.label}</h2>
-              <p>{currentQuestion.helper}</p>
-            </div>
+          <div className="planner-form-actions">
+            <button disabled={!complete} onClick={() => setShowRecommendations(true)} type="button">Show recommendations</button>
+            <button onClick={reset} type="button">Start over</button>
+          </div>
+        </section>
 
-            <div className="wizard-option-grid">
-              {currentQuestion.options.map((option) => (
-                <button
-                  className={selectedAnswer === option.label ? "selected" : ""}
-                  key={option.label}
-                  onClick={() => chooseAnswer(currentQuestion.key, option.label)}
-                  type="button"
-                >
-                  <strong>{option.label}</strong>
-                  <span>{option.detail}</span>
-                </button>
-              ))}
-            </div>
-
-            <div className="wizard-controls">
-              <button disabled={stepIndex === 0} onClick={goBack} type="button">Back</button>
-              <button className="wizard-reset" onClick={restartPlan} type="button">Start Over</button>
-              <button disabled={!selectedAnswer} onClick={goNext} type="button">
-                {stepIndex === researchPlannerQuestions.length - 1 ? "Build my plan" : "Next"}
-              </button>
-            </div>
-          </article>
-
-          <aside className="trip-so-far-panel" aria-live="polite">
-            <p className="eyebrow">Your plan so far</p>
-            <h2>{profile}</h2>
-            {answeredQuestions.length ? (
-              <dl>
-                {answeredQuestions.map((question) => (
-                  <div key={question.key}>
-                    <dt>{answerLabels[question.key]}</dt>
-                    <dd>{answers[question.key]}</dd>
-                  </div>
+        <aside className="planner-recommendations" aria-live="polite">
+          <p className="eyebrow">Recommended cards</p>
+          <h2>{showRecommendations ? "A starter mix for your answers" : "Ready when your answers are complete"}</h2>
+          {!showRecommendations ? (
+            <p>Answer all five questions, then build a recommendation mix you can save to My Plan.</p>
+          ) : (
+            <>
+              <p>Save the cards that fit. Treat the mix as a flexible starting point, not a timed itinerary.</p>
+              <div className="recommendation-grid">
+                {recommendations.map((card) => (
+                  <article key={card.id}>
+                    <span>{categoryInfo[card.category].title} / {card.area}</span>
+                    <h3>{card.title}</h3>
+                    <p>{card.description}</p>
+                    <SaveButton id={card.id} />
+                  </article>
                 ))}
-              </dl>
-            ) : (
-              <p className="trip-summary-empty">Choose the first answer and this panel will start building your plan.</p>
-            )}
-            <div className="live-preview">
-              <span>Current recommendation</span>
-              <strong>{plan.title}</strong>
-              <p>{plan.bestStartingBase}</p>
-              <p>{plan.mainAnchor}</p>
-            </div>
-          </aside>
-        </div>
-      ) : (
-        <FinalPlan plan={plan} profile={profile} answers={answers} restartPlan={restartPlan} goBack={goBack} />
-      )}
-    </section>
-  );
-}
-
-function FinalPlan({
-  plan,
-  profile,
-  answers,
-  restartPlan,
-  goBack,
-}: {
-  plan: ResearchPlannerPlan;
-  profile: string;
-  answers: ResearchPlannerAnswers;
-  restartPlan: () => void;
-  goBack: () => void;
-}) {
-  const relatedLinks = [
-    plan.bestNextLink,
-    ...plan.relatedGuideLinks.filter((link) => link.href !== plan.bestNextLink.href),
-  ].slice(0, 4);
-
-  return (
-    <section className="final-plan-screen" aria-live="polite">
-      <div className="final-plan-hero">
-        <p className="eyebrow">Custom plan built</p>
-        <h2>{plan.title}</h2>
-        <p>{explainFit(answers, plan)}</p>
-        <span>{profile}</span>
+              </div>
+              <p className="planner-caution">Check current conditions, access, parking and operating details with the responsible source before finalizing the day.</p>
+              <div className="planner-cta-row">
+                <Link href="/my-plan">Open My Plan</Link>
+                <button onClick={() => setShowRecommendations(false)} type="button">Change answers</button>
+              </div>
+            </>
+          )}
+        </aside>
       </div>
-
-      <div className="final-plan-sections">
-        <section className="plan-section plan-section-primary" aria-labelledby="plan-start-here">
-          <span>Start here</span>
-          <h3 id="plan-start-here">{plan.bestStartingBase}</h3>
-          <dl>
-            <div>
-              <dt>Best for</dt>
-              <dd>{plan.bestFor}</dd>
-            </div>
-            <div>
-              <dt>Weak fit / skip if</dt>
-              <dd>{plan.weakFit}</dd>
-            </div>
-          </dl>
-        </section>
-
-        <section className="plan-section" aria-labelledby="plan-main-here">
-          <span>Main plan</span>
-          <h3 id="plan-main-here">{plan.mainAnchor}</h3>
-          <ul className="plan-point-list">
-            <li><strong>Secondary stop:</strong> {plan.secondaryStop}</li>
-            <li><strong>Optional add-on:</strong> {plan.optionalAddOn}</li>
-            <li><strong>Food / rest strategy:</strong> {plan.foodRestStrategy}</li>
-          </ul>
-        </section>
-
-        <section className="plan-section" aria-labelledby="plan-backup-here">
-          <span>Backup plan</span>
-          <h3 id="plan-backup-here">{plan.rainBackup}</h3>
-          <ul className="plan-point-list">
-            <li><strong>Crowd strategy:</strong> {plan.crowdStrategy}</li>
-            <li><strong>Mobility note:</strong> {plan.mobilityNote}</li>
-            <li><strong>Budget note:</strong> {plan.budgetNote}</li>
-          </ul>
-        </section>
-
-        <section className="plan-section plan-warning-band" aria-labelledby="plan-avoid-here">
-          <span>Avoid this</span>
-          <h3 id="plan-avoid-here">{plan.whatToSkip}</h3>
-        </section>
-
-        <section className="plan-section plan-warning-band" aria-labelledby="plan-movement-here">
-          <span>Movement warning</span>
-          <h3 id="plan-movement-here">{plan.parkingMovementWarning}</h3>
-        </section>
-
-        <section className="plan-section plan-why-section" aria-labelledby="plan-why-here">
-          <span>Why this fits</span>
-          <h3 id="plan-why-here">{plan.title}</h3>
-          <p>{explainFit(answers, plan)}</p>
-          <p className="planner-disclaimer">
-            {plan.officialSourceCaution || officialSourceCaution}
-          </p>
-        </section>
-      </div>
-
-      <section className="best-next-panel final-next-section" aria-labelledby="best-next-title">
-        <div>
-          <p className="eyebrow">Next steps</p>
-          <h3 id="best-next-title">{plan.bestNextLink.title}</h3>
-          {plan.bestNextLink.description ? <p>{plan.bestNextLink.description}</p> : null}
-        </div>
-        <Link href={plan.bestNextLink.href}>Leave planner and open best next guide</Link>
-      </section>
-
-      <div className="final-plan-actions">
-        <SaveButton id={plan.id} />
-        <Link href="/my-plan">View My Plan</Link>
-        <button onClick={goBack} type="button">Back to answers</button>
-        <button onClick={restartPlan} type="button">Restart Plan</button>
-      </div>
-
-      <nav className="planner-exit-links" aria-label="Leave planner links">
-        {relatedLinks.map((link) => (
-          <Link href={link.href} key={link.href}>
-            Leave planner and open {link.title}
-          </Link>
-        ))}
-      </nav>
     </section>
   );
 }

@@ -1,32 +1,33 @@
-import type { ResearchPlannerPlan } from "@/lib/smokiesData";
+import type { GuideCard } from "@/data/cards";
 
 export const PLAN_STORAGE_KEY = "smokies-insider-plan-v1";
 
-export function getPlanWarnings(items: ResearchPlannerPlan[]): string[] {
+export function getPlanWarnings(items: GuideCard[]): string[] {
   const warnings: string[] = [];
-  const bases = new Set(items.map((item) => item.bestStartingBase));
-  const combinedText = items
-    .map((item) => [item.title, item.mainAnchor, item.parkingMovementWarning, item.crowdStrategy, item.mobilityNote, item.budgetNote].join(" "))
-    .join(" ")
-    .toLowerCase();
+  const areas = new Set(items.map((item) => item.area).filter((area) => !/any|one town|one area/i.test(area)));
+  const dayLoad = items.reduce((total, item) => {
+    if (item.duration === "full-day") return total + 1;
+    if (item.duration === "half-day") return total + 0.5;
+    return total + 0.25;
+  }, 0);
 
-  if (items.length >= 3) {
-    warnings.push("Several full-day plan shapes are saved. Choose one main day structure before adding more stops.");
+  if (items.length === 0) {
+    warnings.push("No items are saved yet. Save a few planning cards or use Start Planning for recommendations.");
   }
-  if (bases.size >= 3) {
-    warnings.push("The saved plans use several starting areas. Smokies traffic can make cross-area days slower than the map suggests.");
+  if (items.filter((item) => item.paid || item.category === "do").length >= 3) {
+    warnings.push("You have several paid or attraction-focused items. Keep the day budget and ticket commitments manageable.");
   }
-  if (/crowd|long line|busy|peak/.test(combinedText)) {
-    warnings.push("At least one saved plan carries crowd or line risk. Protect the main anchor and keep a nearby backup.");
+  if (items.length > 0 && !items.some((item) => item.category === "do" && !item.outdoor)) {
+    warnings.push("No rainy-day backup is saved. Add one mostly indoor option before relying on the plan.");
   }
-  if (/walking|mobility|accessible|surface|stairs/.test(combinedText)) {
-    warnings.push("At least one saved plan includes mobility considerations. Verify walking distance, surfaces, stairs and accessible parking.");
+  if (items.length > 0 && !items.some((item) => item.category === "eat")) {
+    warnings.push("No food stop is saved. Add a meal pattern near the area where you will already be.");
   }
-  if (/road|parking|closure|official|weather|conditions/.test(combinedText)) {
-    warnings.push("Check current road, parking, weather and closure details with the responsible official source before finalizing the trip.");
+  if (dayLoad > 1.5 || items.length > 5) {
+    warnings.push("This is likely too many items for one day. Choose one main anchor and trim the rest to nearby backups.");
   }
-  if (/budget|paid|cost|ticket/.test(combinedText)) {
-    warnings.push("Confirm current costs directly and keep the day budget centered on the main anchor.");
+  if (areas.size >= 3) {
+    warnings.push("The saved items span several areas, creating a driving and traffic risk. Group the day around one side of the Smokies.");
   }
 
   return warnings;

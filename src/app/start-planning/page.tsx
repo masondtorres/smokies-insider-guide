@@ -7,27 +7,16 @@ import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/seoSchema";
 export const metadata: Metadata = {
   title: "Smoky Mountains Trip Planner | Start Planning",
   description:
-    "Use a 10-step client-side Smokies itinerary planner for Gatlinburg, Pigeon Forge, Cades Cove, rainy days, families, walking limits, crowds and budget.",
+    "Answer five simple questions to get existing Smokies planning-card recommendations and save them to My Plan.",
 };
 
-const plannerInputs = [
-  "Who is going",
-  "Starting town or base",
-  "Day type",
-  "Risk or pain point",
-  "Pace and budget",
-  "Trip length",
-  "Season or timing",
-  "Walking limit",
-  "Crowd tolerance",
-  "Rainy-day need",
-];
+const plannerInputs = ["Starting town or base", "Who is going", "Time available", "Kind of day", "What to avoid"];
 
 const plannerFaqs = [
   {
     question: "What does the Smokies trip planner do?",
     answer:
-      "The planner turns practical answers about your group, base town, weather, walking limits, crowds and budget into a suggested Smokies day shape with an anchor, backup, movement warning and next links.",
+      "The planner uses five practical answers to rank the existing field-guide cards, then lets you save the useful recommendations to My Plan.",
   },
   {
     question: "Can this planner give live hours, prices or road status?",
@@ -37,7 +26,7 @@ const plannerFaqs = [
   {
     question: "Does the planner work for Cades Cove, Dollywood and rainy days?",
     answer:
-      "Yes, the planner can point visitors toward Cades Cove-style park days, Dollywood or Pigeon Forge attraction days, rainy-day indoor anchors, low-walking plans and Gatlinburg or Townsend-style routes.",
+      "The planner can suggest scenic, attraction, rainy-day, lower-cost, food, family and quieter-side planning patterns without claiming live business details.",
   },
 ];
 
@@ -51,8 +40,8 @@ export default function StartPlanningPage() {
             <p className="eyebrow">Smokies concierge planner</p>
             <h1>Start planning with the day you actually need.</h1>
             <p>
-              Answer 10 practical questions and get a starter route: a first pick,
-              a backup, a rainy-day move, a family option and one planning caution.
+              Answer five practical questions, review a starter mix of existing planning cards,
+              and save the useful ones to My Plan.
             </p>
             <LastUpdated />
           </div>
@@ -68,7 +57,7 @@ export default function StartPlanningPage() {
           <p className="eyebrow">Direct answer</p>
           <h2 id="planner-direct-answer">What does this Smokies trip planner do?</h2>
           <p>
-            This 10-step planner helps visitors build a Smoky Mountains day plan by weighing group type, starting base, trip length, season, walking limits, crowd tolerance, rainy-day needs and budget. It suggests a practical base, anchor, backup, movement warning and next guide links.
+            This five-question planner helps visitors find useful Smoky Mountains planning cards by weighing the starting base, group, available time, preferred day style and the main thing to avoid. Recommended cards can be saved directly to My Plan.
           </p>
           <aside className="flagship-warning-note">
             <strong>This is planning guidance, not live status</strong>
