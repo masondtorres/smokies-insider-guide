@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { SaveButton } from "@/components/save-button";
 import {
   officialSourceCaution,
   researchPlannerPlans,
@@ -297,6 +298,8 @@ function FinalPlan({
       </section>
 
       <div className="final-plan-actions">
+        <SaveButton id={plan.id} />
+        <Link href="/my-plan">View My Plan</Link>
         <button onClick={goBack} type="button">Back to answers</button>
         <button onClick={restartPlan} type="button">Restart Plan</button>
       </div>
