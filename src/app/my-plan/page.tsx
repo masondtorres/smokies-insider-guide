@@ -1,0 +1,2 @@
+import { MyPlan } from "@/components/my-plan";
+export default function Page() { return <main className="page-width"><section className="page-hero"><p className="eyebrow">Browser-saved trip builder</p><h1>My Plan</h1><p>Collect useful planning patterns, then review the automatic trip-shape cautions before making final decisions.</p></section><section className="section"><MyPlan /></section></main>; }
