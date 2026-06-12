@@ -1,4 +1,5 @@
 import { DirectAnswer, JsonLd, LastUpdated, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
+import { siteUrl } from "@/lib/seoSchema";
 
 export function PolicyPage({
   title,
@@ -41,7 +42,7 @@ export function PolicyPage({
           name: title,
           description,
           dateModified: "2026-06-05",
-          mainEntityOfPage: `https://smokyinsider.com${path}`,
+          mainEntityOfPage: `${siteUrl}${path}`,
         }}
       />
       <SiteFooter />

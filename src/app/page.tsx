@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Smoky Mountains Trip Planner | Smokies Insider Guide",
   description:
     "Explore Smokies options, save what fits and build a practical trip one stop at a time.",
+  alternates: { canonical: "/" },
 };
 
 const mainLinks = [

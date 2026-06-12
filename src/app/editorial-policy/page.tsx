@@ -3,7 +3,7 @@ import { PolicyPage } from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
   title: "Editorial Policy",
-  description: "How Smokies Insider Guide keeps visitor-first planning separate from future sponsored visibility.",
+  description: "How Smokies Insider Guide keeps visitor-first planning separate from sponsored visibility.",
 };
 
 export default function EditorialPolicyPage() {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 const navItems = [
@@ -51,14 +52,15 @@ const footerLinks = [
 { label: "About Us", href: "/about" },
 { label: "Advertise", href: "/advertise" },
 { label: "Contact Us", href: "/contact" },
-{ label: "Privacy Policy", href: "/privacy-policy" },
+{ label: "Privacy Policy", href: "/privacy" },
 { label: "Editorial Policy", href: "/editorial-policy" },
 ];
 
-export const metadata = {
+export const metadata: Metadata = {
 title: "Smokies Insider Guide | Smoky Mountains Trip Planning",
 description:
 "Plan a better Great Smoky Mountains trip with insider help for Gatlinburg, Pigeon Forge, Sevierville and Townsend, including things to do, places to eat, where to stay, deals, parking and visitor resources.",
+robots: { index: false, follow: true },
 };
 
 function Logo() {

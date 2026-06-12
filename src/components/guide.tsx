@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { siteUrl } from "@/lib/seoSchema";
 
 export type LinkItem = {
   title: string;
@@ -324,11 +325,8 @@ export function PlannerResult({
         <div><dt>What to skip</dt><dd>{skip}</dd></div>
       </dl>
       <ItineraryTimeline items={mainPlan} />
-      <SponsoredLabel text="Future sponsor slot" />
-      <p className="sponsor-note">This slot is reserved for a clearly labeled local partner after traffic and verification exist.</p>
       <div className="planner-actions">
         <button type="button" onClick={() => window.print()}>Print this plan</button>
-        <button disabled type="button">Email my plan, coming soon</button>
       </div>
       <InternalLinkGrid links={links} title="Read next" />
     </section>
@@ -427,7 +425,7 @@ export function guideSchema(page: GuidePageData, path: string) {
     description: page.description,
     dateModified: "2026-06-05",
     inLanguage: "en-US",
-    mainEntityOfPage: `https://smokyinsider.com${path}`,
+    mainEntityOfPage: `${siteUrl}${path}`,
   };
 }
 

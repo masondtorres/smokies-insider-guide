@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.smokyinsider.com"),
   title: "Smokies Insider Guide",
   description:
     "Better routes, places to eat, deals, things to do, events and visitor resources for the Smokies without the guesswork.",

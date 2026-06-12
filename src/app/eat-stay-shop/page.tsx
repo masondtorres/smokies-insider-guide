@@ -16,7 +16,7 @@ export default function EatStayShopPage() {
         <div className="destination-heading"><p className="eyebrow">Start here</p><h2>Compare what changes the trip</h2></div>
         <div className="destination-grid">{choices.map(([title, text]) => <article className="destination-card" key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
-      <section className="destination-section destination-coming"><p className="eyebrow">Coming soon</p><h2>Reviewed business listings</h2><p>Listings will appear after business details can be checked. No placeholder businesses are being invented.</p></section>
+      <section className="destination-section destination-coming"><p className="eyebrow">Verified directory</p><h2>Use reviewed business information only</h2><p>Browse the <Link href="/business-listings">business directory</Link>, compare <Link href="/restaurants">places to eat</Link>, or review <Link href="/where-to-stay">where to stay</Link>. Businesses can <Link href="/business-listings/claim">request or claim a listing</Link> for manual verification.</p></section>
     </main>
   );
 }

@@ -5,6 +5,8 @@ import { SiteFooter, SiteHeader } from "@/components/guide";
 export const metadata: Metadata = {
   title: "My Smokies Plan",
   description: "Review Smokies planning cards saved in this browser, grouped by category with basic trip-shape warnings.",
+  alternates: { canonical: "/my-plan" },
+  robots: { index: false, follow: true },
 };
 
 export default function MyPlanPage() {

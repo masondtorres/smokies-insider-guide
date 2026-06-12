@@ -18,7 +18,7 @@ export default function ExplorePage() {
         <div className="destination-heading"><p className="eyebrow">Best starting points</p><h2>Match the base to the day you want</h2></div>
         <div className="destination-grid">{areas.map(([title, text]) => <article className="destination-card" key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
-      <section className="destination-section destination-coming"><p className="eyebrow">Coming soon</p><h2>Scenic drives and focused park-area guides</h2><p>These guides will help compare route shape, pace and practical planning needs without inventing current conditions.</p></section>
+      <section className="destination-section destination-coming"><p className="eyebrow">Plan the route</p><h2>Continue with scenic drives and park-area guides</h2><p><Link href="/scenic-drives">Compare scenic drives</Link>, review the <Link href="/cades-cove-first-time-guide">Cades Cove first-time guide</Link>, or check <Link href="/visitor-resources">visitor resources</Link> before setting the day.</p></section>
     </main>
   );
 }

@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Smokies Insider Guide
 
-## Getting Started
+Independent, decision-first trip planning for the Smokies. The live site is [www.smokyinsider.com](https://www.smokyinsider.com), deployed from `main` in `masondtorres/smokies-insider-guide` through the Vercel project `smokies-insider-guide`.
 
-First, run the development server:
+This site is not affiliated with the National Park Service, Great Smoky Mountains National Park, or any official tourism board.
 
-```bash
+## Local development
+
+```powershell
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Use `C:\Users\mason\Documents\Code\smokies-insider-guide` as the local repository. Do not operate from a OneDrive copy.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production rules
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Keep changes narrow and preserve the Smokies field-guide style.
+- Use official sources first for park facts and visibly flag volatile details.
+- Do not invent business details, park policies, prices, hours, reviews, coupons, or local authority.
+- Use My Plan and Save language, never cart language.
+- Label ads, affiliates, sponsored content, and paid placements. Payment does not buy editorial ranking.
+- Do not change DNS, Vercel settings, secrets, environment variables, auth, databases, CMS, analytics, ads, or billing without explicit approval.
 
-## Learn More
+## Indexing
 
-To learn more about Next.js, take a look at the following resources:
+- `src/app/sitemap.ts` publishes curated public routes from `src/lib/site-routes.ts`.
+- `src/app/robots.ts` publishes the crawler policy and sitemap location.
+- `/my-plan` is intentionally omitted from the sitemap and marked `noindex, follow` because it is a browser-local utility state.
+- `/home-v2` is an alternate prototype and is not indexable.
+- Canonical public URLs use `https://www.smokyinsider.com`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Operations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Project identity](PROJECT_IDENTITY.md)
+- [Account ownership map](ACCOUNT_OWNERSHIP.redacted.md)
+- [Operating rhythm](OPERATING_RHYTHM.md)
+- [Source verification log](SOURCE_VERIFICATION_LOG.md)
+- [Business intake workflow](BUSINESS_INTAKE_WORKFLOW.md)
+- [Analytics tracking plan](ANALYTICS_TRACKING_PLAN.md)
+- [Search Console setup](SEARCH_CONSOLE_SETUP.md)
+- [Live site QA](LIVE_SITE_QA.md)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The public/business contact is `masondtorres@duck.com`. Never commit credentials or private intake records.
