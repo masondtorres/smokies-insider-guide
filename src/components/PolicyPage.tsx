@@ -41,7 +41,7 @@ export function PolicyPage({
           name: title,
           description,
           dateModified: "2026-06-05",
-          mainEntityOfPage: `https://smokiesinsiderguide.com${path}`,
+          mainEntityOfPage: `https://smokyinsider.com${path}`,
         }}
       />
       <SiteFooter />

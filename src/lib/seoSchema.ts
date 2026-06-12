@@ -1,4 +1,4 @@
-export const siteUrl = "https://www.smokiesinsiderguide.com";
+export const siteUrl = "https://smokyinsider.com";
 export const siteName = "Smokies Insider Guide";
 
 type FaqItem = {

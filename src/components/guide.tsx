@@ -56,6 +56,7 @@ const footerGroups = [
       { label: "Visitor Resources", href: "/visitor-resources" },
       { label: "Parking & Trolley Guide", href: "/smokies-parking-trolley-guide" },
       { label: "How Many Days?", href: "/how-many-days" },
+      { label: "My Plan", href: "/my-plan" },
     ],
   },
   {
@@ -73,6 +74,9 @@ const footerGroups = [
       { label: "Affiliate Disclosure", href: "/affiliate-disclosure" },
       { label: "Corrections", href: "/corrections" },
       { label: "Disclaimer", href: "/disclaimer" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+      { label: "Source & Verification", href: "/source-and-verification-policy" },
     ],
   },
 ];
@@ -421,7 +425,7 @@ export function guideSchema(page: GuidePageData, path: string) {
     description: page.description,
     dateModified: "2026-06-05",
     inLanguage: "en-US",
-    mainEntityOfPage: `https://smokiesinsiderguide.com${path}`,
+    mainEntityOfPage: `https://smokyinsider.com${path}`,
   };
 }
 
