@@ -63,6 +63,7 @@ function scoreCard(card: GuideCard, answers: Answers) {
 
 function getRecommendations(answers: Answers) {
   const ranked = cards
+    .filter((card) => !card.utility)
     .map((card, index) => ({ card, index, score: scoreCard(card, answers) }))
     .sort((a, b) => b.score - a.score || a.index - b.index);
   const selected: GuideCard[] = [];

@@ -50,7 +50,9 @@ export function MyPlan() {
                     <p>{card.description}</p>
                     <p className="my-plan-card-check"><strong>Check first:</strong> {card.caution}</p>
                     <div className="my-plan-card-actions">
-                      <Link href={`/${card.category}`}>Open {categoryInfo[card.category].title}</Link>
+                      <Link href={card.href ?? `/${card.category}`}>
+                        {card.href ? "Open guide" : `Open ${categoryInfo[card.category].title}`}
+                      </Link>
                       <SaveButton id={card.id} removeOnly />
                     </div>
                   </article>

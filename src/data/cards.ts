@@ -3,6 +3,8 @@ export type Category = "go" | "do" | "see" | "eat" | "stay" | "deals";
 export type GuideCard = {
   id: string;
   category: Category;
+  href?: string;
+  utility?: boolean;
   title: string;
   description: string;
   area: string;
@@ -44,6 +46,11 @@ export const cards: GuideCard[] = [
   { id: "deals-budget", category: "deals", title: "Set a day budget first", description: "Decide the spending limit before adding attractions, meals or shopping.", area: "Any area", duration: "full-day", outdoor: false, crowdRisk: "low", parkingCheck: false, sourceCheck: false, paid: false, mobilityCaution: false, caution: "No prices, discounts or savings are claimed." },
   { id: "deals-verify", category: "deals", title: "Verify every offer", description: "Treat a discount as unconfirmed until the business provides current terms and dates.", area: "Any area", duration: "short", outdoor: false, crowdRisk: "low", parkingCheck: false, sourceCheck: true, paid: false, mobilityCaution: false, caution: "No live coupons or promotions are published here." },
   { id: "deals-free-block", category: "deals", title: "Pair paid and free blocks", description: "Balance one paid anchor with scenic, rest or picnic time where permitted.", area: "National park", duration: "full-day", outdoor: true, crowdRisk: "medium", parkingCheck: true, sourceCheck: true, paid: true, mobilityCaution: false, caution: "Check parking, access and current rules before finalizing the day." },
+  { id: "utility-smokies-parking-plan", category: "go", href: "/go/parking", utility: true, title: "Smokies Parking Plan", description: "Check the parking system, current conditions and one legal backup before starting the drive.", area: "National park", duration: "short", outdoor: false, crowdRisk: "high", parkingCheck: true, sourceCheck: true, paid: false, mobilityCaution: true, caution: "Recheck official parking requirements, conditions and destination access before leaving." },
+  { id: "utility-rainy-day-backup", category: "do", href: "/do/rainy-day", utility: true, title: "Rainy-Day Backup Plan", description: "Keep one flexible indoor anchor, a nearby meal and an easy exit in the same area.", area: "One town", duration: "half-day", outdoor: false, crowdRisk: "medium", parkingCheck: true, sourceCheck: true, paid: false, mobilityCaution: true, caution: "Verify current weather and all venue hours, admission, parking and accessibility details directly." },
+  { id: "utility-cades-cove-drive", category: "see", href: "/see/cades-cove", utility: true, title: "Cades Cove Drive Plan", description: "Protect a flexible time block for the loop and check access, conditions and the vehicle schedule before departure.", area: "Cades Cove", duration: "half-day", outdoor: true, crowdRisk: "high", parkingCheck: true, sourceCheck: true, paid: false, mobilityCaution: true, caution: "Recheck official road conditions, vehicle-free dates, parking requirements and accessibility details." },
 ];
 
-export function cardsFor(category: Category) { return cards.filter((card) => card.category === category); }
+export function cardsFor(category: Category) {
+  return cards.filter((card) => card.category === category && !card.utility);
+}

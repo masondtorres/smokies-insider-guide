@@ -26,8 +26,8 @@ const page: UtilityPageData = {
   ],
   family: "Unload only where it is legal and safe, keep snacks and weather layers reachable, and choose a backup with a similar walking load. A parking search is much harder when children already need food or a restroom.",
   accessibility: "Vehicles displaying a state-issued disability placard or license plate do not need a park parking tag. An exemption does not guarantee an accessible space; verify the destination's current accessibility details and keep a lower-walking alternative.",
-  saveId: "go-park-entry",
-  saveTitle: "Save a park-entry morning",
+  saveId: "utility-smokies-parking-plan",
+  saveTitle: "Smokies Parking Plan",
   links: [
     { href: "/parking-tag", label: "Parking tag guide", description: "Review the park requirement and final-check questions." },
     { href: "/smokies-parking-trolley-guide", label: "Parking and trolley guide", description: "Compare broader transportation planning without assuming current service." },

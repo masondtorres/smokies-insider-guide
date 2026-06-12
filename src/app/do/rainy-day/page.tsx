@@ -26,8 +26,8 @@ const page: UtilityPageData = {
   ],
   family: "A single indoor anchor plus food and downtime usually works better than several timed stops. Bring a change of clothes for young children and protect the calmest part of the day for rest.",
   accessibility: "Confirm entrances, elevators, seating, restrooms and accessible parking directly with any business. Wet curb ramps, slopes and loading areas can add difficulty even when the indoor venue itself is accessible.",
-  saveId: "do-indoor-anchor",
-  saveTitle: "Save one indoor anchor",
+  saveId: "utility-rainy-day-backup",
+  saveTitle: "Rainy-Day Backup Plan",
   links: [
     { href: "/rainy-day", label: "Full rainy-day guide", description: "Compare broader wet-weather planning choices." },
     { href: "/rainy-day-smokies-with-kids", label: "Rainy day with kids", description: "Adjust the pace for younger travelers." },

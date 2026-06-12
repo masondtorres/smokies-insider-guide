@@ -26,8 +26,8 @@ const page: UtilityPageData = {
   ],
   family: "The driving format can work for mixed ages, but a slow loop is still a long contained stretch. Bring food, water and quiet activities, and choose in advance whether your group will make one meaningful stop or several short ones.",
   accessibility: "Much of the landscape and many historic exteriors can be viewed from a vehicle. Accessible parking and restrooms are available at listed park facilities, but the NPS says the historic buildings along the loop are not ADA accessible. Verify current facility details before departure.",
-  saveId: "see-overlook",
-  saveTitle: "Save a flexible scenic window",
+  saveId: "utility-cades-cove-drive",
+  saveTitle: "Cades Cove Drive Plan",
   links: [
     { href: "/cades-cove", label: "Cades Cove guide", description: "Read the broader route and decision guide." },
     { href: "/cades-cove-first-time-guide", label: "First-time Cades Cove", description: "Use a fuller first-visit planning sequence." },
