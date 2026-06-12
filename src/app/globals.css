@@ -101,9 +101,9 @@ button { font: inherit; }
 .home-cards { padding-top: 34px; }
 .primary-home-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .home-primary-card { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); box-shadow: var(--shadow); }
-.home-card-image { position: relative; height: 154px; overflow: hidden; border-bottom: 5px solid var(--stone); background: var(--ridge); }
-.home-card-image img { object-fit: cover; transition: transform 220ms ease; }
-.home-primary-card:hover .home-card-image img { transform: scale(1.025); }
+.home-card-placeholder { position: relative; height: 154px; overflow: hidden; display: grid; place-items: center; border-bottom: 5px solid var(--stone); background: linear-gradient(155deg, var(--ridge), var(--forest)); }
+.home-card-placeholder::before { content: ""; position: absolute; inset: 34% -8% -20%; background: var(--forest-dark); clip-path: polygon(0 62%, 18% 28%, 34% 54%, 52% 18%, 70% 56%, 86% 30%, 100% 58%, 100% 100%, 0 100%); opacity: .78; }
+.home-card-placeholder span { position: relative; z-index: 1; display: grid; place-items: center; width: 58px; height: 58px; border: 2px solid rgba(255,250,240,.8); border-radius: 50%; color: var(--paper); font-family: Georgia, "Times New Roman", serif; font-size: 1.5rem; font-weight: 800; box-shadow: 0 8px 22px rgba(18,38,30,.2); }
 .home-card-copy { padding: 20px; }
 .home-card-copy h2 { margin: 0 0 5px; color: var(--forest); font-family: Georgia, serif; font-size: 2rem; }
 .home-card-copy p { min-height: 52px; margin: 0 0 18px; color: var(--muted); }
