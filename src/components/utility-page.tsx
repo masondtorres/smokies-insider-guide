@@ -18,8 +18,8 @@ type OfficialSource = {
 };
 
 export type UtilityPageData = {
-  category: "Go" | "Do" | "See";
-  categoryHref: "/go" | "/do" | "/see";
+  category: "Go" | "Do" | "See" | "Eat" | "Stay";
+  categoryHref: "/go" | "/do" | "/see" | "/eat" | "/stay";
   title: string;
   description: string;
   purpose: string;
@@ -118,7 +118,7 @@ export function UtilityPage({ page }: { page: UtilityPageData }) {
 
             <aside className="utility-sources">
               <strong>Verify before leaving</strong>
-              <p>Conditions, access and park operations can change. Recheck the official sources closest to your visit.</p>
+              <p>Conditions, access and operating details can change. Recheck the responsible sources closest to your visit.</p>
               <div>
                 {page.sources.map((source) => (
                   <a href={source.href} key={source.href} rel="noreferrer" target="_blank">{source.label}</a>

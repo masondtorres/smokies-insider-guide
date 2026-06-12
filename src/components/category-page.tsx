@@ -28,9 +28,16 @@ const utilityLinks: Partial<Record<Category, Array<{ href: string; title: string
   ],
   do: [
     { href: "/do/rainy-day", title: "A flexible rainy-day plan", description: "Choose one indoor anchor and keep the route compact." },
+    { href: "/do/free-and-cheap", title: "A lower-cost Smokies plan", description: "Count the whole day and choose one optional paid anchor." },
   ],
   see: [
     { href: "/see/cades-cove", title: "Cades Cove practical planner", description: "Protect the time block and check the vehicle schedule." },
+  ],
+  eat: [
+    { href: "/eat/family-friendly", title: "Family-friendly food planning", description: "Choose the meal shape, timing and backup before hunger takes over." },
+  ],
+  stay: [
+    { href: "/stay/cabins", title: "Cabin stay practical planner", description: "Compare access, total trip fit and booking details before committing." },
   ],
 };
 
