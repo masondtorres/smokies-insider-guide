@@ -11,7 +11,12 @@ export function SaveButton({ id }: { id: string }) {
   }
 
   return (
-    <button className={`save-plan-button${saved ? " saved" : ""}`} type="button" onClick={toggle}>
+    <button
+      aria-pressed={saved}
+      className={`save-plan-button${saved ? " saved" : ""}`}
+      type="button"
+      onClick={toggle}
+    >
       {saved ? "Remove from My Plan" : "Save to My Plan"}
     </button>
   );
