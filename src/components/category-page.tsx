@@ -22,6 +22,18 @@ const footerLinks = [
   ["Business Listings", "/business-listings"],
 ];
 
+const utilityLinks: Partial<Record<Category, Array<{ href: string; title: string; description: string }>>> = {
+  go: [
+    { href: "/go/parking", title: "Parking without losing the day", description: "Separate park parking from town parking and keep a legal backup." },
+  ],
+  do: [
+    { href: "/do/rainy-day", title: "A flexible rainy-day plan", description: "Choose one indoor anchor and keep the route compact." },
+  ],
+  see: [
+    { href: "/see/cades-cove", title: "Cades Cove practical planner", description: "Protect the time block and check the vehicle schedule." },
+  ],
+};
+
 export function CategoryPage({ category }: { category: Category }) {
   const info = categoryInfo[category];
   const categoryCards = cardsFor(category);
@@ -58,6 +70,22 @@ export function CategoryPage({ category }: { category: Category }) {
         </section>
 
         <section className="category-width category-content" aria-labelledby="category-starters">
+          {utilityLinks[category]?.length ? (
+            <section className="category-utility-guides" aria-labelledby="category-utility-title">
+              <div>
+                <p className="category-eyebrow">Practical field guide</p>
+                <h2 id="category-utility-title">Solve the first planning problem</h2>
+              </div>
+              {utilityLinks[category]?.map((link) => (
+                <Link href={link.href} key={link.href}>
+                  <strong>{link.title}</strong>
+                  <span>{link.description}</span>
+                  <b>Open guide <span aria-hidden="true">&gt;</span></b>
+                </Link>
+              ))}
+            </section>
+          ) : null}
+
           <div className="category-section-heading">
             <div>
               <p className="category-eyebrow">Start with the shape of the day</p>
