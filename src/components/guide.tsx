@@ -35,7 +35,7 @@ export const primaryNav = [
   { label: "Scenic Drives", href: "/scenic-drives" },
   { label: "Deals", href: "/deals" },
   { label: "Guides", href: "/visitor-resources" },
-  { label: "Directory", href: "/eat-stay-shop" },
+  { label: "Directory", href: "/business-listings" },
 ];
 
 const footerGroups = [
@@ -63,6 +63,8 @@ const footerGroups = [
     title: "About",
     links: [
       { label: "Contact", href: "/contact" },
+      { label: "Business Listings", href: "/business-listings" },
+      { label: "Claim a Business", href: "/business-listings/claim" },
       { label: "Advertise", href: "/advertise" },
     ],
   },

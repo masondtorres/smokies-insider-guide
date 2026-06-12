@@ -1,40 +1,51 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DirectAnswer, LastUpdated, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
+import { BusinessPageShell, BusinessPathLinks, businessEmail, inquiryHref } from "@/components/business-intake";
 
 export const metadata: Metadata = {
-  title: "Contact Smokies Insider Guide",
-  description: "Contact Smokies Insider Guide for corrections, business updates and future partner interest.",
+  title: "Contact Smokies Insider",
+  description: "Contact Smokies Insider for corrections, business listings, claims and advertising inquiries.",
 };
+
+const generalHref = inquiryHref("General inquiry - Smokies Insider", ["Page URL, if relevant", "Your message"]);
 
 export default function ContactPage() {
   return (
-    <main className="guide-page">
-      <SiteHeader />
-      <article className="guide-article">
-        <header className="guide-hero">
-          <p className="eyebrow">Contact</p>
-          <h1>Contact Smokies Insider Guide</h1>
-          <p>Use this page for corrections, business updates and future partner interest.</p>
-          <LastUpdated />
-        </header>
-        <DirectAnswer>
-          <p>
-            Send correction details, business update requests or future advertising interest
-            through Mason&apos;s existing contact workflow. Include the page URL and a source
-            link when reporting time-sensitive information.
-          </p>
-        </DirectAnswer>
-        <section className="guide-content-section">
-          <h2>Useful contact paths</h2>
-          <p>
-            For outdated page details, start with <Link href="/corrections">Corrections</Link>.
-            For future business visibility, start with <Link href="/advertise">Advertise</Link>.
-          </p>
-        </section>
-        <SourceBox />
-      </article>
-      <SiteFooter />
-    </main>
+    <BusinessPageShell
+      eyebrow="Contact"
+      title="Choose the contact path that fits"
+      intro="Use a focused request so corrections, listing claims and advertising inquiries stay clear and reviewable."
+    >
+      <BusinessPathLinks />
+
+      <section className="business-offer-grid contact-path-grid">
+        <article>
+          <h2>Request listing</h2>
+          <p>Ask for a real restaurant, cabin, attraction, shop, guide, photographer, venue or service business to be reviewed.</p>
+          <Link href="/business-listings">Business listings</Link>
+        </article>
+        <article>
+          <h2>Claim your business</h2>
+          <p>Request ownership review, corrections or an official link update for your business.</p>
+          <Link href="/business-listings/claim">Claim your business</Link>
+        </article>
+        <article>
+          <h2>Advertise with us</h2>
+          <p>Ask about clearly labeled featured placement or other visitor-relevant visibility. Pricing is available by request.</p>
+          <Link href="/advertise">Advertising inquiries</Link>
+        </article>
+        <article>
+          <h2>Correction or general question</h2>
+          <p>Include the page URL and a responsible source when reporting time-sensitive information.</p>
+          <a href={generalHref}>Email {businessEmail}</a>
+        </article>
+      </section>
+
+      <aside className="business-trust-note">
+        <strong>No sensitive information or payments by email</strong>
+        <p>Do not send passwords, payment-card information or sensitive identity documents. The site currently has no listing dashboard, payment processing or automated submission backend.</p>
+        <Link href="/corrections">Read the correction path</Link>
+      </aside>
+    </BusinessPageShell>
   );
 }

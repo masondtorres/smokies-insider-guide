@@ -145,6 +145,7 @@ export function UtilityPage({ page }: { page: UtilityPageData }) {
         </div>
         <nav aria-label="Utility links">
           <Link href="/source-and-verification-policy">Source policy</Link>
+          <Link href="/business-listings">Business listings</Link>
           <Link href="/corrections">Corrections</Link>
           <Link href="/contact">Contact</Link>
         </nav>

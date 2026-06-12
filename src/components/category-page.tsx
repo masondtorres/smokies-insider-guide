@@ -20,6 +20,7 @@ const footerLinks = [
   ["Privacy", "/privacy"],
   ["Terms", "/terms"],
   ["Business Listings", "/business-listings"],
+  ["Claim a Business", "/business-listings/claim"],
 ];
 
 const utilityLinks: Partial<Record<Category, Array<{ href: string; title: string; description: string }>>> = {

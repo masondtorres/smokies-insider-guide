@@ -39,6 +39,7 @@ const footerLinks = [
   ["Privacy", "/privacy"],
   ["Terms", "/terms"],
   ["Business Listings", "/business-listings"],
+  ["Claim a Business", "/business-listings/claim"],
 ];
 
 export default function Home() {

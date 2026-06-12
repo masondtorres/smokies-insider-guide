@@ -7143,6 +7143,60 @@ h1 {
   .category-footer { margin-top: 52px; }
 }
 
+/* Business directory and advertiser intake */
+.business-intake-page { background: #f4f0e6; color: #29342f; }
+.business-intake-width { width: min(1100px, calc(100% - 36px)); margin: 0 auto; padding: 46px 0 72px; }
+.business-intake-hero { max-width: 850px; padding: clamp(26px, 5vw, 54px); border: 1px solid #cfc6b5; border-top: 7px solid #244637; background: #fffaf0; box-shadow: 10px 11px 0 #ded7c8; }
+.business-intake-hero h1 { margin: 7px 0 14px; color: #244637; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.98; letter-spacing: -0.025em; }
+.business-intake-hero > p:last-child { max-width: 720px; margin: 0; color: #59615b; font-size: 1.08rem; line-height: 1.6; }
+.business-path-links { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 34px 0; padding: 15px 18px; border-block: 1px solid #cfc6b5; font-weight: 800; }
+.business-path-links a, .business-inline-links a { color: #244637; text-decoration: underline; text-underline-offset: 4px; }
+.business-action-panel { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: center; margin: 34px 0; padding: clamp(24px, 4vw, 38px); background: #244637; color: #fffaf0; }
+.business-action-panel h2 { margin: 5px 0 10px; color: #fffaf0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 4vw, 2.8rem); }
+.business-action-panel p { max-width: 690px; margin-bottom: 0; color: rgba(255, 250, 240, 0.82); line-height: 1.55; }
+.business-action-panel .eyebrow { color: #ead5af; }
+.business-action-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.business-primary-action, .business-secondary-action { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; padding: 11px 17px; border: 2px solid #ead5af; font-weight: 900; text-align: center; }
+.business-primary-action { background: #ead5af; color: #244637; }
+.business-secondary-action { background: transparent; color: #fffaf0; }
+.business-intake-section { margin-top: 48px; }
+.business-intake-section > h2 { margin: 5px 0 12px; color: #244637; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 4vw, 2.7rem); }
+.business-intake-section > p { max-width: 780px; line-height: 1.6; }
+.business-type-grid, .business-offer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+.business-type-grid > div, .business-offer-grid article { padding: 20px; border: 1px solid #cfc6b5; background: #fffaf0; }
+.business-type-grid > div { color: #244637; font-weight: 850; }
+.business-offer-grid h2, .business-offer-grid h3 { margin: 0 0 8px; color: #244637; font-family: Georgia, "Times New Roman", serif; }
+.business-offer-grid p { color: #59615b; line-height: 1.55; }
+.business-offer-grid a { color: #8b4f35; font-weight: 900; text-decoration: underline; text-underline-offset: 4px; }
+.business-field-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+.business-field-grid li { padding: 11px 12px; border-left: 4px solid #9a5b3e; background: #fffaf0; text-transform: capitalize; }
+.business-process-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+.business-process-grid article { padding: 22px; border-top: 5px solid #9a5b3e; background: #ebe5d7; }
+.business-process-grid span { color: #9a5b3e; font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; font-weight: 900; }
+.business-process-grid h2 { margin: 8px 0; color: #244637; font-family: Georgia, "Times New Roman", serif; }
+.business-process-grid p, .business-check-list { color: #59615b; line-height: 1.55; }
+.business-check-list { max-width: 800px; padding-left: 20px; }
+.business-check-list li + li { margin-top: 9px; }
+.business-trust-note { margin-top: 48px; padding: 24px; border-left: 6px solid #566775; background: #ebe5d7; }
+.business-trust-note strong { color: #244637; font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; }
+.business-trust-note p { line-height: 1.55; }
+.business-trust-note > a { color: #8b4f35; font-weight: 900; text-decoration: underline; text-underline-offset: 4px; }
+.business-inline-links { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+.contact-path-grid { margin: 38px 0 0; }
+
+@media (max-width: 850px) {
+  .business-action-panel { grid-template-columns: 1fr; }
+  .business-process-grid { grid-template-columns: 1fr; }
+  .business-field-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .business-intake-width { width: min(100% - 24px, 1100px); padding-top: 24px; }
+  .business-intake-hero { padding: 24px 20px; box-shadow: 6px 7px 0 #ded7c8; }
+  .business-type-grid, .business-offer-grid, .business-field-grid { grid-template-columns: 1fr; }
+  .business-primary-action, .business-secondary-action { width: 100%; }
+}
+
 /* Short no-image utility guides for the Go / Do / See structure. */
 .utility-foundation {
   min-height: 100vh;
