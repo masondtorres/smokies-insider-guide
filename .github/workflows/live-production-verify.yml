@@ -1,0 +1,226 @@
+name: Live Production Verification
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Print verification time
+        run: date --iso-8601=seconds
+
+      - name: Verify robots, sitemap, routes, and internal links
+        id: verify
+        shell: bash
+        run: |
+          set +e
+          mkdir -p evidence/pages evidence/page-headers evidence/internal-headers
+          failure=0
+
+          echo "Verification started: $(date --iso-8601=seconds)" | tee evidence/run.txt
+
+          echo "=== ROBOTS HEADERS AND BODY ==="
+          curl -sS -D evidence/robots.headers.txt -o evidence/robots.body.txt \
+            https://www.smokyinsider.com/robots.txt
+          robots_curl=$?
+          cat evidence/robots.headers.txt
+          cat evidence/robots.body.txt
+          robots_status=$(awk '/^HTTP\// { code=$2 } END { print code }' evidence/robots.headers.txt | tr -d '\r')
+          printf 'curl_exit\t%s\nhttp_status\t%s\n' "$robots_curl" "$robots_status" \
+            | tee evidence/robots.result.txt
+          if [[ "$robots_curl" -ne 0 || "$robots_status" != "200" ]]; then
+            echo "FAIL: robots.txt did not return HTTP 200"
+            failure=1
+          fi
+          for required_line in \
+            "Allow: /" \
+            "Disallow: /home-v2" \
+            "Host: https://www.smokyinsider.com" \
+            "Sitemap: https://www.smokyinsider.com/sitemap.xml"; do
+            if ! grep -Fq "$required_line" evidence/robots.body.txt; then
+              echo "FAIL: robots.txt is missing: $required_line"
+              failure=1
+            fi
+          done
+
+          echo "=== SITEMAP HEADERS AND BODY PREVIEW ==="
+          curl -sS -D evidence/sitemap.headers.txt -o evidence/sitemap.xml \
+            https://www.smokyinsider.com/sitemap.xml
+          sitemap_curl=$?
+          cat evidence/sitemap.headers.txt
+          head -50 evidence/sitemap.xml
+          sitemap_status=$(awk '/^HTTP\// { code=$2 } END { print code }' evidence/sitemap.headers.txt | tr -d '\r')
+          printf 'curl_exit\t%s\nhttp_status\t%s\n' "$sitemap_curl" "$sitemap_status" \
+            | tee evidence/sitemap.result.txt
+          if [[ "$sitemap_curl" -ne 0 || "$sitemap_status" != "200" ]]; then
+            echo "FAIL: sitemap.xml did not return HTTP 200"
+            failure=1
+          fi
+
+          python3 - <<'PY'
+          import pathlib
+          import xml.etree.ElementTree as ET
+
+          sitemap = pathlib.Path("evidence/sitemap.xml")
+          output = pathlib.Path("evidence/sitemap-urls.txt")
+          urls = []
+          try:
+              root = ET.parse(sitemap).getroot()
+              urls = [
+                  element.text.strip()
+                  for element in root.iter()
+                  if element.tag.endswith("loc") and element.text
+              ]
+          except Exception as exc:
+              pathlib.Path("evidence/sitemap-parse-error.txt").write_text(str(exc) + "\n")
+          output.write_text("".join(url + "\n" for url in urls))
+          print(f"Sitemap URL count: {len(urls)}")
+          PY
+
+          sitemap_count=$(wc -l < evidence/sitemap-urls.txt | tr -d ' ')
+          echo "$sitemap_count" | tee evidence/sitemap-url-count.txt
+          if [[ "$sitemap_count" != "64" ]]; then
+            echo "FAIL: expected 64 sitemap URLs, found $sitemap_count"
+            failure=1
+          fi
+
+          printf 'source_url\thttp_status\tfinal_url\tcurl_exit\n' > evidence/route-crawl.tsv
+          : > evidence/route-redirects.tsv
+          : > evidence/route-failures.tsv
+
+          route_index=0
+          while IFS= read -r source_url; do
+            [[ -z "$source_url" ]] && continue
+            route_index=$((route_index + 1))
+            page_file=$(printf 'evidence/pages/%03d.html' "$route_index")
+            header_file=$(printf 'evidence/page-headers/%03d.headers.txt' "$route_index")
+            result=$(curl -sS -L --connect-timeout 15 --max-time 45 \
+              -D "$header_file" -o "$page_file" \
+              -w $'%{http_code}\t%{url_effective}' "$source_url")
+            curl_exit=$?
+            status=${result%%$'\t'*}
+            final_url=${result#*$'\t'}
+            printf '%s\t%s\t%s\t%s\n' "$source_url" "$status" "$final_url" "$curl_exit" \
+              | tee -a evidence/route-crawl.tsv
+            if [[ "$source_url" != "$final_url" ]]; then
+              printf '%s\t%s\t%s\n' "$status" "$final_url" "$source_url" \
+                | tee -a evidence/route-redirects.tsv
+            fi
+            if [[ "$curl_exit" -ne 0 || "$status" != "200" ]]; then
+              printf '%s\t%s\t%s\t%s\n' "$source_url" "$status" "$final_url" "$curl_exit" \
+                | tee -a evidence/route-failures.tsv
+              failure=1
+            fi
+          done < evidence/sitemap-urls.txt
+
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urldefrag, urljoin, urlparse
+
+          class LinkParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.hrefs = []
+
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() != "a":
+                      return
+                  values = dict(attrs)
+                  if values.get("href"):
+                      self.hrefs.append(values["href"])
+
+          route_rows = Path("evidence/route-crawl.tsv").read_text().splitlines()[1:]
+          targets = set()
+          for index, row in enumerate(route_rows, start=1):
+              columns = row.split("\t")
+              if len(columns) < 4 or columns[1] != "200":
+                  continue
+              source_url = columns[0]
+              page = Path(f"evidence/pages/{index:03d}.html")
+              if not page.exists():
+                  continue
+              parser = LinkParser()
+              parser.feed(page.read_text(errors="replace"))
+              for href in parser.hrefs:
+                  absolute = urldefrag(urljoin(source_url, href))[0]
+                  parsed = urlparse(absolute)
+                  if parsed.scheme in ("http", "https") and parsed.hostname in {
+                      "www.smokyinsider.com",
+                      "smokyinsider.com",
+                  }:
+                      targets.add(absolute)
+
+          Path("evidence/internal-targets.txt").write_text(
+              "".join(url + "\n" for url in sorted(targets))
+          )
+          print(f"Unique internal target count: {len(targets)}")
+          PY
+
+          internal_count=$(wc -l < evidence/internal-targets.txt | tr -d ' ')
+          echo "$internal_count" | tee evidence/internal-target-count.txt
+          printf 'source_url\thttp_status\tfinal_url\tcurl_exit\n' > evidence/internal-crawl.tsv
+          : > evidence/internal-redirects.tsv
+          : > evidence/internal-failures.tsv
+
+          internal_index=0
+          while IFS= read -r source_url; do
+            [[ -z "$source_url" ]] && continue
+            internal_index=$((internal_index + 1))
+            header_file=$(printf 'evidence/internal-headers/%03d.headers.txt' "$internal_index")
+            result=$(curl -sS -L --connect-timeout 15 --max-time 45 \
+              -D "$header_file" -o /dev/null \
+              -w $'%{http_code}\t%{url_effective}' "$source_url")
+            curl_exit=$?
+            status=${result%%$'\t'*}
+            final_url=${result#*$'\t'}
+            printf '%s\t%s\t%s\t%s\n' "$source_url" "$status" "$final_url" "$curl_exit" \
+              | tee -a evidence/internal-crawl.tsv
+            if [[ "$source_url" != "$final_url" ]]; then
+              printf '%s\t%s\t%s\n' "$status" "$final_url" "$source_url" \
+                | tee -a evidence/internal-redirects.tsv
+            fi
+            if [[ "$curl_exit" -ne 0 || "$status" != "200" ]]; then
+              printf '%s\t%s\t%s\t%s\n' "$source_url" "$status" "$final_url" "$curl_exit" \
+                | tee -a evidence/internal-failures.tsv
+              failure=1
+            fi
+          done < evidence/internal-targets.txt
+
+          echo "=== ROUTE REDIRECTS ==="
+          cat evidence/route-redirects.tsv
+          echo "=== ROUTE FAILURES ==="
+          cat evidence/route-failures.tsv
+          echo "=== INTERNAL REDIRECTS ==="
+          cat evidence/internal-redirects.tsv
+          echo "=== INTERNAL FAILURES ==="
+          cat evidence/internal-failures.tsv
+
+          printf 'routes_checked\t%s\ninternal_targets_checked\t%s\nfailure\t%s\n' \
+            "$route_index" "$internal_index" "$failure" | tee evidence/summary.tsv
+          echo "failure=$failure" >> "$GITHUB_OUTPUT"
+
+      - name: Upload raw verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-production-verification-${{ github.run_id }}
+          path: evidence/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Enforce verification result
+        if: always()
+        shell: bash
+        run: |
+          if [[ "${{ steps.verify.outputs.failure }}" != "0" ]]; then
+            echo "Live production verification failed. Review the logs and uploaded evidence."
+            exit 1
+          fi
+          echo "Live production verification passed."
