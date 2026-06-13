@@ -1,8 +1,17 @@
 # Google Search Console Setup
 
-Search Console requires Mason's Google authentication and a unique ownership token. No account or DNS change was made during this task.
+Search Console access requires Mason's Google authentication. Ownership for the `smokyinsider.com` Domain property has been verified using a DNS TXT record.
 
-## Manual setup
+## Current status
+
+| Date | Item | Status | Follow-up |
+| --- | --- | --- | --- |
+| 2026-06-13 | Domain property ownership | Verified by DNS TXT record | Keep the verification record in DNS and confirm ownership remains valid during quarterly account reviews. |
+| 2026-06-13 | `https://www.smokyinsider.com/sitemap.xml` | Submitted in Search Console | Record Google's sitemap processing status, discovered URL count, and last read date when available. |
+
+Update this table whenever ownership, sitemap processing, or indexing status changes. Do not record the private verification token in the repository.
+
+## Setup and recovery reference
 
 1. Sign in to [Google Search Console](https://search.google.com/search-console/) with the Google account that should own the site.
 2. Choose **Add property**, select **Domain**, and enter `smokyinsider.com` without `https://` or `www`.
