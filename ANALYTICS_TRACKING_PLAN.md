@@ -2,7 +2,7 @@
 
 ## Current status
 
-As of June 12, 2026, `@vercel/analytics` is not installed and no analytics component is mounted in the application. The repository contains no Google Analytics Measurement ID. Vercel dashboard enablement is not represented in code and must be confirmed by Mason in the project dashboard. Do not enable a paid add-on.
+As of June 13, 2026, `@vercel/analytics` is installed and the official `Analytics` component is mounted in the root layout for aggregate page-view tracking on Vercel Web Analytics Hobby. No custom events are implemented, and the repository contains no Google Analytics Measurement ID. Do not enable a paid analytics add-on.
 
 ## Measurement principles
 
@@ -29,10 +29,9 @@ As of June 12, 2026, `@vercel/analytics` is not installed and no analytics compo
 
 ## Recommended implementation order
 
-1. Mason confirms whether Vercel Web Analytics is enabled for the existing project and whether the current plan includes it at no added cost.
-2. In a separate approved code task, install the official package and mount the Analytics component using Vercel's current Next.js instructions.
-3. Confirm page views in a production deployment before adding custom events.
-4. Add a small typed event helper and instrument the events above one workflow at a time.
-5. Update `/privacy` and this plan before collecting anything beyond aggregate usage.
+1. Confirm page views appear in the Vercel Web Analytics dashboard after production deployment.
+2. Keep collection limited to the Hobby page-view analytics currently approved.
+3. Do not add custom events unless the plan and approval explicitly change.
+4. Update `/privacy` and this plan before collecting anything beyond aggregate usage.
 
 Do not add Google Analytics until Mason supplies a real Measurement ID and explicitly approves the privacy and deployment changes.
