@@ -1,4 +1,4 @@
-name: Live Production Verification
+name: Production QA Verification
 
 on:
   workflow_dispatch:
@@ -210,7 +210,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: live-production-verification-${{ github.run_id }}
+          name: production-qa-verification-${{ github.run_id }}
           path: evidence/
           if-no-files-found: error
           retention-days: 30
@@ -220,7 +220,7 @@ jobs:
         shell: bash
         run: |
           if [[ "${{ steps.verify.outputs.failure }}" != "0" ]]; then
-            echo "Live production verification failed. Review the logs and uploaded evidence."
+            echo "Production QA verification failed. Review the logs and uploaded evidence."
             exit 1
           fi
-          echo "Live production verification passed."
+          echo "Production QA verification passed."

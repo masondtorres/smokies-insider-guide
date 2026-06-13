@@ -44,3 +44,9 @@ Use `C:\Users\mason\Documents\Code\smokies-insider-guide` as the local repositor
 - [Live site QA](LIVE_SITE_QA.md)
 
 The public/business contact is `masondtorres@duck.com`. Never commit credentials or private intake records.
+
+## Manual production QA
+
+In GitHub, open **Actions**, select **Production QA Verification**, choose **Run workflow**, and run it from `main`.
+
+A PASS means production `robots.txt` and `sitemap.xml` returned HTTP 200, the sitemap contained exactly 64 URLs, every sitemap URL returned a final HTTP 200, and every discovered internal production link returned a final HTTP 200. Each run uploads raw headers, response evidence, crawl results, redirects, and failures as an artifact.
