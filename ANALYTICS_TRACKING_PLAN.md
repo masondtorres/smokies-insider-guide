@@ -16,9 +16,9 @@ As of June 13, 2026, `@vercel/analytics` is installed and the official `Analytic
 
 | Need | Measure or event | Suggested properties | Current readiness |
 | --- | --- | --- | --- |
-| Sessions | Provider session metric | none | Requires analytics provider enablement |
-| Page views | Provider page-view metric | path, referrer | Requires analytics provider enablement |
-| Top landing pages | Landing-page report | first path, source group | Requires analytics provider enablement |
+| Sessions | Provider session metric | none | Vercel Web Analytics Hobby is enabled for aggregate analytics; confirm reporting after production traffic |
+| Page views | Provider page-view metric | path, referrer | Vercel Web Analytics Hobby is enabled for aggregate page-view analytics; confirm reporting after production traffic |
+| Top landing pages | Landing-page report | first path, source group | Vercel Web Analytics Hobby is enabled for aggregate page-view analytics; confirm dashboard reporting after production traffic |
 | Saves to My Plan | `plan_save` | `item_id`, `category`, `source_path` | Event hook can be added later |
 | My Plan opens | `my_plan_open` | `saved_item_count`, `source_path` | Event hook can be added later |
 | Warning views | `plan_warning_view` | `warning_type`, `warning_count` | Event hook can be added later |
