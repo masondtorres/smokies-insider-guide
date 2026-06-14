@@ -5531,11 +5531,45 @@ h1 {
   min-width: 0;
 }
 
-.brand-logo-image {
+.site-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #214433;
+}
+
+.product-home .site-identity,
+.guide-site-footer .site-identity {
+  color: #fffaf0;
+}
+
+.site-identity-mark {
   display: block;
-  width: clamp(132px, 16vw, 205px);
-  height: auto;
-  object-fit: contain;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+}
+
+.site-identity-text {
+  display: grid;
+  gap: 3px;
+  line-height: 1;
+}
+
+.site-identity-text strong {
+  color: currentColor;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.site-identity-text small {
+  color: #e4bd76;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .product-home .primary-nav {
@@ -6067,11 +6101,6 @@ h1 {
   grid-template-columns: minmax(130px, auto) minmax(0, 1fr);
 }
 
-.brand-logo-image {
-  width: clamp(135px, 12vw, 165px);
-  max-height: 62px;
-}
-
 .product-home .primary-nav {
   display: flex;
   flex-wrap: nowrap;
@@ -6288,9 +6317,17 @@ h1 {
   align-content: start;
 }
 
-.footer-logo-image {
-  width: min(210px, 70vw);
-  height: auto;
+.site-identity-compact .site-identity-mark {
+  width: 42px;
+  height: 42px;
+}
+
+.site-identity-compact .site-identity-text strong {
+  font-size: 1.18rem;
+}
+
+.site-identity-compact .site-identity-text small {
+  font-size: 0.6rem;
 }
 
 .footer-brand-panel span {
@@ -6328,9 +6365,17 @@ h1 {
     justify-content: space-between;
   }
 
-  .brand-logo-image {
-    width: clamp(118px, 24vw, 138px);
-    max-height: 48px;
+  .site-identity-mark {
+    width: 42px;
+    height: 42px;
+  }
+
+  .site-identity-text strong {
+    font-size: 1rem;
+  }
+
+  .site-identity-text small {
+    font-size: 0.56rem;
   }
 
   .product-home .primary-nav a:not(.nav-cta) {

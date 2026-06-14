@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { siteUrl } from "@/lib/seoSchema";
+import { SiteIdentity } from "@/components/site-mark";
 
 export type LinkItem = {
   title: string;
@@ -89,14 +89,7 @@ export function SiteHeader() {
     <header className="site-header guide-site-header">
       <div className="brand-lockup">
         <Link className="brand-mark" href="/" aria-label="Smokies Insider Guide home">
-          <Image
-            className="brand-logo-image"
-            src="/images/smokies-logo-white.png"
-            alt="Smokies Insider Guide"
-            width={320}
-            height={180}
-            priority
-          />
+          <SiteIdentity />
         </Link>
       </div>
       <nav className="primary-nav" aria-label="Primary navigation">
@@ -117,13 +110,7 @@ export function SiteFooter() {
   return (
     <footer className="site-footer guide-site-footer">
       <div className="footer-brand-panel">
-        <Image
-          className="footer-logo-image"
-          src="/images/smokies-logo-white.png"
-          alt="Smokies Insider Guide"
-          width={320}
-          height={180}
-        />
+        <SiteIdentity compact />
         <span>Decision-first planning help for choosing the right town, route, restaurant, deal and day shape.</span>
       </div>
       <div className="footer-link-groups">
