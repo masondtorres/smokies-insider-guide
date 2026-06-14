@@ -54,6 +54,7 @@ export const indexableRoutes = [
   "/smokies-with-toddlers",
   "/source-and-verification-policy",
   "/sponsored-content-policy",
+  "/start-here",
   "/start-planning",
   "/stay",
   "/stay/cabins",
