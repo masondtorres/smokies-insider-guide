@@ -6935,6 +6935,297 @@ h1 {
   .foundation-before-grid { gap: 8px 16px; }
 }
 
+/* Homepage visual reset: simple field-guide surfaces with Smokies contrast. */
+.foundation-home:not(.foundation-start-here) {
+  --map-paper: #f7eedb;
+  --charcoal-pine: #17251d;
+  --deep-forest: #123b2a;
+  --trail-green: #1f5a3d;
+  --blue-smoke: #4d6f84;
+  --cabin-cream: #fff9ec;
+  --old-map-tan: #d8c6a3;
+  --fall-gold: #d99a2b;
+  --maple-rust: #b5532f;
+  background: var(--map-paper);
+  color: var(--charcoal-pine);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-header {
+  min-height: 68px;
+  padding-block: 10px;
+  border-color: var(--old-map-tan);
+  background: var(--cabin-cream);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-wordmark {
+  color: var(--deep-forest);
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-wordmark span {
+  color: var(--trail-green);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-nav {
+  gap: 2px 6px;
+  font-weight: 650;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-nav a {
+  min-height: 40px;
+  padding-inline: 10px;
+  color: var(--charcoal-pine);
+  font-size: 0.88rem;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-hero {
+  min-height: 340px;
+  border-bottom: 4px solid var(--fall-gold);
+  background: var(--map-paper);
+  color: var(--deep-forest);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-hero::after {
+  display: none;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-ridge {
+  left: 48%;
+  width: 58%;
+  height: 76%;
+  opacity: 0.14;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-ridge-back,
+.foundation-home:not(.foundation-start-here) .foundation-ridge-front {
+  display: none;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-ridge-mid {
+  bottom: -18%;
+  background: var(--blue-smoke);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-hero-layout {
+  padding-block: clamp(48px, 7vw, 72px);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-hero-content {
+  max-width: 690px;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-hero h1 {
+  max-width: 660px;
+  margin-bottom: 16px;
+  color: var(--deep-forest);
+  font-family: inherit;
+  font-size: clamp(2.35rem, 5vw, 4rem);
+  font-weight: 750;
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+  text-shadow: none;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-hero-promise {
+  max-width: 590px;
+  color: #405448;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.55;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-actions {
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-button {
+  min-width: 150px;
+  min-height: 46px;
+  padding: 11px 17px;
+  border: 1px solid var(--deep-forest);
+  border-radius: 8px;
+  font-weight: 700;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-button-primary {
+  border-color: #b87814;
+  background: var(--fall-gold);
+  color: var(--charcoal-pine);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-button-secondary {
+  background: var(--cabin-cream);
+  color: var(--deep-forest);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-button:hover {
+  transform: none;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-button-primary:hover {
+  border-color: var(--deep-forest);
+  background: #e4a83d;
+  color: var(--charcoal-pine);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-button-secondary:hover {
+  background: #efe2c8;
+  color: var(--deep-forest);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-path-section {
+  padding-block: clamp(40px, 5vw, 58px);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-path-section > h2 {
+  margin-bottom: 18px;
+  color: var(--deep-forest);
+  font-family: inherit;
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-planning-grid {
+  gap: 12px;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-planning-card {
+  min-height: 140px;
+  padding: 20px;
+  border: 1px solid var(--old-map-tan);
+  border-radius: 10px;
+  background: var(--cabin-cream);
+  box-shadow: 0 2px 0 rgb(23 37 29 / 5%);
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-planning-card:hover {
+  border-color: var(--trail-green);
+  background: #fffdf5;
+  box-shadow: 0 2px 0 rgb(23 37 29 / 8%);
+  transform: none;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-planning-card h3 {
+  margin-bottom: 8px;
+  color: var(--deep-forest);
+  font-family: inherit;
+  font-size: 1.3rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-planning-card p {
+  max-width: 230px;
+  color: #526057;
+  font-size: 0.93rem;
+  line-height: 1.45;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-card-link {
+  right: 18px;
+  bottom: 15px;
+  color: var(--maple-rust);
+  font-size: 1rem;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-before-section {
+  padding-block: 16px;
+  border-block: 1px solid var(--deep-forest);
+  background: var(--deep-forest);
+  color: var(--cabin-cream);
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-before-section h2 {
+  color: var(--cabin-cream);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 750;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-before-grid a {
+  color: #f2c76f;
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-footer {
+  padding-block: 30px 36px;
+  border-top: 0;
+  background: var(--cabin-cream);
+  color: #59645d;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-footer strong {
+  color: var(--deep-forest);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.foundation-home:not(.foundation-start-here) .foundation-footer-links {
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .foundation-home:not(.foundation-start-here) .foundation-header {
+    padding-block: 12px;
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-nav {
+    gap: 0;
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-nav a {
+    padding-inline: 9px;
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-hero {
+    min-height: auto;
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-ridge {
+    left: 28%;
+    width: 88%;
+    opacity: 0.1;
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-hero-layout {
+    padding-block: 42px 46px;
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-hero h1 {
+    font-size: clamp(2.2rem, 11vw, 2.85rem);
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-actions {
+    align-items: stretch;
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-button {
+    width: 100%;
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-planning-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-planning-card {
+    min-height: 118px;
+    padding: 18px;
+  }
+
+  .foundation-home:not(.foundation-start-here) .foundation-before-section .foundation-width {
+    gap: 8px;
+  }
+}
+
 /* Shared no-image category pages. */
 .category-foundation {
   min-height: 100vh;
