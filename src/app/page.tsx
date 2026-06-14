@@ -4,9 +4,9 @@ import { JsonLd } from "@/components/guide";
 import { breadcrumbSchema, webPageSchema, webSiteSchema } from "@/lib/seoSchema";
 
 export const metadata: Metadata = {
-  title: "Smoky Mountains Trip Planner | Smokies Insider Guide",
+  title: "Smokies Insider Guide | Start Your Smoky Mountains Trip",
   description:
-    "Plan a practical Smokies trip by choosing what to do, where to go, where to eat, where to stay and what to save.",
+    "Start your Smoky Mountains trip with simple guidance or go directly to places, activities, sights, food, stays and deals.",
   alternates: { canonical: "/" },
 };
 
@@ -32,8 +32,7 @@ const planningCards = [
 const beforeYouGo = [
   { label: "Parking & traffic", href: "/smokies-parking-trolley-guide" },
   { label: "Official resources", href: "/visitor-resources" },
-  { label: "My Plan", href: "/my-plan" },
-  { label: "How we verify", href: "/source-and-verification-policy" },
+  { label: "Best time to visit", href: "/best-time-to-visit" },
 ];
 
 const footerLinks = [
@@ -67,7 +66,7 @@ export default function Home() {
           <div className="foundation-hero-content">
             <h1>Plan your Smokies trip without the guesswork.</h1>
             <p className="foundation-hero-promise">
-              Start with the path that fits what you need right now.
+              Start with a little guidance, or go straight to the part of your trip you already know you need.
             </p>
             <div className="foundation-actions">
               <Link className="foundation-button foundation-button-primary" href="/start-here">Start Here</Link>

@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "Smokies Insider Guide",
   description:
     "Better routes, places to eat, deals, things to do, events and visitor resources for the Smokies without the guesswork.",
+  icons: {
+    icon: "/smokies-field-guide-icon.svg",
+    shortcut: "/smokies-field-guide-icon.svg",
+  },
 };
 
 export default function RootLayout({
