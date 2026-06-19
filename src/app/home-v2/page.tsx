@@ -57,19 +57,19 @@ const footerLinks = [
 ];
 
 export const metadata: Metadata = {
-title: "Smokies Insider Guide | Smoky Mountains Trip Planning",
+title: "Smoky Insider | Smoky Mountains Trip Planning",
 description:
 "Plan a better Great Smoky Mountains trip with insider help for Gatlinburg, Pigeon Forge, Sevierville and Townsend, including things to do, places to eat, where to stay, deals, parking and visitor resources.",
 robots: { index: false, follow: true },
 };
 
 function Logo() {
-return ( <span className="homeV2Logo" aria-label="Smokies Insider Guide"> <span className="homeV2LogoMark" aria-hidden="true"> <svg viewBox="0 0 92 58" role="img"> <path d="M4 49h84M11 44l9-14 8 10 16-26 12 18 9-12 18 24" /> <path d="M15 51V39M24 51V35M33 51V41" /> <path d="M13 40h11l-5-7-6 7Zm8-5h10l-5-7-5 7Zm7 8h13l-7-9-6 9Z" /> </svg> </span> <span> <strong>Smokies</strong> <small>Insider Guide</small> </span> </span>
+return ( <span className="homeV2Logo" aria-label="Smoky Insider"> <span className="homeV2LogoMark" aria-hidden="true"> <svg viewBox="0 0 92 58" role="img"> <path d="M4 49h84M11 44l9-14 8 10 16-26 12 18 9-12 18 24" /> <path d="M15 51V39M24 51V35M33 51V41" /> <path d="M13 40h11l-5-7-6 7Zm8-5h10l-5-7-5 7Zm7 8h13l-7-9-6 9Z" /> </svg> </span> <span> <strong>Smokies</strong> <small>Insider Guide</small> </span> </span>
 );
 }
 
 export default function HomeV2Page() {
-return ( <main className="homeV2"> <header className="homeV2Header"> <Link className="homeV2Brand" href="/" aria-label="Smokies Insider Guide home"> <Logo /> </Link>
+return ( <main className="homeV2"> <header className="homeV2Header"> <Link className="homeV2Brand" href="/" aria-label="Smoky Insider home"> <Logo /> </Link>
 
     <nav className="homeV2Nav" aria-label="Primary navigation">
       {navItems.map((item) => (
@@ -135,7 +135,7 @@ return ( <main className="homeV2"> <header className="homeV2Header"> <Link class
 
   <footer className="homeV2Footer">
     <div className="homeV2FooterInner">
-      <Link className="homeV2FooterLogo" href="/" aria-label="Smokies Insider Guide home">
+      <Link className="homeV2FooterLogo" href="/" aria-label="Smoky Insider home">
         <Logo />
       </Link>
       <p>The insider&apos;s guide to better Smoky Mountain trips.</p>
