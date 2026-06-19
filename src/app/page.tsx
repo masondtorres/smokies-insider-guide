@@ -5,7 +5,7 @@ import { breadcrumbSchema, webPageSchema, webSiteSchema } from "@/lib/seoSchema"
 import "./homepage-v2.css";
 
 export const metadata: Metadata = {
-  title: "Smokies Insider Guide | Smoky Mountains Trip Planner",
+  title: "Smoky Insider | Smoky Mountains Trip Planner",
   description:
     "Plan a Smokies trip with local-first help for routes, attractions, scenic stops, restaurants, stays, deals and before-you-go details.",
   alternates: { canonical: "/" },
@@ -59,8 +59,8 @@ export default function Home() {
     <main className="smokies-home-v2">
       <header className="si-header">
         <div className="si-width si-header-inner">
-          <Link className="si-wordmark" href="/" aria-label="Smokies Insider home">
-            <span>Smokies</span> Insider
+          <Link className="si-wordmark" href="/" aria-label="Smoky Insider home">
+            <span>Smoky</span> Insider
           </Link>
           <nav className="si-nav" aria-label="Primary navigation">
             {mainLinks.map(([label, href]) => (
@@ -134,9 +134,9 @@ export default function Home() {
 
       <footer className="si-footer si-width">
         <div>
-          <strong>Smokies Insider</strong>
+          <strong>Smoky Insider</strong>
           <span>Independent trip-planning help for the Smoky Mountains.</span>
-          <small>&copy; 2026 Smokies Insider</small>
+          <small>&copy; 2026 Smoky Insider</small>
         </div>
         <nav className="si-footer-links" aria-label="Policy and information links">
           {footerLinks.map(([label, href]) => (
