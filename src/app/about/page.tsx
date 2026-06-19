@@ -32,7 +32,7 @@ export default function AboutPage() {
     <main className="destination-page">
       <header className="destination-header">
         <Link className="wordmark" href="/">
-          Smokies Insider Guide
+          Smoky Insider
         </Link>
         <Link className="back-link" href="/">
           Back to home
@@ -40,10 +40,10 @@ export default function AboutPage() {
       </header>
 
       <section className="destination-hero">
-        <p className="eyebrow">About Smokies Insider Guide</p>
+        <p className="eyebrow">About Smoky Insider</p>
         <h1>Built to Help You Plan the Smokies Without Guessing</h1>
         <p>
-          Smokies Insider Guide is being built as a practical planning guide for
+          Smoky Insider is being built as a practical planning guide for
           visitors choosing where to stay, what to do, how to plan the day and
           what to check before heading into the Smokies.
         </p>
