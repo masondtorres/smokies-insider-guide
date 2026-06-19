@@ -49,7 +49,7 @@ export function CategoryPage({ category }: { category: Category }) {
   return (
     <div className="category-foundation">
       <header className="category-header">
-        <Link className="category-wordmark" href="/">Smokies Insider</Link>
+        <Link className="category-wordmark" href="/">Smoky Insider</Link>
         <nav className="category-nav" aria-label="Primary navigation">
           {navigation.map(([label, href, key]) => (
             <Link aria-current={key === category ? "page" : undefined} href={href} key={href}>
@@ -125,8 +125,8 @@ export function CategoryPage({ category }: { category: Category }) {
 
       <footer className="category-footer">
         <div>
-          <strong>Smokies Insider</strong>
-          <span>© 2026 Smokies Insider. Independent trip-planning field guide.</span>
+          <strong>Smoky Insider</strong>
+          <span>© 2026 Smoky Insider. Independent trip-planning field guide.</span>
         </div>
         <nav className="category-footer-links" aria-label="Policy and information links">
           {footerLinks.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
