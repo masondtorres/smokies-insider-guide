@@ -4,10 +4,10 @@ import { BusinessPageShell, BusinessPathLinks, inquiryHref } from "@/components/
 
 export const metadata: Metadata = {
   title: "Claim Your Smokies Business Listing",
-  description: "Request ownership review or corrections for a Smokies Insider business listing.",
+  description: "Request ownership review or corrections for a Smoky Insider business listing.",
 };
 
-const claimHref = inquiryHref("Claim your business - Smokies Insider", [
+const claimHref = inquiryHref("Claim your business - Smoky Insider", [
   "Listing URL, if one exists",
   "Business website",
   "Your name and role",
