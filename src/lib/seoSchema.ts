@@ -1,5 +1,5 @@
 export const siteUrl = "https://www.smokyinsider.com";
-export const siteName = "Smokies Insider Guide";
+export const siteName = "Smoky Insider";
 
 type FaqItem = {
   question: string;
