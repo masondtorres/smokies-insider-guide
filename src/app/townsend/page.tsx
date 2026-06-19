@@ -37,7 +37,7 @@ const tripShapes = [
     goodIf: "Cades Cove is the anchor of the day.",
     planAround: "Slow roads, patience, weather and not stacking too many extra stops.",
     next: "Cades Cove First-Time Guide",
-    href: "/cades-cove-first-time-guide",
+    href: "/cades-cove",
   },
   {
     title: "Quiet cabin day",

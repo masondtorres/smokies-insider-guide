@@ -28,11 +28,11 @@ const utilityLinks: Partial<Record<Category, Array<{ href: string; title: string
     { href: "/go/parking", title: "Parking without losing the day", description: "Separate park parking from town parking and keep a legal backup." },
   ],
   do: [
-    { href: "/do/rainy-day", title: "A flexible rainy-day plan", description: "Choose one indoor anchor and keep the route compact." },
-    { href: "/do/free-and-cheap", title: "A lower-cost Smokies plan", description: "Count the whole day and choose one optional paid anchor." },
+    { href: "/rainy-day", title: "A flexible rainy-day plan", description: "Choose one indoor anchor and keep the route compact." },
+    { href: "/free-and-cheap-smokies", title: "A lower-cost Smokies plan", description: "Count the whole day and choose one optional paid anchor." },
   ],
   see: [
-    { href: "/see/cades-cove", title: "Cades Cove practical planner", description: "Protect the time block and check the vehicle schedule." },
+    { href: "/cades-cove", title: "Cades Cove practical planner", description: "Protect the time block and check the vehicle schedule." },
   ],
   eat: [
     { href: "/eat/family-friendly", title: "Family-friendly food planning", description: "Choose the meal shape, timing and backup before hunger takes over." },

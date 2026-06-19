@@ -91,7 +91,7 @@ const movementPlans = [
     title: "Townsend and Cades Cove day",
     plan: "Check official park conditions, use Townsend as the quiet-side base and give Cades Cove real time.",
     watchFor: "Slow roads, daylight, parking-tag needs and treating the loop like a side stop.",
-    href: "/cades-cove-first-time-guide",
+    href: "/cades-cove",
   },
   {
     title: "Dollywood-focused day",
@@ -378,7 +378,7 @@ export default function SmokiesParkingTrolleyGuidePage() {
           </p>
         </aside>
         <div className="destination-actions">
-          <Link className="button button-primary" href="/cades-cove-first-time-guide">
+          <Link className="button button-primary" href="/cades-cove">
             Cades Cove First-Time Guide
           </Link>
         </div>
