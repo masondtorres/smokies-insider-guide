@@ -11,7 +11,7 @@ const resources = [
 export default function VisitorResourcesPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header"><Link className="wordmark" href="/">Smokies Insider Guide</Link><Link className="back-link" href="/start-planning">Start Planning</Link></header>
+      <header className="destination-header"><Link className="wordmark" href="/">Smoky Insider</Link><Link className="back-link" href="/start-planning">Start Planning</Link></header>
       <section className="destination-hero"><p className="eyebrow">Visitor resources</p><h1>Prepare for the parts that change the day</h1><p>Use practical planning resources before park days, busy weekends and first-time trips.</p></section>
       <section className="destination-section">
         <div className="destination-heading"><p className="eyebrow">Plan around</p><h2>Check the practical details first</h2></div>
