@@ -91,7 +91,7 @@ export function SiteHeader() {
   return (
     <header className="site-header guide-site-header">
       <div className="brand-lockup">
-        <Link className="brand-mark" href="/" aria-label="Smokies Insider Guide home">
+        <Link className="brand-mark" href="/" aria-label="Smoky Insider home">
           <SiteIdentity />
         </Link>
       </div>
