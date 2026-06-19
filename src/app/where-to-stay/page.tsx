@@ -105,7 +105,7 @@ export default function WhereToStayPage() {
         <section className="internal-link-grid">
           <h2>Read next</h2>
           <div>
-            <Link href="/plan-your-trip"><strong>Use the planner</strong><span>Turn the base choice into a day.</span></Link>
+            <Link href="/start-planning"><strong>Use the planner</strong><span>Turn the base choice into a day.</span></Link>
             <Link href="/gatlinburg-vs-pigeon-forge"><strong>Compare Gatlinburg and Pigeon Forge</strong><span>Make the main TN-side tradeoff.</span></Link>
             <Link href="/what-to-skip"><strong>Protect the route</strong><span>Avoid the mistakes that waste a short trip.</span></Link>
           </div>
