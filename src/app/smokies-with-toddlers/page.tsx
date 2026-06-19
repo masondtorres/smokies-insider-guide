@@ -97,7 +97,7 @@ const parkIdeas = [
   {
     title: "Cades Cove",
     text: "Use timing caution. The loop can be slow, so food, patience and the rest of the day matter.",
-    href: "/cades-cove-first-time-guide",
+    href: "/cades-cove",
   },
 ];
 
@@ -145,7 +145,7 @@ const nextSteps = [
   { prompt: "Need a rainy-day backup?", next: "Rainy Day Smokies With Kids", href: "/rainy-day-smokies-with-kids" },
   { prompt: "Need lower-cost ideas?", next: "Free and Cheap Smokies", href: "/free-and-cheap-smokies" },
   { prompt: "Need activity options?", next: "Things To Do", href: "/things-to-do" },
-  { prompt: "Planning Cades Cove?", next: "Cades Cove First-Time Guide", href: "/cades-cove-first-time-guide" },
+  { prompt: "Planning Cades Cove?", next: "Cades Cove First-Time Guide", href: "/cades-cove" },
   { prompt: "Choosing where to stay?", next: "Where To Stay by Trip Type", href: "/where-to-stay-in-the-smokies-by-trip-type" },
   { prompt: "Want offers after choosing the day?", next: "Coupons & Deals", href: "/deals" },
 ];
