@@ -4,7 +4,8 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Free and Cheap Things to Do in the Smokies | Smokies Insider Guide",
   description:
-    "Plan a lower-cost Smoky Mountains trip with free park ideas, cheap town stops, budget mistakes to avoid, sample day plans and deal-hunting tips for Gatlinburg, Pigeon Forge, Sevierville and Townsend.",
+    "Plan a lower-cost Smoky Mountains trip with free park ideas, cheap town stops, budget mistakes to avoid, sample day plans and deal-hunting tips for Gatlinburg, Pigeon Forge, Sevierville and Townsend.",,
+  alternates: { canonical: "/free-and-cheap-smokies" }
 };
 
 const quickIdeas = [
