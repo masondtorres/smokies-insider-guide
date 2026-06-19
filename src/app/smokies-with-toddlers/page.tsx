@@ -155,7 +155,7 @@ export default function SmokiesWithToddlersPage() {
     <main className="destination-page">
       <header className="destination-header">
         <Link className="wordmark" href="/">
-          Smokies Insider Guide
+          Smoky Insider
         </Link>
         <Link className="back-link" href="/start-planning">
           Start Planning
@@ -429,7 +429,7 @@ export default function SmokiesWithToddlersPage() {
           <p className="eyebrow">Local businesses</p>
           <h2 id="toddler-business-title">Have an easy stop or family offer for parents with young kids?</h2>
           <p>
-            Smokies Insider Guide will eventually feature useful local options
+            Smoky Insider will eventually feature useful local options
             that help families plan better.
           </p>
         </div>
