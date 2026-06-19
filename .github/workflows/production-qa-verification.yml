@@ -85,8 +85,8 @@ jobs:
 
           sitemap_count=$(wc -l < evidence/sitemap-urls.txt | tr -d ' ')
           echo "$sitemap_count" | tee evidence/sitemap-url-count.txt
-          if [[ "$sitemap_count" != "65" ]]; then
-            echo "FAIL: expected 65 sitemap URLs, found $sitemap_count"
+          if [[ "$sitemap_count" != "60" ]]; then
+            echo "FAIL: expected 60 sitemap URLs, found $sitemap_count"
             failure=1
           fi
 
