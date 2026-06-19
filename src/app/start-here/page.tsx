@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/guide";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seoSchema";
 
 export const metadata: Metadata = {
-  title: "Start Here | Smokies Insider Guide",
+  title: "Start Here | Smoky Insider",
   description:
     "Start planning a Smokies trip by trip shape or area, then use the interactive planner when you want a more tailored starting point.",
   alternates: { canonical: "/start-here" },
@@ -60,8 +60,8 @@ export default function StartHerePage() {
   return (
     <main className="foundation-home foundation-start-here">
       <header className="foundation-header">
-        <Link className="foundation-wordmark" href="/" aria-label="Smokies Insider home">
-          <span>Smokies</span> Insider
+        <Link className="foundation-wordmark" href="/" aria-label="Smoky Insider home">
+          <span>Smoky</span> Insider
         </Link>
         <nav className="foundation-nav" aria-label="Primary navigation">
           {mainLinks.map(([label, href]) => (
@@ -142,9 +142,9 @@ export default function StartHerePage() {
 
       <footer className="foundation-footer">
         <div>
-          <strong>Smokies Insider</strong>
+          <strong>Smoky Insider</strong>
           <span>Independent trip-planning help for the Smoky Mountains.</span>
-          <small>&copy; 2026 Smokies Insider</small>
+          <small>&copy; 2026 Smoky Insider</small>
         </div>
         <nav className="foundation-footer-links" aria-label="Policy and information links">
           {footerLinks.map(([label, href]) => (
