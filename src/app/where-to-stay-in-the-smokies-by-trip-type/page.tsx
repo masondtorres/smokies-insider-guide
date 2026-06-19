@@ -31,7 +31,7 @@ export default function WhereToStayByTripTypePage() {
         <InternalLinkGrid
           links={[
             { title: "Where to stay", href: "/where-to-stay", description: "Updated town chooser." },
-            { title: "Plan your trip", href: "/plan-your-trip", description: "Manual starter planner." },
+            { title: "Plan your trip", href: "/start-planning", description: "Manual starter planner." },
             { title: "How many days", href: "/how-many-days", description: "Set trip length." },
           ]}
         />
