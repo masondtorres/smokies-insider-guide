@@ -7,7 +7,8 @@ import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/seoSchema";
 export const metadata: Metadata = {
   title: "Smoky Mountains Trip Planner | Start Planning",
   description:
-    "Answer five simple questions to get existing Smokies planning-card recommendations and save them to My Plan.",
+    "Answer five simple questions to get existing Smokies planning-card recommendations and save them to My Plan.",,
+  alternates: { canonical: "/start-planning" }
 };
 
 const plannerInputs = ["Starting town or base", "Who is going", "Time available", "Kind of day", "What to avoid"];
