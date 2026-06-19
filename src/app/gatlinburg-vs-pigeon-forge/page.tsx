@@ -4,7 +4,8 @@ import { guidePages } from "@/lib/smokiesData";
 
 export const metadata: Metadata = {
   title: "Gatlinburg vs Pigeon Forge: Which Smokies Town Fits Your Trip?",
-  description: guidePages["/gatlinburg-vs-pigeon-forge"].description,
+  description: guidePages["/gatlinburg-vs-pigeon-forge"].description,,
+  alternates: { canonical: "/gatlinburg-vs-pigeon-forge" }
 };
 
 export default function GatlinburgVsPigeonForgePage() {
