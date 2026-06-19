@@ -3,11 +3,11 @@ import Link from "next/link";
 import { BusinessPageShell, BusinessPathLinks, inquiryHref } from "@/components/business-intake";
 
 export const metadata: Metadata = {
-  title: "Advertise With Smokies Insider",
-  description: "Request clearly labeled advertising, sponsored content or featured placement information from Smokies Insider.",
+  title: "Advertise With Smoky Insider",
+  description: "Request clearly labeled advertising, sponsored content or featured placement information from Smoky Insider.",
 };
 
-const advertiseHref = inquiryHref("Advertise with us - Smokies Insider", [
+const advertiseHref = inquiryHref("Advertise with us - Smoky Insider", [
   "Business category",
   "Town or service area",
   "Website",
@@ -16,7 +16,7 @@ const advertiseHref = inquiryHref("Advertise with us - Smokies Insider", [
   "Your name and role",
 ]);
 
-const featuredHref = inquiryHref("Featured placement inquiry - Smokies Insider", [
+const featuredHref = inquiryHref("Featured placement inquiry - Smoky Insider", [
   "Business category",
   "Town or service area",
   "Website",
