@@ -27,6 +27,9 @@ export type GuidePageData = {
   bestFor?: string[];
   skipIf?: string[];
   schemaType?: "Article" | "WebPage" | "ItemList";
+  reviewedOn?: string;
+  reviewedOnIso?: string;
+  sources?: LinkItem[];
 };
 
 export const primaryNav = [
@@ -135,13 +138,24 @@ export function LastUpdated({ date = "June 2026" }: { date?: string }) {
 
 export function SourceBox({
   text = "Source note: Park rules, road status, hours, prices and closures can change. Verify time-sensitive details with the official source before you go.",
+  sources = [],
 }: {
   text?: string;
+  sources?: LinkItem[];
 }) {
   return (
     <aside className="source-box" aria-label="Source and verification note">
       <strong>Source and verification</strong>
       <p>{text}</p>
+      {sources.length ? (
+        <ul>
+          {sources.map((source) => (
+            <li key={source.href}>
+              <a href={source.href}>{source.title}</a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </aside>
   );
 }
@@ -410,7 +424,7 @@ export function guideSchema(page: GuidePageData, path: string) {
     "@type": page.schemaType ?? "Article",
     headline: page.title,
     description: page.description,
-    dateModified: "2026-06-05",
+    dateModified: page.reviewedOnIso,
     inLanguage: "en-US",
     mainEntityOfPage: `${siteUrl}${path}`,
   };
@@ -429,7 +443,7 @@ export function GuidePage({ page, path }: { page: GuidePageData; path: string })
           <p className="eyebrow">Smokies field guide</p>
           <h1>{page.title}</h1>
           <p>{page.description}</p>
-          <LastUpdated />
+          {page.reviewedOn ? <LastUpdated date={page.reviewedOn} /> : null}
         </header>
         <DirectAnswer>
           <p>{page.directAnswer}</p>
@@ -474,7 +488,7 @@ export function GuidePage({ page, path }: { page: GuidePageData; path: string })
           </section>
         ) : null}
         <InternalLinkGrid links={page.links} />
-        <SourceBox />
+        <SourceBox sources={page.sources} />
       </article>
       <JsonLd data={guideSchema(page, path)} />
       <SiteFooter />
