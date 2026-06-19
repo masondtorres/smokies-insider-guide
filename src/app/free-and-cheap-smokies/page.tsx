@@ -36,7 +36,7 @@ const parkIdeas = [
   {
     title: "Cades Cove",
     text: "Treat the loop as a slower main event. Traffic, access and timing can shape the whole day.",
-    href: "/cades-cove-first-time-guide",
+    href: "/cades-cove",
   },
 ];
 
@@ -149,7 +149,7 @@ const nextSteps = [
   { prompt: "Need more activity ideas?", next: "Things To Do", href: "/things-to-do" },
   { prompt: "Planning a rainy day?", next: "Rainy Day Smokies With Kids", href: "/rainy-day-smokies-with-kids" },
   { prompt: "Choosing where to stay?", next: "Where To Stay by Trip Type", href: "/where-to-stay-in-the-smokies-by-trip-type" },
-  { prompt: "Planning Cades Cove?", next: "Cades Cove First-Time Guide", href: "/cades-cove-first-time-guide" },
+  { prompt: "Planning Cades Cove?", next: "Cades Cove First-Time Guide", href: "/cades-cove" },
   { prompt: "Ready to check offers?", next: "Coupons & Deals", href: "/deals" },
 ];
 
