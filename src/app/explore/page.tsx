@@ -12,7 +12,7 @@ const areas = [
 export default function ExplorePage() {
   return (
     <main className="destination-page">
-      <header className="destination-header"><Link className="wordmark" href="/">Smokies Insider Guide</Link><Link className="back-link" href="/start-planning">Start Planning</Link></header>
+      <header className="destination-header"><Link className="wordmark" href="/">Smoky Insider</Link><Link className="back-link" href="/start-planning">Start Planning</Link></header>
       <section className="destination-hero"><p className="eyebrow">Area chooser</p><h1>Choose the right Smokies area</h1><p>Compare towns, park areas and scenic-drive days before you start stacking stops.</p></section>
       <section className="destination-section">
         <div className="destination-heading"><p className="eyebrow">Best starting points</p><h2>Match the base to the day you want</h2></div>
