@@ -150,7 +150,7 @@ export default function RainyDaySmokiesWithKidsPage() {
     <main className="destination-page">
       <header className="destination-header">
         <Link className="wordmark" href="/">
-          Smokies Insider Guide
+          Smoky Insider
         </Link>
         <Link className="back-link" href="/things-to-do">
           Things To Do
