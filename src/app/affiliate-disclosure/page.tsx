@@ -3,7 +3,7 @@ import { PolicyPage } from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
   title: "Affiliate Disclosure",
-  description: "How possible future affiliate links are handled on Smokies Insider Guide.",
+  description: "How possible future affiliate links are handled on Smoky Insider.",
 };
 
 export default function AffiliateDisclosurePage() {
