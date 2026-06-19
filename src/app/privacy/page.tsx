@@ -3,7 +3,7 @@ import { PolicyPage } from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How browser-saved My Plan data and aggregate site analytics are handled by Smokies Insider Guide.",
+  description: "How browser-saved My Plan data and aggregate site analytics are handled by Smoky Insider.",
 };
 
 export default function PrivacyPage() {

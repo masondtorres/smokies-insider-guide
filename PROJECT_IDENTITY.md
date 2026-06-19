@@ -2,8 +2,9 @@
 
 ## Public identity
 
-- Product: Smokies Insider Guide
+- Product: Smoky Insider
 - Active domain: `smokyinsider.com`
+- Owned secondary domain: `smokiesinsiderguide.com` (not the canonical site)
 - Canonical site: `https://www.smokyinsider.com`
 - GitHub repository: `masondtorres/smokies-insider-guide`
 - Production branch: `main`
@@ -11,7 +12,7 @@
 - Vercel project: `smokies-insider-guide`
 - Public and business contact: `masondtorres@duck.com`
 
-Smokies Insider Guide is an independent trip-planning site. It is not affiliated with the National Park Service, Great Smoky Mountains National Park, or any official tourism board.
+Smoky Insider is an independent trip-planning site. It is not affiliated with the National Park Service, Great Smoky Mountains National Park, or any official tourism board.
 
 ## Editorial identity
 
@@ -35,8 +36,8 @@ The site helps visitors make practical trip decisions across towns, park areas, 
 
 Use this order when the documents are available:
 
-1. Smokies Insider Guide Site Launch Playbook
-2. Smokies Insider Guide Strategic Research Report
+1. Smoky Insider Site Launch Playbook
+2. Smoky Insider Strategic Research Report
 3. Mason Torres Build and Automation Pack
 4. Active project rules
 

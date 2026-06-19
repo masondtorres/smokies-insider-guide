@@ -76,7 +76,7 @@ export default function TrackClosingGuidePage() {
     <main className="destination-page article-guide-page">
       <header className="destination-header">
         <Link className="wordmark" href="/">
-          Smokies Insider Guide
+          Smoky Insider
         </Link>
         <Link className="back-link" href="/pigeon-forge">
           Pigeon Forge Guide

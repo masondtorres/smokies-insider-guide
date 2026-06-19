@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Free and Cheap Things to Do in the Smokies | Smokies Insider Guide",
+  title: "Free and Cheap Things to Do in the Smokies | Smoky Insider",
   description:
     "Plan a lower-cost Smoky Mountains trip with free park ideas, cheap town stops, budget mistakes to avoid, sample day plans and deal-hunting tips for Gatlinburg, Pigeon Forge, Sevierville and Townsend.",
   alternates: { canonical: "/free-and-cheap-smokies" },
@@ -159,7 +159,7 @@ export default function FreeAndCheapSmokiesPage() {
     <main className="destination-page">
       <header className="destination-header">
         <Link className="wordmark" href="/">
-          Smokies Insider Guide
+          Smoky Insider
         </Link>
         <Link className="back-link" href="/start-planning">
           Start Planning
@@ -400,7 +400,7 @@ export default function FreeAndCheapSmokiesPage() {
           <p className="eyebrow">Local businesses</p>
           <h2 id="budget-business-title">Have a budget-friendly offer, family deal or local coupon?</h2>
           <p>
-            Smokies Insider Guide will eventually feature useful deals that
+            Smoky Insider will eventually feature useful deals that
             help visitors plan better, not random coupon clutter.
           </p>
         </div>

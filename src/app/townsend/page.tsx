@@ -148,7 +148,7 @@ export default function TownsendPage() {
     <main className="destination-page">
       <header className="destination-header">
         <Link className="wordmark" href="/">
-          Smokies Insider Guide
+          Smoky Insider
         </Link>
         <Link className="back-link" href="/start-planning">
           Start Planning

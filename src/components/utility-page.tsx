@@ -47,7 +47,7 @@ export function UtilityPage({ page }: { page: UtilityPageData }) {
   return (
     <div className="utility-foundation">
       <header className="utility-header">
-        <Link className="utility-wordmark" href="/">Smokies Insider</Link>
+        <Link className="utility-wordmark" href="/">Smoky Insider</Link>
         <nav className="utility-nav" aria-label="Primary navigation">
           {navigation.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
         </nav>
@@ -140,7 +140,7 @@ export function UtilityPage({ page }: { page: UtilityPageData }) {
 
       <footer className="utility-footer">
         <div>
-          <strong>Smokies Insider</strong>
+          <strong>Smoky Insider</strong>
           <span>Independent trip-planning field guide.</span>
         </div>
         <nav aria-label="Utility links">

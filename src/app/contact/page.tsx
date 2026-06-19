@@ -3,11 +3,11 @@ import Link from "next/link";
 import { BusinessPageShell, BusinessPathLinks, businessEmail, inquiryHref } from "@/components/business-intake";
 
 export const metadata: Metadata = {
-  title: "Contact Smokies Insider",
-  description: "Contact Smokies Insider for corrections, business listings, claims and advertising inquiries.",
+  title: "Contact Smoky Insider",
+  description: "Contact Smoky Insider for corrections, business listings, claims and advertising inquiries.",
 };
 
-const generalHref = inquiryHref("General inquiry - Smokies Insider", ["Page URL, if relevant", "Your message"]);
+const generalHref = inquiryHref("General inquiry - Smoky Insider", ["Page URL, if relevant", "Your message"]);
 
 export default function ContactPage() {
   return (

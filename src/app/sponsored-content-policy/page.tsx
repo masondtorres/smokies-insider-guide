@@ -3,7 +3,7 @@ import { PolicyPage } from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
   title: "Sponsored Content Policy",
-  description: "How Smokies Insider Guide labels and separates sponsored placements.",
+  description: "How Smoky Insider labels and separates sponsored placements.",
 };
 
 export default function SponsoredContentPolicyPage() {

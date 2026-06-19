@@ -1,4 +1,4 @@
-# Smokies Insider Guide
+# Smoky Insider
 
 Independent, decision-first trip planning for the Smokies. The live site is [www.smokyinsider.com](https://www.smokyinsider.com), deployed from `main` in `masondtorres/smokies-insider-guide` through the Vercel project `smokies-insider-guide`.
 

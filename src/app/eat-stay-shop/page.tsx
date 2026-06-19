@@ -10,7 +10,7 @@ const choices = [
 export default function EatStayShopPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header"><Link className="wordmark" href="/">Smokies Insider Guide</Link><Link className="back-link" href="/start-planning">Start Planning</Link></header>
+      <header className="destination-header"><Link className="wordmark" href="/">Smoky Insider</Link><Link className="back-link" href="/start-planning">Start Planning</Link></header>
       <section className="destination-hero"><p className="eyebrow">Eat, stay and shop</p><h1>Make practical choices around your Smokies base</h1><p>Keep meals, lodging and shopping connected to the places your trip already needs to reach.</p></section>
       <section className="destination-section">
         <div className="destination-heading"><p className="eyebrow">Start here</p><h2>Compare what changes the trip</h2></div>

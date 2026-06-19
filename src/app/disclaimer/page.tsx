@@ -3,7 +3,7 @@ import { PolicyPage } from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
   title: "Disclaimer",
-  description: "Smokies Insider Guide is an independent planning guide, not the National Park Service.",
+  description: "Smoky Insider is an independent planning guide, not the National Park Service.",
 };
 
 export default function DisclaimerPage() {

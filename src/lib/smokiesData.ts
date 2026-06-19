@@ -1136,11 +1136,11 @@ export const guidePages: Record<string, GuidePageData> = {
     links: related("/start-planning", "/restaurants", "/things-to-do", "/rainy-day"),
   },
   "/advertise": {
-    title: "Advertise With Smokies Insider Guide",
-    description: "Join the future Smokies Insider Guide partner interest list for clearly labeled planning-stage visibility.",
-    directAnswer: "Smokies Insider Guide is being built as a free planning resource first. Local businesses can join the future partner interest list, but businesses can buy visibility, not editorial truth. No traffic claims or rate card are published yet.",
+    title: "Advertise With Smoky Insider",
+    description: "Join the future Smoky Insider partner interest list for clearly labeled planning-stage visibility.",
+    directAnswer: "Smoky Insider is being built as a free planning resource first. Local businesses can join the future partner interest list, but businesses can buy visibility, not editorial truth. No traffic claims or rate card are published yet.",
     sections: [
-      { title: "Current status", body: "Smokies Insider Guide is being built as a free planning resource for visitors." },
+      { title: "Current status", body: "Smoky Insider is being built as a free planning resource for visitors." },
       { title: "Founding partner interest list", body: "Local businesses can express interest in future clearly labeled placements." },
       { title: "Featured listing", body: "Future listing visibility may be available after verification and labeling." },
       { title: "Sponsored guide placement", body: "Sponsored placements must be labeled and relevant to the page." },

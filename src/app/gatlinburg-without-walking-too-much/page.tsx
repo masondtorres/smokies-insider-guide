@@ -124,7 +124,7 @@ export default function GatlinburgWithoutWalkingTooMuchPage() {
     <main className="destination-page">
       <header className="destination-header">
         <Link className="wordmark" href="/">
-          Smokies Insider Guide
+          Smoky Insider
         </Link>
         <Link className="back-link" href="/gatlinburg">
           Gatlinburg Guide
@@ -374,7 +374,7 @@ export default function GatlinburgWithoutWalkingTooMuchPage() {
           <p>
             Have an easy-access Gatlinburg stop, family-friendly meal, useful
             offer or attraction that helps visitors plan a lower-walking day?
-            Smokies Insider Guide will eventually feature local options that
+            Smoky Insider will eventually feature local options that
             help visitors choose better.
           </p>
         </div>

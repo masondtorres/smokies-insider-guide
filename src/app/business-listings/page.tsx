@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Request or claim a verified Smokies business listing for a restaurant, cabin, attraction, shop, guide, photographer, venue or service business.",
 };
 
-const requestHref = inquiryHref("Business listing request - Smokies Insider", [
+const requestHref = inquiryHref("Business listing request - Smoky Insider", [
   "Category",
   "Town or area",
   "Website",
