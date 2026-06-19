@@ -146,7 +146,7 @@ export default function SmokiesParkingTrolleyGuidePage() {
     <main className="destination-page">
       <header className="destination-header">
         <Link className="wordmark" href="/">
-          Smokies Insider Guide
+          Smoky Insider
         </Link>
         <Link className="back-link" href="/start-planning">
           Start Planning
@@ -479,7 +479,7 @@ export default function SmokiesParkingTrolleyGuidePage() {
           <h2 id="transport-business-title">Help visitors plan a useful stop</h2>
           <p>
             Have a useful stop near a trolley route, parking area, attraction
-            corridor or park gateway? Smokies Insider Guide will eventually
+            corridor or park gateway? Smoky Insider will eventually
             feature local options that help visitors plan better.
           </p>
         </div>
