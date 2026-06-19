@@ -1,7 +1,7 @@
 import type { GuidePageData, LinkItem, TimelineItem } from "@/components/guide";
 
 export const guideLinks: LinkItem[] = [
-  { title: "Plan Your Smokies Trip", href: "/plan-your-trip", description: "Answer a few questions and get a practical starter plan." },
+  { title: "Plan Your Smokies Trip", href: "/start-planning", description: "Answer a few questions and get a practical starter plan." },
   { title: "Where to Stay", href: "/where-to-stay", description: "Choose the right base town before choosing attractions." },
   { title: "Gatlinburg vs Pigeon Forge", href: "/gatlinburg-vs-pigeon-forge", description: "Pick the better town for your group and trip style." },
   { title: "How Many Days", href: "/how-many-days", description: "Choose a realistic trip length without cramming the map." },
@@ -79,7 +79,7 @@ export const towns = [
     links: [
       { title: "Where to stay", href: "/where-to-stay" },
       { title: "Scenic drives", href: "/scenic-drives" },
-      { title: "Plan your trip", href: "/plan-your-trip" },
+      { title: "Plan your trip", href: "/start-planning" },
     ],
   },
   {
@@ -822,7 +822,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Best town by trip type", body: "First-timers often compare Gatlinburg and Pigeon Forge first. Crowd-avoiders should look hard at Townsend or Wears Valley. NC-side travelers should not force a TN-heavy route." },
       { title: "Common mistakes", body: "The big mistakes are booking before choosing the trip shape, treating every town as close together and ignoring parking, traffic and walking load." },
     ],
-    links: related("/plan-your-trip", "/gatlinburg-vs-pigeon-forge", "/first-time-smokies", "/how-many-days"),
+    links: related("/start-planning", "/gatlinburg-vs-pigeon-forge", "/first-time-smokies", "/how-many-days"),
     bestFor: ["Visitors choosing lodging", "Families comparing Gatlinburg and Pigeon Forge", "First-timers who need a base town before booking"],
     skipIf: ["You already booked and only need a single restaurant", "You need current hotel rates, which should be verified elsewhere"],
   },
@@ -842,7 +842,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Food and attractions", body: "Choose food by the route you are already using. Driving across town for one meal can wreck a good plan." },
       { title: "Best choice by visitor type", body: "First-timers with mixed goals should compare both. Families often lean Pigeon Forge. Walkers lean Gatlinburg. Quiet-side travelers lean Townsend." },
     ],
-    links: related("/where-to-stay", "/plan-your-trip", "/restaurants", "/things-to-do"),
+    links: related("/where-to-stay", "/start-planning", "/restaurants", "/things-to-do"),
     bestFor: ["Visitors deciding between the two main TN gateway towns", "Families choosing a base", "First-timers who need a clear tradeoff"],
     skipIf: ["You want a live hotel price comparison", "Your whole trip is already locked to the NC side"],
   },
@@ -860,7 +860,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "If it rains", body: "A flexible day saves the trip. Move indoor categories into that slot instead of forcing wet outdoor plans." },
       { title: "What not to cram", body: "Do not cram Cades Cove, Dollywood, downtown Gatlinburg and a long scenic drive into one day." },
     ],
-    links: related("/plan-your-trip", "/where-to-stay", "/rainy-day", "/cades-cove"),
+    links: related("/start-planning", "/where-to-stay", "/rainy-day", "/cades-cove"),
   },
   "/best-time-to-visit": {
     title: "Best Time to Visit the Smokies",
@@ -876,7 +876,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Weather and road caution", body: sourceLine },
       { title: "Verify current conditions", body: "Before final plans, check official park alerts and road status, especially for cross-mountain routes." },
     ],
-    links: related("/plan-your-trip", "/rainy-day", "/scenic-drives", "/first-time-smokies"),
+    links: related("/start-planning", "/rainy-day", "/scenic-drives", "/first-time-smokies"),
   },
   "/parking-tag": {
     title: "Smoky Mountains Parking Tag Guide",
@@ -906,7 +906,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "With kids", body: "Choose one anchor per day and protect rest time." },
       { title: "With seniors", body: "Verify accessibility details and keep walking, parking and seating realistic." },
     ],
-    links: related("/plan-your-trip", "/where-to-stay", "/parking-tag", "/rainy-day", "/cades-cove"),
+    links: related("/start-planning", "/where-to-stay", "/parking-tag", "/rainy-day", "/cades-cove"),
   },
   "/rainy-day": {
     title: "Rainy Day Things to Do in the Smokies",
@@ -923,7 +923,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Keep an outdoor backup", body: "If showers pass, add a short overlook, town walk or easy scenic stop." },
       { title: "Sponsored placement policy", body: "Any rainy-day partner placement must be labeled and separated from editorial guidance." },
     ],
-    links: related("/plan-your-trip", "/things-to-do/pigeon-forge", "/things-to-do/gatlinburg", "/restaurants", "/deals"),
+    links: related("/start-planning", "/things-to-do/pigeon-forge", "/things-to-do/gatlinburg", "/restaurants", "/deals"),
   },
   "/cades-cove": {
     title: "Cades Cove Smokies Guide",
@@ -940,7 +940,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Parking and traffic warning", body: "The loop can be slow and pull-offs can be limited. Details can change." },
     ],
     links: [
-      { title: "Cades Cove first-time guide", href: "/cades-cove-first-time-guide", description: "Preserved older first-time route." },
+      { title: "Cades Cove first-time guide", href: "/cades-cove", description: "Preserved older first-time route." },
       ...related("/scenic-drives", "/where-to-stay", "/accessible-smokies", "/first-time-smokies"),
     ],
   },
@@ -958,7 +958,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Bathrooms, benches and parking note", body: "These details can make or break the day and should be verified for the exact stop." },
       { title: "Report outdated info", body: "If a page is outdated, use the corrections page so the guide can be updated." },
     ],
-    links: related("/plan-your-trip", "/scenic-drives", "/cades-cove", "/restaurants"),
+    links: related("/start-planning", "/scenic-drives", "/cades-cove", "/restaurants"),
   },
   "/scenic-drives": {
     title: "Best Scenic Drives in the Smokies",
@@ -976,7 +976,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Best if you hate crowds", body: "Avoid peak windows and choose quieter-side routes when possible." },
       { title: "Road closure verification note", body: sourceLine },
     ],
-    links: related("/plan-your-trip", "/cades-cove", "/accessible-smokies", "/first-time-smokies"),
+    links: related("/start-planning", "/cades-cove", "/accessible-smokies", "/first-time-smokies"),
   },
   "/hiking": {
     title: "Smoky Mountains Hiking Guide for Realistic Trip Planning",
@@ -992,7 +992,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "What paved does not always mean", body: "Paved does not automatically mean flat, stroller-simple or wheelchair-suitable." },
       { title: "Official current conditions", body: "Use official park current-condition resources before final hiking plans." },
     ],
-    links: related("/plan-your-trip", "/parking-tag", "/scenic-drives", "/accessible-smokies"),
+    links: related("/start-planning", "/parking-tag", "/scenic-drives", "/accessible-smokies"),
   },
   "/things-to-do": {
     title: "Things to Do in the Smokies",
@@ -1011,7 +1011,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Sevierville", body: "Use value, outlets, gateway access and local business pacing." },
       { title: "Townsend", body: "Use quiet-side scenic drives, Cades Cove and slower park days." },
     ],
-    links: related("/plan-your-trip", "/things-to-do/gatlinburg", "/things-to-do/pigeon-forge", "/rainy-day", "/deals"),
+    links: related("/start-planning", "/things-to-do/gatlinburg", "/things-to-do/pigeon-forge", "/rainy-day", "/deals"),
   },
   "/things-to-do/gatlinburg": {
     title: "Things to Do in Gatlinburg",
@@ -1026,7 +1026,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Skip if", body: "Skip a Gatlinburg-heavy day if your group hates tight streets, walking or peak downtown crowds." },
       { title: "Parking note", body: "Park once if you can. Moving repeatedly can waste the day." },
     ],
-    links: related("/restaurants/gatlinburg", "/gatlinburg-vs-pigeon-forge", "/rainy-day", "/plan-your-trip"),
+    links: related("/restaurants/gatlinburg", "/gatlinburg-vs-pigeon-forge", "/rainy-day", "/start-planning"),
   },
   "/things-to-do/pigeon-forge": {
     title: "Things to Do in Pigeon Forge",
@@ -1041,7 +1041,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Best with kids", body: "Families usually do better with one anchor, one meal and one lighter add-on." },
       { title: "Skip if", body: "Skip a Pigeon Forge-heavy plan if your group wants quiet mountain town pacing or walk-everywhere simplicity." },
     ],
-    links: related("/restaurants/pigeon-forge", "/pigeon-forge-with-kids", "/rainy-day", "/plan-your-trip"),
+    links: related("/restaurants/pigeon-forge", "/pigeon-forge-with-kids", "/rainy-day", "/start-planning"),
   },
   "/restaurants": {
     title: "Smokies Restaurants by Situation",
@@ -1059,7 +1059,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Local note", body: "Choose food by route, not just rating." },
       { title: "Business listing status note", body: "Listings and partner placements will be labeled when verified or sponsored." },
     ],
-    links: related("/restaurants/gatlinburg", "/restaurants/pigeon-forge", "/deals", "/plan-your-trip"),
+    links: related("/restaurants/gatlinburg", "/restaurants/pigeon-forge", "/deals", "/start-planning"),
   },
   "/restaurants/gatlinburg": {
     title: "Gatlinburg Restaurants by Situation",
@@ -1074,7 +1074,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Parking and walking note", body: "Park once where possible and verify accessibility needs." },
       { title: "Claim or update listing", body: "Businesses can request updates through the corrections or advertise path." },
     ],
-    links: related("/restaurants", "/things-to-do/gatlinburg", "/gatlinburg-vs-pigeon-forge", "/plan-your-trip"),
+    links: related("/restaurants", "/things-to-do/gatlinburg", "/gatlinburg-vs-pigeon-forge", "/start-planning"),
   },
   "/restaurants/pigeon-forge": {
     title: "Pigeon Forge Restaurants by Situation",
@@ -1089,7 +1089,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Parkway traffic note", body: "The Parkway can make short distances feel long during peak times." },
       { title: "Claim or update listing", body: "Businesses can request updates through the corrections or advertise path." },
     ],
-    links: related("/restaurants", "/things-to-do/pigeon-forge", "/rainy-day", "/plan-your-trip"),
+    links: related("/restaurants", "/things-to-do/pigeon-forge", "/rainy-day", "/start-planning"),
   },
   "/deals": {
     title: "Smokies Deals That Fit the Trip",
@@ -1108,7 +1108,7 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Report expired deal", body: "Visitors and businesses should report expired or unclear offers." },
       { title: "Sponsored disclosure note", body: "Paid deal placement must be labeled and must not override best-fit planning guidance." },
     ],
-    links: related("/plan-your-trip", "/restaurants", "/things-to-do", "/rainy-day"),
+    links: related("/start-planning", "/restaurants", "/things-to-do", "/rainy-day"),
   },
   "/advertise": {
     title: "Advertise With Smokies Insider Guide",
@@ -1144,6 +1144,6 @@ export const guidePages: Record<string, GuidePageData> = {
       { title: "Skip coupon-chasing across town", body: "A discount that sends you to the wrong place is not a savings." },
       { title: "Better moves", body: "Choose one base, one anchor, nearby food and a backup that fits the same route." },
     ],
-    links: related("/plan-your-trip", "/where-to-stay", "/deals", "/rainy-day", "/cades-cove"),
+    links: related("/start-planning", "/where-to-stay", "/deals", "/rainy-day", "/cades-cove"),
   },
 };
