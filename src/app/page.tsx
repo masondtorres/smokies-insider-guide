@@ -11,6 +11,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+const topLinks = [
+  ["Start Here", "/start-here"],
+  ["Best Time", "/best-time-to-visit"],
+  ["Deals", "/deals"],
+  ["My Plan", "/my-plan"],
+];
+
 const mainLinks = [
   ["Go", "/go"],
   ["Do", "/do"],
@@ -22,12 +29,12 @@ const mainLinks = [
 ];
 
 const planningCards = [
-  { title: "Go", text: "Routes, parking, traffic and arrival timing.", href: "/go", icon: "↗" },
-  { title: "Do", text: "Attractions, hikes, shows and rainy-day options.", href: "/do", icon: "◇" },
-  { title: "See", text: "Overlooks, scenic drives, waterfalls and photo spots.", href: "/see", icon: "◌" },
-  { title: "Eat", text: "Local restaurants, quick meals and family-friendly food.", href: "/eat", icon: "◍" },
-  { title: "Stay", text: "Cabins, hotels, campgrounds and where to base your trip.", href: "/stay", icon: "⌂" },
-  { title: "Deals", text: "Tickets, discounts, local savings and budget-friendly ideas.", href: "/deals", icon: "$" },
+  { title: "Things to Do", text: "Attractions, hikes, shows, rainy-day options and family-friendly picks.", href: "/do", icon: "Play" },
+  { title: "Places to Stay", text: "Cabins, hotels, campgrounds and the best area to base your trip.", href: "/stay", icon: "Stay" },
+  { title: "Where to Eat", text: "Local restaurants, quick meals, breakfast stops and kid-friendly food.", href: "/eat", icon: "Dine" },
+  { title: "Scenic Smokies", text: "Overlooks, scenic drives, waterfalls, Cades Cove and photo spots.", href: "/see", icon: "See" },
+  { title: "Getting Around", text: "Routes, parking, traffic, trolleys and arrival timing before you go.", href: "/go", icon: "Go" },
+  { title: "Deals and Savings", text: "Tickets, coupons, budget ideas and ways to stretch the trip money.", href: "/deals", icon: "Save" },
 ];
 
 const utilityItems = [
@@ -57,6 +64,17 @@ const footerLinks = [
 export default function Home() {
   return (
     <main className="smokies-home-v2">
+      <div className="si-topbar" aria-label="Quick links">
+        <div className="si-width si-topbar-inner">
+          <span>Independent Smoky Mountains trip planning</span>
+          <nav aria-label="Secondary navigation">
+            {topLinks.map(([label, href]) => (
+              <Link href={href} key={href}>{label}</Link>
+            ))}
+          </nav>
+        </div>
+      </div>
+
       <header className="si-header">
         <div className="si-width si-header-inner">
           <Link className="si-wordmark" href="/" aria-label="Smoky Insider home">
@@ -74,29 +92,41 @@ export default function Home() {
         <div className="si-ridge-one" aria-hidden="true" />
         <div className="si-ridge-two" aria-hidden="true" />
         <div className="si-ridge-three" aria-hidden="true" />
-        <div className="si-width si-hero-copy">
-          <p className="si-kicker">Local-first Smokies planning</p>
-          <h1 id="home-title">Plan your Smokies trip without the guesswork.</h1>
-          <p className="si-hero-promise">
-            Local-first planning help for Gatlinburg, Pigeon Forge, Sevierville, Townsend and the Great Smoky Mountains.
-          </p>
-          <div className="si-actions">
-            <Link className="si-button si-button-primary" href="/start-here">Start Here</Link>
-            <Link className="si-button si-button-secondary" href="/my-plan">Build My Plan</Link>
+        <div className="si-width si-hero-layout">
+          <div className="si-hero-copy">
+            <p className="si-kicker">Welcome to the Smokies</p>
+            <h1 id="home-title">Plan your Smokies trip without the guesswork.</h1>
+            <p className="si-hero-promise">
+              Local-first planning help for Gatlinburg, Pigeon Forge, Sevierville, Townsend and the Great Smoky Mountains.
+            </p>
+            <div className="si-actions">
+              <Link className="si-button si-button-primary" href="/start-here">Start Planning</Link>
+              <Link className="si-button si-button-secondary" href="/my-plan">Build My Plan</Link>
+            </div>
           </div>
-          <div className="si-utility-line" aria-label="Planning categories">
-            <span>Routes</span>
-            <span>Attractions</span>
-            <span>Food</span>
-            <span>Cabins</span>
-            <span>Deals</span>
-            <span>Local tips</span>
-          </div>
+          <aside className="si-hero-panel" aria-label="Trip planning shortcuts">
+            <strong>Start with the part that matters most.</strong>
+            <Link href="/do">Find things to do</Link>
+            <Link href="/stay">Choose where to stay</Link>
+            <Link href="/go">Check parking and routes</Link>
+            <Link href="/deals">Find savings</Link>
+          </aside>
+        </div>
+      </section>
+
+      <section className="si-trip-strip" aria-label="Popular planning categories">
+        <div className="si-width si-trip-strip-inner">
+          <Link href="/stay">Places to Stay</Link>
+          <Link href="/see">Smoky Mountains</Link>
+          <Link href="/eat">Where to Eat</Link>
+          <Link href="/do">Things to Do</Link>
+          <Link href="/rainy-day-smokies-with-kids">Family Fun</Link>
         </div>
       </section>
 
       <section className="si-section si-width" aria-labelledby="planning-heading">
         <div className="si-section-heading">
+          <p className="si-section-kicker">Plan your trip</p>
           <h2 id="planning-heading">What do you need help with?</h2>
           <p>Choose one part of your trip and start planning.</p>
         </div>
@@ -106,7 +136,7 @@ export default function Home() {
               <span className="si-icon" aria-hidden="true">{card.icon}</span>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
-              <span>Plan this →</span>
+              <span>Read more</span>
             </Link>
           ))}
         </div>
@@ -121,12 +151,13 @@ export default function Home() {
       <section className="si-before" aria-labelledby="before-heading">
         <div className="si-width si-before-layout">
           <div>
-            <h2 id="before-heading">Before you go</h2>
-            <p>Check the practical details that usually decide whether a Smokies day feels easy or exhausting.</p>
+            <p className="si-section-kicker">Before you go</p>
+            <h2 id="before-heading">Check the details that change the day.</h2>
+            <p>Parking, weather, traffic and timing usually decide whether a Smokies day feels easy or exhausting.</p>
           </div>
           <div className="si-before-grid">
             {beforeYouGo.map((note) => (
-              <Link href={note.href} key={note.label}>{note.label} →</Link>
+              <Link href={note.href} key={note.label}>{note.label}</Link>
             ))}
           </div>
         </div>
