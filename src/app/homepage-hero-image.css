@@ -66,18 +66,35 @@
 
 .si-hero {
   min-height: clamp(590px, 64vw, 760px) !important;
-  background-image:
-    linear-gradient(90deg, rgba(8, 24, 38, 0.78) 0%, rgba(8, 24, 38, 0.56) 40%, rgba(8, 24, 38, 0.15) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.34)),
-    url("/images/smoky-home-hero.svg") !important;
+  background:
+    radial-gradient(circle at 74% 30%, rgba(255, 201, 40, 0.72), transparent 18rem),
+    radial-gradient(circle at 86% 64%, rgba(255, 122, 24, 0.48), transparent 22rem),
+    radial-gradient(circle at 28% 38%, rgba(0, 165, 168, 0.4), transparent 24rem),
+    linear-gradient(135deg, #075b91 0%, #007dff 34%, #0ea5a8 66%, #ff7a18 100%) !important;
   background-position: center center !important;
   background-size: cover !important;
+}
+
+.si-hero::before {
+  opacity: 0.42 !important;
 }
 
 .si-ridge-one,
 .si-ridge-two,
 .si-ridge-three {
-  display: none !important;
+  display: block !important;
+}
+
+.si-ridge-one {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+.si-ridge-two {
+  background: rgba(0, 86, 179, 0.34) !important;
+}
+
+.si-ridge-three {
+  background: linear-gradient(180deg, rgba(31, 122, 77, 0.78), rgba(23, 79, 67, 0.94)) !important;
 }
 
 .si-hero-layout {
@@ -146,30 +163,6 @@
   font-weight: 850 !important;
 }
 
-.si-hero-panel a:nth-of-type(1)::before,
-.si-trip-strip a:nth-child(1)::before,
-.si-card:nth-child(1)::after {
-  background: var(--blue) !important;
-}
-
-.si-hero-panel a:nth-of-type(2)::before,
-.si-trip-strip a:nth-child(2)::before,
-.si-card:nth-child(2)::after {
-  background: var(--green) !important;
-}
-
-.si-hero-panel a:nth-of-type(3)::before,
-.si-trip-strip a:nth-child(3)::before,
-.si-card:nth-child(3)::after {
-  background: var(--orange) !important;
-}
-
-.si-hero-panel a:nth-of-type(4)::before,
-.si-trip-strip a:nth-child(4)::before,
-.si-card:nth-child(4)::after {
-  background: var(--teal) !important;
-}
-
 .si-trip-strip-inner {
   border-radius: 12px !important;
   box-shadow: var(--shadow-lg) !important;
@@ -190,9 +183,11 @@
   height: 6px !important;
 }
 
-.si-trip-strip a:nth-child(5)::before {
-  background: var(--family-pink) !important;
-}
+.si-trip-strip a:nth-child(1)::before { background: var(--blue) !important; }
+.si-trip-strip a:nth-child(2)::before { background: var(--green) !important; }
+.si-trip-strip a:nth-child(3)::before { background: var(--orange) !important; }
+.si-trip-strip a:nth-child(4)::before { background: var(--teal) !important; }
+.si-trip-strip a:nth-child(5)::before { background: var(--family-pink) !important; }
 
 .si-trip-strip a:hover {
   color: #ffffff !important;
@@ -228,14 +223,6 @@
   opacity: 0.12 !important;
 }
 
-.si-card:nth-child(5)::after {
-  background: var(--yellow) !important;
-}
-
-.si-card:nth-child(6)::after {
-  background: var(--family-pink) !important;
-}
-
 .si-card:hover {
   transform: translateY(-6px) !important;
   box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.28), 0 8px 18px rgba(15, 23, 42, 0.08) !important;
@@ -247,26 +234,11 @@
   font-weight: 900 !important;
 }
 
-.si-card:nth-child(2) .si-icon {
-  background: var(--green) !important;
-}
-
-.si-card:nth-child(3) .si-icon {
-  background: var(--orange) !important;
-}
-
-.si-card:nth-child(4) .si-icon {
-  background: var(--teal) !important;
-}
-
-.si-card:nth-child(5) .si-icon {
-  color: #172033 !important;
-  background: var(--yellow) !important;
-}
-
-.si-card:nth-child(6) .si-icon {
-  background: var(--family-pink) !important;
-}
+.si-card:nth-child(2) .si-icon { background: var(--green) !important; }
+.si-card:nth-child(3) .si-icon { background: var(--orange) !important; }
+.si-card:nth-child(4) .si-icon { background: var(--teal) !important; }
+.si-card:nth-child(5) .si-icon { color: #172033 !important; background: var(--yellow) !important; }
+.si-card:nth-child(6) .si-icon { background: var(--family-pink) !important; }
 
 .si-card h3 {
   font-family: var(--font-geist-sans), Montserrat, Helvetica, Arial, sans-serif !important;
