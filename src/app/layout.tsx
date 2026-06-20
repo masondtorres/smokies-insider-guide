@@ -19,7 +19,44 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.smokyinsider.com"),
   title: "Smoky Insider",
   description:
-    "Better routes, places to eat, deals, things to do, events and visitor resources for the Smokies without the guesswork.",
+    "Family-friendly Smoky Mountains travel planning for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park.",
+  applicationName: "Smoky Insider",
+  category: "Travel and Tourism",
+  keywords: [
+    "Smoky Mountains travel planning",
+    "Great Smoky Mountains trip planner",
+    "Gatlinburg travel guide",
+    "Pigeon Forge trip planning",
+    "Sevierville Tennessee travel",
+    "family vacation planning",
+    "travel and tourism",
+  ],
+  openGraph: {
+    type: "website",
+    siteName: "Smoky Insider",
+    title: "Smoky Insider | Smoky Mountains Trip Planner",
+    description:
+      "Family-friendly Smoky Mountains travel planning for routes, attractions, restaurants, stays, deals and before-you-go details.",
+    url: "https://www.smokyinsider.com",
+    locale: "en_US",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  other: {
+    rating: "General",
+    audience: "All",
+    classification: "Travel and Tourism",
+    coverage: "United States",
+    distribution: "Global",
+    "page-topic": "Family-friendly Smoky Mountains travel planning",
+    "site-category": "Travel, Tourism, Vacation Planning, Family Travel",
+  },
   icons: {
     icon: "/smokies-field-guide-icon.svg",
     shortcut: "/smokies-field-guide-icon.svg",
