@@ -15,36 +15,52 @@ const navigation: Array<[string, string, Category | "my-plan"]> = [
 
 const footerLinks = [
   ["About", "/about"],
-  ["Advertise", "/advertise"],
   ["Contact", "/contact"],
+  ["Advertise", "/advertise"],
   ["Privacy", "/privacy"],
   ["Terms", "/terms"],
-  ["Business Listings", "/business-listings"],
-  ["Claim a Business", "/business-listings/claim"],
 ];
 
-const utilityLinks: Partial<Record<Category, Array<{ href: string; title: string; description: string }>>> = {
-  go: [
-    { href: "/go/parking", title: "Parking without losing the day", description: "Separate park parking from town parking and keep a legal backup." },
-  ],
-  do: [
-    { href: "/rainy-day", title: "A flexible rainy-day plan", description: "Choose one indoor anchor and keep the route compact." },
-    { href: "/free-and-cheap-smokies", title: "A lower-cost Smokies plan", description: "Count the whole day and choose one optional paid anchor." },
-  ],
-  see: [
-    { href: "/cades-cove", title: "Cades Cove practical planner", description: "Protect the time block and check the vehicle schedule." },
-  ],
-  eat: [
-    { href: "/eat/family-friendly", title: "Family-friendly food planning", description: "Choose the meal shape, timing and backup before hunger takes over." },
-  ],
-  stay: [
-    { href: "/stay/cabins", title: "Cabin stay practical planner", description: "Compare access, total trip fit and booking details before committing." },
-  ],
+const pageHelp: Record<Category, { heading: string; note: string; links: Array<{ href: string; title: string; description: string }> }> = {
+  go: {
+    heading: "Start with the area",
+    note: "Traffic and parking decide more Smokies days than people expect. Pick the area first, then build the day around it.",
+    links: [{ href: "/go/parking", title: "Parking guide", description: "Know the parking rules before you leave." }],
+  },
+  do: {
+    heading: "Pick one main thing",
+    note: "One anchor activity is enough. Add food and a backup nearby instead of stacking the day too tight.",
+    links: [
+      { href: "/rainy-day", title: "Rainy-day backup", description: "A simple plan when weather changes." },
+      { href: "/free-and-cheap-smokies", title: "Free and cheap ideas", description: "Lower-cost ways to keep the day useful." },
+    ],
+  },
+  see: {
+    heading: "Match the view to the day",
+    note: "Views depend on weather, road access and crowds. Keep scenic stops close to the route you are already using.",
+    links: [{ href: "/cades-cove", title: "Cades Cove planner", description: "Use this when the loop is the main event." }],
+  },
+  eat: {
+    heading: "Choose the meal area first",
+    note: "Do not cross town hungry. Pick the area and timing first, then choose the restaurant.",
+    links: [{ href: "/eat/family-friendly", title: "Family food plan", description: "Good for groups, kids and backups." }],
+  },
+  stay: {
+    heading: "Choose the base area",
+    note: "The best place to stay depends on what you will do most, not just the room or cabin price.",
+    links: [{ href: "/stay/cabins", title: "Cabin stay planner", description: "Check access, roads and booking terms." }],
+  },
+  deals: {
+    heading: "Save money without chasing junk",
+    note: "Start with a budget. Verify every offer before you build the day around it.",
+    links: [],
+  },
 };
 
 export function CategoryPage({ category }: { category: Category }) {
   const info = categoryInfo[category];
   const categoryCards = cardsFor(category);
+  const help = pageHelp[category];
 
   return (
     <div className="category-foundation">
@@ -63,28 +79,39 @@ export function CategoryPage({ category }: { category: Category }) {
         <section className="category-hero">
           <div className="category-ridge category-ridge-back" aria-hidden="true" />
           <div className="category-ridge category-ridge-front" aria-hidden="true" />
-          <div className="category-width category-hero-inner">
+          <div className="category-width category-hero-inner simple">
             <div className="category-hero-copy">
-              <p className="category-eyebrow">Smokies field guide / {info.title}</p>
+              <p className="category-eyebrow">Smoky Insider</p>
               <h1>{info.title}</h1>
               <p>{info.intro}</p>
             </div>
-            <aside className="category-route-note" aria-label="How to use this page">
-              <strong>Build a workable day</strong>
-              <span>Choose a pattern. Check the caution. Save what fits.</span>
-              <Link href="/my-plan">Open My Plan <span aria-hidden="true">&gt;</span></Link>
-            </aside>
           </div>
         </section>
 
         <section className="category-width category-content" aria-labelledby="category-starters">
-          {utilityLinks[category]?.length ? (
-            <section className="category-utility-guides" aria-labelledby="category-utility-title">
+          <div className="category-section-heading simple">
+            <div>
+              <p className="category-eyebrow">Choose one starting point</p>
+              <h2 id="category-starters">{help.heading}</h2>
+            </div>
+            <p>{help.note}</p>
+          </div>
+
+          {categoryCards.length > 0 ? (
+            <div className="category-card-grid simple">
+              {categoryCards.map((card, index) => (
+                <GuideCard card={card} index={index + 1} key={card.id} />
+              ))}
+            </div>
+          ) : null}
+
+          {help.links.length ? (
+            <section className="category-utility-guides simple" aria-label="Helpful guides">
               <div>
-                <p className="category-eyebrow">Practical field guide</p>
-                <h2 id="category-utility-title">Solve the first planning problem</h2>
+                <p className="category-eyebrow">Helpful guide</p>
+                <h2>Use this next</h2>
               </div>
-              {utilityLinks[category]?.map((link) => (
+              {help.links.map((link) => (
                 <Link href={link.href} key={link.href}>
                   <strong>{link.title}</strong>
                   <span>{link.description}</span>
@@ -94,31 +121,10 @@ export function CategoryPage({ category }: { category: Category }) {
             </section>
           ) : null}
 
-          <div className="category-section-heading">
-            <div>
-              <p className="category-eyebrow">Start with the shape of the day</p>
-              <h2 id="category-starters">Planning starters</h2>
-            </div>
-            <p>{categoryCards.length} practical options. Save any that fit, then review the mix in My Plan.</p>
-          </div>
-
-          {categoryCards.length > 0 ? (
-            <div className="category-card-grid">
-              {categoryCards.map((card, index) => (
-                <GuideCard card={card} index={index + 1} key={card.id} />
-              ))}
-            </div>
-          ) : (
-            <div className="category-empty">
-              <h2>No planning starters yet</h2>
-              <p>This section will stay empty until a useful, source-safe planning pattern is ready.</p>
-              <Link href="/">Return home</Link>
-            </div>
-          )}
-
-          <aside className="category-trust-note">
+          <aside className="category-trust-note simple">
             <strong>Before you go</strong>
-            <p>These are planning patterns, not verified business listings or guarantees. Recheck conditions, parking, access and operating details with the relevant official source.</p>
+            <p>Recheck hours, road conditions, parking, access and pricing before you leave. Smoky Mountains details change fast.</p>
+            <Link href="/my-plan">Open My Plan <span aria-hidden="true">&gt;</span></Link>
           </aside>
         </section>
       </main>
@@ -126,7 +132,7 @@ export function CategoryPage({ category }: { category: Category }) {
       <footer className="category-footer">
         <div>
           <strong>Smoky Insider</strong>
-          <span>© 2026 Smoky Insider. Independent trip-planning field guide.</span>
+          <span>© 2026 Smoky Insider. Practical Smoky Mountains trip planning.</span>
         </div>
         <nav className="category-footer-links" aria-label="Policy and information links">
           {footerLinks.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
