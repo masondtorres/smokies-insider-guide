@@ -1,0 +1,162 @@
+:root {
+  --forest-pine: #1f7a4d !important;
+  --ridge-blue: #007dff !important;
+  --smoky-gray: #64748b !important;
+  --cabin-brown: #334155 !important;
+  --map-cream: #fafafa !important;
+  --stone-surface: #e2e8f0 !important;
+  --sunrise-gold: #ffc928 !important;
+  --laurel-bloom: #f05a8a !important;
+  --barn-copper: #ff7a18 !important;
+  --charcoal-text: #1e293b !important;
+  --forest: #1f7a4d !important;
+  --ridge: #007dff !important;
+  --smoky: #64748b !important;
+  --cabin: #334155 !important;
+  --cream: #fafafa !important;
+  --stone: #e2e8f0 !important;
+  --gold: #ffc928 !important;
+  --copper: #ff7a18 !important;
+  --ink: #1e293b !important;
+  --paper: #ffffff !important;
+  --line: #e2e8f0 !important;
+  --blue: #007dff !important;
+  --blue-dark: #0056b3 !important;
+  --orange: #ff7a18 !important;
+  --orange-dark: #d95d00 !important;
+  --yellow: #ffc928 !important;
+  --teal: #00a5a8 !important;
+  --green: #1f7a4d !important;
+  --family-pink: #f05a8a !important;
+}
+
+body {
+  color: #1e293b !important;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 45%, #f3f6fb 100%) !important;
+  font-family: var(--font-geist-sans), Montserrat, Helvetica, Arial, sans-serif !important;
+}
+
+.site-header,
+.si-header {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08) !important;
+}
+
+.wordmark,
+.si-wordmark {
+  color: #1e293b !important;
+  font-weight: 900 !important;
+}
+
+.primary-nav,
+.si-nav,
+nav {
+  color: #1e293b !important;
+  font-weight: 800 !important;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #1e293b !important;
+  font-family: var(--font-geist-sans), Montserrat, Helvetica, Arial, sans-serif !important;
+  font-weight: 900 !important;
+}
+
+.hero-section,
+.page-hero,
+.category-hero,
+.route-hero {
+  background: linear-gradient(135deg, #075b91 0%, #007dff 35%, #00a5a8 68%, #ff7a18 100%) !important;
+  border: 1px solid rgba(226, 232, 240, 0.42) !important;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.22) !important;
+}
+
+.hero-section h1,
+.page-hero h1,
+.category-hero h1,
+.route-hero h1,
+.hero-section h2,
+.page-hero h2,
+.category-hero h2,
+.route-hero h2 {
+  color: #ffffff !important;
+  text-shadow: 0 5px 34px rgba(0, 0, 0, 0.45) !important;
+}
+
+.hero-section p,
+.page-hero p,
+.category-hero p,
+.route-hero p {
+  color: rgba(255, 255, 255, 0.94) !important;
+  font-weight: 700 !important;
+}
+
+.card,
+.guide-card,
+.category-card,
+.plan-card,
+.resource-card,
+.article-card,
+.featured-article-card,
+.section-block,
+.field-note,
+.business-cta,
+.info-card {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  background: #ffffff !important;
+  color: #1e293b !important;
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.18), 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+}
+
+.card p,
+.guide-card p,
+.category-card p,
+.resource-card p,
+.article-card p,
+.section-block p {
+  color: #475569 !important;
+}
+
+.button-primary,
+.si-button-primary {
+  color: #ffffff !important;
+  background: #ff7a18 !important;
+}
+
+.button-secondary,
+.si-button-secondary {
+  color: #0056b3 !important;
+  background: #ffffff !important;
+  border-color: rgba(0, 125, 255, 0.28) !important;
+}
+
+main a:not([class]) {
+  color: #0056b3 !important;
+  font-weight: 750;
+}
+
+main a:not([class]):hover,
+.primary-nav a:hover,
+.si-nav a:hover {
+  color: #d95d00 !important;
+}
+
+.site-footer,
+.si-footer,
+footer {
+  color: #1e293b !important;
+  border-top: 1px solid #e2e8f0 !important;
+  background: transparent !important;
+}
+
+input,
+select,
+textarea {
+  border-color: #e2e8f0 !important;
+  background: #ffffff !important;
+  color: #1e293b !important;
+}
