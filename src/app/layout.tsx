@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Geist_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 import "./homepage-hero-image.css";
+import "./sitewide-theme.css";
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
