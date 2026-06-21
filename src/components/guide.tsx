@@ -193,6 +193,62 @@ export function LocalNote({
   );
 }
 
+export function GuidePage({ page, path }: { page: GuidePageData; path: string }) {
+  return (
+    <div className="guide-page">
+      <GuideJsonLd data={page} path={path} />
+      <SiteHeader />
+      <main>
+        <section className="page-hero">
+          <p className="eyebrow">Smoky Insider guide</p>
+          <h1>{page.title}</h1>
+          <p>{page.description}</p>
+        </section>
+
+        <section className="content-section guide-summary">
+          <p className="eyebrow">Start here</p>
+          <h2>Quick answer</h2>
+          <p>{page.directAnswer}</p>
+        </section>
+
+        {page.bestFor?.length || page.skipIf?.length ? (
+          <BestForSkipIf bestFor={page.bestFor ?? []} skipIf={page.skipIf ?? []} />
+        ) : null}
+
+        {page.sections.length ? (
+          <section className="content-section guide-sections">
+            {page.sections.map((section) => (
+              <article className="info-card" key={section.title}>
+                <h2>{section.title}</h2>
+                <p>{section.body}</p>
+              </article>
+            ))}
+          </section>
+        ) : null}
+
+        {page.links.length ? (
+          <section className="content-section guide-next-links">
+            <p className="eyebrow">Next step</p>
+            <h2>Keep planning</h2>
+            <div className="link-grid">
+              {page.links.map((link) => (
+                <Link href={link.href} key={link.href}>
+                  <strong>{link.title}</strong>
+                  {link.description ? <span>{link.description}</span> : null}
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        <SourceBox sources={page.sources ?? []} />
+        <LastUpdated date={page.reviewedOn} />
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}
+
 export function GuideJsonLd({ data, path }: { data: GuidePageData; path: string }) {
   const schema = {
     "@context": "https://schema.org",
