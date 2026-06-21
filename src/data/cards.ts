@@ -19,12 +19,12 @@ export type GuideCard = {
 };
 
 export const categoryInfo: Record<Category, { title: string; intro: string }> = {
-  go: { title: "Go", intro: "Start with an area or route, then keep the rest of the day within reach." },
-  do: { title: "Do", intro: "Choose a practical activity shape without relying on unverified business details." },
-  see: { title: "See", intro: "Build scenic time around weather, road conditions, crowds and walking needs." },
-  eat: { title: "Eat", intro: "Use meal-planning patterns by area. Specific businesses are intentionally not listed yet." },
-  stay: { title: "Stay", intro: "Compare base areas and trip fit without invented lodging listings, rates or availability." },
-  deals: { title: "Deals", intro: "Plan around value, not unverified coupons. No offers are published in this framework." },
+  go: { title: "Get Around", intro: "Pick the route or area first so the day does not turn into traffic and backtracking." },
+  do: { title: "Things To Do", intro: "Choose one main activity, then keep food, parking and backup plans nearby." },
+  see: { title: "Scenic Stops", intro: "Find the views, drives and short stops that fit the weather, crowds and time you have." },
+  eat: { title: "Where To Eat", intro: "Plan meals by area and timing so hunger does not wreck the day." },
+  stay: { title: "Where To Stay", intro: "Choose the best base area for the kind of trip you are actually taking." },
+  deals: { title: "Deals & Budget", intro: "Keep the trip affordable without chasing unverified coupons or wasting the day." },
 };
 
 export const cards: GuideCard[] = [
