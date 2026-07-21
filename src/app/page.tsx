@@ -75,7 +75,7 @@ export default function Home() {
         <div className="si-ridge-two" aria-hidden="true" />
         <div className="si-ridge-three" aria-hidden="true" />
         <div className="si-width si-hero-copy">
-          <p className="si-kicker">Local-first Smokies planning</p>
+          <p className="si-kicker">Veteran-Owned Smokies Guide</p>
           <h1 id="home-title">Plan your Smokies trip without the guesswork.</h1>
           <p className="si-hero-promise">
             Local-first planning help for Gatlinburg, Pigeon Forge, Sevierville, Townsend and the Great Smoky Mountains.
@@ -129,7 +129,7 @@ export default function Home() {
       <footer className="si-footer si-width">
         <div>
           <strong>Smoky Insider</strong>
-          <span>Independent trip-planning help for the Smoky Mountains.</span>
+          <span>Veteran-owned independent trip-planning help for the Smoky Mountains.</span>
           <small>&copy; 2026 Smoky Insider</small>
         </div>
         <nav className="si-footer-links" aria-label="Policy and information links">
