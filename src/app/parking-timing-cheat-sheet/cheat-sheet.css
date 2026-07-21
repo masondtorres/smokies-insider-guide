@@ -1,0 +1,213 @@
+.cheat-sheet-page {
+  min-height: 100vh;
+  color: #13261d;
+  background: linear-gradient(180deg, #ffffff 0%, #fff8e7 100%);
+}
+
+.cheat-sheet-shell {
+  width: min(1080px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.cheat-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cheat-sheet-brand {
+  color: #064d2c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.cheat-print-button,
+.cheat-sheet-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff7617, #c73f2b);
+  box-shadow: 0 12px 26px rgba(199, 63, 43, 0.24);
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cheat-sheet-hero {
+  overflow: hidden;
+  border-radius: 28px;
+  padding: clamp(2rem, 6vw, 4.5rem);
+  color: #ffffff;
+  background:
+    linear-gradient(100deg, rgba(6, 77, 44, 0.95), rgba(8, 117, 63, 0.72)),
+    url("https://www.nps.gov/npgallery/GetAsset/28de6b98-1dd8-b71c-073d-1ffaf7d178b7") center 48% / cover;
+  box-shadow: 0 24px 56px rgba(6, 77, 44, 0.24);
+}
+
+.cheat-sheet-eyebrow {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  color: #173020;
+  background: #ffc928;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cheat-sheet-hero h1 {
+  max-width: 780px;
+  margin: 1rem 0;
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  line-height: 0.98;
+}
+
+.cheat-sheet-hero p {
+  max-width: 760px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.cheat-sheet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cheat-sheet-card,
+.cheat-sheet-table-wrap,
+.cheat-sheet-source {
+  border: 1px solid rgba(6, 77, 44, 0.13);
+  border-radius: 22px;
+  padding: 1.35rem;
+  background: #ffffff;
+  box-shadow: 0 16px 36px rgba(6, 77, 44, 0.12);
+}
+
+.cheat-sheet-card h2,
+.cheat-sheet-card h3,
+.cheat-sheet-table-wrap h2,
+.cheat-sheet-source h2 {
+  margin-top: 0;
+  color: #13261d;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.cheat-sheet-card ul,
+.cheat-sheet-source ul {
+  margin-bottom: 0;
+  padding-left: 1.2rem;
+}
+
+.cheat-sheet-card li,
+.cheat-sheet-source li {
+  margin: 0.55rem 0;
+  line-height: 1.55;
+}
+
+.cheat-sheet-table-wrap {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.cheat-sheet-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cheat-sheet-table th,
+.cheat-sheet-table td {
+  border-bottom: 1px solid rgba(6, 77, 44, 0.14);
+  padding: 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.cheat-sheet-table th {
+  color: #064d2c;
+  background: #eaf8ef;
+}
+
+.cheat-sheet-source {
+  margin-top: 1rem;
+  background: #e8f4ff;
+}
+
+.cheat-sheet-source a {
+  color: #0066d6;
+  font-weight: 800;
+}
+
+.cheat-sheet-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1.25rem 0;
+}
+
+@media (max-width: 720px) {
+  .cheat-sheet-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cheat-sheet-header,
+  .cheat-sheet-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media print {
+  .cheat-print-button,
+  .cheat-sheet-link,
+  .visual-photo-credit,
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+
+  .cheat-sheet-page,
+  .cheat-sheet-shell {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+  }
+
+  .cheat-sheet-hero,
+  .cheat-sheet-card,
+  .cheat-sheet-table-wrap,
+  .cheat-sheet-source {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+
+  .cheat-sheet-hero {
+    color: #13261d;
+    background: #ffffff;
+    border: 2px solid #064d2c;
+  }
+
+  .cheat-sheet-hero h1,
+  .cheat-sheet-hero p {
+    color: #13261d;
+    text-shadow: none;
+  }
+}
