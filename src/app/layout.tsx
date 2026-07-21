@@ -80,7 +80,7 @@ export default function RootLayout({
       <body>
         {children}
         <aside className="visual-photo-credit" aria-label="Photography credit">
-          Smokies photography: National Park Service. NPS-credited images shown here are used under the public-domain guidance on their source pages.
+          Smokies photographs: National Park Service. Food photograph: Toa Heftiba, CC0. Ticket photograph: Mattia Luigi Nappi, CC BY-SA 3.0. Full source records are in the project manifest.
         </aside>
         <MobileBottomNav />
         <Analytics />
