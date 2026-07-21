@@ -22,19 +22,19 @@ const mainLinks = [
 ];
 
 const planningCards = [
-  { title: "Go", text: "Routes, parking, traffic and arrival timing.", href: "/go", icon: "Go" },
-  { title: "Do", text: "Attractions, hikes, shows and rainy-day options.", href: "/do", icon: "Do" },
-  { title: "See", text: "Overlooks, scenic drives, waterfalls and photo spots.", href: "/see", icon: "See" },
-  { title: "Eat", text: "Local restaurants, quick meals and family-friendly food.", href: "/eat", icon: "Eat" },
-  { title: "Stay", text: "Cabins, hotels, campgrounds and where to base your trip.", href: "/stay", icon: "Stay" },
-  { title: "Deals", text: "Tickets, discounts, local savings and budget-friendly ideas.", href: "/deals", icon: "Save" },
+  { title: "Go", text: "Routes, parking, traffic and arrival timing.", action: "Plan routes & parking", href: "/go", icon: "Go" },
+  { title: "Do", text: "Attractions, hikes, shows and rainy-day options.", action: "Plan what to do", href: "/do", icon: "Do" },
+  { title: "See", text: "Overlooks, scenic drives, waterfalls and photo spots.", action: "Plan scenic stops", href: "/see", icon: "See" },
+  { title: "Eat", text: "Local restaurants, quick meals and family-friendly food.", action: "Plan where to eat", href: "/eat", icon: "Eat" },
+  { title: "Stay", text: "Cabins, hotels, campgrounds and where to base your trip.", action: "Choose your base", href: "/stay", icon: "Stay" },
+  { title: "Deals", text: "Tickets, discounts, local savings and budget-friendly ideas.", action: "Plan the budget", href: "/deals", icon: "Save" },
 ];
 
 const utilityItems = [
-  "Avoid bad timing",
-  "Know parking pressure",
-  "Pick the right area",
-  "Save the useful stuff",
+  "Choose one base area",
+  "Plan parking before driving",
+  "Keep one rainy-day backup",
+  "Save the plan on your phone",
 ];
 
 const beforeYouGo = [
@@ -48,6 +48,8 @@ const beforeYouGo = [
 const footerLinks = [
   ["About", "/about"],
   ["Contact", "/contact"],
+  ["Advertise", "/advertise"],
+  ["Affiliate Disclosure", "/affiliate-disclosure"],
   ["Privacy", "/privacy"],
   ["Terms", "/terms"],
   ["Editorial Policy", "/editorial-policy"],
@@ -81,9 +83,9 @@ export default function Home() {
             Practical Smokies planning from an East Tennessee-based U.S. Air Force veteran, with clear advice for Gatlinburg, Pigeon Forge, Sevierville, Townsend and the national park.
           </p>
           <div className="si-actions">
-            <Link className="si-button si-button-primary" href="/start-here">Start Here</Link>
-            <Link className="si-button si-button-secondary" href="/parking-timing-cheat-sheet">Get the Free Cheat Sheet</Link>
-            <Link className="si-button si-button-secondary" href="/my-plan">Build My Plan</Link>
+            <Link className="si-button si-button-primary" href="/my-plan">Build My Plan</Link>
+            <Link className="si-button si-button-secondary" href="/parking-timing-cheat-sheet">Get the Free Parking Cheat Sheet</Link>
+            <Link className="si-hero-text-link" href="/start-here">New here? Start here</Link>
           </div>
         </div>
       </section>
@@ -92,7 +94,7 @@ export default function Home() {
         <div className="si-section-heading">
           <p className="si-section-kicker">Plan your trip</p>
           <h2 id="planning-heading">What do you need help with?</h2>
-          <p>Choose one part of your trip and start planning.</p>
+          <p>Choose the decision blocking your trip right now.</p>
         </div>
         <div className="si-card-grid">
           {planningCards.map((card) => (
@@ -100,7 +102,7 @@ export default function Home() {
               <span className="si-icon" aria-hidden="true">{card.icon}</span>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
-              <span>Plan this</span>
+              <span>{card.action}</span>
             </Link>
           ))}
         </div>
@@ -117,11 +119,11 @@ export default function Home() {
           <p className="si-section-kicker">Who runs Smoky Insider</p>
           <h2 id="editor-heading">Mason Torres, Founder and Editor</h2>
           <p>
-            Smoky Insider is a veteran-owned, independent East Tennessee guide. Mason Torres oversees the planning standards, source checks and plain-language recommendations so families can make clearer decisions before they arrive.
+            Smoky Insider is a veteran-owned, independent East Tennessee guide built to help families avoid the traffic, parking, bad timing and overpacked days that make a good trip harder than it needs to be.
           </p>
         </div>
         <div className="si-editor-actions">
-          <Link className="si-button si-button-primary" href="/about">Meet the Editor</Link>
+          <Link className="si-button si-button-primary" href="/about">Meet Mason</Link>
           <Link className="si-button si-button-secondary" href="/corrections">Report a Correction</Link>
         </div>
       </section>

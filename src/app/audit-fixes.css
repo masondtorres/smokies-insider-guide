@@ -1,0 +1,169 @@
+/* Final audit corrections loaded after the existing visual layers. */
+
+:root {
+  /* See must show scenery or a landmark, not an unrelated wildlife close-up. */
+  --photo-see: url("https://www.nps.gov/npgallery/GetAsset/286400d0-1dd8-b71c-07cb-8ea18bed9f22");
+}
+
+/* Keep homepage photo labels readable under every crop and screen brightness. */
+.si-card::after {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  background: #0d2a21 !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.34) !important;
+  text-shadow: none !important;
+}
+
+.si-card:focus-visible {
+  outline: 4px solid #0a5ca8 !important;
+  outline-offset: 4px !important;
+}
+
+/* Category cards are tools, not six repeated stock-photo panels. */
+.category-guide-card::before {
+  display: none !important;
+  content: none !important;
+}
+
+.category-guide-card {
+  padding: 1.35rem !important;
+  border: 1px solid #d7dee7 !important;
+  background: #ffffff !important;
+}
+
+.category-guide-card:hover,
+.category-guide-card:focus-within {
+  border-color: #0a5ca8 !important;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14) !important;
+}
+
+/* Do not show future-partner promises before a verified listing or offer exists. */
+.planning-desk-cta {
+  display: none !important;
+}
+
+.category-decision-section,
+.category-official-sources {
+  margin-top: 1.25rem;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border: 1px solid #d7dee7;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+}
+
+.category-decision-heading,
+.category-official-sources > div:first-child {
+  max-width: 760px;
+  margin-bottom: 1.1rem;
+}
+
+.category-decision-heading h2,
+.category-official-sources h2 {
+  margin: 0 0 0.65rem;
+  color: #0f172a !important;
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.category-decision-heading > p:not(.category-eyebrow) {
+  margin: 0;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.category-decision-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.category-decision-grid article {
+  padding: 1.1rem;
+  border: 1px solid #d7dee7;
+  border-radius: 16px;
+  background: #f8fafc;
+}
+
+.category-decision-grid h3 {
+  margin: 0 0 0.8rem;
+  color: #0f172a !important;
+  font-size: 1.08rem;
+  line-height: 1.3;
+}
+
+.category-decision-grid p {
+  margin: 0.55rem 0 0;
+  color: #475569;
+  line-height: 1.55;
+}
+
+.category-decision-grid strong {
+  color: #0f172a;
+}
+
+.category-official-sources {
+  background: #eef6ff;
+}
+
+.category-official-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.category-official-grid a {
+  display: block;
+  padding: 1rem;
+  border: 1px solid #b9cbe0;
+  border-radius: 14px;
+  color: #0f172a;
+  background: #ffffff;
+}
+
+.category-official-grid a:hover,
+.category-official-grid a:focus-visible {
+  border-color: #0a5ca8;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
+}
+
+.category-official-grid strong,
+.category-official-grid span,
+.category-official-grid b {
+  display: block;
+}
+
+.category-official-grid span {
+  margin-top: 0.45rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.category-official-grid b {
+  margin-top: 0.7rem;
+  color: #07559e;
+  font-size: 0.86rem;
+}
+
+.category-trust-note.simple {
+  border-left: 6px solid #a8430b !important;
+}
+
+@media (max-width: 900px) {
+  .category-decision-grid,
+  .category-official-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-utility-guides.simple {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-guide-card,
+  .category-official-grid a {
+    transition: none !important;
+  }
+}
