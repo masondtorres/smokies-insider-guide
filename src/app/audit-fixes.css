@@ -37,6 +37,11 @@
   box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14) !important;
 }
 
+/* Do not show future-partner promises before a verified listing or offer exists. */
+.planning-desk-cta {
+  display: none !important;
+}
+
 .category-decision-section,
 .category-official-sources {
   margin-top: 1.25rem;
