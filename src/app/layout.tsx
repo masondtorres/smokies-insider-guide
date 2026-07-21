@@ -10,6 +10,7 @@ import "./visual-layer-v1.css";
 import "./visual-layer-v2.css";
 import "./smokies-radiant-v1.css";
 import "./authority-v1.css";
+import "./audit-fixes.css";
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
