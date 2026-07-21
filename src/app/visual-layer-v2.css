@@ -1,66 +1,49 @@
 /*
- * Smoky Insider visual correction v2
- * Makes homepage photography specific, labeled and tied to the visitor task.
+ * Smoky Insider homepage visual correction v3
+ * Each planning card uses a literal subject that matches Go, Do, See, Eat, Stay or Deals.
  * Source records: docs/visual-photo-sources-v1.md
  */
 
 :root {
   --photo-home: url("https://www.nps.gov/npgallery/GetAsset/28de6b98-1dd8-b71c-073d-1ffaf7d178b7");
-  --photo-bear: url("https://www.nps.gov/npgallery/GetAsset/284ca6a1-1dd8-b71c-079b-8a55df0c6273");
   --photo-go: url("https://www.nps.gov/npgallery/GetAsset/28de6b98-1dd8-b71c-073d-1ffaf7d178b7");
   --photo-do: url("https://www.nps.gov/npgallery/GetAsset/28762f3d-1dd8-b71c-07da-932310fafec6");
-  --photo-see: url("https://www.nps.gov/npgallery/GetAsset/286400d0-1dd8-b71c-07cb-8ea18bed9f22");
-  --photo-eat: url("https://www.nps.gov/npgallery/GetAsset/D2A1A573-595B-4855-B076-4F575511C109");
+  --photo-see: url("https://www.nps.gov/npgallery/GetAsset/284ca6a1-1dd8-b71c-079b-8a55df0c6273");
+  --photo-eat: url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Pancake%20Breakfast%20%28Unsplash%29.jpg");
+  --photo-stay: url("https://www.nps.gov/npgallery/GetAsset/2866d8aa-1dd8-b71c-079a-aa67ecb35b45");
+  --photo-deals: url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Tickets.jpg");
 }
 
-/* A brighter, specific Smokies setting replaces the flat mountain hero. */
+/* The hero establishes the Smokies. It does not compete with the six planning choices. */
 .si-hero {
+  min-height: clamp(540px, 62vw, 700px) !important;
   background-image:
-    linear-gradient(90deg, rgba(8, 30, 23, 0.94) 0%, rgba(8, 30, 23, 0.76) 45%, rgba(8, 30, 23, 0.25) 76%, rgba(8, 30, 23, 0.08) 100%),
-    linear-gradient(0deg, rgba(8, 30, 23, 0.42), transparent 55%),
+    linear-gradient(90deg, rgba(8, 30, 23, 0.94) 0%, rgba(8, 30, 23, 0.74) 48%, rgba(8, 30, 23, 0.22) 82%, rgba(8, 30, 23, 0.08) 100%),
+    linear-gradient(0deg, rgba(8, 30, 23, 0.38), transparent 58%),
     var(--photo-home) !important;
   background-position: center 48% !important;
   background-size: cover !important;
 }
 
-/* Bear becomes a named visual feature inside the homepage header. */
+/* Remove the bear feature from the header. The bear now belongs to See. */
 .si-hero::before {
-  content: "Black bear country\A Great Smoky Mountains National Park" !important;
-  position: absolute !important;
-  z-index: 3 !important;
-  inset: auto max(1.5rem, calc((100vw - 1240px) / 2)) clamp(4.5rem, 8vw, 6.5rem) auto !important;
-  width: clamp(250px, 25vw, 350px) !important;
-  height: clamp(285px, 34vw, 430px) !important;
-  display: flex !important;
-  align-items: flex-end !important;
-  padding: 1.15rem !important;
-  border: 5px solid rgba(255, 253, 248, 0.94) !important;
-  border-radius: 24px !important;
-  color: #ffffff !important;
-  background-image:
-    linear-gradient(0deg, rgba(6, 25, 18, 0.9), rgba(6, 25, 18, 0.06) 55%),
-    var(--photo-bear) !important;
-  background-position: center 38% !important;
-  background-size: cover !important;
-  box-shadow: 0 24px 60px rgba(4, 20, 14, 0.36) !important;
-  font-size: clamp(0.78rem, 1.15vw, 0.94rem) !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.02em !important;
-  line-height: 1.35 !important;
-  white-space: pre-line !important;
-  pointer-events: none !important;
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
 .si-hero-copy {
   position: relative !important;
   z-index: 4 !important;
-  width: min(700px, calc(100% - 420px)) !important;
-  max-width: 700px !important;
-  margin-right: auto !important;
-  margin-left: max(1.5rem, calc((100vw - 1240px) / 2)) !important;
+  width: auto !important;
+  max-width: 760px !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
-/* Every homepage photograph now identifies the place or planning use. */
+/* Literal visual labels. The photo and label now explain the category together. */
 .si-card {
   position: relative !important;
 }
@@ -75,85 +58,85 @@
   height: auto !important;
   max-width: calc(100% - 2rem) !important;
   margin: 0 !important;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
   border-radius: 999px !important;
   padding: 0.48rem 0.72rem !important;
   color: #ffffff !important;
-  background: rgba(8, 30, 23, 0.82) !important;
+  background: rgba(8, 30, 23, 0.86) !important;
   box-shadow: 0 8px 20px rgba(4, 20, 14, 0.24) !important;
   opacity: 1 !important;
-  font-size: 0.72rem !important;
+  font-size: 0.7rem !important;
   font-weight: 900 !important;
-  letter-spacing: 0.055em !important;
+  letter-spacing: 0.045em !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
   backdrop-filter: blur(5px) !important;
   pointer-events: none !important;
 }
 
-.si-card:nth-child(1)::after { content: "Newfound Gap Road" !important; }
-.si-card:nth-child(2)::after { content: "Ramsey Cascades" !important; }
-.si-card:nth-child(3)::after { content: "Cades Cove" !important; }
-.si-card:nth-child(4)::after { content: "Picnic and meal planning" !important; }
-.si-card:nth-child(5)::after { content: "Cabins and lodging" !important; }
-.si-card:nth-child(6)::after { content: "Free scenic time" !important; }
+.si-card:nth-child(1)::after { content: "Roads, parking and trolleys" !important; }
+.si-card:nth-child(2)::after { content: "Hikes, shows and attractions" !important; }
+.si-card:nth-child(3)::after { content: "Views, wildlife and landmarks" !important; }
+.si-card:nth-child(4)::after { content: "Restaurants and local food" !important; }
+.si-card:nth-child(5)::after { content: "Cabins, hotels and campgrounds" !important; }
+.si-card:nth-child(6)::after { content: "Tickets, discounts and savings" !important; }
 
-.si-card:nth-child(1)::before { background-position: center 52% !important; }
-.si-card:nth-child(2)::before { background-position: center 48% !important; }
-.si-card:nth-child(3)::before { background-position: center 48% !important; }
-.si-card:nth-child(4)::before { background-position: center 52% !important; }
-.si-card:nth-child(5)::before { background-position: center 48% !important; }
-.si-card:nth-child(6)::before { background-position: center 50% !important; }
+.si-card:nth-child(1)::before {
+  background-image: var(--photo-go) !important;
+  background-position: center 52% !important;
+}
 
-@media (max-width: 1050px) {
-  .si-hero-copy {
-    width: min(620px, calc(100% - 330px)) !important;
-  }
+.si-card:nth-child(2)::before {
+  background-image: var(--photo-do) !important;
+  background-position: center 48% !important;
+}
 
-  .si-hero::before {
-    width: 250px !important;
-    height: 330px !important;
-  }
+.si-card:nth-child(3)::before {
+  background-image: var(--photo-see) !important;
+  background-position: center 38% !important;
+}
+
+.si-card:nth-child(4)::before {
+  background-image: var(--photo-eat) !important;
+  background-position: center 52% !important;
+}
+
+.si-card:nth-child(5)::before {
+  background-image: var(--photo-stay) !important;
+  background-position: center 47% !important;
+}
+
+.si-card:nth-child(6)::before {
+  background-image: var(--photo-deals) !important;
+  background-position: center 50% !important;
 }
 
 @media (max-width: 900px) {
   .si-hero {
-    min-height: 650px !important;
-    align-items: end !important;
-    padding-top: 12rem !important;
+    min-height: 580px !important;
+    align-items: center !important;
+    padding-top: 0 !important;
+    background-image:
+      linear-gradient(0deg, rgba(8, 30, 23, 0.94), rgba(8, 30, 23, 0.34) 82%),
+      var(--photo-home) !important;
   }
 
   .si-hero-copy {
     width: min(100% - 2rem, 700px) !important;
     max-width: none !important;
     margin: 0 auto !important;
-    padding-bottom: 4.5rem !important;
-  }
-
-  .si-hero::before {
-    inset: 1.25rem 1.25rem auto auto !important;
-    width: 150px !important;
-    height: 185px !important;
-    padding: 0.75rem !important;
-    border-width: 3px !important;
-    border-radius: 18px !important;
-    content: "Black bear country" !important;
-    font-size: 0.7rem !important;
+    padding-bottom: 0 !important;
   }
 }
 
 @media (max-width: 520px) {
   .si-hero {
-    min-height: 720px !important;
-    padding-top: 10.5rem !important;
-  }
-
-  .si-hero::before {
-    width: 128px !important;
-    height: 158px !important;
+    min-height: 620px !important;
   }
 
   .si-card::after {
-    font-size: 0.66rem !important;
+    max-width: calc(100% - 1.5rem) !important;
+    font-size: 0.63rem !important;
+    white-space: normal !important;
   }
 }
