@@ -2,29 +2,29 @@ import Link from "next/link";
 
 const pageStandards = [
   {
-    title: "General planning first",
-    text: "Town guides and trip-shape pages begin with practical planning advice before reviewed listings are added.",
+    title: "Practical help first",
+    text: "Every guide should help a visitor make a clearer decision before adding more choices.",
   },
   {
-    title: "Reviewed details later",
-    text: "Business listings, coupons, deals, hours, prices and sponsor placements should be reviewed before publishing.",
+    title: "Verify changing details",
+    text: "Hours, prices, parking, road access and offers are checked against official or first-party sources when possible.",
   },
   {
-    title: "Official sources for park decisions",
-    text: "Park roads, parking needs, weather and closures can change. Check official park sources before the trip.",
+    title: "Say what is uncertain",
+    text: "The guide does not pretend to have live conditions when it does not. Important details are marked for rechecking.",
   },
   {
-    title: "Clear paid placements",
-    text: "Sponsored placements and deals should be labeled when they go live.",
+    title: "Keep paid placement clear",
+    text: "Sponsored, featured and affiliate placements are labeled and kept separate from editorial judgment.",
   },
 ];
 
 const guideUses = [
   "Choosing the right Smokies base",
-  "Comparing trip shapes",
-  "Finding practical next steps",
+  "Comparing realistic trip shapes",
   "Planning around parking, traffic, weather and walking distance",
-  "Connecting visitors with reviewed businesses and current offers as the site grows",
+  "Finding official sources before conditions change",
+  "Saving useful stops and decisions in My Plan",
 ];
 
 export default function AboutPage() {
@@ -40,34 +40,37 @@ export default function AboutPage() {
       </header>
 
       <section className="destination-hero">
-        <p className="eyebrow">About Smoky Insider</p>
-        <h1>Built to Help You Plan the Smokies Without Guessing</h1>
+        <p className="eyebrow">Veteran-Owned Smokies Guide</p>
+        <h1>Practical Smokies Planning Without the Guesswork</h1>
         <p>
-          Smoky Insider is being built as a practical planning guide for
-          visitors choosing where to stay, what to do, how to plan the day and
-          what to check before heading into the Smokies.
+          Smoky Insider is a veteran-owned, independent planning guide for
+          Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky
+          Mountains National Park.
         </p>
       </section>
 
       <section className="destination-section comparison-section">
         <div className="destination-heading">
-          <p className="eyebrow">The reason behind the guide</p>
-          <h2>Why this guide exists</h2>
+          <p className="eyebrow">Why this guide exists</p>
+          <h2>Useful before flashy. Honest before hype.</h2>
         </div>
         <p className="router-section-intro">
-          The Smokies are easy to overpack. Gatlinburg, Pigeon Forge,
-          Sevierville, Townsend, Cades Cove and the National Park all work
-          differently. This guide helps visitors slow the decision down, pick
-          the right base, match the day to the group and avoid wasting half the
-          trip guessing. It is an independent guide built around practical
-          planning.
+          The Smokies are easy to overpack. Each town, park road and attraction
+          area works differently. This guide helps visitors choose a base, shape
+          a realistic day and avoid wasting half the trip guessing.
+        </p>
+        <p className="router-section-intro">
+          Veteran-owned means the guide is built around service, preparation and
+          clear information. It does not mean every detail is live or personally
+          observed. Research-based guidance is identified honestly and changing
+          details should always be checked before travel.
         </p>
       </section>
 
       <section className="destination-section guide-card-section">
         <div className="destination-heading">
           <p className="eyebrow">Working standards</p>
-          <h2>How pages are built</h2>
+          <h2>How the guide earns trust</h2>
         </div>
         <div className="destination-grid">
           {pageStandards.map((standard) => (
@@ -81,8 +84,8 @@ export default function AboutPage() {
 
       <section className="destination-section field-notes-section">
         <div className="destination-heading">
-          <p className="eyebrow">Practical trip planning</p>
-          <h2>What this guide is for</h2>
+          <p className="eyebrow">What Smoky Insider helps with</p>
+          <h2>Make the trip easier before you leave home</h2>
         </div>
         <div className="destination-grid">
           {guideUses.map((use) => (
@@ -95,23 +98,23 @@ export default function AboutPage() {
 
       <section className="destination-section next-step-panel">
         <div className="destination-heading">
-          <p className="eyebrow">For Smokies businesses</p>
-          <h2>Useful local exposure, not clutter</h2>
+          <p className="eyebrow">Independent and visitor-first</p>
+          <h2>Useful local exposure without hiding the sponsor</h2>
           <p className="router-section-intro">
-            Smokies businesses will be able to use listings, deals, sponsored
-            guide placements and profile pages to reach visitors while they
-            plan. The goal is useful local exposure, not clutter.
+            Business listings, deals and sponsored placements are considered
+            only when they fit a real visitor need. Paid visibility does not buy
+            reviews, rankings or factual claims.
           </p>
         </div>
         <div className="destination-actions">
           <Link className="button button-primary" href="/start-planning">
             Start Planning
           </Link>
-          <Link className="button button-secondary" href="/advertise">
-            Advertise With Us
+          <Link className="button button-secondary" href="/editorial-policy">
+            Editorial Policy
           </Link>
-          <Link className="button button-secondary" href="/deals">
-            Coupons and Deals
+          <Link className="button button-secondary" href="/contact">
+            Contact Smoky Insider
           </Link>
         </div>
       </section>
@@ -120,8 +123,9 @@ export default function AboutPage() {
         <p className="eyebrow">Official source note</p>
         <h2 id="about-source-note">Check official park sources before final decisions</h2>
         <p>
-          For National Park planning, check official Great Smoky Mountains
-          National Park sources before final decisions.
+          Roads, closures, parking requirements and weather conditions can
+          change. Check official Great Smoky Mountains National Park sources
+          before travel.
         </p>
         <div className="source-links">
           <a href="https://www.nps.gov/grsm/planyourvisit/conditions.htm">
