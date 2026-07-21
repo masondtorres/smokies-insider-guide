@@ -7,7 +7,7 @@ import "./homepage-v2.css";
 export const metadata: Metadata = {
   title: "Smoky Insider | Smoky Mountains Trip Planner",
   description:
-    "Plan a Smokies trip with local-first help for routes, attractions, scenic stops, restaurants, stays, deals and before-you-go details.",
+    "Plan a Smokies trip with veteran-owned, local-first help for routes, attractions, scenic stops, restaurants, stays, deals and before-you-go details.",
   alternates: { canonical: "/" },
 };
 
@@ -38,11 +38,11 @@ const utilityItems = [
 ];
 
 const beforeYouGo = [
-  { label: "Parking and traffic", href: "/smokies-parking-trolley-guide" },
+  { label: "Free parking and timing cheat sheet", href: "/parking-timing-cheat-sheet" },
+  { label: "Full parking and trolley guide", href: "/smokies-parking-trolley-guide" },
   { label: "Official park resources", href: "/visitor-resources" },
   { label: "Best time to visit", href: "/best-time-to-visit" },
   { label: "Rainy-day backup ideas", href: "/rainy-day-smokies-with-kids" },
-  { label: "Family-friendly planning", href: "/pigeon-forge-with-kids" },
 ];
 
 const footerLinks = [
@@ -75,13 +75,14 @@ export default function Home() {
         <div className="si-ridge-two" aria-hidden="true" />
         <div className="si-ridge-three" aria-hidden="true" />
         <div className="si-width si-hero-copy">
-          <p className="si-kicker">Veteran-Owned Smokies Guide</p>
+          <p className="si-kicker">Veteran-Owned by Mason Torres</p>
           <h1 id="home-title">Plan your Smokies trip without the guesswork.</h1>
           <p className="si-hero-promise">
-            Local-first planning help for Gatlinburg, Pigeon Forge, Sevierville, Townsend and the Great Smoky Mountains.
+            Practical Smokies planning from an East Tennessee-based U.S. Air Force veteran, with clear advice for Gatlinburg, Pigeon Forge, Sevierville, Townsend and the national park.
           </p>
           <div className="si-actions">
             <Link className="si-button si-button-primary" href="/start-here">Start Here</Link>
+            <Link className="si-button si-button-secondary" href="/parking-timing-cheat-sheet">Get the Free Cheat Sheet</Link>
             <Link className="si-button si-button-secondary" href="/my-plan">Build My Plan</Link>
           </div>
         </div>
@@ -111,6 +112,20 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="si-section si-width si-editor-panel" aria-labelledby="editor-heading">
+        <div>
+          <p className="si-section-kicker">Who runs Smoky Insider</p>
+          <h2 id="editor-heading">Mason Torres, Founder and Editor</h2>
+          <p>
+            Smoky Insider is a veteran-owned, independent East Tennessee guide. Mason Torres oversees the planning standards, source checks and plain-language recommendations so families can make clearer decisions before they arrive.
+          </p>
+        </div>
+        <div className="si-editor-actions">
+          <Link className="si-button si-button-primary" href="/about">Meet the Editor</Link>
+          <Link className="si-button si-button-secondary" href="/corrections">Report a Correction</Link>
+        </div>
+      </section>
+
       <section className="si-before" aria-labelledby="before-heading">
         <div className="si-width si-before-layout">
           <div>
@@ -129,7 +144,7 @@ export default function Home() {
       <footer className="si-footer si-width">
         <div>
           <strong>Smoky Insider</strong>
-          <span>Veteran-owned independent trip-planning help for the Smoky Mountains.</span>
+          <span>Veteran-owned by Mason Torres. Independent trip-planning help for the Smoky Mountains.</span>
           <small>&copy; 2026 Smoky Insider</small>
         </div>
         <nav className="si-footer-links" aria-label="Policy and information links">
