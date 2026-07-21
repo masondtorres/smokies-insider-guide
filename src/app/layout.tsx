@@ -6,6 +6,7 @@ import "./globals.css";
 import "./homepage-hero-image.css";
 import "./sitewide-theme.css";
 import "./visual-layer-v1.css";
+import "./visual-layer-v2.css";
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
