@@ -58,7 +58,8 @@ export function MyPlan() {
       ) : null}
 
       {items.length === 0 ? (
-        <section className={styles.empty}>
+        <section className={`${styles.empty} my-plan-empty-state`}>
+          <div className="my-plan-empty-visual" aria-hidden="true" />
           <h2>Your plan is empty</h2>
           <p>Browse the field-guide cards or answer five quick questions to get a useful starting mix.</p>
           <Link href="/start-planning">Start planning</Link>
