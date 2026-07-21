@@ -8,6 +8,7 @@ import "./sitewide-theme.css";
 import "./visual-layer-v1.css";
 import "./visual-layer-v2.css";
 import "./smokies-radiant-v1.css";
+import "./authority-v1.css";
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.smokyinsider.com"),
   title: "Smoky Insider",
   description:
-    "Family-friendly Smoky Mountains travel planning for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park.",
+    "Veteran-owned, family-friendly Smoky Mountains travel planning for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park.",
   applicationName: "Smoky Insider",
   category: "Travel and Tourism",
   keywords: [
@@ -36,12 +37,15 @@ export const metadata: Metadata = {
     "family vacation planning",
     "travel and tourism",
   ],
+  authors: [{ name: "Mason Torres" }],
+  creator: "Mason Torres",
+  publisher: "Smoky Insider",
   openGraph: {
     type: "website",
     siteName: "Smoky Insider",
     title: "Smoky Insider | Smoky Mountains Trip Planner",
     description:
-      "Family-friendly Smoky Mountains travel planning for routes, attractions, restaurants, stays, deals and before-you-go details.",
+      "Veteran-owned Smokies planning for routes, attractions, restaurants, stays, deals and before-you-go details.",
     url: "https://www.smokyinsider.com",
     locale: "en_US",
   },
