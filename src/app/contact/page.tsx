@@ -3,8 +3,8 @@ import Link from "next/link";
 import { BusinessPageShell, BusinessPathLinks, businessEmail, inquiryHref } from "@/components/business-intake";
 
 export const metadata: Metadata = {
-  title: "Contact Smoky Insider",
-  description: "Contact Smoky Insider for corrections, business listings, claims and advertising inquiries.",
+  title: "Contact Mason Torres | Smoky Insider",
+  description: "Contact Mason Torres at veteran-owned Smoky Insider for corrections, listings, partnerships and advertising.",
 };
 
 const generalHref = inquiryHref("General inquiry - Smoky Insider", ["Page URL, if relevant", "Your message"]);
@@ -12,15 +12,15 @@ const generalHref = inquiryHref("General inquiry - Smoky Insider", ["Page URL, i
 export default function ContactPage() {
   return (
     <BusinessPageShell
-      eyebrow="Contact"
+      eyebrow="Contact Mason Torres"
       title="Choose the contact path that fits"
-      intro="Use a focused request so corrections, listing claims and advertising inquiries stay clear and reviewable."
+      intro="Mason Torres is the founder and editor of veteran-owned Smoky Insider. Use a focused request so corrections, listing claims and advertising inquiries stay clear and reviewable."
     >
       <BusinessPathLinks />
 
       <section className="business-offer-grid contact-path-grid">
         <article>
-          <h2>Request listing</h2>
+          <h2>Request a listing</h2>
           <p>Ask for a real restaurant, cabin, attraction, shop, guide, photographer, venue or service business to be reviewed.</p>
           <Link href="/business-listings">Business listings</Link>
         </article>
@@ -31,8 +31,8 @@ export default function ContactPage() {
         </article>
         <article>
           <h2>Advertise with us</h2>
-          <p>Ask about clearly labeled featured placement or other visitor-relevant visibility. Pricing is available by request.</p>
-          <Link href="/advertise">Advertising inquiries</Link>
+          <p>Choose from public founding-partner packages starting at $99 per year.</p>
+          <Link href="/advertise">See packages and prices</Link>
         </article>
         <article>
           <h2>Correction or general question</h2>
@@ -42,8 +42,8 @@ export default function ContactPage() {
       </section>
 
       <aside className="business-trust-note">
-        <strong>No sensitive information or payments by email</strong>
-        <p>Do not send passwords, payment-card information or sensitive identity documents. The site currently has no listing dashboard, payment processing or automated submission backend.</p>
+        <strong>No sensitive information or payment-card details by email</strong>
+        <p>Do not send passwords, payment-card information or sensitive identity documents. Approved commercial partners receive written terms and separate payment instructions.</p>
         <Link href="/corrections">Read the correction path</Link>
       </aside>
     </BusinessPageShell>
