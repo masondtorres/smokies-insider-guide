@@ -1,0 +1,142 @@
+/*
+ * Smoky Insider homepage visual correction v3
+ * Each planning card uses a literal subject that matches Go, Do, See, Eat, Stay or Deals.
+ * Source records: docs/visual-photo-sources-v1.md
+ */
+
+:root {
+  --photo-home: url("https://www.nps.gov/npgallery/GetAsset/28de6b98-1dd8-b71c-073d-1ffaf7d178b7");
+  --photo-go: url("https://www.nps.gov/npgallery/GetAsset/28de6b98-1dd8-b71c-073d-1ffaf7d178b7");
+  --photo-do: url("https://www.nps.gov/npgallery/GetAsset/28762f3d-1dd8-b71c-07da-932310fafec6");
+  --photo-see: url("https://www.nps.gov/npgallery/GetAsset/284ca6a1-1dd8-b71c-079b-8a55df0c6273");
+  --photo-eat: url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Pancake%20Breakfast%20%28Unsplash%29.jpg");
+  --photo-stay: url("https://www.nps.gov/npgallery/GetAsset/2866d8aa-1dd8-b71c-079a-aa67ecb35b45");
+  --photo-deals: url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Tickets.jpg");
+}
+
+/* The hero establishes the Smokies. It does not compete with the six planning choices. */
+.si-hero {
+  min-height: clamp(540px, 62vw, 700px) !important;
+  background-image:
+    linear-gradient(90deg, rgba(8, 30, 23, 0.94) 0%, rgba(8, 30, 23, 0.74) 48%, rgba(8, 30, 23, 0.22) 82%, rgba(8, 30, 23, 0.08) 100%),
+    linear-gradient(0deg, rgba(8, 30, 23, 0.38), transparent 58%),
+    var(--photo-home) !important;
+  background-position: center 48% !important;
+  background-size: cover !important;
+}
+
+/* Remove the bear feature from the header. The bear now belongs to See. */
+.si-hero::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.si-hero-copy {
+  position: relative !important;
+  z-index: 4 !important;
+  width: auto !important;
+  max-width: 760px !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Literal visual labels. The photo and label now explain the category together. */
+.si-card {
+  position: relative !important;
+}
+
+.si-card::after {
+  position: absolute !important;
+  z-index: 2 !important;
+  top: 1rem !important;
+  left: 1rem !important;
+  display: inline-flex !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: calc(100% - 2rem) !important;
+  margin: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-radius: 999px !important;
+  padding: 0.48rem 0.72rem !important;
+  color: #ffffff !important;
+  background: rgba(8, 30, 23, 0.86) !important;
+  box-shadow: 0 8px 20px rgba(4, 20, 14, 0.24) !important;
+  opacity: 1 !important;
+  font-size: 0.7rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.045em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  backdrop-filter: blur(5px) !important;
+  pointer-events: none !important;
+}
+
+.si-card:nth-child(1)::after { content: "Roads, parking and trolleys" !important; }
+.si-card:nth-child(2)::after { content: "Hikes, shows and attractions" !important; }
+.si-card:nth-child(3)::after { content: "Views, wildlife and landmarks" !important; }
+.si-card:nth-child(4)::after { content: "Restaurants and local food" !important; }
+.si-card:nth-child(5)::after { content: "Cabins, hotels and campgrounds" !important; }
+.si-card:nth-child(6)::after { content: "Tickets, discounts and savings" !important; }
+
+.si-card:nth-child(1)::before {
+  background-image: var(--photo-go) !important;
+  background-position: center 52% !important;
+}
+
+.si-card:nth-child(2)::before {
+  background-image: var(--photo-do) !important;
+  background-position: center 48% !important;
+}
+
+.si-card:nth-child(3)::before {
+  background-image: var(--photo-see) !important;
+  background-position: center 38% !important;
+}
+
+.si-card:nth-child(4)::before {
+  background-image: var(--photo-eat) !important;
+  background-position: center 52% !important;
+}
+
+.si-card:nth-child(5)::before {
+  background-image: var(--photo-stay) !important;
+  background-position: center 47% !important;
+}
+
+.si-card:nth-child(6)::before {
+  background-image: var(--photo-deals) !important;
+  background-position: center 50% !important;
+}
+
+@media (max-width: 900px) {
+  .si-hero {
+    min-height: 580px !important;
+    align-items: center !important;
+    padding-top: 0 !important;
+    background-image:
+      linear-gradient(0deg, rgba(8, 30, 23, 0.94), rgba(8, 30, 23, 0.34) 82%),
+      var(--photo-home) !important;
+  }
+
+  .si-hero-copy {
+    width: min(100% - 2rem, 700px) !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .si-hero {
+    min-height: 620px !important;
+  }
+
+  .si-card::after {
+    max-width: calc(100% - 1.5rem) !important;
+    font-size: 0.63rem !important;
+    white-space: normal !important;
+  }
+}

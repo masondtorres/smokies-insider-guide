@@ -5,6 +5,9 @@ import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import "./globals.css";
 import "./homepage-hero-image.css";
 import "./sitewide-theme.css";
+import "./visual-layer-v1.css";
+import "./visual-layer-v2.css";
+import "./smokies-radiant-v1.css";
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
@@ -77,6 +80,9 @@ export default function RootLayout({
     >
       <body>
         {children}
+        <aside className="visual-photo-credit" aria-label="Photography credit">
+          Smokies photographs: National Park Service. Food photograph: Toa Heftiba, CC0. Ticket photograph: Mattia Luigi Nappi, CC BY-SA 3.0. Full source records are in the project manifest.
+        </aside>
         <MobileBottomNav />
         <Analytics />
       </body>

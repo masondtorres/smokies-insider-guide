@@ -63,7 +63,7 @@ export function CategoryPage({ category }: { category: Category }) {
   const help = pageHelp[category];
 
   return (
-    <div className="category-foundation">
+    <div className={`category-foundation category-${category}`}>
       <header className="category-header">
         <Link className="category-wordmark" href="/">Smoky Insider</Link>
         <nav className="category-nav" aria-label="Primary navigation">

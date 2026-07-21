@@ -1,0 +1,349 @@
+/*
+ * Smoky Insider radiant culture layer v1
+ * Brilliant East Tennessee color with strong contrast and a clean field-guide feel.
+ */
+
+:root {
+  --radiant-sky: #148cff;
+  --radiant-sky-deep: #0066d6;
+  --radiant-forest: #08753f;
+  --radiant-forest-deep: #064d2c;
+  --radiant-leaf: #39a844;
+  --radiant-gold: #ffc928;
+  --radiant-orange: #ff7617;
+  --radiant-cabin-red: #c73f2b;
+  --radiant-cream: #fff8e7;
+  --radiant-white: #ffffff;
+  --radiant-ink: #13261d;
+  --radiant-muted: #47584f;
+  --radiant-line: rgba(19, 38, 29, 0.16);
+  --radiant-shadow: 0 20px 46px rgba(6, 77, 44, 0.16);
+}
+
+body,
+.smokies-home-v2,
+.category-foundation,
+.foundation-page,
+.my-plan-page {
+  color: var(--radiant-ink) !important;
+  background:
+    radial-gradient(circle at 8% 3%, rgba(255, 201, 40, 0.24), transparent 24rem),
+    radial-gradient(circle at 92% 5%, rgba(20, 140, 255, 0.18), transparent 28rem),
+    linear-gradient(180deg, #ffffff 0%, var(--radiant-cream) 52%, #fff2d1 100%) !important;
+}
+
+::selection {
+  color: #ffffff !important;
+  background: var(--radiant-cabin-red) !important;
+}
+
+/* Strong Smokies header: evergreen, sunrise gold and cabin red. */
+.si-header,
+.site-header,
+.category-header,
+.foundation-header {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  background:
+    linear-gradient(90deg, var(--radiant-forest-deep), var(--radiant-forest) 62%, #0a8145) !important;
+  box-shadow: 0 12px 30px rgba(4, 47, 27, 0.24) !important;
+}
+
+.si-wordmark,
+.wordmark,
+.category-wordmark,
+.foundation-wordmark {
+  color: #ffffff !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-weight: 700 !important;
+}
+
+.si-wordmark span,
+.wordmark span,
+.category-wordmark span,
+.foundation-wordmark span {
+  color: var(--radiant-gold) !important;
+}
+
+.si-wordmark::after,
+.wordmark::after,
+.category-wordmark::after,
+.foundation-wordmark::after {
+  height: 5px !important;
+  background: linear-gradient(90deg, var(--radiant-gold), var(--radiant-orange), var(--radiant-cabin-red)) !important;
+}
+
+.si-nav,
+.primary-nav,
+.category-nav,
+.foundation-nav,
+.si-nav a,
+.primary-nav a,
+.category-nav a,
+.foundation-nav a {
+  color: rgba(255, 255, 255, 0.94) !important;
+}
+
+.si-nav a:hover,
+.primary-nav a:hover,
+.category-nav a:hover,
+.foundation-nav a:hover {
+  color: var(--radiant-gold) !important;
+}
+
+.si-nav a:last-child,
+.primary-nav a:last-child,
+.category-nav a:last-child,
+.foundation-nav a:last-child {
+  color: #173020 !important;
+  background: var(--radiant-gold) !important;
+  box-shadow: 0 12px 26px rgba(255, 201, 40, 0.35) !important;
+}
+
+/* Keep the photographs brilliant instead of burying them under gray overlays. */
+.si-hero,
+.category-hero,
+.foundation-start-hero,
+.my-plan-page .guide-hero {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 26px 64px rgba(5, 66, 38, 0.24) !important;
+}
+
+.si-hero {
+  background-image:
+    linear-gradient(90deg, rgba(4, 54, 30, 0.88) 0%, rgba(4, 54, 30, 0.62) 48%, rgba(4, 54, 30, 0.12) 86%),
+    linear-gradient(0deg, rgba(255, 118, 23, 0.12), transparent 48%),
+    var(--photo-home) !important;
+}
+
+.category-hero,
+.foundation-start-hero,
+.my-plan-page .guide-hero {
+  background-image:
+    linear-gradient(90deg, rgba(4, 54, 30, 0.84), rgba(4, 54, 30, 0.42) 62%, rgba(4, 54, 30, 0.08)),
+    var(--category-photo, var(--photo-start)) !important;
+}
+
+.si-kicker,
+.si-section-kicker,
+.eyebrow,
+.category-eyebrow,
+.foundation-section-label {
+  color: #173020 !important;
+  background: var(--radiant-gold) !important;
+  box-shadow: 0 12px 26px rgba(255, 201, 40, 0.28) !important;
+}
+
+.si-section-kicker,
+.category-section-heading .category-eyebrow {
+  color: var(--radiant-cabin-red) !important;
+}
+
+.si-hero h1,
+.category-hero h1,
+.foundation-start-hero h1,
+.my-plan-page .guide-hero h1 {
+  color: #ffffff !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  text-shadow: 0 5px 28px rgba(3, 35, 20, 0.64) !important;
+}
+
+.si-hero-promise,
+.category-hero p:not(.category-eyebrow),
+.foundation-start-hero p,
+.my-plan-page .guide-hero p:not(.eyebrow) {
+  color: rgba(255, 255, 255, 0.97) !important;
+  text-shadow: 0 3px 18px rgba(3, 35, 20, 0.52) !important;
+}
+
+.si-button-primary,
+.button-primary,
+.save-plan-button {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, var(--radiant-orange), var(--radiant-cabin-red)) !important;
+  box-shadow: 0 18px 36px rgba(199, 63, 43, 0.3) !important;
+}
+
+.si-button-primary:hover,
+.button-primary:hover,
+.save-plan-button:hover {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #ff8d24, #d6482f) !important;
+}
+
+.si-button-secondary,
+.button-secondary {
+  color: var(--radiant-sky-deep) !important;
+  border-color: rgba(255, 255, 255, 0.86) !important;
+  background: #ffffff !important;
+}
+
+/* Bright editorial cards, each with a clear Smokies color marker. */
+.si-card,
+.category-guide-card,
+.card,
+.guide-card,
+.category-card,
+.plan-card,
+.resource-card,
+.article-card,
+.featured-article-card,
+.section-block,
+.field-note,
+.business-cta,
+.before-card,
+.info-card,
+.my-plan-empty-state {
+  border: 1px solid rgba(6, 77, 44, 0.12) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: var(--radiant-shadow) !important;
+}
+
+.si-card::after {
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  background: rgba(4, 77, 43, 0.9) !important;
+}
+
+.si-card:nth-child(1) { box-shadow: inset 0 6px 0 var(--radiant-sky), var(--radiant-shadow) !important; }
+.si-card:nth-child(2) { box-shadow: inset 0 6px 0 var(--radiant-leaf), var(--radiant-shadow) !important; }
+.si-card:nth-child(3) { box-shadow: inset 0 6px 0 var(--radiant-gold), var(--radiant-shadow) !important; }
+.si-card:nth-child(4) { box-shadow: inset 0 6px 0 var(--radiant-orange), var(--radiant-shadow) !important; }
+.si-card:nth-child(5) { box-shadow: inset 0 6px 0 var(--radiant-cabin-red), var(--radiant-shadow) !important; }
+.si-card:nth-child(6) { box-shadow: inset 0 6px 0 #8b4ed8, var(--radiant-shadow) !important; }
+
+.si-card h3,
+.category-guide-card h3,
+.card h3,
+.guide-card h3,
+.category-card h3,
+.resource-card h3,
+.article-card h3,
+h2,
+h3 {
+  color: var(--radiant-ink) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+}
+
+.si-card p,
+.category-guide-card p,
+.card p,
+.guide-card p,
+.category-card p,
+.resource-card p,
+.article-card p,
+.section-block p,
+main p {
+  color: var(--radiant-muted) !important;
+}
+
+.si-card span:last-child,
+.category-guide-card span:last-child,
+.card span:last-child,
+.guide-card span:last-child,
+.category-card span:last-child {
+  color: var(--radiant-sky-deep) !important;
+  font-weight: 900 !important;
+}
+
+.si-icon,
+.card-icon,
+.category-icon,
+.resource-icon,
+.category-card-number {
+  color: #ffffff !important;
+  background: var(--radiant-sky) !important;
+}
+
+.si-card:nth-child(2) .si-icon { background: var(--radiant-leaf) !important; }
+.si-card:nth-child(3) .si-icon { color: #173020 !important; background: var(--radiant-gold) !important; }
+.si-card:nth-child(4) .si-icon { background: var(--radiant-orange) !important; }
+.si-card:nth-child(5) .si-icon { background: var(--radiant-cabin-red) !important; }
+.si-card:nth-child(6) .si-icon { background: #8b4ed8 !important; }
+
+.si-value-strip,
+.value-strip,
+.quick-links,
+.link-grid {
+  border: 0 !important;
+  background: linear-gradient(90deg, var(--radiant-sky), #18a4e8 34%, var(--radiant-leaf) 68%, #0b8750) !important;
+  box-shadow: 0 18px 42px rgba(0, 102, 214, 0.2) !important;
+}
+
+.si-value-strip div,
+.value-strip div {
+  color: #ffffff !important;
+}
+
+.si-value-strip div::before,
+.value-strip div::before {
+  background: var(--radiant-gold) !important;
+  box-shadow: 0 0 0 6px rgba(255, 201, 40, 0.24) !important;
+}
+
+.si-before,
+.related-section,
+.utility-section {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 201, 40, 0.3), transparent 18rem),
+    radial-gradient(circle at 88% 70%, rgba(20, 140, 255, 0.2), transparent 24rem),
+    linear-gradient(135deg, #fff4cf, #e8f7ff 54%, #e8f8e6) !important;
+}
+
+.si-before-grid a,
+.before-grid a,
+.link-grid a,
+.quick-links a,
+.resource-link,
+.text-link-card {
+  border-color: rgba(20, 140, 255, 0.2) !important;
+  color: var(--radiant-ink) !important;
+  background: #ffffff !important;
+  box-shadow: 0 12px 24px rgba(0, 102, 214, 0.1) !important;
+}
+
+.si-before-grid a:hover,
+.before-grid a:hover,
+.link-grid a:hover,
+.quick-links a:hover,
+.resource-link:hover,
+.text-link-card:hover {
+  border-color: var(--radiant-sky) !important;
+  color: var(--radiant-sky-deep) !important;
+}
+
+.category-card-caution {
+  border-left-color: var(--radiant-orange) !important;
+  background: #fff1d6 !important;
+}
+
+.category-card-meta.compact span {
+  color: var(--radiant-sky-deep) !important;
+  background: #e8f4ff !important;
+}
+
+.category-footer,
+.site-footer,
+.si-footer,
+footer {
+  border-color: rgba(6, 77, 44, 0.18) !important;
+}
+
+.visual-photo-credit {
+  color: rgba(255, 255, 255, 0.9) !important;
+  background: linear-gradient(90deg, var(--radiant-forest-deep), var(--radiant-forest)) !important;
+}
+
+@media (max-width: 760px) {
+  .si-header,
+  .site-header,
+  .category-header,
+  .foundation-header {
+    background: var(--radiant-forest-deep) !important;
+  }
+
+  .si-hero,
+  .category-hero,
+  .foundation-start-hero,
+  .my-plan-page .guide-hero {
+    background-position: center !important;
+  }
+}
