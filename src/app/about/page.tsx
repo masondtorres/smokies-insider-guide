@@ -40,12 +40,31 @@ export default function AboutPage() {
       </header>
 
       <section className="destination-hero">
-        <p className="eyebrow">Veteran-Owned Smokies Guide</p>
+        <p className="eyebrow">Veteran-Owned by Mason Torres</p>
         <h1>Practical Smokies Planning Without the Guesswork</h1>
         <p>
-          Smoky Insider is a veteran-owned, independent planning guide for
-          Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky
-          Mountains National Park.
+          Smoky Insider is a veteran-owned, independent East Tennessee planning
+          guide for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great
+          Smoky Mountains National Park.
+        </p>
+      </section>
+
+      <section className="destination-section comparison-section">
+        <div className="destination-heading">
+          <p className="eyebrow">Founder and editor</p>
+          <h2>Mason Torres</h2>
+        </div>
+        <p className="router-section-intro">
+          Mason Torres is a U.S. Air Force veteran, author and publisher based in
+          East Tennessee. He created Smoky Insider to make trip planning clearer,
+          more practical and less dependent on hype.
+        </p>
+        <p className="router-section-intro">
+          Mason oversees the site&apos;s editorial standards, source checks and
+          corrections. Some guidance comes from direct local knowledge. Other
+          guidance is research-based and checked against official or first-party
+          sources. The site states the difference instead of pretending every
+          changing detail is live.
         </p>
       </section>
 
@@ -61,9 +80,8 @@ export default function AboutPage() {
         </p>
         <p className="router-section-intro">
           Veteran-owned means the guide is built around service, preparation and
-          clear information. It does not mean every detail is live or personally
-          observed. Research-based guidance is identified honestly and changing
-          details should always be checked before travel.
+          clear information. It does not sell rankings, hide sponsorships or
+          pretend uncertain facts are settled.
         </p>
       </section>
 
@@ -107,14 +125,14 @@ export default function AboutPage() {
           </p>
         </div>
         <div className="destination-actions">
-          <Link className="button button-primary" href="/start-planning">
-            Start Planning
+          <Link className="button button-primary" href="/parking-timing-cheat-sheet">
+            Get the Free Cheat Sheet
           </Link>
           <Link className="button button-secondary" href="/editorial-policy">
             Editorial Policy
           </Link>
           <Link className="button button-secondary" href="/contact">
-            Contact Smoky Insider
+            Contact Mason
           </Link>
         </div>
       </section>
