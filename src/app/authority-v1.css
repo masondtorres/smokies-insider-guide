@@ -67,6 +67,11 @@
   margin-top: auto;
 }
 
+/* Do not display placeholder partner promises before real partners are approved. */
+.business-cta.planning-desk-cta {
+  display: none !important;
+}
+
 @media (max-width: 850px) {
   .si-editor-panel {
     grid-template-columns: 1fr;
