@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Geist_Mono, Montserrat } from "next/font/google";
+import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import "./globals.css";
 import "./homepage-hero-image.css";
 import "./sitewide-theme.css";
@@ -76,6 +77,7 @@ export default function RootLayout({
     >
       <body>
         {children}
+        <MobileBottomNav />
         <Analytics />
       </body>
     </html>
