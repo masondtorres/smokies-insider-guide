@@ -34,6 +34,29 @@
   gap: 0.75rem;
 }
 
+.site-editor-credit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.9rem 1rem;
+  color: #173020;
+  background: linear-gradient(90deg, #fff4c7, #e8f4ff, #eaf8ef);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.site-editor-credit a {
+  color: #0066d6;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.site-editor-credit a:hover {
+  text-decoration: underline;
+}
+
 .business-offer-grid > article {
   display: flex;
   flex-direction: column;
@@ -51,5 +74,16 @@
 
   .si-editor-actions {
     justify-content: flex-start;
+  }
+
+  .site-editor-credit {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media print {
+  .site-editor-credit {
+    display: none !important;
   }
 }
