@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
 import { Geist_Mono, Montserrat } from "next/font/google";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
@@ -84,6 +85,11 @@ export default function RootLayout({
     >
       <body>
         {children}
+        <aside className="site-editor-credit" aria-label="Smoky Insider editor">
+          <span>Veteran-owned by Mason Torres, Founder and Editor.</span>
+          <Link href="/about">About Mason</Link>
+          <Link href="/corrections">Report a correction</Link>
+        </aside>
         <aside className="visual-photo-credit" aria-label="Photography credit">
           Smokies photographs: National Park Service. Food photograph: Toa Heftiba, CC0. Ticket photograph: Mattia Luigi Nappi, CC BY-SA 3.0. Full source records are in the project manifest.
         </aside>
