@@ -150,6 +150,30 @@
   border-left: 6px solid #a8430b !important;
 }
 
+/* A dark header needs white wording. Remove the low-contrast blue wordmark treatment. */
+.smokies-home-v2 .si-header {
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  background: #0b1511 !important;
+}
+
+.smokies-home-v2 .si-wordmark,
+.smokies-home-v2 .si-wordmark span,
+.smokies-home-v2 .si-nav a:not(:last-child) {
+  color: #ffffff !important;
+}
+
+.smokies-home-v2 .si-wordmark::after {
+  background: #ffffff !important;
+}
+
+.smokies-home-v2 .si-nav a:not(:last-child):hover,
+.smokies-home-v2 .si-nav a:not(:last-child):focus-visible {
+  color: #ffffff !important;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
 @media (max-width: 900px) {
   .category-decision-grid,
   .category-official-grid {
