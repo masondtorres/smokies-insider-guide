@@ -4,56 +4,96 @@ import { BusinessPageShell, BusinessPathLinks, inquiryHref } from "@/components/
 
 export const metadata: Metadata = {
   title: "Advertise With Smoky Insider",
-  description: "Request clearly labeled advertising, sponsored content or featured placement information from Smoky Insider.",
+  description: "Choose a clearly priced local advertising package from veteran-owned Smoky Insider.",
 };
 
-const advertiseHref = inquiryHref("Advertise with us - Smoky Insider", [
+const advertiseHref = inquiryHref("Smoky Insider advertising package", [
+  "Package requested",
   "Business category",
   "Town or service area",
   "Website",
-  "Placement of interest",
   "Campaign timing or goal",
   "Your name and role",
 ]);
 
-const featuredHref = inquiryHref("Featured placement inquiry - Smoky Insider", [
-  "Business category",
-  "Town or service area",
-  "Website",
-  "Listing URL, if published",
-  "Placement goal",
-  "Your name and role",
-]);
+const packages = [
+  {
+    name: "Verified Local Listing",
+    price: "$99 per year",
+    items: [
+      "Business name, category and town",
+      "Website and contact link",
+      "Short factual description",
+      "One annual detail review",
+      "Corrections accepted anytime",
+    ],
+  },
+  {
+    name: "Featured Local Listing",
+    price: "$149 per month",
+    items: [
+      "Everything in the verified listing",
+      "Featured placement in one relevant category",
+      "Logo or approved business photo",
+      "One clear visitor call to action",
+      "Clearly labeled featured placement",
+    ],
+  },
+  {
+    name: "Guide Partner",
+    price: "$349 per month",
+    items: [
+      "Everything in the featured listing",
+      "One labeled placement in a relevant planning guide",
+      "Verified offer block when a real offer exists",
+      "Monthly details review",
+      "Priority correction handling",
+    ],
+  },
+];
 
 export default function AdvertisePage() {
   return (
     <BusinessPageShell
-      eyebrow="Local partner inquiries"
-      title="Advertise with us without blurring the field guide"
-      intro="Smokies businesses can ask about clearly labeled visibility that fits visitor planning. Pricing is available by request; no traffic, placement or performance result is guaranteed."
+      eyebrow="Veteran-Owned Local Media"
+      title="Advertise with clear prices and clear labels"
+      intro="Smokies businesses can buy useful visibility without buying editorial judgment. These founding-partner packages are simple, public and tied to a real visitor need. No traffic or performance result is guaranteed."
     >
       <BusinessPathLinks />
+
+      <section className="business-intake-section">
+        <p className="eyebrow">Founding partner pricing</p>
+        <h2>Choose the level that fits the business</h2>
+        <div className="business-offer-grid">
+          {packages.map((pkg) => (
+            <article key={pkg.name}>
+              <h3>{pkg.name}</h3>
+              <p><strong>{pkg.price}</strong></p>
+              <ul className="business-check-list">
+                {pkg.items.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+              <a className="business-primary-action" href={advertiseHref}>Request this package</a>
+            </article>
+          ))}
+        </div>
+        <p>
+          Founding-partner rates apply to new agreements and may change for future
+          customers. Existing paid terms are honored for the agreed period.
+        </p>
+      </section>
 
       <section className="business-action-panel">
         <div>
           <p className="eyebrow">Commercial inquiry</p>
           <h2>Tell us what your business helps visitors do</h2>
-          <p>Share the category, location, website and placement goal. A useful fit matters more than forcing a business onto an unrelated page.</p>
+          <p>
+            Share the category, location, website and package requested. A useful
+            fit matters more than forcing a business onto an unrelated page.
+          </p>
         </div>
         <div className="business-action-row">
-          <a className="business-primary-action" href={advertiseHref}>Advertise with us</a>
-          <a className="business-secondary-action" href={featuredHref}>Featured placement inquiry</a>
-        </div>
-      </section>
-
-      <section className="business-intake-section">
-        <p className="eyebrow">Possible visibility paths</p>
-        <h2>Formats considered by request</h2>
-        <div className="business-offer-grid">
-          <article><h3>Featured directory placement</h3><p>Enhanced visibility attached to a verified business listing and clearly marked as featured or sponsored.</p></article>
-          <article><h3>Relevant guide placement</h3><p>A labeled placement on a planning page where the business category genuinely fits the visitor decision.</p></article>
-          <article><h3>Featured offer inquiry</h3><p>A possible offer placement only after terms, dates, restrictions and business authorization are verified.</p></article>
-          <article><h3>Custom local partnership</h3><p>A discussion for venues, guides, photographers, lodging, restaurants, attractions, shops or visitor services.</p></article>
+          <a className="business-primary-action" href={advertiseHref}>Request a package</a>
+          <Link className="business-secondary-action" href="/business-listings">Request a listing</Link>
         </div>
       </section>
 
@@ -67,7 +107,7 @@ export default function AdvertisePage() {
           <li>Current terms and expiration for any offer.</li>
           <li>A visitor-relevant fit that does not override editorial guidance.</li>
         </ul>
-        <p><strong>Pricing available by request.</strong> No payment is collected on this website.</p>
+        <p><strong>No payment is collected on this website yet.</strong> Approved partners receive written terms and payment instructions directly.</p>
       </section>
 
       <aside className="business-trust-note">
@@ -76,7 +116,7 @@ export default function AdvertisePage() {
         <div className="business-inline-links">
           <Link href="/sponsored-content-policy">Sponsored content policy</Link>
           <Link href="/editorial-policy">Editorial policy</Link>
-          <Link href="/business-listings">Request a standard listing</Link>
+          <Link href="/contact">Contact Mason Torres</Link>
         </div>
       </aside>
     </BusinessPageShell>
