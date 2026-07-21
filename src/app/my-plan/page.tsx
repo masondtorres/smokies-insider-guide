@@ -4,7 +4,7 @@ import { SiteFooter, SiteHeader } from "@/components/guide";
 
 export const metadata: Metadata = {
   title: "My Smokies Plan",
-  description: "Review Smokies planning cards saved in this browser, grouped by category with basic trip-shape warnings.",
+  description: "Organize browser-saved Smokies planning cards by day, choose one anchor, add notes and catch common trip-shape problems.",
   alternates: { canonical: "/my-plan" },
   robots: { index: false, follow: true },
 };
@@ -17,7 +17,7 @@ export default function MyPlanPage() {
         <header className="guide-hero">
           <p className="eyebrow">Browser-saved trip builder</p>
           <h1>My Plan</h1>
-          <p>Keep useful planning cards together, review the mix by category, and catch common day-planning problems early.</p>
+          <p>Save what fits, organize the trip by day, choose one main anchor and catch common planning problems early.</p>
         </header>
         <MyPlan />
       </article>
