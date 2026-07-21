@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { businessEmail } from "@/components/business-intake";
 import { JsonLd } from "@/components/guide";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seoSchema";
 import { PrintButton } from "./print-button";
@@ -12,16 +13,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/parking-timing-cheat-sheet" },
 };
 
+const emailRequestHref = `mailto:${businessEmail}?subject=${encodeURIComponent("Send me the current Smokies parking and timing cheat sheet")}&body=${encodeURIComponent("Please send the current Smokies Parking & Timing Cheat Sheet to this email address.\n\nTrip month, if known:\nMain lodging area, if known:\n\nI understand changing parking, road and trolley details must be rechecked before travel.")}`;
+
 const areaRows = [
   [
     "Gatlinburg",
     "Choose one downtown zone, park once when practical and plan the return walk before the group gets tired.",
-    "Parking locations, trolley routes, fares, hills and crowd pressure.",
+    "Parking locations, trolley routes, hours, hills and crowd pressure.",
   ],
   [
     "Pigeon Forge",
     "Choose one Parkway anchor and keep food, shopping and backup stops in the same part of town.",
-    "Repeated crossings, backtracking and stacking too many paid stops.",
+    "Current trolley routes, fares, repeated crossings, backtracking and stacking too many paid stops.",
   ],
   [
     "Sevierville",
@@ -36,7 +39,7 @@ const areaRows = [
   [
     "Cades Cove",
     "Treat the loop as the main event. Check conditions and leave room for slow traffic.",
-    "Road status, daylight, bicycle-only periods, parking tags and long delays.",
+    "Road status, daylight, vehicle schedules, parking tags and long delays.",
   ],
   [
     "National Park",
@@ -94,6 +97,14 @@ export default function ParkingTimingCheatSheetPage() {
           <p><strong>Last reviewed: July 21, 2026.</strong> Changing details must be rechecked before travel.</p>
         </section>
 
+        <aside className="cheat-sheet-source" aria-labelledby="email-cheat-sheet-heading">
+          <h2 id="email-cheat-sheet-heading">Want the current copy in your inbox?</h2>
+          <p>
+            Send a one-click request to Smoky Insider. Your email app will open with the request already written so no address is collected by a hidden form.
+          </p>
+          <a className="cheat-sheet-link" href={emailRequestHref}>Request the Guide by Email</a>
+        </aside>
+
         <section className="cheat-sheet-grid" aria-label="Fast parking plan">
           <article className="cheat-sheet-card">
             <h2>The 60-second rule</h2>
@@ -150,9 +161,9 @@ export default function ParkingTimingCheatSheetPage() {
           <ul>
             <li><a href="https://www.nps.gov/grsm/planyourvisit/conditions.htm">Great Smoky Mountains National Park current conditions</a></li>
             <li><a href="https://www.nps.gov/grsm/planyourvisit/fees.htm">National park parking-tag information</a></li>
-            <li><a href="https://www.gatlinburg.com/plan/transportation/parking/">Official Gatlinburg parking information</a></li>
-            <li><a href="https://www.gatlinburg.com/trolley">Official Gatlinburg trolley information</a></li>
-            <li><a href="https://www.cityofpigeonforgetn.gov/235/Transit">Official Pigeon Forge transit information</a></li>
+            <li><a href="https://www.gatlinburg.com/things-to-do/trolley/">Official Gatlinburg trolley information</a></li>
+            <li><a href="https://www.mypigeonforge.com/planning/getting-around/mass-transit-trolley/">Official Pigeon Forge trolley information</a></li>
+            <li><a href="https://visitsevierville.com/Official-Guide-to-Sevierville.aspx">Official Sevierville visitor guide</a></li>
           </ul>
         </aside>
 
