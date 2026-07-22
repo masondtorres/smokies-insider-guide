@@ -4,17 +4,12 @@ import { BusinessPageShell, BusinessPathLinks, inquiryHref } from "@/components/
 
 export const metadata: Metadata = {
   title: "Advertise With Smoky Insider",
-  description: "Choose a clearly priced local advertising package from veteran-owned Smoky Insider.",
+  description:
+    "Choose a clearly priced local advertising package from independent Smoky Insider. Visibility is labeled and never buys editorial judgment.",
+  alternates: { canonical: "/advertise" },
 };
 
-const advertiseHref = inquiryHref("Smoky Insider advertising package", [
-  "Package requested",
-  "Business category",
-  "Town or service area",
-  "Website",
-  "Campaign timing or goal",
-  "Your name and role",
-]);
+const advertiseHref = inquiryHref();
 
 const packages = [
   {
@@ -55,7 +50,7 @@ const packages = [
 export default function AdvertisePage() {
   return (
     <BusinessPageShell
-      eyebrow="Veteran-Owned Local Media"
+      eyebrow="Local advertising"
       title="Advertise with clear prices and clear labels"
       intro="Smokies businesses can buy useful visibility without buying editorial judgment. These founding-partner packages are simple, public and tied to a real visitor need. No traffic or performance result is guaranteed."
     >
@@ -72,7 +67,7 @@ export default function AdvertisePage() {
               <ul className="business-check-list">
                 {pkg.items.map((item) => <li key={item}>{item}</li>)}
               </ul>
-              <a className="business-primary-action" href={advertiseHref}>Request this package</a>
+              <Link className="business-primary-action" href={advertiseHref}>Request this package</Link>
             </article>
           ))}
         </div>
@@ -92,7 +87,7 @@ export default function AdvertisePage() {
           </p>
         </div>
         <div className="business-action-row">
-          <a className="business-primary-action" href={advertiseHref}>Request a package</a>
+          <Link className="business-primary-action" href={advertiseHref}>Request a package</Link>
           <Link className="business-secondary-action" href="/business-listings">Request a listing</Link>
         </div>
       </section>
@@ -116,7 +111,7 @@ export default function AdvertisePage() {
         <div className="business-inline-links">
           <Link href="/sponsored-content-policy">Sponsored content policy</Link>
           <Link href="/editorial-policy">Editorial policy</Link>
-          <Link href="/contact">Contact Mason Torres</Link>
+          <Link href="/contact">Contact</Link>
         </div>
       </aside>
     </BusinessPageShell>
