@@ -5,13 +5,14 @@ import { usePathname } from "next/navigation";
 import { SiteIdentity } from "@/components/site-mark";
 
 const primaryNav = [
+  { label: "Start Here", href: "/start-here" },
   { label: "Go", href: "/go" },
   { label: "Do", href: "/do" },
   { label: "See", href: "/see" },
   { label: "Eat", href: "/eat" },
   { label: "Stay", href: "/stay" },
   { label: "Deals", href: "/deals" },
-  { label: "My Plan", href: "/my-plan" },
+  { label: "Resources", href: "/visitor-resources" },
 ];
 
 const footerLinks = [
@@ -36,11 +37,28 @@ export function GlobalSiteHeader() {
 
   return (
     <header className="standard-site-header">
-      <div className="standard-site-header-inner">
-        <Link className="standard-site-brand" href="/" aria-label="Smoky Insider home">
-          <SiteIdentity />
-        </Link>
-        <nav className="standard-site-nav" aria-label="Primary navigation">
+      <div className="standard-site-header-visual">
+        <div className="standard-site-header-inner">
+          <Link className="standard-site-brand" href="/" aria-label="Smoky Insider home">
+            <SiteIdentity />
+            <span className="standard-site-tagline">
+              Local judgment for trips that actually work
+            </span>
+          </Link>
+
+          <div className="standard-site-header-actions">
+            <Link className="standard-site-action standard-site-action-secondary" href="/start-planning">
+              Start planning
+            </Link>
+            <Link className="standard-site-action standard-site-action-primary" href="/my-plan">
+              My Plan
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <nav className="standard-site-nav-shell" aria-label="Primary navigation">
+        <div className="standard-site-nav">
           {primaryNav.map((link) => (
             <Link
               aria-current={isCurrent(pathname, link.href) ? "page" : undefined}
@@ -50,8 +68,8 @@ export function GlobalSiteHeader() {
               {link.label}
             </Link>
           ))}
-        </nav>
-      </div>
+        </div>
+      </nav>
     </header>
   );
 }
