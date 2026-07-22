@@ -1,470 +1,388 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/guide";
+import { ParkingStrategyTool } from "@/components/parking-strategy-tool";
+import {
+  gatlinburgPlaces,
+  pigeonForgePlaces,
+  npsTagFacts,
+  LAST_CLUSTER_CHECK,
+} from "@/data/parking-places";
 import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/seoSchema";
 
+const pageTitle = "Smokies Parking and Trolley Guide";
+const pageDescription =
+  "Named Gatlinburg and Pigeon Forge parking options, free park-and-ride lots, trolley hubs, and Great Smoky Mountains National Park parking-tag rules — with official sources and dates checked.";
+
 export const metadata: Metadata = {
-  title: "Smokies Parking, Trolleys and Getting Around | Gatlinburg, Pigeon Forge and the Park",
-  description:
-    "Plan parking, trolleys, park-and-ride, town movement and national park checks for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park.",
+  title: pageTitle,
+  description: pageDescription,
+  alternates: { canonical: "/smokies-parking-trolley-guide" },
+  openGraph: {
+    title: `${pageTitle} | Smoky Insider`,
+    description: pageDescription,
+    url: "https://www.smokyinsider.com/smokies-parking-trolley-guide",
+  },
 };
 
-const quickAreas = [
+const faqs = [
   {
-    title: "Gatlinburg",
-    text: "Park once and walk when the group can handle it. Plan parking and walking together.",
-    href: "/gatlinburg",
-  },
-  {
-    title: "Pigeon Forge",
-    text: "Plan around the Parkway and avoid bouncing across town.",
-    href: "/pigeon-forge",
-  },
-  {
-    title: "Sevierville",
-    text: "Use it as a practical base and gateway for food, shopping and movement.",
-    href: "/sevierville",
-  },
-  {
-    title: "Townsend",
-    text: "Use the quiet-side gateway for Cades Cove and slower park days.",
-    href: "/townsend",
-  },
-  {
-    title: "Great Smoky Mountains National Park",
-    text: "Check conditions, closures and parking-tag requirements before the park day.",
-  },
-  {
-    title: "Dollywood and Cades Cove",
-    text: "Treat each as its own parking, timing and movement plan, not a quick add-on.",
-  },
-];
-
-const shortAnswers = [
-  "If you are spending the day in Gatlinburg, plan the parking and walking together.",
-  "If you are spending the day in Pigeon Forge, choose your main zone before you start driving.",
-  "If you are entering the national park, check official NPS conditions and parking-tag rules first.",
-  "If your group has toddlers, grandparents or limited stamina, reduce the number of stops before trying to solve everything with a trolley.",
-];
-
-const movementAreas = [
-  {
-    title: "Sevierville",
-    bestFor: "A useful gateway and base area with room for practical resets.",
-    planAround: "Food, shopping and spreading out from the heavier corridors.",
-    next: "Open Sevierville guide",
-    href: "/sevierville",
-  },
-  {
-    title: "Townsend",
-    bestFor: "Quiet-side park access, Cades Cove and slower days.",
-    planAround: "Fewer attraction-style stops than Pigeon Forge and a simpler route.",
-    next: "Open Townsend guide",
-    href: "/townsend",
-  },
-];
-
-const mistakes = [
-  "Trying to do Gatlinburg, Pigeon Forge and the park as one casual day.",
-  "Parking far away without considering the return walk.",
-  "Waiting until the family is tired to choose food.",
-  "Treating Cades Cove as a quick side stop.",
-  "Depending on cell service inside the park.",
-  "Assuming trolley routes or fares without checking official pages.",
-  "Trying to solve an overpacked plan with transportation instead of simplifying the plan.",
-];
-
-const movementPlans = [
-  {
-    title: "Gatlinburg lower-walking day",
-    plan: "Choose one downtown zone, check current parking or trolley details and keep food and stops close together.",
-    watchFor: "Return walking distance, crowds, hills and a scattered wish list.",
-    href: "/gatlinburg-without-walking-too-much",
-  },
-  {
-    title: "Pigeon Forge family day",
-    plan: "Pick one main Parkway area or attraction, add food and keep one nearby backup.",
-    watchFor: "Traffic, repeated crossings and stacking too many paid stops.",
-    href: "/pigeon-forge-with-kids",
-  },
-  {
-    title: "Townsend and Cades Cove day",
-    plan: "Check official park conditions, use Townsend as the quiet-side base and give Cades Cove real time.",
-    watchFor: "Slow roads, daylight, parking-tag needs and treating the loop like a side stop.",
-    href: "/cades-cove",
-  },
-  {
-    title: "Dollywood-focused day",
-    plan: "Treat Dollywood as its own arrival, parking and timing plan after checking official details.",
-    watchFor: "Adding too much before or after the park.",
-    href: "/dollywood-day-plan",
-  },
-];
-
-const movementComparison = [
-  ["Gatlinburg", "Park once and walk when the group can handle it.", "Trolley and parking details can change. Verify official details."],
-  ["Pigeon Forge", "Pick one Parkway zone or anchor before driving.", "Do not bounce across the Parkway for small add-ons."],
-  ["Sevierville", "Use as a practical base, food/shopping reset or gateway.", "Not the same as immediate park or downtown Gatlinburg access."],
-  ["Townsend", "Use for Cades Cove, quieter park access and slower scenic days.", "Not built for heavy attraction stacking."],
-  ["Park areas", "Check official NPS conditions, tags, roads and closures before the park day.", "Cell service and road/weather conditions can affect plans."],
-];
-
-const parkingFaqs = [
-  {
-    question: "What is the best way to handle parking in Gatlinburg?",
+    question: "Where should I park in Gatlinburg?",
     answer:
-      "Plan parking and walking together. Gatlinburg usually works better when visitors park once and keep stops close, but current parking and trolley details should be checked with official sources.",
+      "If you want to avoid downtown traffic, use the free City of Gatlinburg park-and-ride at the Welcome Center (1011 Banner Rd) or at City Hall (1230 East Pkwy) and ride the free trolley. If you need the car on the Parkway, the McMahan garage at 520 Parkway and the Aquarium garage at 161 Greystone Heights Rd are both listed at $15 per day by the city (checked 2026-07-22).",
   },
   {
-    question: "Should visitors rely on trolleys in Gatlinburg or Pigeon Forge?",
+    question: "Is the Gatlinburg trolley free?",
     answer:
-      "Trolleys can help some plans, but they do not fix an overpacked route. Check official route, fare and service details before relying on transit.",
+      "Yes. The official Gatlinburg tourism trolley page states there are no fares or fees to ride. Hours vary by season — confirm on the official page before you go.",
   },
   {
-    question: "Do Smokies park days need official checks?",
+    question: "Where should I park in Pigeon Forge?",
     answer:
-      "Yes. Park rules, parking tags, road conditions, closures and weather can change. Check official Great Smoky Mountains National Park sources before you go.",
+      "A practical first choice is free parking at the Mass Transit Trolley Station at Patriot Park (236 Old Mill Ave), where all trolley routes start and end. Additional free lots listed by the official trolley page include the River Lot (2936 Teaster Lane) and Mountain Lot (2989 Teaster Lane). Trolley fares apply — confirm current prices on the official page.",
   },
   {
-    question: "What is the biggest getting-around mistake?",
+    question: "Do I need a national park parking tag?",
     answer:
-      "The biggest mistake is trying to solve too many stops with transportation. Simplify the day first: one base, one anchor, nearby food and a backup that fits the same route.",
+      "If you park more than 15 minutes inside Great Smoky Mountains National Park, yes. Tags are $5 daily, $15 weekly, or $40 annual (NPS fees page, checked 2026-07-22). A tag does not guarantee a space. Disability plate/placard holders are exempt per NPS FAQ.",
   },
-];
-
-const relatedGuides = [
-  { prompt: "Need the full planning router?", next: "Start Planning", href: "/start-planning" },
-  { prompt: "Choosing activities?", next: "Things To Do Decision Hub", href: "/things-to-do" },
-  { prompt: "Choosing where to stay?", next: "Where To Stay by Trip Type", href: "/where-to-stay-in-the-smokies-by-trip-type" },
-  { prompt: "Need the Gatlinburg town guide?", next: "Gatlinburg Guide", href: "/gatlinburg" },
-  { prompt: "Need the Pigeon Forge town guide?", next: "Pigeon Forge Guide", href: "/pigeon-forge" },
-  { prompt: "Ready to check offers?", next: "Coupons & Deals", href: "/deals" },
+  {
+    question: "Where do I buy a parking tag?",
+    answer:
+      "Online via Recreation.gov (daily/weekly) or Smokies Life (annual), at visitor centers and welcome centers, at parking-tag machines inside the park, and at listed partners such as REI in Pigeon Forge. Full list: nps.gov/grsm/planyourvisit/fees.htm.",
+  },
+  {
+    question: "Can my parent or grandparent handle downtown walking?",
+    answer:
+      "Gatlinburg sidewalks include hills and crowds. If mobility is limited, prefer park-and-ride plus trolley, keep the day to one zone, and confirm lift-equipped boarding on the official trolley page. Pigeon Forge distances on the Parkway are long — trolley is usually safer than multi-stop walking.",
+  },
 ];
 
 export default function SmokiesParkingTrolleyGuidePage() {
   return (
-    <main className="destination-page">
+    <main className="destination-page parking-flagship">
       <header className="destination-header">
         <Link className="wordmark" href="/">
           Smoky Insider
         </Link>
-        <Link className="back-link" href="/start-planning">
-          Start Planning
+        <Link className="back-link" href="/go">
+          Go
         </Link>
       </header>
 
       <section className="destination-hero">
-        <p className="eyebrow">Smokies transportation planning guide</p>
-        <h1>Smokies Parking, Trolleys and Getting Around</h1>
-        <p>
-          Parking and driving can shape the whole Smokies trip. Gatlinburg
-          works best when the walking plan makes sense. Pigeon Forge works
-          better when you understand the Parkway. Park days need official
-          condition checks before you go.
-        </p>
-        <aside className="flagship-warning-note">
-          <strong>Needs official confirmation</strong>
-          <p>
-            Always confirm current parking rules, trolley routes, trolley
-            fares, road conditions, closures and parking-tag requirements with
-            official sources before relying on a plan.
-          </p>
-        </aside>
-        <div className="destination-actions">
-          <a className="button button-primary" href="#start-with-town">
-            Start with your town <span aria-hidden="true">→</span>
-          </a>
-          <Link className="button button-secondary" href="/gatlinburg-without-walking-too-much">
-            Plan less walking <span aria-hidden="true">→</span>
-          </Link>
-        </div>
-      </section>
-
-      <section className="destination-section quick-answer-panel" id="start-with-town">
-        <div className="destination-heading">
-          <p className="eyebrow">Direct answer</p>
-          <h2>Best way to think about getting around the Smokies</h2>
-        </div>
+        <p className="eyebrow">Parking and transportation cluster</p>
+        <h1>Smokies parking and trolley guide</h1>
         <p className="seo-direct-copy">
-          The best Smokies transportation plan starts by simplifying the day. Gatlinburg works best when parking and walking are planned together. Pigeon Forge works better by corridor. Park days need official checks for parking tags, roads, closures and conditions before you go.
+          For Gatlinburg, park once at a free park-and-ride (1011 Banner Rd or 1230 East Pkwy) and
+          ride the free trolley, or pay $15/day at a city garage on the Parkway. For Pigeon Forge,
+          park free at the Patriot Park trolley hub (236 Old Mill Ave) and ride. Inside the national
+          park, buy a physical parking tag before you leave cell service — $5 day / $15 week / $40
+          year.
         </p>
-        <div className="destination-grid">
-          {quickAreas.map((area) => {
-            const content = (
-              <>
-                <h3>{area.title}</h3>
-                <p>{area.text}</p>
-                {area.href ? (
-                  <p className="router-detail router-next">
-                    <strong>Next</strong>
-                    Open area guide
-                  </p>
-                ) : null}
-              </>
-            );
-            return area.href ? (
-              <Link className="destination-card router-card" href={area.href} key={area.title}>
-                {content}
-              </Link>
-            ) : (
-              <article className="destination-card" key={area.title}>
-                {content}
-              </article>
-            );
-          })}
+        <p>
+          <strong>Last checked:</strong> {LAST_CLUSTER_CHECK} · Sources: City of Gatlinburg, NPS,
+          MyPigeonForge
+        </p>
+        <div className="destination-actions">
+          <a className="button button-primary" href="#parking-tool">
+            Open parking tool
+          </a>
+          <a className="button button-secondary" href="#gatlinburg-table">
+            Gatlinburg lots
+          </a>
+          <a className="button button-secondary" href="#print-summary">
+            Printable summary
+          </a>
         </div>
       </section>
 
-      <section className="destination-section comparison-section" aria-labelledby="movement-table-title">
+      <section className="destination-section" id="quick-ref">
         <div className="destination-heading">
-          <p className="eyebrow">Comparison table</p>
-          <h2 id="movement-table-title">Parking and movement by gateway area</h2>
+          <p className="eyebrow">Mobile quick reference</p>
+          <h2>Five parking systems — do not mix them up</h2>
+        </div>
+        <div className="destination-grid">
+          <article className="destination-card">
+            <h3>National park parking tag</h3>
+            <p>
+              Required when parked more than 15 minutes inside park boundaries. Does not guarantee a
+              space. Physical tag only.
+            </p>
+            <p>
+              <span className="verify-badge">Officially confirmed</span> · NPS · {npsTagFacts.dateChecked}
+            </p>
+          </article>
+          <article className="destination-card">
+            <h3>Municipal parking</h3>
+            <p>
+              City-run garages and lots (example: Gatlinburg McMahan garage, $15/day). Rules and rates
+              set by the city.
+            </p>
+          </article>
+          <article className="destination-card">
+            <h3>Park-and-ride</h3>
+            <p>
+              Free lots outside the densest blocks with trolley into town — best when you want to park
+              once.
+            </p>
+          </article>
+          <article className="destination-card">
+            <h3>Private / attraction parking</h3>
+            <p>
+              Hotel, cabin, and attraction lots follow their own rules. Always check the business you
+              are visiting.
+            </p>
+          </article>
+          <article className="destination-card">
+            <h3>Trolley / transit</h3>
+            <p>
+              Gatlinburg trolley is free. Pigeon Forge trolley charges fares / day passes. Neither
+              replaces a park parking tag.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="destination-section comparison-section" id="gatlinburg-table">
+        <div className="destination-heading">
+          <p className="eyebrow">Gatlinburg</p>
+          <h2>Named parking choices</h2>
         </div>
         <div className="comparison-table-wrap">
           <table className="comparison-table">
             <thead>
               <tr>
-                <th scope="col">Area</th>
-                <th scope="col">Use this movement logic</th>
-                <th scope="col">Caution</th>
+                <th scope="col">Location</th>
+                <th scope="col">Address</th>
+                <th scope="col">Best for</th>
+                <th scope="col">Walking</th>
+                <th scope="col">Type</th>
+                <th scope="col">Pricing status</th>
+                <th scope="col">Source / checked</th>
               </tr>
             </thead>
             <tbody>
-              {movementComparison.map(([area, logic, caution]) => (
-                <tr key={area}>
-                  <th scope="row">{area}</th>
-                  <td data-label="Use this movement logic">{logic}</td>
-                  <td data-label="Caution">{caution}</td>
+              {gatlinburgPlaces.map((place) => (
+                <tr key={place.id}>
+                  <th scope="row">{place.name}</th>
+                  <td data-label="Address">
+                    <a href={place.mapUrl} target="_blank" rel="noopener noreferrer">
+                      {place.address}
+                    </a>
+                  </td>
+                  <td data-label="Best for">{place.bestFor}</td>
+                  <td data-label="Walking">{place.walkingNote}</td>
+                  <td data-label="Type">{place.parkingType}</td>
+                  <td data-label="Pricing">{place.pricingStatus}</td>
+                  <td data-label="Source">
+                    <a href={place.officialSource} target="_blank" rel="noopener noreferrer">
+                      {place.sourceLabel}
+                    </a>
+                    <br />
+                    {place.verification} · {place.dateChecked}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        <p>
+          City note: live occupancy tools have been reported inaccurate during technical issues.
+          Treat garage availability as uncertain until you arrive.
+        </p>
       </section>
 
-      <section className="destination-section comparison-section">
+      <section className="destination-section comparison-section" id="pigeon-forge-table">
         <div className="destination-heading">
-          <p className="eyebrow">Short answer</p>
-          <h2>Start by simplifying the movement plan</h2>
+          <p className="eyebrow">Pigeon Forge</p>
+          <h2>Named parking and transit anchors</h2>
         </div>
-        <div className="destination-grid destination-grid-compact">
-          <article className="destination-card">
-            <h3>Planning guidance</h3>
-            <ul className="area-list">
-              {shortAnswers.map((answer) => (
-                <li key={answer}>{answer}</li>
+        <div className="comparison-table-wrap">
+          <table className="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Location</th>
+                <th scope="col">Address</th>
+                <th scope="col">Best for</th>
+                <th scope="col">Trolley</th>
+                <th scope="col">Walking</th>
+                <th scope="col">Pricing status</th>
+                <th scope="col">Source / checked</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pigeonForgePlaces.map((place) => (
+                <tr key={place.id}>
+                  <th scope="row">{place.name}</th>
+                  <td data-label="Address">
+                    <a href={place.mapUrl} target="_blank" rel="noopener noreferrer">
+                      {place.address}
+                    </a>
+                  </td>
+                  <td data-label="Best for">{place.bestFor}</td>
+                  <td data-label="Trolley">{place.trolleyAccess}</td>
+                  <td data-label="Walking">{place.walkingNote}</td>
+                  <td data-label="Pricing">{place.pricingStatus}</td>
+                  <td data-label="Source">
+                    <a href={place.officialSource} target="_blank" rel="noopener noreferrer">
+                      {place.sourceLabel}
+                    </a>
+                    <br />
+                    {place.verification} · {place.dateChecked}
+                  </td>
+                </tr>
               ))}
-            </ul>
-          </article>
-          <article className="destination-card">
-            <p className="eyebrow">Best for</p>
-            <p>First-time visitors, families, low-walking groups and cabin guests.</p>
-            <p className="router-detail">
-              <strong>Skip if</strong>
-              You are looking for exact real-time parking availability. Use official sources for changing details.
-            </p>
-            <p className="router-detail">
-              <strong>Status</strong>
-              Planning guidance. Verify current details with official sources.
-            </p>
-          </article>
+            </tbody>
+          </table>
         </div>
+        <p>
+          Official trolley hours (MyPigeonForge): roughly 8am–midnight early March–December; 10am–10pm
+          early January–February; closed Thanksgiving, Christmas Eve, Christmas Day. Confirm before
+          travel.
+        </p>
       </section>
 
-      <section className="destination-section guide-card-section">
+      <section className="destination-section" id="nps-tags">
         <div className="destination-heading">
-          <p className="eyebrow">Gatlinburg movement</p>
-          <h2>Gatlinburg parking and trolley planning</h2>
+          <p className="eyebrow">National park</p>
+          <h2>Parking tags — what they are and are not</h2>
         </div>
-        <div className="destination-grid destination-grid-compact">
-          <article className="destination-card">
-            <h3>Keep the downtown plan tight</h3>
-            <p>
-              Gatlinburg is easier when you avoid repeated backtracking.
-              Parking location shapes the day, and a trolley is not a magic fix
-              for scattered stops.
-            </p>
-          </article>
-          <article className="destination-card">
-            <h3>Check before relying on transit</h3>
-            <p>
-              Park-and-ride and trolley options can help some visitors. Check
-              official Gatlinburg parking, route and service details first.
-            </p>
-          </article>
-        </div>
-        <div className="destination-actions">
-          <Link className="button button-primary" href="/gatlinburg-without-walking-too-much">
-            Plan less walking
-          </Link>
-          <Link className="button button-secondary" href="/gatlinburg">
-            Gatlinburg Guide
-          </Link>
-        </div>
-      </section>
-
-      <section className="destination-section guide-card-section">
-        <div className="destination-heading">
-          <p className="eyebrow">Pigeon Forge movement</p>
-          <h2>Pigeon Forge parking and trolley planning</h2>
-        </div>
-        <div className="destination-grid destination-grid-compact">
-          <article className="destination-card">
-            <h3>Plan the corridor first</h3>
-            <p>
-              Pigeon Forge is a corridor town. Pick one main attraction or area
-              before driving, and do not bounce across the Parkway all day.
-            </p>
-          </article>
-          <article className="destination-card">
-            <h3>Verify transit and anchor details</h3>
-            <p>
-              Transit can help some visitors. Check current official route and
-              fare details before relying on it, especially when Patriot Park,
-              Dollywood or Parkway movement shapes the day.
-            </p>
-          </article>
-        </div>
-        <div className="destination-actions">
-          <Link className="button button-primary" href="/pigeon-forge">
-            Pigeon Forge Guide
-          </Link>
-          <Link className="button button-secondary" href="/pigeon-forge-with-kids">
-            Pigeon Forge With Kids
-          </Link>
-          <Link className="button button-secondary" href="/dollywood-day-plan">
-            Dollywood Day Plan
-          </Link>
-        </div>
-      </section>
-
-      <section className="destination-section comparison-section">
-        <div className="destination-heading">
-          <p className="eyebrow">Gateway movement</p>
-          <h2>Sevierville and Townsend movement</h2>
-        </div>
-        <div className="destination-grid destination-grid-compact">
-          {movementAreas.map((area) => (
-            <Link className="destination-card router-card" href={area.href} key={area.href}>
-              <h3>{area.title}</h3>
-              <p className="router-detail">
-                <strong>Best for</strong>
-                {area.bestFor}
-              </p>
-              <p className="router-detail">
-                <strong>Plan around</strong>
-                {area.planAround}
-              </p>
-              <p className="router-detail router-next">
-                <strong>Next</strong>
-                {area.next}
-              </p>
-            </Link>
+        <ul className="area-list">
+          <li>
+            <strong>When required:</strong> {npsTagFacts.requiredWhen}
+          </li>
+          <li>
+            <strong>Prices:</strong> Daily {npsTagFacts.prices.daily}, weekly{" "}
+            {npsTagFacts.prices.weekly}, annual {npsTagFacts.prices.annual}
+          </li>
+          <li>
+            <strong>Does not guarantee:</strong> {npsTagFacts.doesNotGuarantee}
+          </li>
+          <li>
+            <strong>Display:</strong> {npsTagFacts.display}
+          </li>
+          <li>
+            <strong>Not accepted as substitutes:</strong> {npsTagFacts.notAccepted}
+          </li>
+          <li>
+            <strong>Disability exemption:</strong> {npsTagFacts.disabilityExemption}
+          </li>
+        </ul>
+        <h3>Where to buy (sample of official locations)</h3>
+        <ul className="area-list">
+          {npsTagFacts.samplePurchaseLocations.map((loc) => (
+            <li key={loc.address}>
+              {loc.name} — {loc.address}
+            </li>
           ))}
-        </div>
+        </ul>
+        <p>
+          Online:{" "}
+          <a href={npsTagFacts.purchaseOnline.dailyWeekly} target="_blank" rel="noopener noreferrer">
+            Recreation.gov daily/weekly
+          </a>
+          {" · "}
+          <a href={npsTagFacts.purchaseOnline.annual} target="_blank" rel="noopener noreferrer">
+            Annual tag (Smokies Life)
+          </a>
+        </p>
+        <p>
+          <span className="verify-badge">{npsTagFacts.verification}</span> ·{" "}
+          <a href={npsTagFacts.officialSource} target="_blank" rel="noopener noreferrer">
+            NPS fees page
+          </a>{" "}
+          · Checked {npsTagFacts.dateChecked} · {npsTagFacts.npsUpdated}
+        </p>
+        <p>
+          <strong>Cell service:</strong> Buy the tag while you still have signal. Do not count on
+          buying online after you enter canyon or high-elevation areas.
+        </p>
       </section>
 
-      <section className="destination-section field-notes-section">
+      <ParkingStrategyTool />
+
+      <section className="destination-section" id="accessibility">
         <div className="destination-heading">
-          <p className="eyebrow">Verified source check</p>
-          <h2>National park parking-tag and road-condition planning</h2>
+          <p className="eyebrow">Mobility, family and seniors</p>
+          <h2>Match the lot to the least mobile person</h2>
         </div>
-        <aside className="flagship-warning-note">
-          <strong>Check NPS before the park day</strong>
-          <p>
-            Parking-tag rules matter. Conditions and closures can change, cell
-            service can be limited and weather can vary by elevation. Cades
-            Cove and popular scenic areas can take longer than visitors expect.
-          </p>
-        </aside>
-        <div className="destination-actions">
-          <Link className="button button-primary" href="/cades-cove">
-            Cades Cove First-Time Guide
-          </Link>
-        </div>
+        <ul className="area-list">
+          <li>
+            Prefer Gatlinburg park-and-ride + free trolley when hills or stamina are a concern.
+          </li>
+          <li>
+            Pigeon Forge trolleys are lift-equipped at designated stops; paratransit is available by
+            advance request (official page: 865-453-6444).
+          </li>
+          <li>
+            Strollers and toddlers: shorter zones beat more stops. Garage elevators help; confirm on
+            arrival.
+          </li>
+          <li>
+            National park trailheads often mean uneven ground after you leave the car — pick the stop
+            for the slowest walker, not the strongest.
+          </li>
+        </ul>
       </section>
 
       <section className="destination-section warning-section">
         <div className="destination-heading">
-          <p className="eyebrow">Planning guidance</p>
-          <h2>Common getting-around mistakes</h2>
+          <p className="eyebrow">Common mistakes</p>
+          <h2>What burns the morning</h2>
+        </div>
+        <ul className="area-list">
+          <li>Driving into downtown Gatlinburg at peak without a park-and-ride backup.</li>
+          <li>Assuming a park parking tag reserves a space at Cades Cove or a waterfall lot.</li>
+          <li>Buying only a digital confirmation — NPS requires a physical tag displayed correctly.</li>
+          <li>Planning Pigeon Forge as a walking town across multiple Parkway segments.</li>
+          <li>Skipping the trolley schedule check on winter hours or holiday closures.</li>
+          <li>Leaving the park tag purchase until after cell service drops.</li>
+        </ul>
+      </section>
+
+      <section className="destination-section" id="print-summary">
+        <div className="destination-heading">
+          <p className="eyebrow">Printable summary</p>
+          <h2>First-day parking cheat sheet</h2>
         </div>
         <article className="destination-card">
-          <ul className="area-list">
-            {mistakes.map((mistake) => (
-              <li key={mistake}>{mistake}</li>
-            ))}
-          </ul>
+          <ol className="area-list">
+            <li>
+              <strong>Gatlinburg free park-and-ride:</strong> 1011 Banner Rd or 1230 East Pkwy → free
+              trolley into town.
+            </li>
+            <li>
+              <strong>Gatlinburg downtown garage:</strong> 520 Parkway or 161 Greystone Heights Rd —
+              $15/day (city rate as of {LAST_CLUSTER_CHECK}).
+            </li>
+            <li>
+              <strong>Pigeon Forge hub:</strong> 236 Old Mill Ave (Patriot Park trolley station) —
+              free parking listed; trolley fares apply.
+            </li>
+            <li>
+              <strong>National park:</strong> Physical tag $5 / $15 / $40 — buy before you lose
+              signal.
+            </li>
+            <li>
+              <strong>Backup:</strong> Always name a second lot before you leave the cabin.
+            </li>
+          </ol>
+          <p>
+            <Link href="/my-plan">Save named places in My Plan</Link>
+            {" · "}
+            <Link href="/parking-timing-cheat-sheet">Timing cheat sheet</Link>
+            {" · "}
+            <Link href="/parking-tag">Parking-tag deep dive</Link>
+          </p>
         </article>
       </section>
 
-      <section className="destination-section guide-card-section">
-        <div className="destination-heading">
-          <p className="eyebrow">Keep timing general</p>
-          <h2>Simple movement plans</h2>
-        </div>
-        <div className="destination-grid">
-          {movementPlans.map((plan) => (
-            <Link className="destination-card router-card" href={plan.href} key={plan.href}>
-              <h3>{plan.title}</h3>
-              <p className="router-detail">
-                <strong>Plan</strong>
-                {plan.plan}
-              </p>
-              <p className="router-detail">
-                <strong>Watch for</strong>
-                {plan.watchFor}
-              </p>
-              <p className="router-detail router-next">
-                <strong>Next</strong>
-                Open related guide
-              </p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="destination-section field-notes-section">
-        <div className="destination-heading">
-          <p className="eyebrow">Source and verification note</p>
-          <h2>Know what is verified and what needs checking</h2>
-        </div>
-        <div className="destination-grid">
-          <article className="destination-card">
-            <p className="eyebrow">Verified</p>
-            <p>Official source links are provided for current transportation and park information.</p>
-          </article>
-          <article className="destination-card">
-            <p className="eyebrow">Planning guidance</p>
-            <p>Town and day-shape advice helps simplify the trip before checking current details.</p>
-          </article>
-          <article className="destination-card">
-            <p className="eyebrow">Needs local confirmation</p>
-            <p>Current parking, trolley, road, closure and park-tag details should be checked before the trip.</p>
-          </article>
-        </div>
-      </section>
-
-      <section className="destination-section next-step-panel">
-        <div className="destination-heading">
-          <p className="eyebrow">Related guides</p>
-          <h2>Go to the guide your movement plan needs</h2>
-        </div>
-        <nav className="destination-link-grid router-link-grid" aria-label="Smokies transportation related guides">
-          {relatedGuides.map((guide) => (
-            <Link href={guide.href} key={guide.href}>
-              <span>{guide.prompt}</span>
-              <strong>{guide.next}</strong>
-            </Link>
-          ))}
-        </nav>
-      </section>
-
       <section className="destination-section seo-faq-panel" aria-labelledby="parking-faq-title">
-        <p className="eyebrow">Parking and trolley FAQ</p>
-        <h2 id="parking-faq-title">Questions visitors ask before moving around the Smokies</h2>
+        <p className="eyebrow">FAQ</p>
+        <h2 id="parking-faq-title">Visitor questions</h2>
         <div className="seo-faq-list">
-          {parkingFaqs.map((item) => (
+          {faqs.map((item) => (
             <article key={item.question}>
               <h3>{item.question}</h3>
               <p>{item.answer}</p>
@@ -473,55 +391,40 @@ export default function SmokiesParkingTrolleyGuidePage() {
         </div>
       </section>
 
-      <section className="business-cta planning-desk-cta" aria-labelledby="transport-business-title">
-        <div>
-          <p className="eyebrow">Local businesses</p>
-          <h2 id="transport-business-title">Help visitors plan a useful stop</h2>
-          <p>
-            Have a useful stop near a trolley route, parking area, attraction
-            corridor or park gateway? Smoky Insider will eventually
-            feature local options that help visitors plan better.
-          </p>
-        </div>
-        <div className="business-actions">
-          <Link className="button button-primary" href="/advertise">
-            Advertise With Us
-          </Link>
-        </div>
-      </section>
-
-      <aside className="destination-section source-note" aria-labelledby="transport-source-note">
-        <p className="eyebrow">Official source links</p>
-        <h2 id="transport-source-note">Check changing details before relying on the plan</h2>
-        <p>
-          Verified facts come from official sources when possible. Planning
-          advice is labeled as guidance. Current parking, trolley, road,
-          closure and park-tag details should be checked before the trip.
-        </p>
+      <aside className="destination-section source-note">
+        <p className="eyebrow">Official sources used for this page</p>
+        <h2>Recheck before travel</h2>
         <div className="source-links">
-          <a href="https://www.nps.gov/grsm/index.htm">Great Smoky Mountains National Park</a>
-          <a href="https://www.nps.gov/grsm/planyourvisit/conditions.htm">NPS current conditions</a>
+          <a href="https://www.gatlinburgtn.gov/page/parking">City of Gatlinburg parking</a>
+          <a href="https://www.gatlinburg.com/things-to-do/trolley/">Gatlinburg Trolley</a>
+          <a href="https://www.mypigeonforge.com/planning/getting-around/mass-transit-trolley/">
+            Pigeon Forge trolley
+          </a>
           <a href="https://www.nps.gov/grsm/planyourvisit/fees.htm">NPS parking tags</a>
-          <a href="https://www.gatlinburg.com/trolley">Official Gatlinburg trolley details</a>
-          <a href="https://www.gatlinburg.com/plan/transportation/parking/">
-            Official Gatlinburg parking information
-          </a>
-          <a href="https://www.cityofpigeonforgetn.gov/235/Transit">
-            Official Pigeon Forge transit information
-          </a>
-          <a href="https://www.dollywood.com/">Official Dollywood site</a>
+          <a href="https://www.nps.gov/grsm/planyourvisit/conditions.htm">NPS current conditions</a>
+          <a href="https://www.recreation.gov/activitypass/AP2510">Recreation.gov tag purchase</a>
         </div>
+        <p>
+          Facts on this page that can change (rates, hours, capacity notes) were checked{" "}
+          {LAST_CLUSTER_CHECK}. Private lot rates and unofficial blogs were not used as primary
+          sources.
+        </p>
       </aside>
-      <JsonLd data={webPageSchema({
-        path: "/smokies-parking-trolley-guide",
-        title: "Smokies Parking, Trolleys and Getting Around | Gatlinburg, Pigeon Forge and the Park",
-        description: metadata.description ?? "",
-      })} />
-      <JsonLd data={breadcrumbSchema([
-        { name: "Home", url: "/" },
-        { name: "Smokies Parking and Trolley Guide", url: "/smokies-parking-trolley-guide" },
-      ])} />
-      <JsonLd data={faqSchema(parkingFaqs)} />
+
+      <JsonLd
+        data={webPageSchema({
+          path: "/smokies-parking-trolley-guide",
+          title: pageTitle,
+          description: pageDescription,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: "/" },
+          { name: "Parking and trolley guide", url: "/smokies-parking-trolley-guide" },
+        ])}
+      />
+      <JsonLd data={faqSchema(faqs)} />
     </main>
   );
 }
