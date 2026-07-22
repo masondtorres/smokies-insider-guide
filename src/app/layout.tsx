@@ -47,6 +47,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Smoky Insider" }],
   creator: "Smoky Insider",
   publisher: "Smoky Insider",
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     siteName: "Smoky Insider",
@@ -79,12 +80,9 @@ export const metadata: Metadata = {
     "site-category": "Travel, Tourism, Vacation Planning, Family Travel",
   },
   icons: {
-    icon: [
-      { url: "/smokies-field-guide-icon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "any" },
-    ],
+    icon: [{ url: "/smokies-field-guide-icon.svg", type: "image/svg+xml", sizes: "any" }],
     shortcut: "/smokies-field-guide-icon.svg",
-    apple: "/apple-icon.png",
+    apple: "/smokies-field-guide-icon.svg",
   },
 };
 
