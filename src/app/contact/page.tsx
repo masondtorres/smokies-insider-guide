@@ -4,9 +4,16 @@ import { BusinessPageShell, BusinessPathLinks } from "@/components/business-inta
 import { ContactForm } from "@/components/contact-form";
 
 export const metadata: Metadata = {
-  title: "Contact | Smoky Insider",
+  title: "Contact",
   description:
     "Contact Smoky Insider for corrections, listing requests, partnerships and general questions about Smoky Mountains trip planning.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact | Smoky Insider",
+    description:
+      "Contact Smoky Insider for corrections, listing requests, partnerships and general questions.",
+    url: "https://www.smokyinsider.com/contact",
+  },
 };
 
 export default function ContactPage() {
