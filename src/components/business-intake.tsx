@@ -1,9 +1,18 @@
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/guide";
 
-export const businessEmail = "masondtorres@duck.com";
+/**
+ * Public contact email is intentionally not hard-coded.
+ * Owner must set CONTACT_EMAIL in the Vercel environment.
+ * Until configured, forms show an honest "not yet configured" state.
+ */
+export const businessEmail =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL || process.env.CONTACT_EMAIL || "";
 
 export function inquiryHref(subject: string, prompts: string[]) {
+  if (!businessEmail) {
+    return "/contact";
+  }
   const body = ["Business name:", ...prompts.map((prompt) => `${prompt}:`), "", "Please do not send payment information by email."].join("\n");
   return `mailto:${businessEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
