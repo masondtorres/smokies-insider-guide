@@ -1,0 +1,85 @@
+.site-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.site-identity-mark {
+  display: block;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 4px 10px rgba(7, 91, 54, 0.16));
+}
+
+.site-identity-text {
+  display: inline-flex !important;
+  align-items: baseline;
+  gap: 0.28em;
+  line-height: 1 !important;
+  white-space: nowrap;
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.025em;
+}
+
+.site-identity-text strong,
+.site-identity-text > span {
+  color: inherit;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: inherit;
+  text-transform: none;
+  opacity: 1;
+}
+
+.site-identity-text > span {
+  color: #9dd7ff;
+}
+
+.standard-site-brand .site-identity-text strong,
+.standard-site-brand .site-identity-text > span {
+  color: #ffffff !important;
+}
+
+.standard-site-brand .site-identity-text > span {
+  color: #9dd7ff !important;
+}
+
+.standard-site-brand .site-identity-mark {
+  width: 48px;
+  height: 48px;
+}
+
+.standard-site-footer-brand .site-identity-text strong {
+  color: #ffffff !important;
+}
+
+.standard-site-footer-brand .site-identity-text > span {
+  color: #9dd7ff !important;
+}
+
+.standard-site-footer-brand .site-identity-mark {
+  width: 54px;
+  height: 54px;
+}
+
+.site-identity-compact .site-identity-text strong,
+.site-identity-compact .site-identity-text > span {
+  font-size: 1.12rem;
+}
+
+@media (max-width: 760px) {
+  .standard-site-brand .site-identity-mark {
+    width: 42px;
+    height: 42px;
+  }
+
+  .standard-site-brand .site-identity-text strong,
+  .standard-site-brand .site-identity-text > span {
+    font-size: 1.02rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .standard-site-brand .site-identity-text {
+    display: none !important;
+  }
+}
