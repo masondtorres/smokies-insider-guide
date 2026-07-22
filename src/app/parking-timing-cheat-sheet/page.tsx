@@ -6,7 +6,7 @@ import { PrintButton } from "./print-button";
 import "./cheat-sheet.css";
 
 export const metadata: Metadata = {
-  title: "2026 Smokies Parking and Timing Cheat Sheet | Smoky Insider",
+  title: "2026 Smokies Parking and Timing Cheat Sheet",
   description:
     "Print a one-page-style Smokies parking and timing guide for Gatlinburg, Pigeon Forge, Cades Cove and Great Smoky Mountains National Park.",
   alternates: { canonical: "/parking-timing-cheat-sheet" },
@@ -78,19 +78,19 @@ export default function ParkingTimingCheatSheetPage() {
   return (
     <main className="cheat-sheet-page">
       <div className="cheat-sheet-shell">
-        <header className="cheat-sheet-header">
-          <Link className="cheat-sheet-brand" href="/">Smoky Insider</Link>
+        <div className="cheat-sheet-toolbar" aria-label="Cheat sheet actions">
+          <Link href="/smokies-parking-trolley-guide">Back to full parking guide</Link>
           <PrintButton />
-        </header>
+        </div>
 
         <section className="cheat-sheet-hero">
-          <p className="cheat-sheet-eyebrow">Free 2026 Planning Tool</p>
+          <p className="cheat-sheet-eyebrow">Free 2026 planning tool</p>
           <h1>Smokies Parking & Timing Cheat Sheet</h1>
           <p>
             A fast, printable guide from Smoky Insider. Use it to simplify the day before
             traffic, parking and tired feet start making decisions for you.
           </p>
-          <p><strong>Last reviewed: July 21, 2026.</strong> Changing details must be rechecked before travel.</p>
+          <p><strong>Last reviewed: July 22, 2026.</strong> Changing details must be rechecked before travel.</p>
         </section>
 
         <aside className="cheat-sheet-source" aria-labelledby="email-cheat-sheet-heading">
@@ -175,7 +175,7 @@ export default function ParkingTimingCheatSheetPage() {
 
       <JsonLd data={webPageSchema({
         path: "/parking-timing-cheat-sheet",
-        title: metadata.title as string,
+        title: "2026 Smokies Parking and Timing Cheat Sheet",
         description: metadata.description ?? "",
       })} />
       <JsonLd data={breadcrumbSchema([
