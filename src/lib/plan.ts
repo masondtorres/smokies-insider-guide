@@ -9,6 +9,18 @@ export type SavedPlanItem = {
   isAnchor?: boolean;
   note?: string;
   addedAt?: string;
+  kind?: "card" | "parking";
+  placeName?: string;
+  address?: string;
+  town?: string;
+  parkingType?: string;
+  pricingStatus?: string;
+  walkingNote?: string;
+  officialSource?: string;
+  verificationDate?: string;
+  mapUrl?: string;
+  backupName?: string;
+  backupAddress?: string;
 };
 
 export type MyPlanState = {
@@ -37,6 +49,24 @@ export type PlanWarning = {
 
 export function createEmptyPlan(updatedAt = ""): MyPlanState {
   return { version: PLAN_VERSION, items: [], updatedAt };
+}
+
+function readParkingFields(raw: Record<string, unknown>): Partial<SavedPlanItem> {
+  if (raw.kind !== "parking") return {};
+  return {
+    kind: "parking",
+    placeName: typeof raw.placeName === "string" ? raw.placeName : undefined,
+    address: typeof raw.address === "string" ? raw.address : undefined,
+    town: typeof raw.town === "string" ? raw.town : undefined,
+    parkingType: typeof raw.parkingType === "string" ? raw.parkingType : undefined,
+    pricingStatus: typeof raw.pricingStatus === "string" ? raw.pricingStatus : undefined,
+    walkingNote: typeof raw.walkingNote === "string" ? raw.walkingNote : undefined,
+    officialSource: typeof raw.officialSource === "string" ? raw.officialSource : undefined,
+    verificationDate: typeof raw.verificationDate === "string" ? raw.verificationDate : undefined,
+    mapUrl: typeof raw.mapUrl === "string" ? raw.mapUrl : undefined,
+    backupName: typeof raw.backupName === "string" ? raw.backupName : undefined,
+    backupAddress: typeof raw.backupAddress === "string" ? raw.backupAddress : undefined,
+  };
 }
 
 export function normalizePlan(value: unknown): MyPlanState {
@@ -75,6 +105,7 @@ export function normalizePlan(value: unknown): MyPlanState {
       isAnchor: day ? raw.isAnchor === true : false,
       note,
       addedAt,
+      ...readParkingFields(raw),
     }];
   });
 
@@ -103,11 +134,12 @@ export function getPlanWarnings(plan: MyPlanState, cards: GuideCard[]): PlanWarn
   const warnings: PlanWarning[] = [];
   const cardById = new Map(cards.map((card) => [card.id, card]));
   const resolved = plan.items.flatMap((item) => {
+    if (item.kind === "parking") return [];
     const card = cardById.get(item.id);
     return card ? [{ item, card }] : [];
   });
 
-  if (resolved.length === 0) return warnings;
+  if (resolved.length === 0 && !plan.items.some((item) => item.kind === "parking")) return warnings;
 
   const byDay = new Map<number, typeof resolved>();
   for (const entry of resolved) {
@@ -160,11 +192,15 @@ export function getPlanWarnings(plan: MyPlanState, cards: GuideCard[]): PlanWarn
   }
 
   const parkTagItems = resolved.filter((entry) => mayNeedParkTag(entry.card));
-  if (parkTagItems.length > 0) {
+  const parkingParkItems = plan.items.filter(
+    (item) => item.kind === "parking" && /national park/i.test(item.town ?? ""),
+  );
+  if (parkTagItems.length > 0 || parkingParkItems.length > 0) {
     warnings.push({
       type: "parking-tag-reminder",
       cardIds: parkTagItems.map((entry) => entry.card.id),
-      message: "Your plan includes park parking stops. Verify current Great Smoky Mountains parking-tag rules before leaving.",
+      message:
+        "Your plan includes park parking stops. Verify current Great Smoky Mountains parking-tag rules before leaving.",
     });
   }
 
@@ -177,12 +213,15 @@ export function getPlanWarnings(plan: MyPlanState, cards: GuideCard[]): PlanWarn
     });
   }
 
-  const reservationItems = resolved.filter((entry) => entry.card.paid && (entry.card.duration === "full-day" || entry.card.category === "stay"));
+  const reservationItems = resolved.filter(
+    (entry) => entry.card.paid && (entry.card.duration === "full-day" || entry.card.category === "stay"),
+  );
   if (reservationItems.length > 0) {
     warnings.push({
       type: "reservation-reminder",
       cardIds: reservationItems.map((entry) => entry.card.id),
-      message: "Confirm tickets, reservations, cancellation terms and current prices for the larger paid commitments in this plan.",
+      message:
+        "Confirm tickets, reservations, cancellation terms and current prices for the larger paid commitments in this plan.",
     });
   }
 
@@ -193,11 +232,11 @@ export function getPlanWarnings(plan: MyPlanState, cards: GuideCard[]): PlanWarn
     });
   }
 
-  const unassigned = resolved.filter((entry) => !entry.item.day);
+  const unassigned = plan.items.filter((item) => !item.day);
   if (unassigned.length >= 4) {
     warnings.push({
       type: "unassigned-items",
-      cardIds: unassigned.map((entry) => entry.card.id),
+      cardIds: unassigned.map((item) => item.id),
       message: `${unassigned.length} saved items are not assigned to a day. Sort them before treating this as a working trip plan.`,
     });
   }
