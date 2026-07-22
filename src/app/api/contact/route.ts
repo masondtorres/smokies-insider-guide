@@ -1,20 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
+import {
+  buildContactEmailHtml,
+  getContactConfig,
+  validateContactInput,
+} from "@/lib/contact";
 
 export const runtime = "nodejs";
 
-type ContactPayload = {
-  name?: string;
-  email?: string;
-  reason?: string;
-  message?: string;
-  businessName?: string;
-  pageUrl?: string;
-};
-
 export async function POST(request: NextRequest) {
-  const contactEmail = process.env.CONTACT_EMAIL || process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+  const config = getContactConfig();
 
-  if (!contactEmail) {
+  if (!config.configured) {
     return NextResponse.json(
       {
         error: "Contact form is not yet configured by the site owner.",
@@ -24,43 +21,91 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let body: ContactPayload;
+  let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
-  }
-
-  const name = (body.name || "").trim();
-  const email = (body.email || "").trim();
-  const reason = (body.reason || "").trim();
-  const message = (body.message || "").trim();
-  const businessName = (body.businessName || "").trim();
-  const pageUrl = (body.pageUrl || "").trim();
-
-  if (!name || !email || !reason || !message) {
     return NextResponse.json(
-      { error: "Name, email, reason and message are required." },
+      { error: "Invalid request body.", code: "INVALID_INPUT" },
       { status: 400 },
     );
   }
 
-  // Placeholder delivery. Owner must wire a real provider (Resend, Postmark, etc.)
-  // or a form service. Until then we accept the payload and return success only
-  // when CONTACT_EMAIL is present so the form does not silently drop data.
-  // Log structure is intentional for Vercel function logs during early setup.
-  console.info("[contact]", {
-    to: contactEmail,
-    name,
-    email,
-    reason,
-    businessName: businessName || null,
-    pageUrl: pageUrl || null,
-    messageLength: message.length,
+  const validation = validateContactInput({
+    name: typeof body.name === "string" ? body.name : "",
+    email: typeof body.email === "string" ? body.email : "",
+    reason: typeof body.reason === "string" ? body.reason : "",
+    message: typeof body.message === "string" ? body.message : "",
+    businessName: typeof body.businessName === "string" ? body.businessName : "",
+    pageUrl: typeof body.pageUrl === "string" ? body.pageUrl : "",
+    website: typeof body.website === "string" ? body.website : "",
   });
 
-  return NextResponse.json({
-    ok: true,
-    message: "Message accepted. Owner must connect a real email provider for delivery.",
-  });
+  if (!validation.ok) {
+    if (validation.code === "SPAM") {
+      // Quiet rejection for bots
+      return NextResponse.json({ ok: true });
+    }
+    return NextResponse.json(
+      { error: validation.error, code: validation.code },
+      { status: 400 },
+    );
+  }
+
+  const { data } = validation;
+
+  try {
+    const resend = new Resend(config.apiKey);
+    const result = await resend.emails.send({
+      from: config.from,
+      to: config.to,
+      replyTo: data.email,
+      subject: `[Smoky Insider] ${data.reason} — ${data.name}`,
+      html: buildContactEmailHtml(data),
+    });
+
+    if (result.error) {
+      console.error("[contact] provider rejected", {
+        name: result.error.name,
+        message: result.error.message,
+      });
+      return NextResponse.json(
+        {
+          error: "Delivery failed. Please try again in a few minutes.",
+          code: "DELIVERY_FAILED",
+        },
+        { status: 502 },
+      );
+    }
+
+    if (!result.data?.id) {
+      return NextResponse.json(
+        {
+          error: "Delivery failed. Please try again in a few minutes.",
+          code: "DELIVERY_FAILED",
+        },
+        { status: 502 },
+      );
+    }
+
+    // Log only non-PII operational signal
+    console.info("[contact] delivered", {
+      id: result.data.id,
+      reason: data.reason,
+      messageLength: data.message.length,
+    });
+
+    return NextResponse.json({ ok: true, id: result.data.id });
+  } catch (err) {
+    console.error("[contact] delivery exception", {
+      type: err instanceof Error ? err.name : "unknown",
+    });
+    return NextResponse.json(
+      {
+        error: "Delivery failed. Please try again in a few minutes.",
+        code: "DELIVERY_FAILED",
+      },
+      { status: 502 },
+    );
+  }
 }
