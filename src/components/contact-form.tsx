@@ -13,9 +13,28 @@ const reasons = [
   "Other",
 ];
 
+type FieldValues = {
+  name: string;
+  email: string;
+  reason: string;
+  message: string;
+  businessName: string;
+  pageUrl: string;
+};
+
+const emptyFields: FieldValues = {
+  name: "",
+  email: "",
+  reason: "",
+  message: "",
+  businessName: "",
+  pageUrl: "",
+};
+
 export function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fields, setFields] = useState<FieldValues>(emptyFields);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -32,7 +51,18 @@ export function ContactForm() {
       message: String(data.get("message") || "").trim(),
       businessName: String(data.get("businessName") || "").trim(),
       pageUrl: String(data.get("pageUrl") || "").trim(),
+      website: String(data.get("website") || "").trim(),
     };
+
+    // Keep values so a failed delivery does not wipe the visitor's work
+    setFields({
+      name: payload.name,
+      email: payload.email,
+      reason: payload.reason,
+      message: payload.message,
+      businessName: payload.businessName,
+      pageUrl: payload.pageUrl,
+    });
 
     if (!payload.name || !payload.email || !payload.reason || !payload.message) {
       setState("error");
@@ -56,15 +86,21 @@ export function ContactForm() {
 
       if (!response.ok) {
         setState("error");
-        setErrorMessage(result?.error || "Something went wrong. Please try again later.");
+        setErrorMessage(
+          result?.error ||
+            (result?.code === "DELIVERY_FAILED"
+              ? "Delivery failed. Your message was kept so you can try again."
+              : "Something went wrong. Please try again later."),
+        );
         return;
       }
 
       setState("success");
+      setFields(emptyFields);
       form.reset();
     } catch {
       setState("error");
-      setErrorMessage("Network error. Please try again later.");
+      setErrorMessage("Network error. Your message was kept so you can try again.");
     }
   }
 
@@ -85,10 +121,13 @@ export function ContactForm() {
       <div className="contact-form-status" role="status">
         <h2>Contact form not yet configured</h2>
         <p>
-          The receiving address has not been set by the site owner. Please check back later or use the
-          correction path if you need to report a factual issue.
+          Delivery is not connected yet. The site owner must set server-only email
+          credentials before messages can be received. Use the corrections path for
+          urgent factual issues.
         </p>
-        <LinkFallback />
+        <p>
+          <a href="/corrections">Go to the corrections page</a>
+        </p>
       </div>
     );
   }
@@ -97,20 +136,54 @@ export function ContactForm() {
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
       <h2>Send a message</h2>
 
+      {/* Honeypot — hidden from people, filled by many bots */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-10000px",
+          top: "auto",
+          width: "1px",
+          height: "1px",
+          overflow: "hidden",
+        }}
+      >
+        <label>
+          Website
+          <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+
       <div className="contact-form-grid">
         <label>
           Name <span aria-hidden="true">*</span>
-          <input name="name" type="text" required autoComplete="name" />
+          <input
+            name="name"
+            type="text"
+            required
+            autoComplete="name"
+            maxLength={120}
+            defaultValue={fields.name}
+            key={`name-${fields.name}`}
+          />
         </label>
 
         <label>
           Email <span aria-hidden="true">*</span>
-          <input name="email" type="email" required autoComplete="email" />
+          <input
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            maxLength={254}
+            defaultValue={fields.email}
+            key={`email-${fields.email}`}
+          />
         </label>
 
         <label>
           Reason for contacting <span aria-hidden="true">*</span>
-          <select name="reason" required defaultValue="">
+          <select name="reason" required defaultValue={fields.reason || ""} key={`reason-${fields.reason}`}>
             <option value="" disabled>
               Select a reason
             </option>
@@ -124,17 +197,38 @@ export function ContactForm() {
 
         <label>
           Business name (optional)
-          <input name="businessName" type="text" autoComplete="organization" />
+          <input
+            name="businessName"
+            type="text"
+            autoComplete="organization"
+            maxLength={160}
+            defaultValue={fields.businessName}
+            key={`biz-${fields.businessName}`}
+          />
         </label>
 
         <label className="contact-form-full">
           Page or listing involved (optional)
-          <input name="pageUrl" type="url" placeholder="https://www.smokyinsider.com/..." />
+          <input
+            name="pageUrl"
+            type="url"
+            placeholder="https://www.smokyinsider.com/..."
+            maxLength={500}
+            defaultValue={fields.pageUrl}
+            key={`url-${fields.pageUrl}`}
+          />
         </label>
 
         <label className="contact-form-full">
           Message <span aria-hidden="true">*</span>
-          <textarea name="message" rows={6} required />
+          <textarea
+            name="message"
+            rows={6}
+            required
+            maxLength={5000}
+            defaultValue={fields.message}
+            key={`msg-${fields.message.slice(0, 20)}`}
+          />
         </label>
       </div>
 
@@ -148,13 +242,5 @@ export function ContactForm() {
         {state === "submitting" ? "Sending…" : "Send message"}
       </button>
     </form>
-  );
-}
-
-function LinkFallback() {
-  return (
-    <p>
-      <a href="/corrections">Go to the corrections page</a>
-    </p>
   );
 }
