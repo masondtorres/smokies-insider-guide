@@ -5,7 +5,7 @@ export type ContactInput = {
   message: string;
   businessName?: string;
   pageUrl?: string;
-  website?: string; // honeypot
+  website?: string;
 };
 
 export type ContactValidationResult =
@@ -89,12 +89,17 @@ export function validateContactInput(raw: Partial<ContactInput>): ContactValidat
   };
 }
 
+/** Escape without embedding HTML entities in source (GitHub content decode). */
 export function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&")
-    .replace(/</g, "<")
-    .replace(/>/g, ">")
-    .replace(/"/g, """);
+  return Array.from(value)
+    .map((ch) => {
+      if (ch === "&") return "\u0026amp;";
+      if (ch === "<") return "\u0026lt;";
+      if (ch === ">") return "\u0026gt;";
+      if (ch === '"') return "\u0026quot;";
+      return ch;
+    })
+    .join("");
 }
 
 export function buildContactEmailHtml(data: {
@@ -109,32 +114,38 @@ export function buildContactEmailHtml(data: {
     ["Name", data.name],
     ["Reply-to", data.email],
     ["Reason", data.reason],
-    ["Business", data.businessName || "—"],
-    ["Page", data.pageUrl || "—"],
+    ["Business", data.businessName || "-"],
+    ["Page", data.pageUrl || "-"],
   ];
 
   const meta = rows
     .map(
       ([label, value]) =>
-        `<tr><td style="padding:4px 12px 4px 0;font-weight:600">${escapeHtml(label)}</td><td>${escapeHtml(value)}</td></tr>`,
+        "<tr><td style=\"padding:4px 12px 4px 0;font-weight:600\">" +
+        escapeHtml(label) +
+        "</td><td>" +
+        escapeHtml(value) +
+        "</td></tr>",
     )
     .join("");
 
-  return [
-    '<div style="font-family:system-ui,sans-serif;line-height:1.5;color:#111">',
-    "<p><strong>Smoky Insider contact form</strong></p>",
-    `<table>${meta}</table>`,
-    '<hr style="border:none;border-top:1px solid #ddd;margin:16px 0" />',
-    `<p style="white-space:pre-wrap">${escapeHtml(data.message)}</p>`,
-    "</div>",
-  ].join("");
+  return (
+    "<div style=\"font-family:system-ui,sans-serif;line-height:1.5;color:#111\">" +
+    "<p><strong>Smoky Insider contact form</strong></p>" +
+    "<table>" +
+    meta +
+    "</table>" +
+    "<hr style=\"border:none;border-top:1px solid #ddd;margin:16px 0\" />" +
+    "<p style=\"white-space:pre-wrap\">" +
+    escapeHtml(data.message) +
+    "</p></div>"
+  );
 }
 
 export type ResendSendResult =
   | { ok: true; id: string }
   | { ok: false; error: string };
 
-/** Deliver via Resend HTTP API — no npm package required at runtime. */
 export async function sendContactEmail(params: {
   apiKey: string;
   from: string;
@@ -146,7 +157,7 @@ export async function sendContactEmail(params: {
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${params.apiKey}`,
+      Authorization: "Bearer " + params.apiKey,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -167,7 +178,7 @@ export async function sendContactEmail(params: {
   if (!response.ok || !payload.id) {
     return {
       ok: false,
-      error: payload.message || payload.name || `HTTP ${response.status}`,
+      error: payload.message || payload.name || "HTTP " + String(response.status),
     };
   }
 
