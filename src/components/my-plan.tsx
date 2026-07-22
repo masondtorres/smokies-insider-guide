@@ -65,7 +65,7 @@ export function MyPlan() {
       lines.push(
         [
           item.placeName ?? item.id,
-          `Kind: parking`,
+          "Kind: parking",
           item.town ? `Town: ${item.town}` : "",
           item.address ? `Address: ${item.address}` : "",
           item.parkingType ? `Type: ${item.parkingType}` : "",
@@ -75,7 +75,7 @@ export function MyPlan() {
           item.verificationDate ? `Checked: ${item.verificationDate}` : "",
           item.backupName ? `Backup: ${item.backupName}` : "",
           item.backupAddress ? `Backup address: ${item.backupAddress}` : "",
-          item.savedDayLabel?.(item),
+          item.day ? `Day: ${item.day}` : "Day: unassigned",
           item.note ? `Notes: ${item.note}` : "",
         ]
           .filter(Boolean)
