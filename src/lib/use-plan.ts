@@ -6,7 +6,9 @@ import {
   createEmptyPlan,
   normalizePlan,
   type MyPlanState,
+  type SavedPlanItem,
 } from "@/lib/plan";
+import type { ParkingPlace } from "@/data/parking-places";
 
 const CHANGE_EVENT = "smokies-plan-change";
 const EMPTY_SNAPSHOT = JSON.stringify(createEmptyPlan());
@@ -69,6 +71,33 @@ export function writePlanIds(ids: string[]) {
   });
 }
 
+export function saveParkingPlace(place: ParkingPlace, backup?: ParkingPlace) {
+  const current = readPlan();
+  const now = new Date().toISOString();
+  const record: SavedPlanItem = {
+    id: place.id,
+    kind: "parking",
+    placeName: place.name,
+    address: place.address,
+    town: place.town,
+    parkingType: place.parkingType,
+    pricingStatus: place.pricingStatus,
+    walkingNote: place.walkingNote,
+    officialSource: place.officialSource,
+    verificationDate: place.dateChecked,
+    mapUrl: place.mapUrl,
+    backupName: backup?.name,
+    backupAddress: backup?.address,
+    addedAt: now,
+  };
+
+  const without = current.items.filter((item) => item.id !== place.id);
+  writePlan({
+    ...current,
+    items: [...without, record],
+  });
+}
+
 export function assignPlanDay(id: string, day?: number) {
   const current = readPlan();
   const validDay = typeof day === "number" && day >= 1 && day <= 7 ? Math.trunc(day) : undefined;
@@ -78,7 +107,7 @@ export function assignPlanDay(id: string, day?: number) {
     items: current.items.map((item) =>
       item.id === id
         ? { ...item, day: validDay, isAnchor: validDay ? item.isAnchor : false }
-        : item
+        : item,
     ),
   });
 }
@@ -103,7 +132,7 @@ export function setPlanNote(id: string, note: string) {
   writePlan({
     ...current,
     items: current.items.map((item) =>
-      item.id === id ? { ...item, note: note.slice(0, 500) } : item
+      item.id === id ? { ...item, note: note.slice(0, 500) } : item,
     ),
   });
 }
