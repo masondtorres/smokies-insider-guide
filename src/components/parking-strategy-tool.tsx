@@ -7,6 +7,7 @@ import {
   pigeonForgePlaces,
   type ParkingPlace,
 } from "@/data/parking-places";
+import { saveParkingPlace, usePlanIds } from "@/lib/use-plan";
 
 type Area = "gatlinburg" | "pigeon-forge" | "national-park" | "";
 type Walking = "minimal" | "moderate" | "ok" | "";
@@ -34,14 +35,12 @@ function recommend(
 
   if (area === "national-park" || enteringPark === "yes") {
     return {
-      strategy:
-        limited
-          ? "Buy the parking tag before you lose cell service, choose one park area for the day, and treat the first open legal space near that area as success — do not hop lots looking for a perfect spot."
-          : "Purchase a physical parking tag before entering busy areas, pick one park corridor for the day, and keep a second area as a weather or full-lot backup.",
-      walkingWarning:
-        limited
-          ? "Park trailheads and overlooks often involve uneven ground after you leave the car. Match the stop to the least mobile person in the group."
-          : "Walking after parking varies by trailhead; popular lots fill early on peak days.",
+      strategy: limited
+        ? "Buy the parking tag before you lose cell service, choose one park area for the day, and treat the first open legal space near that area as success."
+        : "Purchase a physical parking tag before entering busy areas, pick one park corridor for the day, and keep a second area as a weather or full-lot backup.",
+      walkingWarning: limited
+        ? "Park trailheads and overlooks often involve uneven ground after you leave the car. Match the stop to the least mobile person in the group."
+        : "Walking after parking varies by trailhead; popular lots fill early on peak days.",
       transitNote:
         "Town trolleys do not replace a park parking tag. If you are also spending time in Gatlinburg or Pigeon Forge, plan town parking separately.",
       recheck: [
@@ -69,10 +68,10 @@ function recommend(
 
     return {
       strategy: limited
-        ? "Park once at a free park-and-ride lot and use the free Gatlinburg Trolley. Avoid hunting for downtown garage spaces if anyone in the group has limited mobility."
+        ? "Park once at a free park-and-ride lot and use the free Gatlinburg Trolley."
         : preferOnce === "yes"
           ? "Park once (park-and-ride or one downtown garage) and move on foot or by trolley for the rest of the day."
-          : "If you need the car close to a specific block, use a downtown municipal garage and accept the daily rate — then walk that zone rather than re-parking every hour.",
+          : "If you need the car close to a specific block, use a downtown municipal garage and accept the daily rate.",
       first,
       backup,
       walkingWarning: limited
@@ -83,7 +82,6 @@ function recommend(
       recheck: [
         "City of Gatlinburg parking page for current garage rates and lot notes",
         "Gatlinburg trolley hours for your travel dates",
-        "Whether live occupancy tools are accurate (city has noted technical issues before)",
       ],
       officialLinks: [
         { href: "https://www.gatlinburgtn.gov/page/parking", label: "City of Gatlinburg parking" },
@@ -98,7 +96,7 @@ function recommend(
 
     return {
       strategy: limited
-        ? "Park at the Mass Transit Trolley Station at Patriot Park, buy a day pass if you will ride multiple times, and use lift-equipped trolleys between stops."
+        ? "Park at the Mass Transit Trolley Station at Patriot Park and use lift-equipped trolleys between stops."
         : "Park once near the trolley hub or a free municipal lot on Teaster Lane, then ride rather than crossing the Parkway repeatedly by car.",
       first,
       backup,
@@ -109,7 +107,6 @@ function recommend(
         "Individual fares and day passes are set by Pigeon Forge Mass Transit; confirm current prices and hours on the official trolley page before you go.",
       recheck: [
         "MyPigeonForge trolley page for fares, hours, and free parking lots",
-        "Whether your attraction offers its own lot or preferred garage",
         "Holiday closures (trolley does not run Thanksgiving, Christmas Eve, or Christmas Day)",
       ],
       officialLinks: [
@@ -122,7 +119,8 @@ function recommend(
   }
 
   return {
-    strategy: "Choose an area first (Gatlinburg, Pigeon Forge, or the national park). Parking rules and lots are not interchangeable across those zones.",
+    strategy:
+      "Choose an area first (Gatlinburg, Pigeon Forge, or the national park). Parking rules and lots are not interchangeable across those zones.",
     walkingWarning: "Walking burden depends entirely on which town and which lot you pick.",
     transitNote: "Each town runs its own trolley system with different fares and rules.",
     recheck: ["Return to this tool after you pick a primary destination"],
@@ -138,6 +136,8 @@ export function ParkingStrategyTool() {
   const [preferOnce, setPreferOnce] = useState<YesNo>("");
   const [enteringPark, setEnteringPark] = useState<YesNo>("");
   const [submitted, setSubmitted] = useState(false);
+  const [savedMsg, setSavedMsg] = useState("");
+  const planIds = usePlanIds();
 
   const result = useMemo(() => {
     if (!submitted) return null;
@@ -147,11 +147,23 @@ export function ParkingStrategyTool() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitted(true);
+    setSavedMsg("");
   }
 
   function handlePrint() {
     window.print();
   }
+
+  function handleSave() {
+    if (!result?.first) {
+      setSavedMsg("Choose an area that returns a named lot before saving.");
+      return;
+    }
+    saveParkingPlace(result.first, result.backup);
+    setSavedMsg(`Saved ${result.first.name} to My Plan.`);
+  }
+
+  const alreadySaved = result?.first ? planIds.includes(result.first.id) : false;
 
   return (
     <section className="parking-tool" id="parking-tool">
@@ -298,11 +310,17 @@ export function ParkingStrategyTool() {
                 {link.label}
               </a>
             ))}
+            {result.first ? (
+              <button type="button" className="button button-primary" onClick={handleSave}>
+                {alreadySaved ? "Update in My Plan" : "Save to My Plan"}
+              </button>
+            ) : null}
             <Link href="/my-plan">Open My Plan</Link>
             <button type="button" className="button button-secondary" onClick={handlePrint}>
               Print this strategy
             </button>
           </div>
+          {savedMsg ? <p role="status">{savedMsg}</p> : null}
         </div>
       ) : null}
     </section>
