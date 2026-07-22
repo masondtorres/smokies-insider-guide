@@ -123,7 +123,7 @@ const pageHelp: Record<Category, PageHelp> = {
       },
       {
         situation: "The park is the main activity",
-        move: "Match the route or trail to the group’s real ability and leave enough daylight to turn around safely.",
+        move: "Match the route or trail to the group's real ability and leave enough daylight to turn around safely.",
         check: "Trail and road conditions, weather, water, footwear, parking and a backup trail or stop.",
       },
     ],
@@ -282,14 +282,21 @@ function ResourceCard({ resource }: { resource: ResourceLink }) {
     <>
       <strong>{resource.title}</strong>
       <span>{resource.description}</span>
-      <b>{resource.external ? "Open official source" : "Open guide"} <span aria-hidden="true">></span></b>
+      <b>
+        {resource.external ? "Open official source" : "Open guide"}{" "}
+        <span aria-hidden="true">{{">"}</span>
+      </b>
     </>
   );
 
   return resource.external ? (
-    <a href={resource.href} key={resource.href}>{content}</a>
+    <a href={resource.href} key={resource.href}>
+      {content}
+    </a>
   ) : (
-    <Link href={resource.href} key={resource.href}>{content}</Link>
+    <Link href={resource.href} key={resource.href}>
+      {content}
+    </Link>
   );
 }
 
@@ -301,7 +308,9 @@ export function CategoryPage({ category }: { category: Category }) {
   return (
     <div className={`category-foundation category-${category}`}>
       <header className="category-header">
-        <Link className="category-wordmark" href="/">Smoky Insider</Link>
+        <Link className="category-wordmark" href="/">
+          Smoky Insider
+        </Link>
         <nav className="category-nav" aria-label="Primary navigation">
           {navigation.map(([label, href, key]) => (
             <Link aria-current={key === category ? "page" : undefined} href={href} key={href}>
@@ -345,14 +354,21 @@ export function CategoryPage({ category }: { category: Category }) {
             <div className="category-decision-heading">
               <p className="category-eyebrow">Decision guide</p>
               <h2 id={`${category}-decision-heading`}>{help.decisionHeading}</h2>
-              <p>Use the row closest to your trip. Keep the move simple, then verify the changing detail before leaving.</p>
+              <p>
+                Use the row closest to your trip. Keep the move simple, then verify the changing
+                detail before leaving.
+              </p>
             </div>
             <div className="category-decision-grid">
               {help.decisions.map((row) => (
                 <article key={row.situation}>
                   <h3>{row.situation}</h3>
-                  <p><strong>Best move:</strong> {row.move}</p>
-                  <p><strong>Check first:</strong> {row.check}</p>
+                  <p>
+                    <strong>Best move:</strong> {row.move}
+                  </p>
+                  <p>
+                    <strong>Check first:</strong> {row.check}
+                  </p>
                 </article>
               ))}
             </div>
@@ -363,7 +379,9 @@ export function CategoryPage({ category }: { category: Category }) {
               <p className="category-eyebrow">Helpful guides</p>
               <h2>Use this next</h2>
             </div>
-            {help.links.map((link) => <ResourceCard resource={link} key={link.href} />)}
+            {help.links.map((link) => (
+              <ResourceCard resource={link} key={link.href} />
+            ))}
           </section>
 
           <section className="category-official-sources" aria-labelledby={`${category}-official-heading`}>
@@ -372,14 +390,22 @@ export function CategoryPage({ category }: { category: Category }) {
               <h2 id={`${category}-official-heading`}>Open the source that can change the plan</h2>
             </div>
             <div className="category-official-grid">
-              {help.official.map((resource) => <ResourceCard resource={resource} key={resource.href} />)}
+              {help.official.map((resource) => (
+                <ResourceCard resource={resource} key={resource.href} />
+              ))}
             </div>
           </section>
 
           <aside className="category-trust-note simple">
             <strong>Finish the plan</strong>
-            <p>Save the anchor, first parking choice, meal area and backup together so the next decision is clear when the day changes.</p>
-            <Link href="/my-plan">{help.planAction} <span aria-hidden="true">></span></Link>
+            <p>
+              Save the anchor, first parking choice, meal area and backup together so the next
+              decision is clear when the day changes.
+            </p>
+            <Link href="/my-plan">
+              {help.planAction}{" "}
+              <span aria-hidden="true">{{">"}</span>
+            </Link>
           </aside>
         </section>
       </main>
@@ -387,10 +413,17 @@ export function CategoryPage({ category }: { category: Category }) {
       <footer className="category-footer">
         <div>
           <strong>Smoky Insider</strong>
-          <span>Independent Smoky Mountains trip planning. Not affiliated with the National Park Service or any tourism board.</span>
+          <span>
+            Independent Smoky Mountains trip planning. Not affiliated with the National Park
+            Service or any tourism board.
+          </span>
         </div>
         <nav className="category-footer-links" aria-label="Policy and information links">
-          {footerLinks.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
+          {footerLinks.map(([label, href]) => (
+            <Link href={href} key={href}>
+              {label}
+            </Link>
+          ))}
         </nav>
       </footer>
     </div>
