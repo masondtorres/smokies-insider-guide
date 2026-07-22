@@ -1,27 +1,25 @@
 .cheat-sheet-page {
   min-height: 100vh;
-  color: #13261d;
-  background: linear-gradient(180deg, #ffffff 0%, #fff8e7 100%);
+  color: var(--si-body, #35443c);
+  background: transparent;
 }
 
 .cheat-sheet-shell {
-  width: min(1080px, calc(100% - 2rem));
+  width: min(var(--si-width, 1160px), calc(100% - 40px));
   margin: 0 auto;
-  padding: 2rem 0 4rem;
+  padding: 30px 0 64px;
 }
 
-.cheat-sheet-header {
+.cheat-sheet-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 18px;
 }
 
-.cheat-sheet-brand {
-  color: #064d2c;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.35rem;
+.cheat-sheet-toolbar > a {
+  color: var(--si-blue, #315f70);
   font-weight: 800;
   text-decoration: none;
 }
@@ -31,73 +29,98 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 46px;
-  border: 0;
+  min-height: 44px;
+  border: 1px solid var(--si-pine-2, #245b42);
   border-radius: 999px;
-  padding: 0.75rem 1rem;
-  color: #ffffff;
-  background: linear-gradient(135deg, #ff7617, #c73f2b);
-  box-shadow: 0 12px 26px rgba(199, 63, 43, 0.24);
+  padding: 0.7rem 1rem;
+  color: #ffffff !important;
+  background: var(--si-pine-2, #245b42);
+  box-shadow: 0 8px 20px rgba(23, 63, 45, 0.14);
   font: inherit;
-  font-weight: 800;
+  font-weight: 850;
   text-decoration: none;
   cursor: pointer;
 }
 
 .cheat-sheet-hero {
+  position: relative;
   overflow: hidden;
-  border-radius: 28px;
-  padding: clamp(2rem, 6vw, 4.5rem);
+  border: 1px solid rgba(23, 63, 45, 0.22);
+  border-radius: 26px;
+  padding: clamp(42px, 7vw, 82px) clamp(24px, 5vw, 64px);
   color: #ffffff;
   background:
-    linear-gradient(100deg, rgba(6, 77, 44, 0.95), rgba(8, 117, 63, 0.72)),
-    url("https://www.nps.gov/npgallery/GetAsset/28de6b98-1dd8-b71c-073d-1ffaf7d178b7") center 48% / cover;
-  box-shadow: 0 24px 56px rgba(6, 77, 44, 0.24);
+    linear-gradient(120deg, rgba(12, 42, 28, 0.97), rgba(36, 91, 66, 0.94)),
+    radial-gradient(circle at 82% 18%, rgba(214, 168, 75, 0.32), transparent 24rem);
+  box-shadow: 0 28px 70px rgba(23, 63, 45, 0.18);
+}
+
+.cheat-sheet-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -8% -35% 30%;
+  height: 72%;
+  border-radius: 50% 50% 0 0;
+  background: rgba(255, 255, 255, 0.055);
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+
+.cheat-sheet-hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .cheat-sheet-eyebrow {
   display: inline-flex;
+  width: fit-content;
+  margin: 0 0 14px;
   border-radius: 999px;
-  padding: 0.45rem 0.75rem;
-  color: #173020;
-  background: #ffc928;
-  font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0.05em;
+  padding: 7px 11px;
+  color: var(--si-ink, #17231d) !important;
+  background: #f2cf7c;
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  line-height: 1;
   text-transform: uppercase;
 }
 
 .cheat-sheet-hero h1 {
-  max-width: 780px;
-  margin: 1rem 0;
-  color: #ffffff;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.4rem, 7vw, 5rem);
+  max-width: 900px;
+  margin: 0;
+  color: #ffffff !important;
+  font-family: var(--font-geist-sans), Montserrat, Arial, sans-serif;
+  font-size: clamp(2.25rem, 6vw, 4.65rem);
+  font-weight: 850;
+  letter-spacing: -0.045em;
   line-height: 0.98;
+  text-wrap: balance;
 }
 
 .cheat-sheet-hero p {
-  max-width: 760px;
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  max-width: 800px;
+  margin: 20px 0 0;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: clamp(1.02rem, 2vw, 1.2rem);
+  line-height: 1.62;
 }
 
 .cheat-sheet-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: 18px;
+  margin-top: 24px;
 }
 
 .cheat-sheet-card,
 .cheat-sheet-table-wrap,
 .cheat-sheet-source {
-  border: 1px solid rgba(6, 77, 44, 0.13);
-  border-radius: 22px;
-  padding: 1.35rem;
-  background: #ffffff;
-  box-shadow: 0 16px 36px rgba(6, 77, 44, 0.12);
+  border: 1px solid var(--si-line, #d7dfda);
+  border-radius: var(--si-radius, 18px);
+  padding: clamp(22px, 3vw, 34px);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--si-shadow-soft, 0 8px 24px rgba(23, 63, 45, 0.07));
 }
 
 .cheat-sheet-card h2,
@@ -105,8 +128,10 @@
 .cheat-sheet-table-wrap h2,
 .cheat-sheet-source h2 {
   margin-top: 0;
-  color: #13261d;
-  font-family: Georgia, "Times New Roman", serif;
+  color: var(--si-ink, #17231d);
+  font-family: var(--font-geist-sans), Montserrat, Arial, sans-serif;
+  font-weight: 820;
+  letter-spacing: -0.025em;
 }
 
 .cheat-sheet-card ul,
@@ -118,39 +143,49 @@
 .cheat-sheet-card li,
 .cheat-sheet-source li {
   margin: 0.55rem 0;
+  color: var(--si-body, #35443c);
   line-height: 1.55;
 }
 
 .cheat-sheet-table-wrap {
-  margin-top: 1rem;
+  margin-top: 24px;
   overflow-x: auto;
 }
 
 .cheat-sheet-table {
   width: 100%;
   border-collapse: collapse;
+  background: #ffffff;
 }
 
 .cheat-sheet-table th,
 .cheat-sheet-table td {
-  border-bottom: 1px solid rgba(6, 77, 44, 0.14);
-  padding: 0.85rem;
+  border-bottom: 1px solid var(--si-line, #d7dfda);
+  padding: 14px 15px;
   text-align: left;
   vertical-align: top;
 }
 
-.cheat-sheet-table th {
-  color: #064d2c;
-  background: #eaf8ef;
+.cheat-sheet-table thead th {
+  color: #ffffff !important;
+  background: var(--si-pine, #173f2d);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cheat-sheet-table tbody tr:nth-child(even) {
+  background: #f7faf8;
 }
 
 .cheat-sheet-source {
-  margin-top: 1rem;
-  background: #e8f4ff;
+  margin-top: 24px;
+  background: #f3f7f5;
 }
 
 .cheat-sheet-source a {
-  color: #0066d6;
+  color: var(--si-blue, #315f70);
   font-weight: 800;
 }
 
@@ -159,27 +194,49 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 1.5rem;
-  padding: 1.25rem 0;
+  margin-top: 24px;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--si-line, #d7dfda);
 }
 
 @media (max-width: 720px) {
+  .cheat-sheet-shell {
+    width: min(100% - 24px, var(--si-width, 1160px));
+    padding-top: 18px;
+  }
+
   .cheat-sheet-grid {
     grid-template-columns: 1fr;
   }
 
-  .cheat-sheet-header,
+  .cheat-sheet-toolbar,
   .cheat-sheet-footer {
     align-items: flex-start;
     flex-direction: column;
   }
+
+  .cheat-sheet-hero {
+    padding: 34px 22px;
+    border-radius: 20px;
+  }
+
+  .cheat-sheet-card,
+  .cheat-sheet-table-wrap,
+  .cheat-sheet-source {
+    padding: 20px;
+    border-radius: 15px;
+  }
 }
 
 @media print {
+  .standard-site-header,
+  .standard-site-footer,
+  .cheat-sheet-toolbar,
   .cheat-print-button,
   .cheat-sheet-link,
   .visual-photo-credit,
-  .mobile-bottom-nav {
+  .mobile-bottom-nav,
+  [class*="mobile-bottom-nav"] {
     display: none !important;
   }
 
@@ -202,12 +259,12 @@
   .cheat-sheet-hero {
     color: #13261d;
     background: #ffffff;
-    border: 2px solid #064d2c;
+    border: 2px solid #173f2d;
   }
 
   .cheat-sheet-hero h1,
   .cheat-sheet-hero p {
-    color: #13261d;
+    color: #13261d !important;
     text-shadow: none;
   }
 }
