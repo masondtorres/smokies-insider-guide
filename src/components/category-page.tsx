@@ -44,7 +44,7 @@ const footerLinks = [
   ["Privacy", "/privacy"],
   ["Terms", "/terms"],
   ["Editorial Policy", "/editorial-policy"],
-  ["Source & Verification", "/source-and-verification-policy"],
+  ["Source and Verification", "/source-and-verification-policy"],
 ];
 
 const npsConditions: ResourceLink = {
@@ -282,10 +282,7 @@ function ResourceCard({ resource }: { resource: ResourceLink }) {
     <>
       <strong>{resource.title}</strong>
       <span>{resource.description}</span>
-      <b>
-        {resource.external ? "Open official source" : "Open guide"}{" "}
-        <span aria-hidden="true">{{">"}</span>
-      </b>
+      <b>{resource.external ? "Open official source" : "Open guide"}</b>
     </>
   );
 
@@ -402,10 +399,7 @@ export function CategoryPage({ category }: { category: Category }) {
               Save the anchor, first parking choice, meal area and backup together so the next
               decision is clear when the day changes.
             </p>
-            <Link href="/my-plan">
-              {help.planAction}{" "}
-              <span aria-hidden="true">{{">"}</span>
-            </Link>
+            <Link href="/my-plan">{help.planAction}</Link>
           </aside>
         </section>
       </main>
