@@ -1,0 +1,424 @@
+:root {
+  --si-display: var(--font-display), Georgia, "Times New Roman", serif;
+  --si-header-photo: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Great_Smoky_Mountains_National_Park_GRSM3447.jpg/1280px-Great_Smoky_Mountains_National_Park_GRSM3447.jpg");
+  --si-hero-photo: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Great_Smoky_Mountains_National_Park_GRSM8831.jpg/1280px-Great_Smoky_Mountains_National_Park_GRSM8831.jpg");
+  --si-reading-width: 70ch;
+}
+
+body {
+  font-size: 17px !important;
+  line-height: 1.76 !important;
+}
+
+.standard-site-content p,
+.standard-site-content li,
+.standard-site-content td,
+.standard-site-content th {
+  line-height: 1.76 !important;
+}
+
+.standard-site-content p {
+  margin-block: 0 1.25rem !important;
+}
+
+.standard-site-content li + li {
+  margin-top: 0.5rem !important;
+}
+
+.standard-site-content h1,
+.standard-site-content h2,
+.standard-site-content h3,
+.standard-site-footer .site-identity-text,
+.standard-site-header .site-identity-text {
+  font-family: var(--si-display) !important;
+}
+
+.standard-site-content h2 {
+  margin-top: clamp(2.4rem, 5vw, 4.2rem) !important;
+  margin-bottom: 1rem !important;
+}
+
+.standard-site-content h3 {
+  margin-top: clamp(1.8rem, 4vw, 2.8rem) !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.standard-site-content :is(
+  .guide-article,
+  .policy-page,
+  .destination-section,
+  .content-section,
+  .guide-content-section,
+  .category-content,
+  .utility-layout,
+  .direct-answer,
+  .source-box
+) > p,
+.standard-site-content :is(
+  .guide-article,
+  .policy-page,
+  .destination-section,
+  .content-section,
+  .guide-content-section,
+  .category-content,
+  .utility-layout,
+  .direct-answer,
+  .source-box
+) > ul,
+.standard-site-content :is(
+  .guide-article,
+  .policy-page,
+  .destination-section,
+  .content-section,
+  .guide-content-section,
+  .category-content,
+  .utility-layout,
+  .direct-answer,
+  .source-box
+) > ol {
+  max-width: var(--si-reading-width) !important;
+}
+
+.standard-site-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  color: #fff !important;
+  background: #10271c !important;
+  border: 0 !important;
+  box-shadow: 0 9px 28px rgba(9, 31, 20, 0.24) !important;
+  backdrop-filter: none !important;
+}
+
+.standard-site-header-visual {
+  color: #fff;
+  background-image:
+    linear-gradient(90deg, rgba(8, 28, 18, 0.98) 0%, rgba(18, 59, 40, 0.91) 50%, rgba(16, 39, 28, 0.7) 100%),
+    var(--si-header-photo);
+  background-size: cover;
+  background-position: center 44%;
+}
+
+.standard-site-header-inner {
+  width: min(1160px, calc(100% - 40px)) !important;
+  min-height: 78px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 24px !important;
+}
+
+.standard-site-brand {
+  min-width: 0;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.standard-site-brand .site-identity {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.standard-site-brand .site-identity-mark {
+  width: 48px !important;
+  height: 48px !important;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.24));
+}
+
+.standard-site-brand .site-identity-text {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 0.28rem !important;
+  color: #fff !important;
+  line-height: 1 !important;
+}
+
+.standard-site-brand .site-identity-text strong,
+.standard-site-brand .site-identity-text span {
+  color: #fff !important;
+  font-size: clamp(1.28rem, 2vw, 1.75rem) !important;
+  font-weight: 760 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.standard-site-tagline {
+  max-width: 27ch;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.035em;
+}
+
+.standard-site-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 0 0 auto;
+}
+
+.standard-site-action {
+  min-height: 42px;
+  padding: 0.62rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none !important;
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.standard-site-action:hover {
+  transform: translateY(-1px);
+}
+
+.standard-site-action-secondary {
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.standard-site-action-secondary:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.standard-site-action-primary {
+  color: #17231d !important;
+  background: #f2cf7c;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+}
+
+.standard-site-action-primary:hover {
+  color: #17231d !important;
+  background: #f6d992;
+}
+
+.standard-site-nav-shell {
+  background: rgba(255, 255, 255, 0.985);
+  border-bottom: 1px solid #d7dfda;
+}
+
+.standard-site-nav {
+  width: min(1160px, calc(100% - 40px)) !important;
+  min-height: 48px;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: 0.2rem !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.standard-site-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.standard-site-nav a {
+  position: relative;
+  min-height: 48px !important;
+  padding: 0 0.82rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto;
+  color: #28352e !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  font-size: 0.86rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  transform: none !important;
+}
+
+.standard-site-nav a:hover {
+  color: #173f2d !important;
+  background: #edf3ef !important;
+}
+
+.standard-site-nav a[aria-current="page"] {
+  color: #173f2d !important;
+  background: transparent !important;
+}
+
+.standard-site-nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0;
+  height: 3px;
+  border-radius: 999px 999px 0 0;
+  background: #9b5c35;
+}
+
+.si-ridge-one,
+.si-ridge-two,
+.si-ridge-three {
+  display: none !important;
+}
+
+.si-hero {
+  min-height: clamp(440px, 67vh, 690px) !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  background-image:
+    linear-gradient(90deg, rgba(7, 26, 17, 0.93) 0%, rgba(13, 47, 31, 0.69) 53%, rgba(13, 47, 31, 0.14) 100%),
+    linear-gradient(0deg, rgba(6, 24, 15, 0.72) 0%, transparent 58%),
+    var(--si-hero-photo) !important;
+  background-size: cover !important;
+  background-position: center 48% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.si-hero::after {
+  display: none !important;
+}
+
+.si-hero .si-hero-copy {
+  width: min(1160px, calc(100% - 40px)) !important;
+  margin: 0 auto !important;
+  padding: clamp(58px, 8vw, 92px) 0 !important;
+}
+
+.si-hero h1 {
+  max-width: 12ch !important;
+  color: #fff !important;
+  font-family: var(--si-display) !important;
+  font-size: clamp(3rem, 7vw, 6.2rem) !important;
+  font-weight: 740 !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.045em !important;
+  text-shadow: 0 4px 26px rgba(0, 0, 0, 0.38) !important;
+}
+
+.si-hero .si-hero-promise {
+  max-width: 58ch !important;
+  color: rgba(255, 255, 255, 0.93) !important;
+  font-size: clamp(1.02rem, 2vw, 1.23rem) !important;
+  line-height: 1.68 !important;
+}
+
+.category-hero,
+.utility-hero,
+.page-hero,
+.guide-hero,
+.destination-hero,
+.route-hero,
+.hero-section {
+  background-image:
+    linear-gradient(120deg, rgba(9, 36, 23, 0.95), rgba(31, 82, 57, 0.76)),
+    var(--si-header-photo) !important;
+  background-size: cover !important;
+  background-position: center 46% !important;
+}
+
+.si-section,
+.category-content,
+.utility-layout,
+.guide-page > main > :not(.page-hero),
+.guide-article > :not(.guide-hero),
+.destination-section,
+.destination-page > aside,
+.destination-page > nav {
+  margin-top: clamp(34px, 5vw, 64px) !important;
+}
+
+.si-card,
+.category-card,
+.utility-card,
+.content-section,
+.guide-content-section,
+.direct-answer,
+.source-box,
+.destination-section,
+.warning-section,
+.parking-tool {
+  box-shadow: 0 14px 38px rgba(23, 63, 45, 0.09) !important;
+}
+
+.standard-site-footer {
+  margin-top: clamp(48px, 8vw, 96px) !important;
+}
+
+@media (max-width: 860px) {
+  .standard-site-header {
+    position: relative !important;
+  }
+
+  .standard-site-header-inner {
+    min-height: 68px !important;
+    gap: 12px !important;
+  }
+
+  .standard-site-tagline,
+  .standard-site-action-secondary {
+    display: none !important;
+  }
+
+  .standard-site-brand .site-identity-mark {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .standard-site-action-primary {
+    min-height: 38px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.78rem;
+  }
+
+  .standard-site-nav,
+  .standard-site-header-inner,
+  .si-hero .si-hero-copy {
+    width: min(100% - 28px, 1160px) !important;
+  }
+
+  .si-hero {
+    min-height: 540px !important;
+    background-position: 61% center !important;
+  }
+
+  .si-hero h1 {
+    max-width: 10ch !important;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    font-size: 16px !important;
+  }
+
+  .standard-site-brand .site-identity-text strong,
+  .standard-site-brand .site-identity-text span {
+    font-size: 1.24rem !important;
+  }
+
+  .standard-site-nav a {
+    min-height: 46px !important;
+    padding-inline: 0.72rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .si-hero .si-hero-copy {
+    padding-block: 58px !important;
+  }
+}
+
+@media print {
+  .standard-site-header {
+    display: none !important;
+  }
+}
