@@ -1,45 +1,166 @@
 import type { Metadata } from "next";
-import { UtilityPage, type UtilityPageData } from "@/components/utility-page";
+import Link from "next/link";
+import { JsonLd } from "@/components/guide";
+import {
+  gatlinburgPlaces,
+  pigeonForgePlaces,
+  npsTagFacts,
+  LAST_CLUSTER_CHECK,
+  parkingClusterNav,
+} from "@/data/parking-places";
+import { breadcrumbSchema, webPageSchema } from "@/lib/seoSchema";
+
+const pageTitle = "Smokies Parking Decision Guide";
+const pageDescription =
+  "Short decision path for Gatlinburg, Pigeon Forge and national park parking — named first choices from verified city and NPS sources.";
 
 export const metadata: Metadata = {
-  title: "Smokies Parking Planning Guide",
-  description: "Plan park and town parking before a Smokies day, with practical timing, accessibility and backup advice.",
+  title: pageTitle,
+  description: pageDescription,
+  alternates: { canonical: "/go/parking" },
+  openGraph: {
+    title: `${pageTitle} | Smoky Insider`,
+    description: pageDescription,
+    url: "https://www.smokyinsider.com/go/parking",
+  },
 };
 
-const page: UtilityPageData = {
-  category: "Go",
-  categoryHref: "/go",
-  title: "Parking without losing the day",
-  description: "Separate park parking from town parking, arrive with a backup and avoid treating a tag as a reserved space.",
-  purpose: "Help you make parking part of the route before traffic or a full lot forces a new plan.",
-  helps: [
-    "You expect to stop inside Great Smoky Mountains National Park.",
-    "Your group needs short walks, predictable transitions or accessible spaces.",
-    "You are combining a park stop with Gatlinburg, Pigeon Forge or another town.",
-  ],
-  sections: [
-    { title: "Know which parking system applies", body: "Inside the national park, vehicles parked longer than 15 minutes generally need a parking tag. A tag is not an entrance fee and does not reserve a space. Town lots, garages, private lots and transportation systems follow separate rules, so verify the option you plan to use." },
-    { title: "Handle the park tag before the busy stop", body: "Do not make a popular trailhead or overlook the first place you try to solve the tag requirement. Confirm the current official purchase and display instructions before leaving, then keep the tag visible as directed." },
-    { title: "Use an arrival window, not a promise", body: "Earlier arrival can improve flexibility, but no time guarantees a space. Keep one nearby alternative that uses the same side of the park or town so a full lot does not turn into a cross-county drive." },
-    { title: "Keep roadside decisions conservative", body: "Use designated parking and obey posted restrictions. If a space is unavailable, continue to a legal alternative rather than creating a roadside stop that blocks traffic or damages the shoulder." },
-    { title: "Recheck before the drive", body: "Look at park current conditions, weather and the official page for your destination. Local parking prices, hours, trolley service and special-event arrangements are intentionally left unknown here because they change." },
-  ],
-  family: "Unload only where it is legal and safe, keep snacks and weather layers reachable, and choose a backup with a similar walking load. A parking search is much harder when children already need food or a restroom.",
-  accessibility: "Vehicles displaying a state-issued disability placard or license plate do not need a park parking tag. An exemption does not guarantee an accessible space; verify the destination's current accessibility details and keep a lower-walking alternative.",
-  saveId: "utility-smokies-parking-plan",
-  saveTitle: "Smokies Parking Plan",
-  links: [
-    { href: "/parking-tag", label: "Parking tag guide", description: "Review the park requirement and final-check questions." },
-    { href: "/smokies-parking-trolley-guide", label: "Parking and trolley guide", description: "Compare broader transportation planning without assuming current service." },
-    { href: "/accessible-smokies", label: "Accessible Smokies", description: "Plan around walking load, surfaces and mobility needs." },
-    { href: "/go", label: "More Go planning", description: "Choose a route shape that stays within reach." },
-  ],
-  sources: [
-    { href: "https://www.nps.gov/grsm/planyourvisit/fees.htm", label: "NPS fees and parking tags" },
-    { href: "https://www.nps.gov/grsm/planyourvisit/conditions.htm", label: "NPS current conditions" },
-  ],
-};
+export default function ParkingDecisionPage() {
+  const gbgFirst = gatlinburgPlaces[0];
+  const gbgGarage = gatlinburgPlaces.find((p) => p.id === "gbg-mcmahan-garage")!;
+  const pfFirst = pigeonForgePlaces[0];
 
-export default function ParkingPage() {
-  return <UtilityPage page={page} />;
+  return (
+    <main className="destination-page">
+      <header className="destination-header">
+        <Link className="wordmark" href="/">
+          Smoky Insider
+        </Link>
+        <Link className="back-link" href="/go">
+          Go
+        </Link>
+      </header>
+
+      <section className="destination-hero">
+        <p className="eyebrow">Short parking decision</p>
+        <h1>Where should you park?</h1>
+        <p className="seo-direct-copy">
+          Gatlinburg: free park-and-ride at {gbgFirst.address}, or a city garage at 15 USD per day.
+          Pigeon Forge: free parking at {pfFirst.address} (trolley hub). National park: physical
+          parking tag required after 15 minutes — {npsTagFacts.prices.daily} day /{" "}
+          {npsTagFacts.prices.weekly} week / {npsTagFacts.prices.annual} year.
+        </p>
+        <p>
+          <strong>Last checked:</strong> {LAST_CLUSTER_CHECK}
+        </p>
+        <div className="destination-actions">
+          <Link className="button button-primary" href="/smokies-parking-trolley-guide">
+            Open full parking guide
+          </Link>
+          <Link className="button button-secondary" href="/smokies-parking-trolley-guide#parking-tool">
+            Parking strategy tool
+          </Link>
+        </div>
+      </section>
+
+      <nav className="destination-section" aria-label="Parking cluster navigation">
+        <p className="eyebrow">In this cluster</p>
+        <div className="destination-actions">
+          {parkingClusterNav.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
+      <section className="destination-section">
+        <div className="destination-heading">
+          <p className="eyebrow">Gatlinburg</p>
+          <h2>First choice and backup</h2>
+        </div>
+        <div className="destination-grid destination-grid-compact">
+          <article className="destination-card">
+            <h3>{gbgFirst.name}</h3>
+            <p>{gbgFirst.address}</p>
+            <p>{gbgFirst.pricingStatus}</p>
+            <p>{gbgFirst.bestFor}</p>
+            <p>
+              <span className="verify-badge">{gbgFirst.verification}</span> · {gbgFirst.dateChecked}
+            </p>
+          </article>
+          <article className="destination-card">
+            <h3>{gbgGarage.name}</h3>
+            <p>{gbgGarage.address}</p>
+            <p>{gbgGarage.pricingStatus}</p>
+            <p>{gbgGarage.bestFor}</p>
+            <p>
+              <span className="verify-badge">{gbgGarage.verification}</span> ·{" "}
+              {gbgGarage.dateChecked}
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="destination-section">
+        <div className="destination-heading">
+          <p className="eyebrow">Pigeon Forge</p>
+          <h2>Trolley hub first</h2>
+        </div>
+        <article className="destination-card">
+          <h3>{pfFirst.name}</h3>
+          <p>{pfFirst.address}</p>
+          <p>{pfFirst.pricingStatus}</p>
+          <p>{pfFirst.bestFor}</p>
+          <p>
+            <span className="verify-badge">{pfFirst.verification}</span> · {pfFirst.dateChecked}
+          </p>
+        </article>
+      </section>
+
+      <section className="destination-section">
+        <div className="destination-heading">
+          <p className="eyebrow">National park</p>
+          <h2>Tag before cell service drops</h2>
+        </div>
+        <ul className="area-list">
+          <li>{npsTagFacts.requiredWhen}</li>
+          <li>
+            Prices: daily {npsTagFacts.prices.daily}, weekly {npsTagFacts.prices.weekly}, annual{" "}
+            {npsTagFacts.prices.annual}
+          </li>
+          <li>{npsTagFacts.doesNotGuarantee}</li>
+          <li>
+            <Link href="/parking-tag">Full parking-tag guide</Link>
+          </li>
+        </ul>
+      </section>
+
+      <aside className="destination-section source-note">
+        <p className="eyebrow">Source of truth</p>
+        <h2>Full tables and tool live on the flagship guide</h2>
+        <p>
+          This page is the short decision path. Named lots, comparison tables, the interactive tool
+          and printable summary are on the{" "}
+          <Link href="/smokies-parking-trolley-guide">full parking and trolley guide</Link>.
+        </p>
+      </aside>
+
+      <JsonLd
+        data={webPageSchema({
+          path: "/go/parking",
+          title: pageTitle,
+          description: pageDescription,
+          dateModified: LAST_CLUSTER_CHECK,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: "/" },
+          { name: "Go", url: "/go" },
+          { name: "Parking decision", url: "/go/parking" },
+        ])}
+      />
+    </main>
+  );
 }
