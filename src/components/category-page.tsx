@@ -282,7 +282,7 @@ function ResourceCard({ resource }: { resource: ResourceLink }) {
     <>
       <strong>{resource.title}</strong>
       <span>{resource.description}</span>
-      <b>{resource.external ? "Open official source" : "Open guide"} <span aria-hidden="true">&gt;</span></b>
+      <b>{resource.external ? "Open official source" : "Open guide"} <span aria-hidden="true">></span></b>
     </>
   );
 
@@ -379,7 +379,7 @@ export function CategoryPage({ category }: { category: Category }) {
           <aside className="category-trust-note simple">
             <strong>Finish the plan</strong>
             <p>Save the anchor, first parking choice, meal area and backup together so the next decision is clear when the day changes.</p>
-            <Link href="/my-plan">{help.planAction} <span aria-hidden="true">&gt;</span></Link>
+            <Link href="/my-plan">{help.planAction} <span aria-hidden="true">></span></Link>
           </aside>
         </section>
       </main>
@@ -387,7 +387,7 @@ export function CategoryPage({ category }: { category: Category }) {
       <footer className="category-footer">
         <div>
           <strong>Smoky Insider</strong>
-          <span>© 2026 Smoky Insider. Veteran-owned, independent Smoky Mountains trip planning.</span>
+          <span>Independent Smoky Mountains trip planning. Not affiliated with the National Park Service or any tourism board.</span>
         </div>
         <nav className="category-footer-links" aria-label="Policy and information links">
           {footerLinks.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
