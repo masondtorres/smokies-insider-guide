@@ -12,6 +12,7 @@ import "./smokies-radiant-v1.css";
 import "./authority-v1.css";
 import "./audit-fixes.css";
 import "./standardized-pages.css";
+import "./brand-lockup.css";
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
@@ -78,8 +79,12 @@ export const metadata: Metadata = {
     "site-category": "Travel, Tourism, Vacation Planning, Family Travel",
   },
   icons: {
-    icon: "/smokies-field-guide-icon.svg",
+    icon: [
+      { url: "/smokies-field-guide-icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
     shortcut: "/smokies-field-guide-icon.svg",
+    apple: "/apple-icon.png",
   },
 };
 
