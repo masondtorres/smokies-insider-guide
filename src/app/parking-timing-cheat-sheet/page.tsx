@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { businessEmail } from "@/components/business-intake";
 import { JsonLd } from "@/components/guide";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seoSchema";
 import { PrintButton } from "./print-button";
@@ -12,8 +11,6 @@ export const metadata: Metadata = {
     "Print a one-page-style Smokies parking and timing guide for Gatlinburg, Pigeon Forge, Cades Cove and Great Smoky Mountains National Park.",
   alternates: { canonical: "/parking-timing-cheat-sheet" },
 };
-
-const emailRequestHref = `mailto:${businessEmail}?subject=${encodeURIComponent("Send me the current Smokies parking and timing cheat sheet")}&body=${encodeURIComponent("Please send the current Smokies Parking & Timing Cheat Sheet to this email address.\n\nTrip month, if known:\nMain lodging area, if known:\n\nI understand changing parking, road and trolley details must be rechecked before travel.")}`;
 
 const areaRows = [
   [
@@ -88,10 +85,9 @@ export default function ParkingTimingCheatSheetPage() {
 
         <section className="cheat-sheet-hero">
           <p className="cheat-sheet-eyebrow">Free 2026 Planning Tool</p>
-          <h1>Smokies Parking &amp; Timing Cheat Sheet</h1>
+          <h1>Smokies Parking & Timing Cheat Sheet</h1>
           <p>
-            A fast, printable guide from Mason Torres, founder and editor of
-            veteran-owned Smoky Insider. Use it to simplify the day before
+            A fast, printable guide from Smoky Insider. Use it to simplify the day before
             traffic, parking and tired feet start making decisions for you.
           </p>
           <p><strong>Last reviewed: July 21, 2026.</strong> Changing details must be rechecked before travel.</p>
@@ -100,9 +96,10 @@ export default function ParkingTimingCheatSheetPage() {
         <aside className="cheat-sheet-source" aria-labelledby="email-cheat-sheet-heading">
           <h2 id="email-cheat-sheet-heading">Want the current copy in your inbox?</h2>
           <p>
-            Send a one-click request to Smoky Insider. Your email app will open with the request already written so no address is collected by a hidden form.
+            Use the contact form to request the current Smokies Parking & Timing Cheat Sheet.
+            No address is collected until a real email provider is connected by the site owner.
           </p>
-          <a className="cheat-sheet-link" href={emailRequestHref}>Request the Guide by Email</a>
+          <Link className="cheat-sheet-link" href="/contact">Request the Guide</Link>
         </aside>
 
         <section className="cheat-sheet-grid" aria-label="Fast parking plan">
