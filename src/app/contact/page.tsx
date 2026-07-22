@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BusinessPageShell, BusinessPathLinks, businessEmail, inquiryHref } from "@/components/business-intake";
+import { BusinessPageShell, BusinessPathLinks } from "@/components/business-intake";
+import { ContactForm } from "@/components/contact-form";
 
 export const metadata: Metadata = {
-  title: "Contact Mason Torres | Smoky Insider",
-  description: "Contact Mason Torres at veteran-owned Smoky Insider for corrections, listings, partnerships and advertising.",
+  title: "Contact | Smoky Insider",
+  description:
+    "Contact Smoky Insider for corrections, listing requests, partnerships and general questions about Smoky Mountains trip planning.",
 };
-
-const generalHref = inquiryHref("General inquiry - Smoky Insider", ["Page URL, if relevant", "Your message"]);
 
 export default function ContactPage() {
   return (
     <BusinessPageShell
-      eyebrow="Contact Mason Torres"
-      title="Choose the contact path that fits"
-      intro="Mason Torres is the founder and editor of veteran-owned Smoky Insider. Use a focused request so corrections, listing claims and advertising inquiries stay clear and reviewable."
+      eyebrow="Contact"
+      title="Get in touch"
+      intro="Use the form below for corrections, listing claims, advertising questions or general feedback. Include the page URL when reporting time-sensitive information."
     >
       <BusinessPathLinks />
 
-      <section className="business-offer-grid contact-path-grid">
+      <section className="business-offer-grid contact-path-grid" style={{ marginBottom: "2rem" }}>
         <article>
           <h2>Request a listing</h2>
           <p>Ask for a real restaurant, cabin, attraction, shop, guide, photographer, venue or service business to be reviewed.</p>
@@ -31,20 +31,24 @@ export default function ContactPage() {
         </article>
         <article>
           <h2>Advertise with us</h2>
-          <p>Choose from public founding-partner packages starting at $99 per year.</p>
+          <p>See current packages and pricing for local partners.</p>
           <Link href="/advertise">See packages and prices</Link>
         </article>
         <article>
-          <h2>Correction or general question</h2>
-          <p>Include the page URL and a responsible source when reporting time-sensitive information.</p>
-          <a href={generalHref}>Email {businessEmail}</a>
+          <h2>Correction path</h2>
+          <p>Include the page URL and a responsible source when reporting changing details.</p>
+          <Link href="/corrections">Read the correction path</Link>
         </article>
       </section>
 
+      <ContactForm />
+
       <aside className="business-trust-note">
-        <strong>No sensitive information or payment-card details by email</strong>
-        <p>Do not send passwords, payment-card information or sensitive identity documents. Approved commercial partners receive written terms and separate payment instructions.</p>
-        <Link href="/corrections">Read the correction path</Link>
+        <strong>No sensitive information or payment-card details by form or email</strong>
+        <p>
+          Do not send passwords, payment-card information or sensitive identity documents.
+          Approved commercial partners receive written terms and separate payment instructions.
+        </p>
       </aside>
     </BusinessPageShell>
   );
