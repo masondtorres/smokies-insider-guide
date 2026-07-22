@@ -7,7 +7,7 @@ import "./homepage-v2.css";
 export const metadata: Metadata = {
   title: "Smoky Insider | Smoky Mountains Trip Planner",
   description:
-    "Plan a Smokies trip with veteran-owned, local-first help for routes, attractions, scenic stops, restaurants, stays, deals and before-you-go details.",
+    "Plan a Smokies trip with practical, independent help for routes, parking, attractions, scenic stops, restaurants, stays, deals and before-you-go details.",
   alternates: { canonical: "/" },
 };
 
@@ -35,6 +35,17 @@ const utilityItems = [
   "Plan parking before driving",
   "Keep one rainy-day backup",
   "Save the plan on your phone",
+];
+
+const entryPoints = [
+  { label: "First trip", href: "/start-here" },
+  { label: "Three-day trip", href: "/how-many-days" },
+  { label: "Parking", href: "/smokies-parking-trolley-guide" },
+  { label: "Rainy day", href: "/rainy-day-smokies-with-kids" },
+  { label: "Families with children", href: "/pigeon-forge-with-kids" },
+  { label: "Low-walking trips", href: "/gatlinburg-without-walking-too-much" },
+  { label: "Gatlinburg vs Pigeon Forge", href: "/gatlinburg-vs-pigeon-forge" },
+  { label: "Best time to visit", href: "/best-time-to-visit" },
 ];
 
 const beforeYouGo = [
@@ -77,10 +88,10 @@ export default function Home() {
         <div className="si-ridge-two" aria-hidden="true" />
         <div className="si-ridge-three" aria-hidden="true" />
         <div className="si-width si-hero-copy">
-          <p className="si-kicker">Veteran-Owned by Mason Torres</p>
+          <p className="si-kicker">Independent Smokies planning</p>
           <h1 id="home-title">Plan your Smokies trip without the guesswork.</h1>
           <p className="si-hero-promise">
-            Practical Smokies planning from an East Tennessee-based U.S. Air Force veteran, with clear advice for Gatlinburg, Pigeon Forge, Sevierville, Townsend and the national park.
+            Clear advice for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park. Built to help first-time visitors and return trips avoid traffic, parking mistakes and overpacked days.
           </p>
           <div className="si-actions">
             <Link className="si-button si-button-primary" href="/my-plan">Build My Plan</Link>
@@ -114,17 +125,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="si-section si-width si-editor-panel" aria-labelledby="editor-heading">
-        <div>
-          <p className="si-section-kicker">Who runs Smoky Insider</p>
-          <h2 id="editor-heading">Mason Torres, Founder and Editor</h2>
-          <p>
-            Smoky Insider is a veteran-owned, independent East Tennessee guide built to help families avoid the traffic, parking, bad timing and overpacked days that make a good trip harder than it needs to be.
-          </p>
+      <section className="si-section si-width" aria-labelledby="entry-heading">
+        <div className="si-section-heading">
+          <p className="si-section-kicker">Quick starts</p>
+          <h2 id="entry-heading">Start with the trip you are actually taking</h2>
         </div>
-        <div className="si-editor-actions">
-          <Link className="si-button si-button-primary" href="/about">Meet Mason</Link>
-          <Link className="si-button si-button-secondary" href="/corrections">Report a Correction</Link>
+        <div className="si-before-grid" style={{ marginTop: "1rem" }}>
+          {entryPoints.map((item) => (
+            <Link href={item.href} key={item.label}>{item.label}</Link>
+          ))}
         </div>
       </section>
 
@@ -143,11 +152,27 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="si-section si-width" aria-labelledby="trust-heading">
+        <div className="si-section-heading">
+          <p className="si-section-kicker">How this guide works</p>
+          <h2 id="trust-heading">Built for real decisions, not rankings</h2>
+          <p>
+            Built from more than 40 years of combined experience helping people in the Smoky Mountains area.
+            Park facts come from official sources and carry verification labels. Paid placements stay labeled and separate from editorial judgment.
+          </p>
+        </div>
+        <div className="si-editor-actions" style={{ marginTop: "1.25rem" }}>
+          <Link className="si-button si-button-secondary" href="/about">About the guide</Link>
+          <Link className="si-button si-button-secondary" href="/source-and-verification-policy">Source & verification</Link>
+          <Link className="si-button si-button-secondary" href="/corrections">Report a correction</Link>
+        </div>
+      </section>
+
       <footer className="si-footer si-width">
         <div>
           <strong>Smoky Insider</strong>
-          <span>Veteran-owned by Mason Torres. Independent trip-planning help for the Smoky Mountains.</span>
-          <small>&copy; 2026 Smoky Insider</small>
+          <span>Independent trip-planning help for the Smoky Mountains. Not affiliated with the National Park Service or any tourism board.</span>
+          <small>&copy; {new Date().getFullYear()} Smoky Insider</small>
         </div>
         <nav className="si-footer-links" aria-label="Policy and information links">
           {footerLinks.map(([label, href]) => (
