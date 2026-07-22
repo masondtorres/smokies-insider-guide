@@ -16,10 +16,12 @@ export function webPageSchema({
   path,
   title,
   description,
+  dateModified = "2026-07-22",
 }: {
   path: string;
   title: string;
   description: string;
+  dateModified?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -32,7 +34,7 @@ export function webPageSchema({
       name: siteName,
       url: siteUrl,
     },
-    dateModified: "2026-06-05",
+    dateModified,
     inLanguage: "en-US",
   };
 }
