@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Geist_Mono, Montserrat } from "next/font/google";
+import { GlobalSiteFooter, GlobalSiteHeader } from "@/components/global-site-chrome";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import "./globals.css";
 import "./homepage-hero-image.css";
@@ -10,6 +11,7 @@ import "./visual-layer-v2.css";
 import "./smokies-radiant-v1.css";
 import "./authority-v1.css";
 import "./audit-fixes.css";
+import "./standardized-pages.css";
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
@@ -92,10 +94,9 @@ export default function RootLayout({
       className={`${montserrat.variable} ${geistMono.variable} antialiased`}
     >
       <body>
-        {children}
-        <aside className="visual-photo-credit" aria-label="Photography credit">
-          Smokies photographs: National Park Service. Food photograph: Toa Heftiba, CC0. Ticket photograph: Mattia Luigi Nappi, CC BY-SA 3.0. Full source records are in the project manifest.
-        </aside>
+        <GlobalSiteHeader />
+        <div className="standard-site-content">{children}</div>
+        <GlobalSiteFooter />
         <MobileBottomNav />
         <Analytics />
       </body>
