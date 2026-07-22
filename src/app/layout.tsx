@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Geist_Mono, Montserrat } from "next/font/google";
+import { Fraunces, Geist_Mono, Montserrat } from "next/font/google";
 import { GlobalSiteFooter, GlobalSiteHeader } from "@/components/global-site-chrome";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import "./globals.css";
@@ -13,6 +13,7 @@ import "./authority-v1.css";
 import "./audit-fixes.css";
 import "./standardized-pages.css";
 import "./brand-lockup.css";
+import "./visual-rescue.css";
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
@@ -20,10 +21,19 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const socialImage =
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Great_Smoky_Mountains_National_Park_GRSM8831.jpg/1280px-Great_Smoky_Mountains_National_Park_GRSM8831.jpg";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.smokyinsider.com"),
@@ -56,11 +66,20 @@ export const metadata: Metadata = {
       "Independent Smokies planning for routes, attractions, restaurants, stays, deals and before-you-go details.",
     url: "https://www.smokyinsider.com",
     locale: "en_US",
+    images: [
+      {
+        url: socialImage,
+        width: 1280,
+        height: 853,
+        alt: "Layered forest ridges in Great Smoky Mountains National Park",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Smoky Insider",
     description: "Plan your Smokies trip without the guesswork.",
+    images: [socialImage],
   },
   robots: {
     index: true,
@@ -94,7 +113,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} ${geistMono.variable} antialiased`}
+      className={`${montserrat.variable} ${fraunces.variable} ${geistMono.variable} antialiased`}
     >
       <body>
         <GlobalSiteHeader />
