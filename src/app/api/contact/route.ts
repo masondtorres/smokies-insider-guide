@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
 import {
   buildContactEmailHtml,
   getContactConfig,
+  sendContactEmail,
   validateContactInput,
 } from "@/lib/contact";
 
@@ -43,7 +43,6 @@ export async function POST(request: NextRequest) {
 
   if (!validation.ok) {
     if (validation.code === "SPAM") {
-      // Quiet rejection for bots
       return NextResponse.json({ ok: true });
     }
     return NextResponse.json(
@@ -55,8 +54,8 @@ export async function POST(request: NextRequest) {
   const { data } = validation;
 
   try {
-    const resend = new Resend(config.apiKey);
-    const result = await resend.emails.send({
+    const result = await sendContactEmail({
+      apiKey: config.apiKey,
       from: config.from,
       to: config.to,
       replyTo: data.email,
@@ -64,11 +63,8 @@ export async function POST(request: NextRequest) {
       html: buildContactEmailHtml(data),
     });
 
-    if (result.error) {
-      console.error("[contact] provider rejected", {
-        name: result.error.name,
-        message: result.error.message,
-      });
+    if (!result.ok) {
+      console.error("[contact] provider rejected", { error: result.error });
       return NextResponse.json(
         {
           error: "Delivery failed. Please try again in a few minutes.",
@@ -78,24 +74,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!result.data?.id) {
-      return NextResponse.json(
-        {
-          error: "Delivery failed. Please try again in a few minutes.",
-          code: "DELIVERY_FAILED",
-        },
-        { status: 502 },
-      );
-    }
-
-    // Log only non-PII operational signal
     console.info("[contact] delivered", {
-      id: result.data.id,
+      id: result.id,
       reason: data.reason,
       messageLength: data.message.length,
     });
 
-    return NextResponse.json({ ok: true, id: result.data.id });
+    return NextResponse.json({ ok: true, id: result.id });
   } catch (err) {
     console.error("[contact] delivery exception", {
       type: err instanceof Error ? err.name : "unknown",
