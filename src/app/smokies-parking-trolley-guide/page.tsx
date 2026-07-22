@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/guide";
 import { ParkingStrategyTool } from "@/components/parking-strategy-tool";
+import { PrintButton } from "@/components/print-button";
 import {
   gatlinburgPlaces,
   pigeonForgePlaces,
   npsTagFacts,
   LAST_CLUSTER_CHECK,
+  parkingClusterNav,
 } from "@/data/parking-places";
 import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/seoSchema";
 
@@ -29,7 +31,7 @@ const faqs = [
   {
     question: "Where should I park in Gatlinburg?",
     answer:
-      "If you want to avoid downtown traffic, use the free City of Gatlinburg park-and-ride at the Welcome Center (1011 Banner Rd) or at City Hall (1230 East Pkwy) and ride the free trolley. If you need the car on the Parkway, the McMahan garage at 520 Parkway and the Aquarium garage at 161 Greystone Heights Rd are both listed at $15 per day by the city (checked 2026-07-22).",
+      "If you want to avoid downtown traffic, use the free City of Gatlinburg park-and-ride at the Welcome Center (1011 Banner Rd) or at City Hall (1230 East Pkwy) and ride the free trolley. If you need the car on the Parkway, the McMahan garage at 520 Parkway and the Aquarium garage at 161 Greystone Heights Rd are both listed at 15 USD per day by the city (checked 2026-07-22).",
   },
   {
     question: "Is the Gatlinburg trolley free?",
@@ -44,7 +46,7 @@ const faqs = [
   {
     question: "Do I need a national park parking tag?",
     answer:
-      "If you park more than 15 minutes inside Great Smoky Mountains National Park, yes. Tags are $5 daily, $15 weekly, or $40 annual (NPS fees page, checked 2026-07-22). A tag does not guarantee a space. Disability plate/placard holders are exempt per NPS FAQ.",
+      "If you park more than 15 minutes inside Great Smoky Mountains National Park, yes. Tags are 5 USD daily, 15 USD weekly, or 40 USD annual (NPS fees page, checked 2026-07-22). A tag does not guarantee a space. Disability plate/placard holders are exempt per NPS FAQ.",
   },
   {
     question: "Where do I buy a parking tag?",
@@ -75,10 +77,10 @@ export default function SmokiesParkingTrolleyGuidePage() {
         <h1>Smokies parking and trolley guide</h1>
         <p className="seo-direct-copy">
           For Gatlinburg, park once at a free park-and-ride (1011 Banner Rd or 1230 East Pkwy) and
-          ride the free trolley, or pay $15/day at a city garage on the Parkway. For Pigeon Forge,
+          ride the free trolley, or pay 15 USD/day at a city garage on the Parkway. For Pigeon Forge,
           park free at the Patriot Park trolley hub (236 Old Mill Ave) and ride. Inside the national
-          park, buy a physical parking tag before you leave cell service — $5 day / $15 week / $40
-          year.
+          park, buy a physical parking tag before you leave cell service — 5 USD day / 15 USD week /
+          40 USD year.
         </p>
         <p>
           <strong>Last checked:</strong> {LAST_CLUSTER_CHECK} · Sources: City of Gatlinburg, NPS,
@@ -97,6 +99,17 @@ export default function SmokiesParkingTrolleyGuidePage() {
         </div>
       </section>
 
+      <nav className="destination-section" aria-label="Parking cluster navigation">
+        <p className="eyebrow">In this cluster</p>
+        <div className="destination-actions">
+          {parkingClusterNav.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
       <section className="destination-section" id="quick-ref">
         <div className="destination-heading">
           <p className="eyebrow">Mobile quick reference</p>
@@ -110,14 +123,15 @@ export default function SmokiesParkingTrolleyGuidePage() {
               space. Physical tag only.
             </p>
             <p>
-              <span className="verify-badge">Officially confirmed</span> · NPS · {npsTagFacts.dateChecked}
+              <span className="verify-badge">Officially confirmed</span> · NPS ·{" "}
+              {npsTagFacts.dateChecked}
             </p>
           </article>
           <article className="destination-card">
             <h3>Municipal parking</h3>
             <p>
-              City-run garages and lots (example: Gatlinburg McMahan garage, $15/day). Rules and rates
-              set by the city.
+              City-run garages and lots (example: Gatlinburg McMahan garage, 15 USD/day). Rules and
+              rates set by the city.
             </p>
           </article>
           <article className="destination-card">
@@ -187,10 +201,6 @@ export default function SmokiesParkingTrolleyGuidePage() {
             </tbody>
           </table>
         </div>
-        <p>
-          City note: live occupancy tools have been reported inaccurate during technical issues.
-          Treat garage availability as uncertain until you arrive.
-        </p>
       </section>
 
       <section className="destination-section comparison-section" id="pigeon-forge-table">
@@ -236,11 +246,6 @@ export default function SmokiesParkingTrolleyGuidePage() {
             </tbody>
           </table>
         </div>
-        <p>
-          Official trolley hours (MyPigeonForge): roughly 8am–midnight early March–December; 10am–10pm
-          early January–February; closed Thanksgiving, Christmas Eve, Christmas Day. Confirm before
-          travel.
-        </p>
       </section>
 
       <section className="destination-section" id="nps-tags">
@@ -294,10 +299,6 @@ export default function SmokiesParkingTrolleyGuidePage() {
           </a>{" "}
           · Checked {npsTagFacts.dateChecked} · {npsTagFacts.npsUpdated}
         </p>
-        <p>
-          <strong>Cell service:</strong> Buy the tag while you still have signal. Do not count on
-          buying online after you enter canyon or high-elevation areas.
-        </p>
       </section>
 
       <ParkingStrategyTool />
@@ -308,9 +309,7 @@ export default function SmokiesParkingTrolleyGuidePage() {
           <h2>Match the lot to the least mobile person</h2>
         </div>
         <ul className="area-list">
-          <li>
-            Prefer Gatlinburg park-and-ride + free trolley when hills or stamina are a concern.
-          </li>
+          <li>Prefer Gatlinburg park-and-ride + free trolley when hills or stamina are a concern.</li>
           <li>
             Pigeon Forge trolleys are lift-equipped at designated stops; paratransit is available by
             advance request (official page: 865-453-6444).
@@ -349,32 +348,32 @@ export default function SmokiesParkingTrolleyGuidePage() {
         <article className="destination-card">
           <ol className="area-list">
             <li>
-              <strong>Gatlinburg free park-and-ride:</strong> 1011 Banner Rd or 1230 East Pkwy → free
+              <strong>Gatlinburg free park-and-ride:</strong> 1011 Banner Rd or 1230 East Pkwy — free
               trolley into town.
             </li>
             <li>
               <strong>Gatlinburg downtown garage:</strong> 520 Parkway or 161 Greystone Heights Rd —
-              $15/day (city rate as of {LAST_CLUSTER_CHECK}).
+              15 USD/day (city rate as of {LAST_CLUSTER_CHECK}).
             </li>
             <li>
               <strong>Pigeon Forge hub:</strong> 236 Old Mill Ave (Patriot Park trolley station) —
               free parking listed; trolley fares apply.
             </li>
             <li>
-              <strong>National park:</strong> Physical tag $5 / $15 / $40 — buy before you lose
+              <strong>National park:</strong> Physical tag 5 / 15 / 40 USD — buy before you lose
               signal.
             </li>
             <li>
               <strong>Backup:</strong> Always name a second lot before you leave the cabin.
             </li>
           </ol>
-          <p>
-            <Link href="/my-plan">Save named places in My Plan</Link>
-            {" · "}
+          <div className="destination-actions">
+            <PrintButton label="Print this summary" />
+            <Link href="/my-plan">Open My Plan</Link>
+            <Link href="/go/parking">Short decision page</Link>
+            <Link href="/parking-tag">Parking-tag guide</Link>
             <Link href="/parking-timing-cheat-sheet">Timing cheat sheet</Link>
-            {" · "}
-            <Link href="/parking-tag">Parking-tag deep dive</Link>
-          </p>
+          </div>
         </article>
       </section>
 
@@ -416,6 +415,7 @@ export default function SmokiesParkingTrolleyGuidePage() {
           path: "/smokies-parking-trolley-guide",
           title: pageTitle,
           description: pageDescription,
+          dateModified: LAST_CLUSTER_CHECK,
         })}
       />
       <JsonLd
