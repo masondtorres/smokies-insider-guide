@@ -1,0 +1,30 @@
+name: Restore pre-teardown production site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/restore-pre-teardown.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out full repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create a forward restore commit
+        run: |
+          set -euo pipefail
+          git config user.name "Smoky Insider Restore"
+          git config user.email "actions@users.noreply.github.com"
+          git read-tree --reset -u b1a7eca3f1c8288ebacc831f52845ae5f66297b8
+          git commit -m "Restore pre-teardown Smoky Insider site"
+          git push origin HEAD:main
