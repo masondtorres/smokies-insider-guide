@@ -22,6 +22,7 @@ const footerLinks = [
   { label: "Affiliate disclosure", href: "/affiliate-disclosure" },
   { label: "Editorial policy", href: "/editorial-policy" },
   { label: "Source policy", href: "/source-and-verification-policy" },
+  { label: "Photo credits", href: "/photo-credits" },
   { label: "Corrections", href: "/corrections" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
@@ -98,9 +99,7 @@ export function GlobalSiteFooter() {
       </div>
       <div className="standard-site-footer-bottom">
         <span>&copy; {new Date().getFullYear()} Smoky Insider</span>
-        <span>
-          Photography credits and source records are maintained in the project manifest.
-        </span>
+        <Link href="/photo-credits">Photography credits and licenses</Link>
       </div>
     </footer>
   );
