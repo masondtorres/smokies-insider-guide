@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { siteUrl } from "@/lib/seoSchema";
-import { SiteIdentity } from "@/components/site-mark";
 
 export type LinkItem = {
   title: string;
@@ -33,71 +32,46 @@ export type GuidePageData = {
 };
 
 export const primaryNav = [
-  { label: "Go", href: "/go" },
-  { label: "Do", href: "/do" },
-  { label: "See", href: "/see" },
-  { label: "Eat", href: "/eat" },
-  { label: "Stay", href: "/stay" },
-  { label: "Deals", href: "/deals" },
-  { label: "My Plan", href: "/my-plan" },
-];
-
-const footerLinks = [
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-  { label: "Advertise", href: "/advertise" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
+  { label: "First Trip", href: "/first-time-smokies" },
+  { label: "Gatlinburg", href: "/gatlinburg" },
+  { label: "Pigeon Forge", href: "/pigeon-forge" },
+  { label: "Cades Cove", href: "/cades-cove" },
+  { label: "Where to Stay", href: "/where-to-stay" },
+  { label: "Parking", href: "/smokies-parking-trolley-guide" },
 ];
 
 export function SiteHeader() {
-  return (
-    <header className="site-header guide-site-header">
-      <div className="brand-lockup">
-        <Link className="brand-mark" href="/" aria-label="Smoky Insider home">
-          <SiteIdentity />
-        </Link>
-      </div>
-      <nav className="primary-nav" aria-label="Primary navigation">
-        {primaryNav.map((link) => (
-          <Link href={link.href} key={link.href}>{link.label}</Link>
-        ))}
-      </nav>
-    </header>
-  );
+  return null;
 }
 
 export function SiteFooter() {
-  return (
-    <footer className="site-footer guide-site-footer">
-      <div className="footer-brand-panel">
-        <SiteIdentity compact />
-        <span>Practical Smoky Mountains trip planning for routes, things to do, views, food, stays and deals.</span>
-      </div>
-      <nav className="category-footer-links" aria-label="Policy and information links">
-        {footerLinks.map((link) => <Link href={link.href} key={link.href}>{link.label}</Link>)}
-      </nav>
-    </footer>
-  );
+  return null;
 }
 
 export function LastUpdated({ date = "June 2026" }: { date?: string }) {
-  return <p className="last-updated">Last updated: {date}</p>;
+  return <p className="guide-updated">Reviewed: {date}</p>;
 }
 
 export function SourceBox({
-  text = "Source note: Park rules, road status, hours, prices and closures can change. Verify time-sensitive details with the official source before you go.",
+  text = "Road status, weather, prices, hours and closures can change. Verify time-sensitive details with the official source before you leave.",
   sources = [],
 }: {
   text?: string;
   sources?: LinkItem[];
 }) {
   return (
-    <aside className="source-box" aria-label="Source and verification note">
-      <strong>Source and verification</strong>
+    <aside className="guide-source" aria-label="Source and verification note">
+      <p className="section-label">Final fact check</p>
+      <h2>Verify what can change.</h2>
       <p>{text}</p>
       {sources.length ? (
-        <ul>{sources.map((source) => <li key={source.href}><a href={source.href}>{source.title}</a></li>)}</ul>
+        <ul>
+          {sources.map((source) => (
+            <li key={source.href}>
+              <a href={source.href}>{source.title}</a>
+            </li>
+          ))}
+        </ul>
       ) : null}
     </aside>
   );
@@ -105,14 +79,28 @@ export function SourceBox({
 
 export function DirectAnswer({ title = "Direct answer", children }: { title?: string; children: React.ReactNode }) {
   return (
-    <section className="direct-answer" aria-labelledby="direct-answer-title">
-      <p className="eyebrow">{title}</p>
+    <section className="guide-answer" aria-labelledby="direct-answer-title">
+      <p className="section-label">{title}</p>
       <div id="direct-answer-title">{children}</div>
     </section>
   );
 }
 
-export function DecisionCard({ title, description, href, bestFor, skipIf, meta }: { title: string; description: string; href: string; bestFor?: string; skipIf?: string; meta?: string }) {
+export function DecisionCard({
+  title,
+  description,
+  href,
+  bestFor,
+  skipIf,
+  meta,
+}: {
+  title: string;
+  description: string;
+  href: string;
+  bestFor?: string;
+  skipIf?: string;
+  meta?: string;
+}) {
   return (
     <Link className="decision-card" href={href}>
       {meta ? <span className="decision-meta">{meta}</span> : null}
@@ -120,34 +108,57 @@ export function DecisionCard({ title, description, href, bestFor, skipIf, meta }
       <p>{description}</p>
       {bestFor ? <p><strong>Best for:</strong> {bestFor}</p> : null}
       {skipIf ? <p><strong>Skip if:</strong> {skipIf}</p> : null}
-      <b>Read next</b>
+      <b>Read next &rarr;</b>
     </Link>
   );
 }
 
 export function BestForSkipIf({ bestFor, skipIf }: { bestFor: string[]; skipIf: string[] }) {
   return (
-    <section className="best-skip-grid" aria-label="Best for and skip if">
-      <div><h2>Best for</h2><ul>{bestFor.map((item) => <li key={item}>{item}</li>)}</ul></div>
-      <div><h2>Skip if</h2><ul>{skipIf.map((item) => <li key={item}>{item}</li>)}</ul></div>
+    <section className="guide-fit" aria-label="Best for and skip if">
+      <div>
+        <p className="section-label">Good fit</p>
+        <h2>Best for</h2>
+        <ul>{bestFor.map((item) => <li key={item}>{item}</li>)}</ul>
+      </div>
+      <div>
+        <p className="section-label">Be honest</p>
+        <h2>Skip if</h2>
+        <ul>{skipIf.map((item) => <li key={item}>{item}</li>)}</ul>
+      </div>
     </section>
   );
 }
 
-export function LocalNote({ variant = "local", title, children }: { variant?: "local" | "watch" | "betterMove" | "verify" | "warning"; title: string; children: React.ReactNode }) {
-  return <aside className={`local-note local-note-${variant}`}><strong>{title}</strong><div>{children}</div></aside>;
+export function LocalNote({
+  variant = "local",
+  title,
+  children,
+}: {
+  variant?: "local" | "watch" | "betterMove" | "verify" | "warning";
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <aside className={`local-note local-note-${variant}`}>
+      <strong>{title}</strong>
+      <div>{children}</div>
+    </aside>
+  );
 }
 
 export function InternalLinkGrid({ links, title = "Read next" }: { links: LinkItem[]; title?: string }) {
   const id = `${title.replace(/\s+/g, "-").toLowerCase()}-links`;
   return (
-    <section className="internal-link-grid" aria-labelledby={id}>
+    <section className="guide-next" aria-labelledby={id}>
+      <p className="section-label">Keep the trip realistic</p>
       <h2 id={id}>{title}</h2>
       <div>
         {links.map((link) => (
           <Link href={link.href} key={link.href}>
             <strong>{link.title}</strong>
             {link.description ? <span>{link.description}</span> : null}
+            <b aria-hidden="true">&rarr;</b>
           </Link>
         ))}
       </div>
@@ -161,34 +172,47 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
 
 export function GuidePage({ page, path }: { page: GuidePageData; path: string }) {
   return (
-    <div className="guide-page">
+    <main className="guide-rebuild">
       <GuideJsonLd data={page} path={path} />
-      <SiteHeader />
-      <main>
-        <section className="page-hero">
-          <p className="eyebrow">Smoky Insider guide</p>
+
+      <header className="guide-rebuild-hero">
+        <div>
+          <p className="section-label">Smoky Insider field guide</p>
           <h1>{page.title}</h1>
           <p>{page.description}</p>
-        </section>
-        <section className="content-section guide-summary">
-          <p className="eyebrow">Start here</p>
-          <h2>Quick answer</h2>
+        </div>
+      </header>
+
+      <article className="guide-rebuild-article">
+        <section className="guide-answer">
+          <p className="section-label">The answer first</p>
+          <h2>What matters most</h2>
           <p>{page.directAnswer}</p>
         </section>
-        {page.bestFor?.length || page.skipIf?.length ? <BestForSkipIf bestFor={page.bestFor ?? []} skipIf={page.skipIf ?? []} /> : null}
-        {page.sections.length ? (
-          <section className="content-section guide-sections">
-            {page.sections.map((section) => (
-              <article className="info-card" key={section.title}><h2>{section.title}</h2><p>{section.body}</p></article>
-            ))}
-          </section>
+
+        {page.bestFor?.length || page.skipIf?.length ? (
+          <BestForSkipIf bestFor={page.bestFor ?? []} skipIf={page.skipIf ?? []} />
         ) : null}
-        {page.links.length ? <InternalLinkGrid links={page.links} title="Keep planning" /> : null}
+
+        {page.sections.length ? (
+          <div className="guide-rebuild-sections">
+            {page.sections.map((section, index) => (
+              <section key={section.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h2>{section.title}</h2>
+                  <p>{section.body}</p>
+                </div>
+              </section>
+            ))}
+          </div>
+        ) : null}
+
+        {page.links.length ? <InternalLinkGrid links={page.links} title="Read next" /> : null}
         <SourceBox sources={page.sources ?? []} />
         <LastUpdated date={page.reviewedOn} />
-      </main>
-      <SiteFooter />
-    </div>
+      </article>
+    </main>
   );
 }
 
