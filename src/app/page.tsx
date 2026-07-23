@@ -22,12 +22,48 @@ const mainLinks = [
 ];
 
 const planningCards = [
-  { title: "Go", text: "Routes, parking, traffic and arrival timing.", action: "Plan routes & parking", href: "/go", icon: "Go" },
-  { title: "Do", text: "Attractions, hikes, shows and rainy-day options.", action: "Plan what to do", href: "/do", icon: "Do" },
-  { title: "See", text: "Overlooks, scenic drives, waterfalls and photo spots.", action: "Plan scenic stops", href: "/see", icon: "See" },
-  { title: "Eat", text: "Local restaurants, quick meals and family-friendly food.", action: "Plan where to eat", href: "/eat", icon: "Eat" },
-  { title: "Stay", text: "Cabins, hotels, campgrounds and where to base your trip.", action: "Choose your base", href: "/stay", icon: "Stay" },
-  { title: "Deals", text: "Tickets, discounts, local savings and budget-friendly ideas.", action: "Plan the budget", href: "/deals", icon: "Save" },
+  {
+    title: "Go",
+    text: "Routes, parking, traffic and arrival timing.",
+    action: "Plan routes & parking",
+    href: "/go",
+    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Do",
+    text: "Attractions, hikes, shows and rainy-day options.",
+    action: "Plan what to do",
+    href: "/do",
+    image: "https://images.unsplash.com/photo-1551632811-561732f1e96c?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "See",
+    text: "Overlooks, scenic drives, waterfalls and photo spots.",
+    action: "Plan scenic stops",
+    href: "/see",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Eat",
+    text: "Local restaurants, quick meals and family-friendly food.",
+    action: "Plan where to eat",
+    href: "/eat",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Stay",
+    text: "Cabins, hotels, campgrounds and where to base your trip.",
+    action: "Choose your base",
+    href: "/stay",
+    image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Deals",
+    text: "Tickets, discounts, local savings and budget-friendly ideas.",
+    action: "Plan the budget",
+    href: "/deals",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+  },
 ];
 
 const utilityItems = [
@@ -83,10 +119,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="si-hero" aria-labelledby="home-title">
-        <div className="si-ridge-one" aria-hidden="true" />
-        <div className="si-ridge-two" aria-hidden="true" />
-        <div className="si-ridge-three" aria-hidden="true" />
+      <section className="si-hero si-hero--photo" aria-labelledby="home-title">
         <div className="si-width si-hero-copy">
           <p className="si-kicker">Independent Smokies planning</p>
           <h1 id="home-title">Plan your Smokies trip without the guesswork.</h1>
@@ -109,8 +142,15 @@ export default function Home() {
         </div>
         <div className="si-card-grid">
           {planningCards.map((card) => (
-            <Link className="si-card" href={card.href} key={card.href}>
-              <span className="si-icon" aria-hidden="true">{card.icon}</span>
+            <Link
+              className="si-card si-card--photo"
+              href={card.href}
+              key={card.href}
+              style={{
+                backgroundImage: `linear-gradient(to top, rgba(7,30,49,0.92) 0%, rgba(7,30,49,0.45) 55%, transparent 100%), url(${card.image})`,
+              }}
+            >
+              <span className="si-icon">{card.title}</span>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
               <span>{card.action}</span>
