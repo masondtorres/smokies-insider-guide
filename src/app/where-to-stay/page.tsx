@@ -1,47 +1,78 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { DirectAnswer, JsonLd, LastUpdated, SiteFooter, SiteHeader, SourceBox } from "@/components/guide";
-import { guidePages, towns } from "@/lib/smokiesData";
+import Link from "next/link";
+import { JsonLd, SourceBox } from "@/components/guide";
+import { towns } from "@/lib/smokiesData";
+import { webPageSchema } from "@/lib/seoSchema";
 
 export const metadata: Metadata = {
-  title: "Where to Stay in the Smokies: Compare Gatlinburg, Pigeon Forge, Sevierville and Townsend",
-  description: guidePages["/where-to-stay"].description,
+  title: "Where to Stay in the Smokies",
+  description:
+    "Compare Gatlinburg, Pigeon Forge, Sevierville, Townsend and other Smokies bases by what each location makes easier or harder.",
+  alternates: { canonical: "/where-to-stay" },
+  openGraph: {
+    title: "Where to Stay in the Smokies | Smoky Insider",
+    description:
+      "Choose a Smokies base by the days you plan to take, not by the lodging photo that looked best online.",
+    url: "/where-to-stay",
+  },
 };
 
 const tripTypes = [
-  ["First-time family", "Compare Gatlinburg and Pigeon Forge first, then choose by walkability or attractions."],
-  ["Quiet scenic trip", "Start with Townsend or Wears Valley before adding Cades Cove or Foothills Parkway."],
-  ["Budget-focused stay", "Check Sevierville and outer bases, then make sure the drive still fits the day."],
-  ["NC-side route", "Use Cherokee or Bryson City only when the day is actually built around the NC side."],
+  {
+    title: "First-time family",
+    text: "Compare Gatlinburg and Pigeon Forge first. Choose Gatlinburg for downtown walkability and park access. Choose Pigeon Forge for attractions, Dollywood and shows.",
+  },
+  {
+    title: "Quiet scenic trip",
+    text: "Start with Townsend or Wears Valley when quiet roads and the west side of the park matter more than being close to the Parkway.",
+  },
+  {
+    title: "Budget-focused stay",
+    text: "Sevierville and outer bases may offer better value, but calculate the repeated drive before treating a lower nightly rate as a real saving.",
+  },
+  {
+    title: "Mostly national park",
+    text: "Choose the park entrance and side you expect to use most. A cabin with a view is not useful when every trail day begins with a long cross-county drive.",
+  },
 ];
 
 export default function WhereToStayPage() {
   return (
-    <main className="guide-page stay-page">
-      <SiteHeader />
-      <article className="guide-article">
-        <header className="guide-hero">
-          <p className="eyebrow">Base-town decision</p>
+    <main className="guide-rebuild">
+      <header className="guide-rebuild-hero">
+        <div>
+          <p className="section-label">Base-town decision</p>
           <h1>Where to stay in the Smokies</h1>
-          <p>{guidePages["/where-to-stay"].description}</p>
-          <LastUpdated />
-        </header>
-        <DirectAnswer>
-          <p>{guidePages["/where-to-stay"].directAnswer}</p>
-        </DirectAnswer>
+          <p>
+            Choose the base that makes your main days easier. The wrong location can
+            turn a good cabin, hotel or campground into a daily traffic problem.
+          </p>
+        </div>
+      </header>
 
-        <section className="comparison-panel" aria-labelledby="comparison-title">
-          <div className="route-board-title">
-            <p className="eyebrow">Direct comparison</p>
-            <h2 id="comparison-title">Choose by what the town makes easier.</h2>
-          </div>
+      <article className="guide-rebuild-article">
+        <section className="guide-answer">
+          <p className="section-label">The answer first</p>
+          <h2>Choose the route before the room.</h2>
+          <p>
+            Gatlinburg is usually strongest for walkable downtown time and the
+            Gatlinburg side of the national park. Pigeon Forge is strongest for
+            attractions, Dollywood and shows. Townsend is strongest for quiet and
+            Cades Cove access. Sevierville can offer space and value, but only when
+            the extra driving still fits the trip.
+          </p>
+        </section>
+
+        <section className="stay-comparison" aria-labelledby="stay-comparison-title">
+          <p className="section-label">Direct comparison</p>
+          <h2 id="stay-comparison-title">What each base makes easier</h2>
           <div className="comparison-table-wrap">
-            <table className="comparison-table">
+            <table>
               <thead>
                 <tr>
-                  <th>Town</th>
-                  <th>Choose this if</th>
-                  <th>Skip this if</th>
+                  <th>Base</th>
+                  <th>Choose it when</th>
+                  <th>Skip it when</th>
                   <th>Common mistake</th>
                 </tr>
               </thead>
@@ -49,9 +80,9 @@ export default function WhereToStayPage() {
                 {towns.map((town) => (
                   <tr key={town.name}>
                     <th scope="row">{town.name}</th>
-                    <td data-label="Choose this if">{town.bestFor}</td>
-                    <td data-label="Skip this if">{town.skipIf}</td>
-                    <td data-label="Common mistake">{town.mistake}</td>
+                    <td>{town.bestFor}</td>
+                    <td>{town.skipIf}</td>
+                    <td>{town.mistake}</td>
                   </tr>
                 ))}
               </tbody>
@@ -59,69 +90,72 @@ export default function WhereToStayPage() {
           </div>
         </section>
 
-        <section className="choose-by-trip" aria-labelledby="trip-type-title">
-          <div>
-            <p className="eyebrow">Choose by trip type</p>
-            <h2 id="trip-type-title">Do not book a base that fights your main day.</h2>
+        <section className="guide-rebuild-sections" aria-labelledby="trip-type-title">
+          <div className="stay-section-heading">
+            <p className="section-label">Choose by trip type</p>
+            <h2 id="trip-type-title">Do not book a base that fights the main day.</h2>
           </div>
-          <div className="route-row-list">
-            {tripTypes.map(([title, text]) => (
-              <section className="route-row" key={title}>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </section>
-            ))}
+          {tripTypes.map((item, index) => (
+            <section key={item.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <h2>{item.title}</h2>
+                <p>{item.text}</p>
+              </div>
+            </section>
+          ))}
+        </section>
+
+        <aside className="local-note local-note-warning">
+          <strong>Do not book for the view before checking the drive.</strong>
+          <div>
+            <p>
+              A cabin can look perfect online and still make breakfast, park stops,
+              dinner and rainy-day backups harder every day. Map the main routes at
+              the hours you expect to use them before committing.
+            </p>
+          </div>
+        </aside>
+
+        <section className="guide-next" aria-labelledby="stay-next-title">
+          <p className="section-label">Compare the strongest choices</p>
+          <h2 id="stay-next-title">Read next</h2>
+          <div>
+            <Link href="/gatlinburg">
+              <strong>Gatlinburg</strong>
+              <span>Walkability, downtown parking and park access.</span>
+              <b aria-hidden="true">&rarr;</b>
+            </Link>
+            <Link href="/pigeon-forge">
+              <strong>Pigeon Forge</strong>
+              <span>Dollywood, shows, attractions and Parkway traffic.</span>
+              <b aria-hidden="true">&rarr;</b>
+            </Link>
+            <Link href="/gatlinburg-vs-pigeon-forge">
+              <strong>Gatlinburg or Pigeon Forge</strong>
+              <span>Make the main Tennessee-side tradeoff directly.</span>
+              <b aria-hidden="true">&rarr;</b>
+            </Link>
+            <Link href="/start-planning">
+              <strong>Build a trip</strong>
+              <span>Turn the base choice into a realistic starter plan.</span>
+              <b aria-hidden="true">&rarr;</b>
+            </Link>
           </div>
         </section>
 
-        <section className="town-board town-route-cards" aria-labelledby="town-route-title">
-          <div className="route-board-title">
-            <p className="eyebrow">Town route cards</p>
-            <h2 id="town-route-title">Read the town guide after the base decision.</h2>
-          </div>
-          <div className="town-board-grid">
-            {towns.map((town) => (
-              <article className="town-board-column" key={town.name}>
-                <h3>{town.name}</h3>
-                <p>{town.bestFor}</p>
-                <Link href={town.href}>Read guide</Link>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="warning-note">
-          <p className="eyebrow">Common mistakes</p>
-          <div>
-            <strong>Booking for a view before checking the daily route</strong>
-            <p>A cabin can look right online and still make every meal, park stop and rainy backup harder.</p>
-          </div>
-          <div>
-            <strong>Treating every town as close enough</strong>
-            <p>Short map distances can feel long when the Parkway, downtown parking or slow park roads are involved.</p>
-          </div>
-        </section>
-
-        <section className="internal-link-grid">
-          <h2>Read next</h2>
-          <div>
-            <Link href="/start-planning"><strong>Use the planner</strong><span>Turn the base choice into a day.</span></Link>
-            <Link href="/gatlinburg-vs-pigeon-forge"><strong>Compare Gatlinburg and Pigeon Forge</strong><span>Make the main TN-side tradeoff.</span></Link>
-            <Link href="/what-to-skip"><strong>Protect the route</strong><span>Avoid the mistakes that waste a short trip.</span></Link>
-          </div>
-        </section>
-        <SourceBox />
+        <SourceBox
+          text="Lodging availability, access roads, rates and property details change. Verify the exact address, route, cancellation terms and accessibility details with the property before booking."
+        />
       </article>
+
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Where to Stay in the Smokies",
-          description: metadata.description,
-          dateModified: "2026-06-05",
-        }}
+        data={webPageSchema({
+          path: "/where-to-stay",
+          title: "Where to Stay in the Smokies",
+          description: metadata.description ?? "",
+        })}
       />
-      <SiteFooter />
     </main>
   );
 }
