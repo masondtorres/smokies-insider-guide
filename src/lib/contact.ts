@@ -21,7 +21,6 @@ export type ContactValidationResult =
 
 const EMAIL_RE = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 const URL_RE = /^https?:\/\/[^\s]+$/i;
-const DEFAULT_CONTACT_EMAIL = "masondtorres@duck.com";
 
 const LIMITS = {
   name: 120,
@@ -34,7 +33,7 @@ const LIMITS = {
 
 export function getContactConfig() {
   const apiKey = process.env.RESEND_API_KEY?.trim() || "";
-  const to = process.env.CONTACT_EMAIL?.trim() || DEFAULT_CONTACT_EMAIL;
+  const to = process.env.CONTACT_EMAIL?.trim() || "";
   const from = process.env.EMAIL_FROM?.trim() || "";
   return {
     apiKey,

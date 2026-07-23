@@ -1,64 +1,34 @@
 import type { NextConfig } from "next";
 
-const redirects = [
-  ["/start-here", "/first-time-smokies"],
-  ["/plan-your-trip", "/start-planning"],
-  ["/where-to-stay-in-the-smokies-by-trip-type", "/where-to-stay"],
-  ["/stay", "/where-to-stay"],
-  ["/stay/cabins", "/where-to-stay"],
-  ["/go", "/smokies-parking-trolley-guide"],
-  ["/go/parking", "/smokies-parking-trolley-guide"],
-  ["/parking-tag", "/smokies-parking-trolley-guide"],
-  ["/cades-cove-first-time-guide", "/cades-cove"],
-  ["/see/cades-cove", "/cades-cove"],
-  ["/scenic-drives", "/cades-cove"],
-  ["/do", "/first-time-smokies"],
-  ["/see", "/first-time-smokies"],
-  ["/things-to-do", "/first-time-smokies"],
-  ["/explore", "/first-time-smokies"],
-  ["/visitor-resources", "/first-time-smokies"],
-  ["/best-time-to-visit", "/first-time-smokies"],
-  ["/accessible-smokies", "/first-time-smokies"],
-  ["/free-and-cheap-smokies", "/first-time-smokies"],
-  ["/do/free-and-cheap", "/first-time-smokies"],
-  ["/what-to-skip", "/first-time-smokies"],
-  ["/events", "/first-time-smokies"],
-  ["/deals", "/first-time-smokies"],
-  ["/eat", "/first-time-smokies"],
-  ["/restaurants", "/first-time-smokies"],
-  ["/restaurants/gatlinburg", "/gatlinburg"],
-  ["/restaurants/pigeon-forge", "/pigeon-forge"],
-  ["/eat/family-friendly", "/first-time-smokies"],
-  ["/eat-stay-shop", "/first-time-smokies"],
-  ["/things-to-do/gatlinburg", "/gatlinburg"],
-  ["/gatlinburg-without-walking-too-much", "/gatlinburg"],
-  ["/things-to-do/pigeon-forge", "/pigeon-forge"],
-  ["/pigeon-forge-with-kids", "/pigeon-forge"],
-  ["/dollywood-day-plan", "/pigeon-forge"],
-  ["/the-track-pigeon-forge-closing", "/pigeon-forge"],
-  ["/sevierville", "/where-to-stay"],
-  ["/townsend", "/where-to-stay"],
-  ["/hiking", "/first-time-smokies"],
-  ["/rainy-day-smokies-with-kids", "/rainy-day"],
-  ["/do/rainy-day", "/rainy-day"],
-  ["/smokies-with-toddlers", "/first-time-smokies"],
-  ["/business-listings", "/contact"],
-  ["/business-listings/claim", "/contact"],
-  ["/advertise", "/contact"],
-  ["/affiliate-disclosure", "/terms"],
-  ["/disclaimer", "/terms"],
-  ["/editorial-policy", "/source-and-verification-policy"],
-  ["/sponsored-content-policy", "/source-and-verification-policy"],
-  ["/home-v2", "/"],
-] as const;
-
 const nextConfig: NextConfig = {
   async redirects() {
-    return redirects.map(([source, destination]) => ({
-      source,
-      destination,
-      permanent: true,
-    }));
+    return [
+      {
+        source: "/plan-your-trip",
+        destination: "/start-planning",
+        permanent: true,
+      },
+      {
+        source: "/cades-cove-first-time-guide",
+        destination: "/cades-cove",
+        permanent: true,
+      },
+      {
+        source: "/see/cades-cove",
+        destination: "/cades-cove",
+        permanent: true,
+      },
+      {
+        source: "/do/free-and-cheap",
+        destination: "/free-and-cheap-smokies",
+        permanent: true,
+      },
+      {
+        source: "/do/rainy-day",
+        destination: "/rainy-day",
+        permanent: true,
+      },
+    ];
   },
 };
 

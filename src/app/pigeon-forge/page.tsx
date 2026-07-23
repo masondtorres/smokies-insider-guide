@@ -1,108 +1,273 @@
-import type { Metadata } from "next";
-import { GuidePage, type GuidePageData } from "@/components/guide";
+import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Pigeon Forge Trip Planning Guide",
-  description:
-    "A practical Pigeon Forge guide for Parkway traffic, Dollywood days, family attractions, shows and realistic daily pacing.",
-  alternates: { canonical: "/pigeon-forge" },
-  openGraph: {
-    title: "Pigeon Forge Trip Planning Guide | Smoky Insider",
-    description:
-      "Plan Pigeon Forge around one major anchor, Parkway traffic and the energy level of the whole group.",
-    url: "/pigeon-forge",
+const baseFit = [
+  {
+    title: "Best for",
+    items: [
+      "Family attractions and shows",
+      "Dollywood-centered trips",
+      "Parkway stops and easy activity variety",
+      "Groups that want plenty of paid indoor and outdoor options",
+    ],
   },
-};
+  {
+    title: "Plan around",
+    items: [
+      "Parkway traffic",
+      "Ticket timing and reservations where needed",
+      "Meal timing with kids or larger groups",
+      "Not stacking too many paid stops into one day",
+    ],
+  },
+  {
+    title: "Skip as your main base if",
+    items: [
+      "You want the quietest Smokies trip",
+      "You want a mostly National Park-focused visit",
+      "You want downtown walkability like Gatlinburg",
+    ],
+  },
+];
 
-const page: GuidePageData = {
-  title: "Pigeon Forge without overpacking the day",
-  description:
-    "Pigeon Forge is the strongest base for Dollywood, family attractions, shows and a wide range of indoor options. The mistake is treating the Parkway like one compact strip where every attraction can be added without a traffic or energy cost.",
-  directAnswer:
-    "Choose Pigeon Forge when paid attractions, Dollywood or evening shows are the center of the trip. Build the day around one timed anchor, keep nearby stops together and protect meal and rest breaks before adding anything else.",
-  bestFor: [
-    "Families and mixed-age groups that want many attraction choices",
-    "Dollywood-centered trips",
-    "Visitors who want shows, shopping and rainy-day options nearby",
-    "Groups that prefer driving between activity zones instead of walking downtown",
-  ],
-  skipIf: [
-    "Your trip is mainly about national park trails and scenery",
-    "You want a quiet base with minimal commercial traffic",
-    "You expect to walk the full Parkway between attractions",
-    "You plan to stack Dollywood, a major show and several paid attractions into one day",
-  ],
-  sections: [
-    {
-      title: "Choose one major anchor",
-      body: "Start with Dollywood, a major attraction or an evening show. Put its arrival time, parking, meal needs and exit time on the day first. Everything else is optional until that anchor fits comfortably.",
-    },
-    {
-      title: "Do not treat the Parkway as walkable downtown",
-      body: "Pigeon Forge attractions can look close on a map while remaining impractical to reach on foot. Wide roads, long blocks and traffic patterns make the car or trolley part of the plan. Group stops by area instead of moving north and south repeatedly.",
-    },
-    {
-      title: "Give Dollywood the day it requires",
-      body: "A Dollywood day does not need a large attraction list afterward. Arrival, parking, walking, meals and the park itself already create a full schedule for most families. Add dinner only when the group still has energy.",
-    },
-    {
-      title: "Protect meals and breaks",
-      body: "Pigeon Forge offers enough choices to make overplanning easy. Children and mixed-age groups usually handle one big attraction better when meals and rest are protected. A tired group does not recover because another prepaid ticket is waiting.",
-    },
-    {
-      title: "Use a show as the evening anchor",
-      body: "Build backward from the showtime. Decide whether the group will eat before or after, confirm the parking plan and leave more transition time than the map suggests. Avoid placing a distant park outing immediately before a fixed evening reservation.",
-    },
-    {
-      title: "Keep the rainy-day backup close",
-      body: "Rain pushes more visitors toward indoor attractions and shopping. Choose a backup near the part of the Parkway already in your plan. Crossing town in traffic to chase a shorter wait usually wastes more time than it saves.",
-    },
-  ],
-  links: [
-    {
-      title: "Gatlinburg or Pigeon Forge",
-      description: "Compare the two main Tennessee-side bases before booking.",
-      href: "/gatlinburg-vs-pigeon-forge",
-    },
-    {
-      title: "Smokies parking and trolley guide",
-      description: "Use the Patriot Park hub and other named transportation options.",
-      href: "/smokies-parking-trolley-guide",
-    },
-    {
-      title: "Where to stay",
-      description: "Choose a base by the main day, not by the best cabin photograph.",
-      href: "/where-to-stay",
-    },
-    {
-      title: "Rainy-day planning",
-      description: "Build a nearby indoor backup without driving across the county.",
-      href: "/rainy-day",
-    },
-    {
-      title: "Build a trip",
-      description: "Turn your group, pace and priorities into a starter plan.",
-      href: "/start-planning",
-    },
-  ],
-  sources: [
-    {
-      title: "Pigeon Forge mass transit and trolley information",
-      href: "https://www.mypigeonforge.com/planning/getting-around/mass-transit-trolley/",
-    },
-    {
-      title: "Great Smoky Mountains National Park current conditions",
-      href: "https://www.nps.gov/grsm/planyourvisit/conditions.htm",
-    },
-    {
-      title: "National park parking tags",
-      href: "https://www.nps.gov/grsm/planyourvisit/fees.htm",
-    },
-  ],
-  reviewedOn: "July 2026",
-  reviewedOnIso: "2026-07-22",
-};
+const tripShapes = [
+  {
+    title: "Dollywood day",
+    goodIf: "Dollywood is the anchor of the trip.",
+    planAround: "Arrival timing, meals, traffic and not adding too much after.",
+    next: "Dollywood Day Plan",
+    href: "/dollywood-day-plan",
+  },
+  {
+    title: "Family attraction day",
+    goodIf: "Kids, mixed ages or groups need simple choices.",
+    planAround: "Energy, meal breaks and one backup activity.",
+    next: "Pigeon Forge With Kids",
+    href: "/pigeon-forge-with-kids",
+  },
+  {
+    title: "Show and dinner day",
+    goodIf: "The evening plan matters most.",
+    planAround: "Showtimes, parking and eating before or after.",
+    next: "Eat, Stay & Shop",
+    href: "/eat-stay-shop",
+  },
+  {
+    title: "Rain-ready day",
+    goodIf: "Weather may change outdoor plans.",
+    planAround: "Indoor attractions, shopping and meal stops.",
+    next: "Things To Do",
+    href: "/things-to-do",
+  },
+  {
+    title: "Budget-control day",
+    goodIf: "You want to choose paid stops carefully.",
+    planAround: "Deals after you know the day.",
+    next: "Coupons and Deals",
+    href: "/deals",
+  },
+];
+
+const pairings = [
+  {
+    title: "Pair with",
+    items: [
+      "One major paid attraction",
+      "A meal stop planned around your route",
+      "Shopping or a short indoor backup",
+      "Dollywood or a show, but not both with too many extras",
+    ],
+  },
+  {
+    title: "Be careful pairing with",
+    items: [
+      "A rushed National Park trail day",
+      "A full Gatlinburg walking day",
+      "A long Cades Cove drive",
+      "Too many Parkway stops in peak traffic",
+    ],
+  },
+];
+
+const planningNotes = [
+  {
+    title: "Traffic note",
+    text: "The Parkway can shape your whole day. Build extra time between stops.",
+  },
+  {
+    title: "Ticket note",
+    text: "If a paid attraction or show is the anchor, build the day around that time first.",
+  },
+  {
+    title: "Family note",
+    text: "Pigeon Forge is strong for kids and mixed-age groups, but only if the day has breaks.",
+  },
+  {
+    title: "Weather note",
+    text: "Rain can push more people indoors. Keep backup options, but expect other visitors to do the same.",
+  },
+];
+
+const nextSteps = [
+  {
+    prompt: "Need activities?",
+    next: "Go to Things To Do",
+    href: "/things-to-do",
+  },
+  {
+    prompt: "Need food, shopping or lodging direction?",
+    next: "Go to Eat, Stay & Shop",
+    href: "/eat-stay-shop",
+  },
+  {
+    prompt: "Need practical parking, traffic or weather basics?",
+    next: "Go to Visitor Resources",
+    href: "/visitor-resources",
+  },
+  {
+    prompt: "Need deals after choosing your plan?",
+    next: "Go to Coupons and Deals",
+    href: "/deals",
+  },
+  {
+    prompt: "Still choosing your base?",
+    next: "Back to Start Planning",
+    href: "/start-planning",
+  },
+];
 
 export default function PigeonForgePage() {
-  return <GuidePage page={page} path="/pigeon-forge" />;
+  return (
+    <main className="destination-page">
+      <header className="destination-header">
+        <Link className="wordmark" href="/">
+          Smoky Insider
+        </Link>
+        <Link className="back-link" href="/start-planning">
+          Start Planning
+        </Link>
+      </header>
+
+      <section className="destination-hero">
+        <p className="eyebrow">Pigeon Forge guide</p>
+        <h1>Pigeon Forge Smokies Planning Guide</h1>
+        <p>
+          Pigeon Forge works best when you want family attractions, shows,
+          Dollywood days and Parkway stops. It can also punish overpacked plans
+          because traffic, ticket timing and drive time matter.
+        </p>
+      </section>
+
+      <section className="destination-section comparison-section">
+        <div className="destination-heading">
+          <p className="eyebrow">Choose your base</p>
+          <h2>Is Pigeon Forge the right base?</h2>
+        </div>
+        <div className="destination-grid">
+          {baseFit.map((card) => (
+            <article className="destination-card" key={card.title}>
+              <h3>{card.title}</h3>
+              <ul className="area-list">
+                {card.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="destination-section guide-card-section">
+        <div className="destination-heading">
+          <p className="eyebrow">Build the day</p>
+          <h2>Good Pigeon Forge trip shapes</h2>
+        </div>
+        <div className="destination-grid">
+          {tripShapes.map((card) => (
+            <Link className="destination-card router-card" href={card.href} key={card.title}>
+              <h3>{card.title}</h3>
+              <p className="router-detail">
+                <strong>Good if</strong>
+                {card.goodIf}
+              </p>
+              <p className="router-detail">
+                <strong>Plan around</strong>
+                {card.planAround}
+              </p>
+              <p className="router-detail router-next">
+                <strong>Next</strong>
+                {card.next}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="destination-section pairing-section">
+        <div className="destination-heading">
+          <p className="eyebrow">Keep the day realistic</p>
+          <h2>What to pair with Pigeon Forge</h2>
+        </div>
+        <div className="destination-grid destination-grid-compact">
+          {pairings.map((card) => (
+            <article className="destination-card" key={card.title}>
+              <h3>{card.title}</h3>
+              <ul className="area-list">
+                {card.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="destination-section field-notes-section">
+        <div className="destination-heading">
+          <p className="eyebrow">Before the day starts</p>
+          <h2>Pigeon Forge planning notes</h2>
+        </div>
+        <div className="destination-grid">
+          {planningNotes.map((card) => (
+            <article className="destination-card" key={card.title}>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="destination-section next-step-panel">
+        <div className="destination-heading">
+          <p className="eyebrow">Next steps from Pigeon Forge</p>
+          <h2>Go to the guide your day needs</h2>
+        </div>
+        <nav className="destination-link-grid router-link-grid" aria-label="Pigeon Forge planning destinations">
+          {nextSteps.map((step) => (
+            <Link href={step.href} key={step.href}>
+              <span>{step.prompt}</span>
+              <strong>{step.next}</strong>
+            </Link>
+          ))}
+        </nav>
+      </section>
+
+      <aside className="destination-section source-note" aria-labelledby="pigeon-forge-park-note">
+        <p className="eyebrow">Official source note</p>
+        <h2 id="pigeon-forge-park-note">Check official park sources before final park decisions</h2>
+        <p>
+          If your Pigeon Forge trip includes National Park stops, conditions can
+          change and parking tags may be needed. Check official sources before
+          final park decisions.
+        </p>
+        <div className="source-links">
+          <a href="https://www.nps.gov/grsm/planyourvisit/conditions.htm">
+            Current conditions
+          </a>
+          <a href="https://www.nps.gov/grsm/planyourvisit/fees.htm">
+            Parking tags
+          </a>
+        </div>
+      </aside>
+    </main>
+  );
 }

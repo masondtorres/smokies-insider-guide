@@ -2,207 +2,187 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/guide";
 import { breadcrumbSchema, webPageSchema, webSiteSchema } from "@/lib/seoSchema";
+import "./homepage-v2.css";
 
 export const metadata: Metadata = {
-  title: { absolute: "Smoky Insider | Honest Smoky Mountains Trip Planning" },
+  title: "Smoky Insider | Smoky Mountains Trip Planner",
   description:
-    "Honest local help for planning Gatlinburg, Pigeon Forge, Cades Cove and Great Smoky Mountains National Park without wasting time, money or an entire day in traffic.",
+    "Plan a Smokies trip with practical, independent help for routes, parking, attractions, scenic stops, restaurants, stays, deals and before-you-go details.",
   alternates: { canonical: "/" },
 };
 
-const startCards = [
-  {
-    title: "First trip to the Smokies",
-    text: "Learn how the towns, park entrances, traffic and driving time fit together before booking too much.",
-    href: "/first-time-smokies",
-    label: "Start here",
-  },
-  {
-    title: "Build a realistic three-day trip",
-    text: "Use one main area each day instead of spending the vacation moving between attractions.",
-    href: "/how-many-days",
-    label: "See the trip shape",
-  },
-  {
-    title: "Solve parking before arrival",
-    text: "Parking and trolley choices can decide whether Gatlinburg feels manageable or miserable.",
-    href: "/smokies-parking-trolley-guide",
-    label: "Open the parking guide",
-  },
-  {
-    title: "Keep a rain plan ready",
-    text: "Rain changes crowds, roads and indoor wait times. Build a backup before the weather turns.",
-    href: "/rainy-day",
-    label: "Build the backup",
-  },
+const mainLinks = [
+  ["Go", "/go"],
+  ["Do", "/do"],
+  ["See", "/see"],
+  ["Eat", "/eat"],
+  ["Stay", "/stay"],
+  ["Deals", "/deals"],
+  ["My Plan", "/my-plan"],
 ];
 
-const mistakes = [
-  {
-    number: "01",
-    title: "Treating the map like a schedule",
-    text: "Gatlinburg, Pigeon Forge and Cades Cove look close enough to stack together. Traffic and parking make that plan fall apart fast.",
-  },
-  {
-    number: "02",
-    title: "Driving into Gatlinburg without a parking decision",
-    text: "Circling downtown after everyone is tired is not a minor inconvenience. It can wreck the rest of the day.",
-  },
-  {
-    number: "03",
-    title: "Planning five anchors in one day",
-    text: "One major attraction, one meal area and one flexible stop usually beats a list that forces the family to rush all day.",
-  },
+const planningCards = [
+  { title: "Go", text: "Routes, parking, traffic and arrival timing.", action: "Plan routes & parking", href: "/go", icon: "Go" },
+  { title: "Do", text: "Attractions, hikes, shows and rainy-day options.", action: "Plan what to do", href: "/do", icon: "Do" },
+  { title: "See", text: "Overlooks, scenic drives, waterfalls and photo spots.", action: "Plan scenic stops", href: "/see", icon: "See" },
+  { title: "Eat", text: "Local restaurants, quick meals and family-friendly food.", action: "Plan where to eat", href: "/eat", icon: "Eat" },
+  { title: "Stay", text: "Cabins, hotels, campgrounds and where to base your trip.", action: "Choose your base", href: "/stay", icon: "Stay" },
+  { title: "Deals", text: "Tickets, discounts, local savings and budget-friendly ideas.", action: "Plan the budget", href: "/deals", icon: "Save" },
 ];
 
-const coreGuides = [
-  {
-    title: "Gatlinburg",
-    text: "Walkability, park access, downtown parking and the tradeoffs of using Gatlinburg as your base.",
-    href: "/gatlinburg",
-  },
-  {
-    title: "Pigeon Forge",
-    text: "Parkway traffic, family attractions, Dollywood planning and how to avoid driving back and forth all day.",
-    href: "/pigeon-forge",
-  },
-  {
-    title: "Cades Cove",
-    text: "When to go, how much time it really takes and why it should not be treated like a quick side trip.",
-    href: "/cades-cove",
-  },
-  {
-    title: "Where to stay",
-    text: "Choose a base by the trip you actually want, not by the cabin photo that looked best online.",
-    href: "/where-to-stay",
-  },
-  {
-    title: "Parking and trolleys",
-    text: "A practical decision guide for Gatlinburg, Pigeon Forge and National Park parking needs.",
-    href: "/smokies-parking-trolley-guide",
-  },
-  {
-    title: "Build your trip",
-    text: "Start with your group, pace and priorities. Then turn those limits into a plan that can survive real traffic.",
-    href: "/start-planning",
-  },
+const utilityItems = [
+  "Choose one base area",
+  "Plan parking before driving",
+  "Keep one rainy-day backup",
+  "Save the plan on your phone",
+];
+
+const entryPoints = [
+  { label: "First trip", href: "/start-here" },
+  { label: "Three-day trip", href: "/how-many-days" },
+  { label: "Parking", href: "/smokies-parking-trolley-guide" },
+  { label: "Rainy day", href: "/rainy-day-smokies-with-kids" },
+  { label: "Families with children", href: "/pigeon-forge-with-kids" },
+  { label: "Low-walking trips", href: "/gatlinburg-without-walking-too-much" },
+  { label: "Gatlinburg vs Pigeon Forge", href: "/gatlinburg-vs-pigeon-forge" },
+  { label: "Best time to visit", href: "/best-time-to-visit" },
+];
+
+const beforeYouGo = [
+  { label: "Free parking and timing cheat sheet", href: "/parking-timing-cheat-sheet" },
+  { label: "Full parking and trolley guide", href: "/smokies-parking-trolley-guide" },
+  { label: "Official park resources", href: "/visitor-resources" },
+  { label: "Best time to visit", href: "/best-time-to-visit" },
+  { label: "Rainy-day backup ideas", href: "/rainy-day-smokies-with-kids" },
+];
+
+const footerLinks = [
+  ["About", "/about"],
+  ["Contact", "/contact"],
+  ["Advertise", "/advertise"],
+  ["Affiliate Disclosure", "/affiliate-disclosure"],
+  ["Privacy", "/privacy"],
+  ["Terms", "/terms"],
+  ["Editorial Policy", "/editorial-policy"],
+  ["Source & Verification", "/source-and-verification-policy"],
 ];
 
 export default function Home() {
   return (
-    <main className="home-rebuild">
-      <section className="home-rebuild-hero" aria-labelledby="home-title">
-        <div className="home-rebuild-hero-inner">
-          <p className="home-rebuild-kicker">Independent East Tennessee trip planning</p>
-          <h1 id="home-title">The Smokies are easy to love. Hard to plan.</h1>
-          <p>
-            Honest local help for avoiding traffic, wasted money and days that look
-            better on a map than they feel in real life.
+    <main className="smokies-home-v2">
+      <header className="si-header">
+        <div className="si-width si-header-inner">
+          <Link className="si-wordmark" href="/" aria-label="Smoky Insider home">
+            <span>Smoky</span> Insider
+          </Link>
+          <nav className="si-nav" aria-label="Primary navigation">
+            {mainLinks.map(([label, href]) => (
+              <Link href={href} key={href}>{label}</Link>
+            ))}
+          </nav>
+        </div>
+      </header>
+
+      <section className="si-hero" aria-labelledby="home-title">
+        <div className="si-ridge-one" aria-hidden="true" />
+        <div className="si-ridge-two" aria-hidden="true" />
+        <div className="si-ridge-three" aria-hidden="true" />
+        <div className="si-width si-hero-copy">
+          <p className="si-kicker">Independent Smokies planning</p>
+          <h1 id="home-title">Plan your Smokies trip without the guesswork.</h1>
+          <p className="si-hero-promise">
+            Clear advice for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park. Built to help first-time visitors and return trips avoid traffic, parking mistakes and overpacked days.
           </p>
-          <div className="home-rebuild-actions">
-            <Link className="button button-primary" href="/first-time-smokies">
-              Plan Your First Trip
-            </Link>
-            <Link className="button button-secondary" href="/smokies-parking-trolley-guide">
-              See the Parking Guide
-            </Link>
+          <div className="si-actions">
+            <Link className="si-button si-button-primary" href="/my-plan">Build My Plan</Link>
+            <Link className="si-button si-button-secondary" href="/parking-timing-cheat-sheet">Get the Free Parking Cheat Sheet</Link>
+            <Link className="si-hero-text-link" href="/start-here">New here? Start here</Link>
           </div>
         </div>
       </section>
 
-      <section className="home-rebuild-section home-rebuild-start" aria-labelledby="start-title">
-        <div className="home-rebuild-heading">
-          <p className="section-label">Start with your trip</p>
-          <h2 id="start-title">Solve the decision that can ruin the day.</h2>
-          <p>
-            The Smokies do not require a complicated itinerary. They require the
-            right base, realistic driving time and fewer anchors than most visitors expect.
-          </p>
+      <section className="si-section si-width" aria-labelledby="planning-heading">
+        <div className="si-section-heading">
+          <p className="si-section-kicker">Plan your trip</p>
+          <h2 id="planning-heading">What do you need help with?</h2>
+          <p>Choose the decision blocking your trip right now.</p>
         </div>
-        <div className="home-rebuild-start-grid">
-          {startCards.map((card) => (
-            <Link href={card.href} key={card.href}>
+        <div className="si-card-grid">
+          {planningCards.map((card) => (
+            <Link className="si-card" href={card.href} key={card.href}>
+              <span className="si-icon" aria-hidden="true">{card.icon}</span>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
-              <span>{card.label} &rarr;</span>
+              <span>{card.action}</span>
             </Link>
+          ))}
+        </div>
+
+        <div className="si-value-strip" aria-label="Planning value">
+          {utilityItems.map((item) => (
+            <div key={item}>{item}</div>
           ))}
         </div>
       </section>
 
-      <section className="home-rebuild-mistakes" aria-labelledby="mistakes-title">
-        <div className="home-rebuild-section home-rebuild-mistakes-inner">
-          <div className="home-rebuild-heading home-rebuild-heading-light">
-            <p className="section-label">What visitors get wrong</p>
-            <h2 id="mistakes-title">The trip usually breaks before anyone reaches the attraction.</h2>
+      <section className="si-section si-width" aria-labelledby="entry-heading">
+        <div className="si-section-heading">
+          <p className="si-section-kicker">Quick starts</p>
+          <h2 id="entry-heading">Start with the trip you are actually taking</h2>
+        </div>
+        <div className="si-before-grid" style={{ marginTop: "1rem" }}>
+          {entryPoints.map((item) => (
+            <Link href={item.href} key={item.label}>{item.label}</Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="si-before" aria-labelledby="before-heading">
+        <div className="si-width si-before-layout">
+          <div>
+            <p className="si-section-kicker">Before you go</p>
+            <h2 id="before-heading">Check the details that change the day.</h2>
+            <p>Parking, weather, traffic and timing usually decide whether a Smokies day feels easy or exhausting.</p>
           </div>
-          <div className="home-rebuild-mistakes-grid">
-            {mistakes.map((mistake) => (
-              <article key={mistake.number}>
-                <span>{mistake.number}</span>
-                <h3>{mistake.title}</h3>
-                <p>{mistake.text}</p>
-              </article>
+          <div className="si-before-grid">
+            {beforeYouGo.map((note) => (
+              <Link href={note.href} key={note.label}>{note.label}</Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="home-rebuild-section" aria-labelledby="guides-title">
-        <div className="home-rebuild-heading">
-          <p className="section-label">Guides worth opening first</p>
-          <h2 id="guides-title">Fewer pages. Better answers.</h2>
+      <section className="si-section si-width" aria-labelledby="trust-heading">
+        <div className="si-section-heading">
+          <p className="si-section-kicker">How this guide works</p>
+          <h2 id="trust-heading">Built for real decisions, not rankings</h2>
           <p>
-            These are the guides that carry the site. Each one should help you make
-            a real decision, not send you through another directory.
+            Built from more than 40 years of combined experience helping people in the Smoky Mountains area.
+            Park facts come from official sources and carry verification labels. Paid placements stay labeled and separate from editorial judgment.
           </p>
         </div>
-        <div className="home-rebuild-guide-list">
-          {coreGuides.map((guide, index) => (
-            <Link href={guide.href} key={guide.href}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <div>
-                <h3>{guide.title}</h3>
-                <p>{guide.text}</p>
-              </div>
-              <b aria-hidden="true">&rarr;</b>
-            </Link>
-          ))}
+        <div className="si-editor-actions" style={{ marginTop: "1.25rem" }}>
+          <Link className="si-button si-button-secondary" href="/about">About the guide</Link>
+          <Link className="si-button si-button-secondary" href="/source-and-verification-policy">Source & verification</Link>
+          <Link className="si-button si-button-secondary" href="/corrections">Report a correction</Link>
         </div>
       </section>
 
-      <section className="home-rebuild-section home-rebuild-before" aria-labelledby="before-title">
+      <footer className="si-footer si-width">
         <div>
-          <p className="section-label">Before you leave home</p>
-          <h2 id="before-title">Check the facts that can change overnight.</h2>
-          <p>
-            Road closures, weather, parking requirements and operating hours can
-            change. Use official sources for the final check, then use Smoky Insider
-            for the judgment that connects those facts to your day.
-          </p>
+          <strong>Smoky Insider</strong>
+          <span>Independent trip-planning help for the Smoky Mountains. Not affiliated with the National Park Service or any tourism board.</span>
+          <small>&copy; {new Date().getFullYear()} Smoky Insider</small>
         </div>
-        <div className="home-rebuild-before-links">
-          <a href="https://www.nps.gov/grsm/planyourvisit/conditions.htm">National Park conditions</a>
-          <a href="https://www.nps.gov/grsm/planyourvisit/fees.htm">National Park parking tags</a>
-          <Link href="/source-and-verification-policy">How we verify changing details</Link>
-          <Link href="/corrections">Report something that changed</Link>
-        </div>
-      </section>
-
-      <section className="home-rebuild-section home-rebuild-about" aria-labelledby="about-title">
-        <p className="section-label">Why this exists</p>
-        <h2 id="about-title">Built by people who live here and have helped visitors here for decades.</h2>
-        <p>
-          Smoky Insider is not trying to be the official tourism site. It exists to
-          answer the questions official pages and attraction listings usually do not:
-          what fits together, what wastes time and what a family should skip when the
-          day is already too full.
-        </p>
-        <Link href="/about">About the guide &rarr;</Link>
-      </section>
+        <nav className="si-footer-links" aria-label="Policy and information links">
+          {footerLinks.map(([label, href]) => (
+            <Link href={href} key={href}>{label}</Link>
+          ))}
+        </nav>
+      </footer>
 
       <JsonLd data={webSiteSchema()} />
-      <JsonLd data={webPageSchema({ path: "/", title: "Smoky Insider | Honest Smoky Mountains Trip Planning", description: metadata.description ?? "" })} />
+      <JsonLd data={webPageSchema({ path: "/", title: metadata.title as string, description: metadata.description ?? "" })} />
       <JsonLd data={breadcrumbSchema([{ name: "Home", url: "/" }])} />
     </main>
   );

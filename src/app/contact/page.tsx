@@ -3,8 +3,6 @@ import Link from "next/link";
 import { BusinessPageShell, BusinessPathLinks } from "@/components/business-intake";
 import { ContactForm } from "@/components/contact-form";
 
-const CONTACT_EMAIL = "masondtorres@duck.com";
-
 export const metadata: Metadata = {
   title: "Contact",
   description:
@@ -23,16 +21,8 @@ export default function ContactPage() {
     <BusinessPageShell
       eyebrow="Contact"
       title="Get in touch"
-      intro="Use the form below or email Smoky Insider directly. Include the page URL when reporting time-sensitive information."
+      intro="Use the form below for corrections, listing claims, advertising questions or general feedback. Include the page URL when reporting time-sensitive information."
     >
-      <aside className="business-trust-note" style={{ marginBottom: "2rem" }}>
-        <strong>Email Smoky Insider directly</strong>
-        <p>
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-        </p>
-        <p>Use this address for corrections, listing requests, advertising questions, partnerships and general feedback.</p>
-      </aside>
-
       <BusinessPathLinks />
 
       <section className="business-offer-grid contact-path-grid" style={{ marginBottom: "2rem" }}>
