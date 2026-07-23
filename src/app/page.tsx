@@ -65,6 +65,7 @@ const footerLinks = [
   ["Terms", "/terms"],
   ["Editorial Policy", "/editorial-policy"],
   ["Source & Verification", "/source-and-verification-policy"],
+  ["Photo Credits", "/photo-credits"],
 ];
 
 export default function Home() {
@@ -157,8 +158,7 @@ export default function Home() {
           <p className="si-section-kicker">How this guide works</p>
           <h2 id="trust-heading">Built for real decisions, not rankings</h2>
           <p>
-            Built from more than 40 years of combined experience helping people in the Smoky Mountains area.
-            Park facts come from official sources and carry verification labels. Paid placements stay labeled and separate from editorial judgment.
+            Built and edited in East Tennessee. Changing facts are checked against official or first-party sources and carry clear verification labels. Paid placements stay labeled and separate from editorial judgment.
           </p>
         </div>
         <div className="si-editor-actions" style={{ marginTop: "1.25rem" }}>
