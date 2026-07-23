@@ -1,265 +1,108 @@
-import Link from "next/link";
+import type { Metadata } from "next";
+import { GuidePage, type GuidePageData } from "@/components/guide";
 
-const baseFit = [
-  {
-    title: "Best for",
-    items: [
-      "Walkable downtown time",
-      "Park access from the Gatlinburg side",
-      "Couples, families and first-time Smokies visitors",
-      "Trips where restaurants, shops and attractions are close together",
-    ],
+export const metadata: Metadata = {
+  title: "Gatlinburg Trip Planning Guide",
+  description:
+    "A practical Gatlinburg guide for choosing it as a base, handling downtown parking, limiting walking and pairing the town with the national park.",
+  alternates: { canonical: "/gatlinburg" },
+  openGraph: {
+    title: "Gatlinburg Trip Planning Guide | Smoky Insider",
+    description:
+      "Use Gatlinburg for walkability and park access without letting parking, crowds or an overloaded day ruin the trip.",
+    url: "/gatlinburg",
   },
-  {
-    title: "Plan around",
-    items: [
-      "Parking before you arrive downtown",
-      "Crowds during peak weekends and seasons",
-      "Walking distance for small kids, older family members or low mobility",
-      "Not stacking too many stops into one day",
-    ],
-  },
-  {
-    title: "Skip as your main base if",
-    items: [
-      "You want the quietest possible trip",
-      "You want the easiest driving day",
-      "You plan to spend most of your time in Pigeon Forge, Sevierville or Townsend",
-    ],
-  },
-];
+};
 
-const tripShapes = [
-  {
-    title: "Downtown walking day",
-    goodIf: "You want food, shops and short-distance stops.",
-    planAround: "Parking and how much walking your group can handle.",
-    next: "Lower-Walking Gatlinburg Guide",
-    href: "/gatlinburg-without-walking-too-much",
-  },
-  {
-    title: "Park access day",
-    goodIf: "The National Park is the anchor.",
-    planAround: "Current conditions, parking tags and road changes.",
-    next: "Visitor Resources",
-    href: "/visitor-resources",
-  },
-  {
-    title: "Rain-ready day",
-    goodIf: "Weather could change your outdoor plans.",
-    planAround: "Indoor stops, food, shopping and low-walking options.",
-    next: "Things To Do",
-    href: "/things-to-do",
-  },
-  {
-    title: "First-time Smokies day",
-    goodIf: "You want one town, one park-side plan and simple next steps.",
-    planAround: "Not overpacking the day.",
-    next: "Start Planning",
-    href: "/start-planning",
-  },
-];
-
-const pairings = [
-  {
-    title: "Pair with",
-    items: [
-      "A focused National Park stop",
-      "A downtown meal or coffee stop",
-      "A short shopping stretch",
-      "One larger attraction or one scenic drive, not everything at once",
-    ],
-  },
-  {
-    title: "Be careful pairing with",
-    items: [
-      "A full Pigeon Forge attraction day",
-      "A rushed Cades Cove day",
-      "Too many dinner, shopping and park stops in one evening",
-      "Any plan that depends on easy parking everywhere",
-    ],
-  },
-];
-
-const planningNotes = [
-  {
-    title: "Parking note",
-    text: "Downtown parking can shape the whole day. Decide where you are heading before you circle town.",
-  },
-  {
-    title: "Walking note",
-    text: "Gatlinburg can be easier once parked, but only if your group can handle the walking.",
-  },
-  {
-    title: "Weather note",
-    text: "Rain can move more people indoors. Keep a backup, but do not expect every indoor stop to feel empty.",
-  },
-  {
-    title: "Park note",
-    text: "If your day includes National Park stops, check official park conditions before final decisions.",
-  },
-];
-
-const nextSteps = [
-  {
-    prompt: "Need activities?",
-    next: "Go to Things To Do",
-    href: "/things-to-do",
-  },
-  {
-    prompt: "Need food, shopping or lodging direction?",
-    next: "Go to Eat, Stay & Shop",
-    href: "/eat-stay-shop",
-  },
-  {
-    prompt: "Need park basics, weather or parking guidance?",
-    next: "Go to Visitor Resources",
-    href: "/visitor-resources",
-  },
-  {
-    prompt: "Need deals after choosing your plan?",
-    next: "Go to Coupons and Deals",
-    href: "/deals",
-  },
-  {
-    prompt: "Still choosing your base?",
-    next: "Back to Start Planning",
-    href: "/start-planning",
-  },
-];
+const page: GuidePageData = {
+  title: "Gatlinburg without wasting the day",
+  description:
+    "Gatlinburg is the strongest Tennessee-side base for walkable downtown time and quick access to the national park. It is also the easiest town to make miserable by arriving without a parking decision or expecting every stop to fit into one afternoon.",
+  directAnswer:
+    "Choose Gatlinburg when downtown walkability and national park access matter more than quiet roads or easy parking. Park once, keep the day inside one zone and do not combine a full downtown day with a full Pigeon Forge or Cades Cove day.",
+  bestFor: [
+    "First-time visitors who want a recognizable Smokies base",
+    "Couples and families who prefer to park once and walk",
+    "Trips centered on the Gatlinburg side of the national park",
+    "A day built around downtown, one meal area and one major attraction",
+  ],
+  skipIf: [
+    "Your group cannot comfortably handle hills, crowds or extended walking",
+    "Most of your paid attractions are in Pigeon Forge",
+    "You want the quietest or easiest-driving base",
+    "Your plan depends on finding cheap parking beside every stop",
+  ],
+  sections: [
+    {
+      title: "Make the parking decision before entering downtown",
+      body: "Do not begin the day by circling the Parkway while everyone argues about where to stop. Use a city garage when keeping the car close matters. Use a park-and-ride and the trolley when avoiding downtown traffic matters more. The correct choice depends on your group, not on whichever lot appears first.",
+    },
+    {
+      title: "Treat downtown as one zone",
+      body: "Once parked, keep the main part of the day within a reasonable walking area. Gatlinburg becomes exhausting when visitors repeatedly return to the car, cross town for one attraction, then fight traffic back for dinner.",
+    },
+    {
+      title: "Plan for the least mobile person",
+      body: "Gatlinburg is walkable, but it is not flat, empty or effortless. Hills, stairs, crowded sidewalks and the distance back to the vehicle matter. Build the route around the slowest walker, the stroller or the person who needs regular seating.",
+    },
+    {
+      title: "Use the national park as a separate anchor",
+      body: "A focused park stop can pair well with Gatlinburg. A full park day should remain a park day. Check road conditions, parking-tag rules and weather before leaving town, then resist the urge to force a complete downtown attraction list into the same schedule.",
+    },
+    {
+      title: "Do not bolt on a full Pigeon Forge day",
+      body: "Gatlinburg and Pigeon Forge are close on a map. The drive, parking and transition between them can still consume the best hours. Choose one town as the main day and use the other only for one deliberate stop when the route supports it.",
+    },
+    {
+      title: "Keep a rain plan in the same area",
+      body: "Rain moves visitors indoors and can increase waits. Choose one indoor anchor and one nearby meal option before the weather changes. Driving around the county looking for an empty attraction is not a backup plan.",
+    },
+  ],
+  links: [
+    {
+      title: "Smokies parking and trolley guide",
+      description: "Choose a named lot, trolley option and backup before arrival.",
+      href: "/smokies-parking-trolley-guide",
+    },
+    {
+      title: "Gatlinburg or Pigeon Forge",
+      description: "Compare the two main Tennessee-side bases directly.",
+      href: "/gatlinburg-vs-pigeon-forge",
+    },
+    {
+      title: "First trip to the Smokies",
+      description: "Build the region and daily order before buying more tickets.",
+      href: "/first-time-smokies",
+    },
+    {
+      title: "Rainy-day planning",
+      description: "Keep the backup close to the area already in your plan.",
+      href: "/rainy-day",
+    },
+    {
+      title: "Build a trip",
+      description: "Use your group, pace and priorities to shape the day.",
+      href: "/start-planning",
+    },
+  ],
+  sources: [
+    {
+      title: "Great Smoky Mountains National Park current conditions",
+      href: "https://www.nps.gov/grsm/planyourvisit/conditions.htm",
+    },
+    {
+      title: "National park parking tags",
+      href: "https://www.nps.gov/grsm/planyourvisit/fees.htm",
+    },
+    {
+      title: "City of Gatlinburg parking information",
+      href: "https://www.gatlinburgtn.gov/page/parking",
+    },
+  ],
+  reviewedOn: "July 2026",
+  reviewedOnIso: "2026-07-22",
+};
 
 export default function GatlinburgPage() {
-  return (
-    <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/start-planning">
-          Start Planning
-        </Link>
-      </header>
-
-      <section className="destination-hero">
-        <p className="eyebrow">Gatlinburg guide</p>
-        <h1>Gatlinburg Smokies Planning Guide</h1>
-        <p>
-          Gatlinburg works best when you want walkability, downtown energy and
-          quick access to the National Park side of the Smokies. It can also
-          punish rushed plans because parking, crowds and tight movement matter.
-        </p>
-      </section>
-
-      <section className="destination-section comparison-section">
-        <div className="destination-heading">
-          <p className="eyebrow">Choose your base</p>
-          <h2>Is Gatlinburg the right base?</h2>
-        </div>
-        <div className="destination-grid">
-          {baseFit.map((card) => (
-            <article className="destination-card" key={card.title}>
-              <h3>{card.title}</h3>
-              <ul className="area-list">
-                {card.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="destination-section guide-card-section">
-        <div className="destination-heading">
-          <p className="eyebrow">Build the day</p>
-          <h2>Good Gatlinburg trip shapes</h2>
-        </div>
-        <div className="destination-grid">
-          {tripShapes.map((card) => (
-            <Link className="destination-card router-card" href={card.href} key={card.title}>
-              <h3>{card.title}</h3>
-              <p className="router-detail">
-                <strong>Good if</strong>
-                {card.goodIf}
-              </p>
-              <p className="router-detail">
-                <strong>Plan around</strong>
-                {card.planAround}
-              </p>
-              <p className="router-detail router-next">
-                <strong>Next</strong>
-                {card.next}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="destination-section pairing-section">
-        <div className="destination-heading">
-          <p className="eyebrow">Keep the day realistic</p>
-          <h2>What to pair with Gatlinburg</h2>
-        </div>
-        <div className="destination-grid destination-grid-compact">
-          {pairings.map((card) => (
-            <article className="destination-card" key={card.title}>
-              <h3>{card.title}</h3>
-              <ul className="area-list">
-                {card.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="destination-section field-notes-section">
-        <div className="destination-heading">
-          <p className="eyebrow">Before the day starts</p>
-          <h2>Gatlinburg planning notes</h2>
-        </div>
-        <div className="destination-grid">
-          {planningNotes.map((card) => (
-            <article className="destination-card" key={card.title}>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="destination-section next-step-panel">
-        <div className="destination-heading">
-          <p className="eyebrow">Next steps from Gatlinburg</p>
-          <h2>Go to the guide your day needs</h2>
-        </div>
-        <nav className="destination-link-grid router-link-grid" aria-label="Gatlinburg planning destinations">
-          {nextSteps.map((step) => (
-            <Link href={step.href} key={step.href}>
-              <span>{step.prompt}</span>
-              <strong>{step.next}</strong>
-            </Link>
-          ))}
-        </nav>
-      </section>
-
-      <aside className="destination-section source-note" aria-labelledby="gatlinburg-park-note">
-        <p className="eyebrow">Official source note</p>
-        <h2 id="gatlinburg-park-note">Check official park sources before final park decisions</h2>
-        <p>
-          Park roads, parking needs, weather and closures can change. Parking
-          tags may be needed for National Park stops.
-        </p>
-        <div className="source-links">
-          <a href="https://www.nps.gov/grsm/planyourvisit/conditions.htm">
-            Current conditions
-          </a>
-          <a href="https://www.nps.gov/grsm/planyourvisit/fees.htm">
-            Parking tags
-          </a>
-        </div>
-      </aside>
-    </main>
-  );
+  return <GuidePage page={page} path="/gatlinburg" />;
 }
