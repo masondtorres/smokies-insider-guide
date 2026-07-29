@@ -1,0 +1,17 @@
+{
+  "name": "Smoky Insider",
+  "short_name": "Smoky Insider",
+  "description": "Independent Smoky Mountains trip planning for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffaf0",
+  "theme_color": "#075b36",
+  "icons": [
+    {
+      "src": "/smokies-field-guide-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,397 @@
+/*
+ * Smoky Insider visual layer v1
+ * Uses NPS-credited Great Smoky Mountains photography as decorative imagery.
+ * Source and rights record: docs/visual-photo-sources-v1.md
+ */
+
+:root {
+  --visual-forest: #173f32;
+  --visual-forest-dark: #0d2a21;
+  --visual-cream: #f5efe3;
+  --visual-paper: #fffdf8;
+  --visual-copper: #b85f36;
+  --visual-mist: #d8e2df;
+  --visual-ink: #17231e;
+  --visual-muted: #52625b;
+  --visual-shadow: 0 18px 48px rgba(18, 40, 31, 0.16);
+  --photo-home: url("https://www.nps.gov/npgallery/GetAsset/2845f95e-1dd8-b71c-072b-8d90f8c9136b");
+  --photo-start: url("https://www.nps.gov/npgallery/GetAsset/2860a084-1dd8-b71c-07d3-9f10df64b6b4");
+  --photo-go: url("https://www.nps.gov/npgallery/GetAsset/286eefbc-1dd8-b71c-07d5-f232b1cdd943");
+  --photo-do: url("https://www.nps.gov/npgallery/GetAsset/287A5AD1-1DD8-B71C-07F1BD1B3DCC532D");
+  --photo-see: url("https://www.nps.gov/npgallery/GetAsset/284ca6a1-1dd8-b71c-079b-8a55df0c6273");
+  --photo-eat: url("https://www.nps.gov/npgallery/GetAsset/286400d0-1dd8-b71c-07cb-8ea18bed9f22");
+  --photo-stay: url("https://www.nps.gov/npgallery/GetAsset/2866d8aa-1dd8-b71c-079a-aa67ecb35b45");
+  --photo-deals: url("https://www.nps.gov/npgallery/GetAsset/2852a505-1dd8-b71c-0764-cd6d2a0e6b7b");
+  --photo-plan: url("https://www.nps.gov/npgallery/GetAsset/285e6327-1dd8-b71c-0773-a871716b8496");
+}
+
+body {
+  color: var(--visual-ink) !important;
+  background: var(--visual-cream) !important;
+}
+
+/* Homepage */
+.si-hero {
+  min-height: clamp(570px, 66vw, 760px) !important;
+  background-image:
+    linear-gradient(90deg, rgba(9, 31, 24, 0.92) 0%, rgba(9, 31, 24, 0.72) 48%, rgba(9, 31, 24, 0.22) 100%),
+    linear-gradient(0deg, rgba(9, 31, 24, 0.5), transparent 55%),
+    var(--photo-home) !important;
+  background-position: center 46% !important;
+  background-size: cover !important;
+}
+
+.si-ridge-one,
+.si-ridge-two,
+.si-ridge-three,
+.si-hero::before {
+  display: none !important;
+}
+
+.si-hero::after {
+  height: 90px !important;
+  background: linear-gradient(180deg, transparent, var(--visual-cream)) !important;
+}
+
+.si-kicker,
+.si-section-kicker,
+.eyebrow,
+.category-eyebrow,
+.foundation-section-label {
+  color: var(--visual-forest-dark) !important;
+  background: #f0c65a !important;
+}
+
+.si-hero h1 {
+  max-width: 800px !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(3rem, 6.7vw, 6.4rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.052em !important;
+  line-height: 0.96 !important;
+}
+
+.si-hero-promise {
+  max-width: 660px !important;
+  font-weight: 600 !important;
+}
+
+.si-card-grid {
+  gap: 1.35rem !important;
+}
+
+.si-card {
+  overflow: hidden !important;
+  padding: 0 0 1.45rem !important;
+  border: 0 !important;
+  border-radius: 18px !important;
+  background: var(--visual-paper) !important;
+  box-shadow: var(--visual-shadow) !important;
+}
+
+.si-card::before {
+  content: "" !important;
+  display: block !important;
+  width: 100% !important;
+  height: clamp(150px, 16vw, 220px) !important;
+  margin-bottom: 1.15rem !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.si-card:nth-child(1)::before { background-image: var(--photo-go) !important; }
+.si-card:nth-child(2)::before { background-image: var(--photo-do) !important; }
+.si-card:nth-child(3)::before { background-image: var(--photo-see) !important; }
+.si-card:nth-child(4)::before { background-image: var(--photo-eat) !important; }
+.si-card:nth-child(5)::before { background-image: var(--photo-stay) !important; }
+.si-card:nth-child(6)::before { background-image: var(--photo-deals) !important; }
+
+.si-card > * {
+  margin-right: 1.35rem !important;
+  margin-left: 1.35rem !important;
+}
+
+.si-card .si-icon {
+  width: fit-content !important;
+  margin-bottom: 0.65rem !important;
+}
+
+.si-before {
+  background:
+    linear-gradient(rgba(245, 239, 227, 0.9), rgba(245, 239, 227, 0.96)),
+    var(--photo-start) center 46% / cover !important;
+}
+
+/* Start Here */
+.foundation-start-hero {
+  min-height: clamp(470px, 58vw, 650px) !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  padding: clamp(5rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 6rem) !important;
+  color: #ffffff !important;
+  background-image:
+    linear-gradient(90deg, rgba(9, 31, 24, 0.92), rgba(9, 31, 24, 0.52) 58%, rgba(9, 31, 24, 0.2)),
+    var(--photo-start) !important;
+  background-position: center 43% !important;
+  background-size: cover !important;
+}
+
+.foundation-start-hero h1,
+.foundation-start-hero p {
+  max-width: 760px !important;
+  color: #ffffff !important;
+  text-shadow: 0 4px 26px rgba(0, 0, 0, 0.46) !important;
+}
+
+.foundation-start-hero h1 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(2.8rem, 6vw, 5.8rem) !important;
+  line-height: 0.98 !important;
+}
+
+.foundation-prompt-grid a,
+.foundation-shape-card,
+.foundation-area-card {
+  overflow: hidden !important;
+  border: 1px solid rgba(23, 63, 50, 0.14) !important;
+  background: var(--visual-paper) !important;
+  box-shadow: 0 12px 30px rgba(18, 40, 31, 0.1) !important;
+}
+
+.foundation-shape-card::before {
+  content: "" !important;
+  display: block !important;
+  height: 105px !important;
+  margin: -1.25rem -1.25rem 1rem !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.foundation-shape-card:nth-child(1)::before { background-image: var(--photo-do) !important; }
+.foundation-shape-card:nth-child(2)::before { background-image: var(--photo-deals) !important; }
+.foundation-shape-card:nth-child(3)::before { background-image: var(--photo-eat) !important; }
+.foundation-shape-card:nth-child(4)::before { background-image: var(--photo-go) !important; }
+.foundation-shape-card:nth-child(5)::before { background-image: var(--photo-plan) !important; }
+.foundation-shape-card:nth-child(6)::before { background-image: var(--photo-start) !important; }
+
+/* Category pages */
+.category-foundation {
+  --category-photo: var(--photo-home);
+  background: var(--visual-cream) !important;
+}
+
+.category-go { --category-photo: var(--photo-go); }
+.category-do { --category-photo: var(--photo-do); }
+.category-see { --category-photo: var(--photo-see); }
+.category-eat { --category-photo: var(--photo-eat); }
+.category-stay { --category-photo: var(--photo-stay); }
+.category-deals { --category-photo: var(--photo-deals); }
+
+.category-hero {
+  min-height: clamp(430px, 50vw, 590px) !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  background-image:
+    linear-gradient(90deg, rgba(9, 31, 24, 0.9), rgba(9, 31, 24, 0.46) 62%, rgba(9, 31, 24, 0.12)),
+    var(--category-photo) !important;
+  background-position: center 43% !important;
+  background-size: cover !important;
+}
+
+.category-ridge {
+  display: none !important;
+}
+
+.category-hero-inner.simple {
+  width: 100% !important;
+  padding-top: 6rem !important;
+  padding-bottom: clamp(3.5rem, 7vw, 5.5rem) !important;
+}
+
+.category-hero-copy {
+  max-width: 720px !important;
+}
+
+.category-hero h1,
+.category-hero p:not(.category-eyebrow) {
+  color: #ffffff !important;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.52) !important;
+}
+
+.category-hero h1 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(3rem, 6vw, 5.8rem) !important;
+  font-weight: 700 !important;
+  line-height: 0.98 !important;
+}
+
+.category-card-grid.simple {
+  gap: 1.4rem !important;
+}
+
+.category-guide-card {
+  overflow: hidden !important;
+  padding: 0 1.35rem 1.35rem !important;
+  border: 0 !important;
+  border-radius: 18px !important;
+  background: var(--visual-paper) !important;
+  box-shadow: var(--visual-shadow) !important;
+}
+
+.category-guide-card::before {
+  content: "" !important;
+  display: block !important;
+  height: 175px !important;
+  margin: 0 -1.35rem 1.1rem !important;
+  background-image: var(--category-photo) !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.category-guide-card:nth-child(2)::before { background-position: center 62% !important; }
+.category-guide-card:nth-child(3)::before { background-position: center 76% !important; }
+
+.category-card-caution {
+  background: #f7f0e4 !important;
+}
+
+.category-utility-guides.simple,
+.category-trust-note.simple {
+  border: 0 !important;
+  background: var(--visual-paper) !important;
+  box-shadow: 0 12px 30px rgba(18, 40, 31, 0.1) !important;
+}
+
+/* My Plan */
+.my-plan-page .guide-hero {
+  min-height: clamp(390px, 44vw, 540px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  padding: clamp(4rem, 8vw, 6.5rem) clamp(1.5rem, 4vw, 4rem) !important;
+  border-radius: 0 0 28px 28px !important;
+  background-image:
+    linear-gradient(90deg, rgba(9, 31, 24, 0.92), rgba(9, 31, 24, 0.44) 62%, rgba(9, 31, 24, 0.12)),
+    var(--photo-plan) !important;
+  background-position: center 46% !important;
+  background-size: cover !important;
+  box-shadow: var(--visual-shadow) !important;
+}
+
+.my-plan-page .guide-hero h1,
+.my-plan-page .guide-hero p:not(.eyebrow) {
+  max-width: 720px !important;
+  color: #ffffff !important;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.52) !important;
+}
+
+.my-plan-page .guide-hero h1 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(3rem, 6vw, 5.8rem) !important;
+  line-height: 0.98 !important;
+}
+
+.my-plan-empty-state {
+  overflow: hidden !important;
+  padding-top: 0 !important;
+  border: 0 !important;
+  background: var(--visual-paper) !important;
+  box-shadow: var(--visual-shadow) !important;
+}
+
+.my-plan-empty-visual {
+  width: calc(100% + clamp(4rem, 10vw, 7rem));
+  height: clamp(220px, 34vw, 390px);
+  margin: 0 calc(clamp(2rem, 5vw, 3.5rem) * -1) clamp(2rem, 5vw, 3.5rem);
+  background-image:
+    linear-gradient(0deg, rgba(9, 31, 24, 0.2), transparent 45%),
+    var(--photo-plan);
+  background-position: center 50%;
+  background-size: cover;
+}
+
+/* Shared visual cleanup */
+.si-header,
+.foundation-header,
+.category-header,
+.site-header {
+  background: rgba(255, 253, 248, 0.96) !important;
+  backdrop-filter: blur(14px) !important;
+}
+
+.si-wordmark,
+.foundation-wordmark,
+.category-wordmark,
+.wordmark {
+  color: var(--visual-forest-dark) !important;
+}
+
+.si-nav a:last-child,
+.foundation-nav a:last-child,
+.category-nav a:last-child,
+.primary-nav a:last-child {
+  color: #ffffff !important;
+  background: var(--visual-copper) !important;
+}
+
+.visual-photo-credit {
+  position: relative;
+  z-index: 3;
+  padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+  color: rgba(255, 255, 255, 0.78);
+  background: var(--visual-forest-dark);
+  font-size: 0.73rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .si-hero,
+  .foundation-start-hero,
+  .category-hero,
+  .my-plan-page .guide-hero {
+    min-height: 510px !important;
+    background-position: center !important;
+  }
+
+  .si-hero {
+    background-image:
+      linear-gradient(0deg, rgba(9, 31, 24, 0.94), rgba(9, 31, 24, 0.34) 78%),
+      var(--photo-home) !important;
+  }
+
+  .foundation-start-hero,
+  .category-hero,
+  .my-plan-page .guide-hero {
+    background-image:
+      linear-gradient(0deg, rgba(9, 31, 24, 0.94), rgba(9, 31, 24, 0.28) 76%),
+      var(--category-photo, var(--photo-start)) !important;
+  }
+
+  .foundation-start-hero {
+    --category-photo: var(--photo-start);
+  }
+
+  .my-plan-page .guide-hero {
+    --category-photo: var(--photo-plan);
+  }
+
+  .si-card::before,
+  .category-guide-card::before {
+    height: 190px !important;
+  }
+}
+
+@media (prefers-reduced-data: reduce) {
+  .si-hero,
+  .foundation-start-hero,
+  .category-hero,
+  .my-plan-page .guide-hero,
+  .si-card::before,
+  .foundation-shape-card::before,
+  .category-guide-card::before,
+  .my-plan-empty-visual,
+  .si-before {
+    background-image: none !important;
+  }
+}
