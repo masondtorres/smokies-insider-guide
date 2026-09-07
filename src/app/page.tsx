@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/guide";
+import { SmokiesDecisionEngine } from "@/components/smokies-decision-engine";
 import { breadcrumbSchema, webPageSchema, webSiteSchema } from "@/lib/seoSchema";
 import "./homepage-v2.css";
 
@@ -133,6 +134,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SmokiesDecisionEngine />
 
       <section className="si-section si-width" aria-labelledby="planning-heading">
         <div className="si-section-heading">
