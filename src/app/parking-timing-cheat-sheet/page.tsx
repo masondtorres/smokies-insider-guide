@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/guide";
+import { ParkingCheatSheetLead } from "@/components/parking-cheat-sheet-lead";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seoSchema";
 import { PrintButton } from "./print-button";
 import "./cheat-sheet.css";
@@ -93,14 +94,7 @@ export default function ParkingTimingCheatSheetPage() {
           <p><strong>Last reviewed: July 22, 2026.</strong> Changing details must be rechecked before travel.</p>
         </section>
 
-        <aside className="cheat-sheet-source" aria-labelledby="email-cheat-sheet-heading">
-          <h2 id="email-cheat-sheet-heading">Want the current copy in your inbox?</h2>
-          <p>
-            Use the contact form to request the current Smokies Parking & Timing Cheat Sheet.
-            No address is collected until a real email provider is connected by the site owner.
-          </p>
-          <Link className="cheat-sheet-link" href="/contact">Request the Guide</Link>
-        </aside>
+        <ParkingCheatSheetLead />
 
         <section className="cheat-sheet-grid" aria-label="Fast parking plan">
           <article className="cheat-sheet-card">
