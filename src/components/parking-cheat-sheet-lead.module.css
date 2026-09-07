@@ -1,0 +1,135 @@
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border: 1px solid rgba(13, 58, 43, 0.18);
+  border-radius: 1rem;
+  background: #f8fafc;
+}
+
+.kicker {
+  margin: 0 0 0.35rem;
+  color: #0d3a2b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.card h2 {
+  margin: 0 0 0.55rem;
+  color: #0d3a2b;
+}
+
+.copy {
+  margin: 0;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.form label {
+  display: grid;
+  gap: 0.35rem;
+  color: #0f172a;
+  font-weight: 750;
+}
+
+.form input[type="text"],
+.form input[type="email"] {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #94a3b8;
+  border-radius: 0.65rem;
+  background: white;
+  color: #0f172a;
+  font: inherit;
+}
+
+.optIn {
+  grid-template-columns: auto 1fr !important;
+  align-items: start;
+  gap: 0.55rem !important;
+  font-weight: 500 !important;
+  line-height: 1.45;
+}
+
+.optIn input {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.08rem;
+}
+
+.form button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 0.7rem;
+  background: #0d3a2b;
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.form button:focus-visible,
+.form input:focus-visible {
+  outline: 3px solid #f5c542;
+  outline-offset: 3px;
+}
+
+.status {
+  display: grid;
+  align-content: center;
+  gap: 0.35rem;
+  min-height: 140px;
+  padding: 1rem;
+  border-left: 5px solid #0d3a2b;
+  border-radius: 0.8rem;
+  background: white;
+  color: #334155;
+}
+
+.status strong {
+  color: #0d3a2b;
+  font-size: 1.1rem;
+}
+
+.error {
+  margin: 0;
+  color: #991b1b;
+  font-weight: 700;
+}
+
+.privacy {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (max-width: 760px) {
+  .card {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
