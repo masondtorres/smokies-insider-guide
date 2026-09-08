@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { Geist_Mono, Montserrat } from "next/font/google";
 import { GlobalSiteFooter, GlobalSiteHeader } from "@/components/global-site-chrome";
@@ -13,6 +14,8 @@ import "./authority-v1.css";
 import "./audit-fixes.css";
 import "./standardized-pages.css";
 import "./brand-lockup.css";
+
+const GA_MEASUREMENT_ID = "G-MPRKPD95C1";
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
@@ -101,6 +104,19 @@ export default function RootLayout({
         <div className="standard-site-content">{children}</div>
         <GlobalSiteFooter />
         <MobileBottomNav />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <Analytics />
       </body>
     </html>
