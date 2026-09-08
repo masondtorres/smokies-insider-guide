@@ -2,7 +2,9 @@
 
 ## Current status
 
-As of June 13, 2026, `@vercel/analytics` is installed and the official `Analytics` component is mounted in the root layout for aggregate page-view tracking on Vercel Web Analytics Hobby. No custom events are implemented, and the repository contains no Google Analytics Measurement ID. Do not enable a paid analytics add-on.
+As of September 8, 2026, `@vercel/analytics` remains installed and the official `Analytics` component is mounted in the root layout for aggregate page-view tracking on Vercel Web Analytics Hobby.
+
+Mason supplied Google Analytics Measurement ID `G-MPRKPD95C1` and explicitly approved deployment to Smoky Insider. The Google tag is mounted sitewide in the root layout so Google Analytics can collect standard page-view, traffic-source and engagement data. No custom Google Analytics conversion events are enabled as part of this setup.
 
 ## Measurement principles
 
@@ -10,28 +12,29 @@ As of June 13, 2026, `@vercel/analytics` is installed and the official `Analytic
 - Never send names, email addresses, message bodies, saved-plan content, or other personal data as event properties.
 - Treat mailto clicks as inquiry intent, not confirmed submissions.
 - Keep paid and editorial performance reporting distinguishable.
-- Document consent and privacy implications before adding any new provider.
+- Google Analytics may use cookies or similar identifiers; the live privacy policy discloses this provider and its measurement purpose.
+- Do not add advertising personalization or account-based tracking without a separate review.
 
 ## Core measures
 
 | Need | Measure or event | Suggested properties | Current readiness |
 | --- | --- | --- | --- |
-| Sessions | Provider session metric | none | Vercel Web Analytics Hobby is enabled for aggregate analytics; confirm reporting after production traffic |
-| Page views | Provider page-view metric | path, referrer | Vercel Web Analytics Hobby is enabled for aggregate page-view analytics; confirm reporting after production traffic |
-| Top landing pages | Landing-page report | first path, source group | Vercel Web Analytics Hobby is enabled for aggregate page-view analytics; confirm dashboard reporting after production traffic |
-| Saves to My Plan | `plan_save` | `item_id`, `category`, `source_path` | Event hook can be added later |
-| My Plan opens | `my_plan_open` | `saved_item_count`, `source_path` | Event hook can be added later |
-| Warning views | `plan_warning_view` | `warning_type`, `warning_count` | Event hook can be added later |
-| Deal clicks | `deal_click` | `deal_id`, `source_path`, `paid_status` | Use only for verified published deals |
-| Email captures | `email_capture_complete` | `form_location` | No capture backend exists; do not claim this metric |
-| Sponsor inquiries | `sponsor_inquiry_click` | `source_path`, `inquiry_type` | Can measure mailto click only |
-| Contact submissions | `contact_inquiry_click` | `source_path`, `inquiry_type` | Can measure mailto click only; completion unknown |
+| Sessions | Provider session metric | none | Vercel Web Analytics and Google Analytics are enabled; confirm production reporting after deployment |
+| Page views | Provider page-view metric | path, referrer | Vercel Web Analytics and Google Analytics are enabled; Google tag uses `G-MPRKPD95C1` |
+| Top landing pages | Landing-page report | first path, source group | Google Analytics can report acquisition and landing-page performance after traffic is received |
+| Saves to My Plan | `plan_save` | `item_id`, `category`, `source_path` | Not enabled in Google Analytics |
+| My Plan opens | `my_plan_open` | `saved_item_count`, `source_path` | Not enabled in Google Analytics |
+| Warning views | `plan_warning_view` | `warning_type`, `warning_count` | Not enabled in Google Analytics |
+| Deal clicks | `deal_click` | `deal_id`, `source_path`, `paid_status` | Use only for verified published deals; not enabled in Google Analytics |
+| Email captures | `email_capture_complete` | `form_location` | No analytics event is enabled for this action |
+| Sponsor inquiries | `sponsor_inquiry_click` | `source_path`, `inquiry_type` | Not enabled in Google Analytics |
+| Contact submissions | `contact_inquiry_click` | `source_path`, `inquiry_type` | Not enabled in Google Analytics |
 
-## Recommended implementation order
+## Implementation order
 
-1. Confirm page views appear in the Vercel Web Analytics dashboard after production deployment.
-2. Keep collection limited to the Hobby page-view analytics currently approved.
-3. Do not add custom events unless the plan and approval explicitly change.
-4. Update `/privacy` and this plan before collecting anything beyond aggregate usage.
-
-Do not add Google Analytics until Mason supplies a real Measurement ID and explicitly approves the privacy and deployment changes.
+1. Confirm the production deployment succeeds and `G-MPRKPD95C1` appears on `smokyinsider.com`.
+2. Confirm page views appear in Google Analytics Realtime after visiting the live site.
+3. Keep Vercel Web Analytics enabled as a separate aggregate comparison source.
+4. Do not add custom Google Analytics events unless Mason explicitly approves the event and properties.
+5. Never send names, emails, message bodies or saved-plan content as analytics properties.
+6. Re-review privacy and consent requirements before enabling advertising personalization or materially broader tracking.
