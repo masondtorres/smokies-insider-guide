@@ -150,7 +150,7 @@ export default function Home() {
       <section className="si-section si-width" aria-labelledby="trust-heading">
         <div className="si-section-heading">
           <p className="si-section-kicker">Independent advice. Visible sources.</p>
-          <h2 id="trust-heading">Useful first. Paid stays labeled.</h2>
+          <h2 id="trust-heading">Useful first. Paid placements stay labeled.</h2>
           <p>
             Time-sensitive park information links to the controlling official source. Sponsored placements cannot buy safety claims, false local endorsements or editorial rankings.
           </p>
