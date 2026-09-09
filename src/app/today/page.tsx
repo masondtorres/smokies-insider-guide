@@ -96,7 +96,7 @@ export default function TodayPage() {
         </div>
       </section>
 
-      <JsonLd data={webPageSchema({ path: "/today", title: "Today in the Smokies | Current Conditions and Official Checks", description: metadata.description ?? "" })} />
+      <JsonLd data={webPageSchema({ path: "/today", title: "Today in the Smokies | Current Conditions and Official Checks", description: metadata.description ?? "", dateModified: "2026-09-09" })} />
       <JsonLd data={breadcrumbSchema([{ name: "Home", url: "/" }, { name: "Today", url: "/today" }])} />
     </main>
   );
