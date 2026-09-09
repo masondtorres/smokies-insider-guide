@@ -59,6 +59,7 @@ export const indexableRoutes = [
   "/things-to-do",
   "/things-to-do/gatlinburg",
   "/things-to-do/pigeon-forge",
+  "/today",
   "/townsend",
   "/visitor-resources",
   "/what-to-skip",
