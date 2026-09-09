@@ -13,36 +13,12 @@ export const metadata: Metadata = {
 };
 
 const areaRows = [
-  [
-    "Gatlinburg",
-    "Choose one downtown zone, park once when practical and plan the return walk before the group gets tired.",
-    "Parking locations, trolley routes, hours, hills and crowd pressure.",
-  ],
-  [
-    "Pigeon Forge",
-    "Choose one Parkway anchor and keep food, shopping and backup stops in the same part of town.",
-    "Current trolley routes, fares, repeated crossings, backtracking and stacking too many paid stops.",
-  ],
-  [
-    "Sevierville",
-    "Use it as a base, food reset or shopping stop instead of treating it like downtown Gatlinburg.",
-    "Drive time to park entrances and attraction corridors.",
-  ],
-  [
-    "Townsend",
-    "Use the quiet-side gateway for Cades Cove and slower park days.",
-    "Fewer attraction-style stops and changing park access.",
-  ],
-  [
-    "Cades Cove",
-    "Treat the loop as the main event. Check conditions and leave room for slow traffic.",
-    "Road status, daylight, vehicle schedules, parking tags and long delays.",
-  ],
-  [
-    "National Park",
-    "Download the route, check conditions and handle the parking-tag question before leaving reliable service.",
-    "Road closures, weather, cell service, facilities and parking-tag rules.",
-  ],
+  ["Gatlinburg", "Choose one downtown zone, park once when practical and plan the return walk before the group gets tired.", "Parking locations, trolley routes, hours, hills and crowd pressure."],
+  ["Pigeon Forge", "Choose one Parkway anchor and keep food, shopping and backup stops in the same part of town.", "Current trolley routes, fares, repeated crossings, backtracking and stacking too many paid stops."],
+  ["Sevierville", "Use it as a base, food reset or shopping stop instead of treating it like downtown Gatlinburg.", "Drive time to park entrances and attraction corridors."],
+  ["Townsend", "Use the quiet-side gateway for Cades Cove and slower park days.", "Fewer attraction-style stops and changing park access."],
+  ["Cades Cove", "Treat the loop as the main event. Check conditions and leave room for slow traffic.", "Road status, daylight, vehicle schedules, parking tags and long delays."],
+  ["National Park", "Download the route, check conditions and handle the parking-tag question before leaving reliable service.", "Road closures, weather, cell service, facilities and parking-tag rules."],
 ];
 
 const leaveHome = [
@@ -56,22 +32,10 @@ const leaveHome = [
 ];
 
 const emergencyMoves = [
-  {
-    title: "The lot is full",
-    text: "Do not circle indefinitely. Use the backup lot or switch to the nearby backup plan you chose before leaving.",
-  },
-  {
-    title: "Traffic stops moving",
-    text: "Cut the smallest stop first. Protect the main anchor instead of trying to save the full schedule.",
-  },
-  {
-    title: "The group is worn out",
-    text: "Reduce walking, choose food nearby and stop crossing towns. Transportation cannot fix an overpacked day.",
-  },
-  {
-    title: "Weather changes",
-    text: "Check official conditions, move to the prepared indoor backup and do not force a park route through unsafe conditions.",
-  },
+  { title: "The lot is full", text: "Do not circle indefinitely. Use the backup lot or switch to the nearby backup plan you chose before leaving." },
+  { title: "Traffic stops moving", text: "Cut the smallest stop first. Protect the main anchor instead of trying to save the full schedule." },
+  { title: "The group is worn out", text: "Reduce walking, choose food nearby and stop crossing towns. Transportation cannot fix an overpacked day." },
+  { title: "Weather changes", text: "Check official conditions, move to the prepared indoor backup and do not force a park route through unsafe conditions." },
 ];
 
 export default function ParkingTimingCheatSheetPage() {
@@ -86,20 +50,14 @@ export default function ParkingTimingCheatSheetPage() {
         <section className="cheat-sheet-hero">
           <p className="cheat-sheet-eyebrow">Free 2026 planning tool</p>
           <h1>Smokies Parking & Timing Cheat Sheet</h1>
-          <p>
-            A fast, printable guide from Smoky Insider. Use it to simplify the day before
-            traffic, parking and tired feet start making decisions for you.
-          </p>
+          <p>A fast, printable guide from Smoky Insider. Use it to simplify the day before traffic, parking and tired feet start making decisions for you.</p>
           <p><strong>Last reviewed: July 22, 2026.</strong> Changing details must be rechecked before travel.</p>
         </section>
 
-        <aside className="cheat-sheet-source" aria-labelledby="email-cheat-sheet-heading">
-          <h2 id="email-cheat-sheet-heading">Want the current copy in your inbox?</h2>
-          <p>
-            Use the contact form to request the current Smokies Parking & Timing Cheat Sheet.
-            No address is collected until a real email provider is connected by the site owner.
-          </p>
-          <Link className="cheat-sheet-link" href="/contact">Request the Guide</Link>
+        <aside className="cheat-sheet-source" aria-labelledby="current-check-heading">
+          <h2 id="current-check-heading">Check the changing layer before you drive</h2>
+          <p>This page is printable planning guidance. For roads, closures, weather and current parking rules, open Today and then use the controlling official source.</p>
+          <Link className="cheat-sheet-link" href="/today">Check Today&apos;s Conditions</Link>
         </aside>
 
         <section className="cheat-sheet-grid" aria-label="Fast parking plan">
@@ -116,29 +74,17 @@ export default function ParkingTimingCheatSheetPage() {
 
           <article className="cheat-sheet-card">
             <h2>Before leaving home</h2>
-            <ul>
-              {leaveHome.map((item) => <li key={item}>{item}</li>)}
-            </ul>
+            <ul>{leaveHome.map((item) => <li key={item}>{item}</li>)}</ul>
           </article>
         </section>
 
         <section className="cheat-sheet-table-wrap">
           <h2>Use the right movement plan for the area</h2>
           <table className="cheat-sheet-table">
-            <thead>
-              <tr>
-                <th scope="col">Area</th>
-                <th scope="col">Do this</th>
-                <th scope="col">Recheck or watch</th>
-              </tr>
-            </thead>
+            <thead><tr><th scope="col">Area</th><th scope="col">Do this</th><th scope="col">Recheck or watch</th></tr></thead>
             <tbody>
               {areaRows.map(([area, plan, caution]) => (
-                <tr key={area}>
-                  <th scope="row">{area}</th>
-                  <td>{plan}</td>
-                  <td>{caution}</td>
-                </tr>
+                <tr key={area}><th scope="row">{area}</th><td>{plan}</td><td>{caution}</td></tr>
               ))}
             </tbody>
           </table>
@@ -146,10 +92,7 @@ export default function ParkingTimingCheatSheetPage() {
 
         <section className="cheat-sheet-grid" aria-label="When the plan changes">
           {emergencyMoves.map((move) => (
-            <article className="cheat-sheet-card" key={move.title}>
-              <h3>{move.title}</h3>
-              <p>{move.text}</p>
-            </article>
+            <article className="cheat-sheet-card" key={move.title}><h3>{move.title}</h3><p>{move.text}</p></article>
           ))}
         </section>
 
@@ -165,23 +108,13 @@ export default function ParkingTimingCheatSheetPage() {
         </aside>
 
         <footer className="cheat-sheet-footer">
-          <p>
-            This sheet is planning guidance, not live parking or traffic data.
-            Use the official links above for changing details.
-          </p>
+          <p>This sheet is planning guidance, not live parking or traffic data. Use the official links above for changing details.</p>
           <Link className="cheat-sheet-link" href="/smokies-parking-trolley-guide">Open the Full Parking Guide</Link>
         </footer>
       </div>
 
-      <JsonLd data={webPageSchema({
-        path: "/parking-timing-cheat-sheet",
-        title: "2026 Smokies Parking and Timing Cheat Sheet",
-        description: metadata.description ?? "",
-      })} />
-      <JsonLd data={breadcrumbSchema([
-        { name: "Home", url: "/" },
-        { name: "Parking and Timing Cheat Sheet", url: "/parking-timing-cheat-sheet" },
-      ])} />
+      <JsonLd data={webPageSchema({ path: "/parking-timing-cheat-sheet", title: "2026 Smokies Parking and Timing Cheat Sheet", description: metadata.description ?? "" })} />
+      <JsonLd data={breadcrumbSchema([{ name: "Home", url: "/" }, { name: "Parking and Timing Cheat Sheet", url: "/parking-timing-cheat-sheet" }])} />
     </main>
   );
 }
