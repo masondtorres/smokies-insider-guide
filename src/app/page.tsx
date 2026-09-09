@@ -163,7 +163,7 @@ export default function Home() {
       </section>
 
       <JsonLd data={webSiteSchema()} />
-      <JsonLd data={webPageSchema({ path: "/", title: metadata.title as string, description: metadata.description ?? "" })} />
+      <JsonLd data={webPageSchema({ path: "/", title: metadata.title as string, description: metadata.description ?? "", dateModified: "2026-09-09" })} />
       <JsonLd data={breadcrumbSchema([{ name: "Home", url: "/" }])} />
     </main>
   );
