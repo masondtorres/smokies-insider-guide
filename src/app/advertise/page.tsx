@@ -5,7 +5,7 @@ import { BusinessPageShell, BusinessPathLinks, inquiryHref } from "@/components/
 export const metadata: Metadata = {
   title: "Advertise With Smokies Insider",
   description:
-    "Choose a clearly priced local advertising package from independent Smokies Insider. Visibility is labeled and never buys editorial judgment.",
+    "Request labeled local visibility on independent Smokies Insider. Paid placement never buys editorial judgment, safety claims or rankings.",
   alternates: { canonical: "/advertise" },
 };
 
@@ -14,34 +14,31 @@ const advertiseHref = inquiryHref();
 const packages = [
   {
     name: "Verified Local Listing",
-    price: "$99 per year",
+    price: "Rate by request",
     items: [
       "Business name, category and town",
       "Website and contact link",
       "Short factual description",
-      "One annual detail review",
       "Corrections accepted anytime",
     ],
   },
   {
     name: "Featured Local Listing",
-    price: "$149 per month",
+    price: "Rate by request",
     items: [
       "Everything in the verified listing",
       "Featured placement in one relevant category",
-      "Logo or approved business photo",
       "One clear visitor call to action",
       "Clearly labeled featured placement",
     ],
   },
   {
     name: "Guide Partner",
-    price: "$349 per month",
+    price: "Rate by request",
     items: [
       "Everything in the featured listing",
       "One labeled placement in a relevant planning guide",
-      "Verified offer block when a real offer exists",
-      "Monthly details review",
+      "Verified offer block only when a real offer exists",
       "Priority correction handling",
     ],
   },
@@ -51,13 +48,13 @@ export default function AdvertisePage() {
   return (
     <BusinessPageShell
       eyebrow="Local advertising"
-      title="Advertise with clear prices and clear labels"
-      intro="Smokies businesses can buy useful visibility without buying editorial judgment. These founding-partner packages are simple, public and tied to a real visitor need. No traffic or performance result is guaranteed."
+      title="Advertise with clear labels"
+      intro="Smokies businesses can buy useful visibility without buying editorial judgment. Packages below describe the inventory. Current rates are provided on request. No traffic, ranking or performance result is guaranteed or published here."
     >
       <BusinessPathLinks />
 
       <section className="business-intake-section">
-        <p className="eyebrow">Founding partner pricing</p>
+        <p className="eyebrow">Inventory</p>
         <h2>Choose the level that fits the business</h2>
         <div className="business-offer-grid">
           {packages.map((pkg) => (
@@ -65,15 +62,15 @@ export default function AdvertisePage() {
               <h3>{pkg.name}</h3>
               <p><strong>{pkg.price}</strong></p>
               <ul className="business-check-list">
-                {pkg.items.map((item) => <li key={item}>{item}</li>)}
+                {pkg.items.map((item) => <li key={item}>{li}</li>)}
               </ul>
               <Link className="business-primary-action" href={advertiseHref}>Request this package</Link>
             </article>
           ))}
         </div>
         <p>
-          Founding-partner rates apply to new agreements and may change for future
-          customers. Existing paid terms are honored for the agreed period.
+          Ask for current rates. Existing paid terms are honored for the agreed period.
+          Paid placement cannot buy a safety claim, a fake local endorsement or editorial ranking.
         </p>
       </section>
 

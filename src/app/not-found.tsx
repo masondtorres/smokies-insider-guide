@@ -9,9 +9,18 @@ export default function NotFound() {
         The page may have moved, or the link is stale. Use one of these working starts instead of backing into a dead end.
       </p>
       <div className="si-actions">
-        <Link className="si-button si-button-primary" href="/">Home</Link>
-        <Link className="si-button si-button-secondary" href="/start-planning">Start planning</Link>
-        <Link className="si-button si-button-secondary" href="/today">Today's conditions</Link>
+        <Link className="si-button si-button-primary" href="/start-planning">
+          Start Planning
+        </Link>
+        <Link className="si-button si-button-secondary" href="/today">
+          Today&apos;s Conditions
+        </Link>
+        <Link className="si-button si-button-secondary" href="/where-to-stay">
+          Where to Stay
+        </Link>
+        <Link className="si-button si-button-secondary" href="/parking-traffic">
+          Parking &amp; Traffic
+        </Link>
       </div>
     </main>
   );
