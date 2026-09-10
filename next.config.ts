@@ -29,9 +29,9 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/parking-traffic",
-        destination: "/smokies-parking-trolley-guide",
-        permanent: true,
+        source: "/go/parking",
+        destination: "/parking-traffic",
+        permanent: false,
       },
       {
         source: "/visitor-info",
