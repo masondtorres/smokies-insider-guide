@@ -38,8 +38,8 @@ export default function ContactPage() {
         </article>
         <article>
           <h2>Advertise with us</h2>
-          <p>See current packages and pricing for local partners.</p>
-          <Link href="/advertise">See packages and prices</Link>
+          <p>See labeled inventory and request current rates.</p>
+          <Link href="/advertise">See advertising options</Link>
         </article>
         <article>
           <h2>Correction path</h2>

@@ -62,7 +62,7 @@ export default function AdvertisePage() {
               <h3>{pkg.name}</h3>
               <p><strong>{pkg.price}</strong></p>
               <ul className="business-check-list">
-                {pkg.items.map((item) => <li key={item}>{li}</li>)}
+                {pkg.items.map((item) => <li key={item}>{item}</li>)}
               </ul>
               <Link className="business-primary-action" href={advertiseHref}>Request this package</Link>
             </article>
