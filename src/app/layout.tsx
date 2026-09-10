@@ -6,6 +6,7 @@ import { GlobalSiteFooter, GlobalSiteHeader } from "@/components/global-site-chr
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import "./globals.css";
 import "./brand-system.css";
+import "./places.css";
 
 const GA_MEASUREMENT_ID = "G-MPRKPD95C1";
 

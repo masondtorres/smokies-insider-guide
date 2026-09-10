@@ -1,0 +1,9 @@
+.place-list { margin: 2rem auto 3rem; max-width: 1120px; padding: 0 1rem; }
+.place-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.place-card { background: #fff; border: 1px solid #d7ccb4; border-radius: 16px; padding: 1rem 1.1rem 1.15rem; }
+.place-kicker { margin: 0 0 .35rem; color: #8a6a2b; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+.place-card h3 { margin: 0 0 .4rem; font-size: 1.15rem; }
+.place-card p { margin: 0 0 .45rem; }
+.place-meta { color: #4d564f; font-size: .92rem; }
+.place-actions { display: flex; flex-wrap: wrap; gap: .6rem .9rem; align-items: center; margin-top: .6rem; }
+.place-actions a { font-weight: 600; }
