@@ -4,21 +4,11 @@ import { JsonLd } from "@/components/guide";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seoSchema";
 
 export const metadata: Metadata = {
-  title: "Start Here | Smoky Insider",
+  title: "Start Here | Smokies Insider",
   description:
     "Start planning a Smokies trip by trip shape or area, then use the interactive planner when you want a more tailored starting point.",
   alternates: { canonical: "/start-here" },
 };
-
-const mainLinks = [
-  ["Go", "/go"],
-  ["Do", "/do"],
-  ["See", "/see"],
-  ["Eat", "/eat"],
-  ["Stay", "/stay"],
-  ["Deals", "/deals"],
-  ["My Plan", "/my-plan"],
-];
 
 const tripShapes = [
   { title: "Family trip", text: "Activities, breaks and practical pacing for a mixed-age day.", href: "/pigeon-forge-with-kids" },
@@ -59,18 +49,7 @@ const footerLinks = [
 export default function StartHerePage() {
   return (
     <main className="foundation-home foundation-start-here">
-      <header className="foundation-header">
-        <Link className="foundation-wordmark" href="/" aria-label="Smoky Insider home">
-          <span>Smoky</span> Insider
-        </Link>
-        <nav className="foundation-nav" aria-label="Primary navigation">
-          {mainLinks.map(([label, href]) => (
-            <Link href={href} key={href}>{label}</Link>
-          ))}
-        </nav>
-      </header>
-
-      <section className="foundation-start-hero">
+<section className="foundation-start-hero">
         <div className="foundation-width">
           <p className="foundation-section-label">Smokies field guide</p>
           <h1>Start with the shape and location of your trip.</h1>
@@ -142,9 +121,9 @@ export default function StartHerePage() {
 
       <footer className="foundation-footer">
         <div>
-          <strong>Smoky Insider</strong>
+          <strong>Smokies Insider</strong>
           <span>Independent trip-planning help for the Smoky Mountains.</span>
-          <small>&copy; 2026 Smoky Insider</small>
+          <small>&copy; 2026 Smokies Insider</small>
         </div>
         <nav className="foundation-footer-links" aria-label="Policy and information links">
           {footerLinks.map(([label, href]) => (

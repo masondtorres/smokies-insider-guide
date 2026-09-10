@@ -180,16 +180,7 @@ function StrategyCard({ strategy }: { strategy: (typeof strategies)[number] }) {
 export default function CadesCoveFirstTimeGuidePage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/townsend">
-          Townsend Guide
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">Cades Cove planning guide</p>
         <h1>Cades Cove First-Time Guide: How To Plan the Loop Without Rushing It</h1>
         <p>

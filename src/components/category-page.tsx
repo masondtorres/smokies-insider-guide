@@ -26,27 +26,6 @@ type PageHelp = {
   official: ResourceLink[];
 };
 
-const navigation: Array<[string, string, Category | "my-plan"]> = [
-  ["Go", "/go", "go"],
-  ["Do", "/do", "do"],
-  ["See", "/see", "see"],
-  ["Eat", "/eat", "eat"],
-  ["Stay", "/stay", "stay"],
-  ["Deals", "/deals", "deals"],
-  ["My Plan", "/my-plan", "my-plan"],
-];
-
-const footerLinks = [
-  ["About", "/about"],
-  ["Contact", "/contact"],
-  ["Advertise", "/advertise"],
-  ["Affiliate Disclosure", "/affiliate-disclosure"],
-  ["Privacy", "/privacy"],
-  ["Terms", "/terms"],
-  ["Editorial Policy", "/editorial-policy"],
-  ["Source and Verification", "/source-and-verification-policy"],
-];
-
 const npsConditions: ResourceLink = {
   href: "https://www.nps.gov/grsm/planyourvisit/conditions.htm",
   title: "National park current conditions",
@@ -304,30 +283,22 @@ export function CategoryPage({ category }: { category: Category }) {
 
   return (
     <div className={`category-foundation category-${category}`}>
-      <header className="category-header">
-        <Link className="category-wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <nav className="category-nav" aria-label="Primary navigation">
-          {navigation.map(([label, href, key]) => (
-            <Link aria-current={key === category ? "page" : undefined} href={href} key={href}>
-              {label}
-            </Link>
-          ))}
-        </nav>
-      </header>
-
       <main>
         <section className="category-hero">
           <div className="category-ridge category-ridge-back" aria-hidden="true" />
           <div className="category-ridge category-ridge-front" aria-hidden="true" />
           <div className="category-width category-hero-inner simple">
             <div className="category-hero-copy">
-              <p className="category-eyebrow">Smoky Insider</p>
+              <p className="category-eyebrow">Smokies Insider</p>
               <h1>{info.title}</h1>
               <p>{info.intro}</p>
             </div>
           </div>
+          <p className="si-photo-credit">
+            {category === "go" || category === "see"
+              ? "View east from Kuwohi. Photo: Acroterion, CC BY-SA 4.0"
+              : "Great Smoky Mountains National Park"}
+          </p>
         </section>
 
         <section className="category-width category-content" aria-labelledby="category-starters">
@@ -403,23 +374,6 @@ export function CategoryPage({ category }: { category: Category }) {
           </aside>
         </section>
       </main>
-
-      <footer className="category-footer">
-        <div>
-          <strong>Smoky Insider</strong>
-          <span>
-            Independent Smoky Mountains trip planning. Not affiliated with the National Park
-            Service or any tourism board.
-          </span>
-        </div>
-        <nav className="category-footer-links" aria-label="Policy and information links">
-          {footerLinks.map(([label, href]) => (
-            <Link href={href} key={href}>
-              {label}
-            </Link>
-          ))}
-        </nav>
-      </footer>
     </div>
   );
 }

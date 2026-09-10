@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { MyPlan } from "@/components/my-plan";
-import { SiteFooter, SiteHeader } from "@/components/guide";
 
 export const metadata: Metadata = {
-  title: "My Smokies Plan",
+  title: "My Plan",
   description: "Organize browser-saved Smokies planning cards by day, choose one anchor, add notes and catch common trip-shape problems.",
   alternates: { canonical: "/my-plan" },
   robots: { index: false, follow: true },
@@ -12,7 +11,6 @@ export const metadata: Metadata = {
 export default function MyPlanPage() {
   return (
     <main className="guide-page my-plan-page">
-      <SiteHeader />
       <article className="guide-article">
         <header className="guide-hero">
           <p className="eyebrow">Browser-saved trip builder</p>
@@ -21,7 +19,6 @@ export default function MyPlanPage() {
         </header>
         <MyPlan />
       </article>
-      <SiteFooter />
     </main>
   );
 }

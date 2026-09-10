@@ -4,7 +4,7 @@
 
 As of September 8, 2026, `@vercel/analytics` remains installed and the official `Analytics` component is mounted in the root layout for aggregate page-view tracking on Vercel Web Analytics Hobby.
 
-Mason supplied Google Analytics Measurement ID `G-MPRKPD95C1` and explicitly approved deployment to Smoky Insider. The Google tag is mounted sitewide in the root layout so Google Analytics can collect standard page-view, traffic-source and engagement data. No custom Google Analytics conversion events are enabled as part of this setup.
+Mason supplied Google Analytics Measurement ID `G-MPRKPD95C1` and explicitly approved deployment to Smokies Insider. The Google tag is mounted sitewide in the root layout so Google Analytics can collect standard page-view, traffic-source and engagement data. No custom Google Analytics conversion events are enabled as part of this setup.
 
 ## Measurement principles
 

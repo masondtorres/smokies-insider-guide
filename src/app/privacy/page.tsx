@@ -3,7 +3,7 @@ import { PolicyPage } from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How browser-saved My Plan data and site analytics are handled by Smoky Insider.",
+  description: "How browser-saved My Plan data and site analytics are handled by Smokies Insider.",
 };
 
 export default function PrivacyPage() {
@@ -13,7 +13,7 @@ export default function PrivacyPage() {
     "Clearing browser storage removes the saved plan.",
     "Vercel Web Analytics collects aggregate page-view information for site performance reporting.",
     "Google Analytics is enabled with Measurement ID G-MPRKPD95C1 to measure page views, traffic sources and engagement. Google Analytics may use cookies or similar identifiers under Google's policies.",
-    "Smoky Insider does not intentionally send names, email addresses, contact-message bodies or saved-plan content to Google Analytics as analytics event properties.",
+    "Smokies Insider does not intentionally send names, email addresses, contact-message bodies or saved-plan content to Google Analytics as analytics event properties.",
     "No custom Google Analytics conversion events are enabled as part of this initial setup.",
     "This policy must be reviewed before adding advertising personalization, account-based tracking or additional analytics data collection.",
   ]} />;

@@ -136,16 +136,7 @@ const nextSteps = [
 export default function PigeonForgeWithKidsPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/pigeon-forge">
-          Pigeon Forge Guide
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">Pigeon Forge family planning guide</p>
         <h1>Pigeon Forge With Kids</h1>
         <p>
@@ -444,7 +435,7 @@ export default function PigeonForgeWithKidsPage() {
           <p className="eyebrow">Local businesses</p>
           <h2 id="pigeon-kids-business-title">Have a useful family option or local offer?</h2>
           <p>
-            Smoky Insider will eventually feature useful family
+            Smokies Insider will eventually feature useful family
             attractions, restaurants, shows, arcades, mini golf courses and
             offers that help visitors plan better.
           </p>

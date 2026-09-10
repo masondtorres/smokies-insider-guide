@@ -2,8 +2,9 @@
 
 ## Public identity
 
-- Product: Smoky Insider
+- Product: Smokies Insider
 - Active domain: `smokyinsider.com`
+- Intended future domain: `smokiesinsider.com` (not attached; do not claim the cutover)
 - Owned secondary domain: `smokiesinsiderguide.com` (not the canonical site)
 - Canonical site: `https://www.smokyinsider.com`
 - GitHub repository: `masondtorres/smokies-insider-guide`
@@ -12,7 +13,7 @@
 - Vercel project: `smokies-insider-guide`
 - Public and business contact: `masondtorres@duck.com`
 
-Smoky Insider is an independent trip-planning site. It is not affiliated with the National Park Service, Great Smoky Mountains National Park, or any official tourism board.
+Smokies Insider is an independent trip-planning site. It is not affiliated with the National Park Service, Great Smoky Mountains National Park, Dollywood, or any official tourism board.
 
 ## Editorial identity
 
@@ -31,14 +32,13 @@ The site helps visitors make practical trip decisions across towns, park areas, 
 - Paid placement does not buy editorial ranking, a favorable review, or an unqualified recommendation.
 - Editorial order and claims must remain independent of payment.
 - Pricing is provided by request unless an approved rate sheet is supplied.
+- Do not show a book purchase button until publication state and retailer destination are verified.
 
 ## Controlling sources
 
 Use this order when the documents are available:
 
-1. Smoky Insider Site Launch Playbook
-2. Smoky Insider Strategic Research Report
-3. Mason Torres Build and Automation Pack
+1. Current peak-season website production brief
+2. Series 71 Series Control
+3. Canonical book manuscript
 4. Active project rules
-
-As of June 12, 2026, the Strategic Research Report is available at `docs/research/smokies-strategic-build-report.md`. The Launch Playbook and Build and Automation Pack were not found in the local project or Mason's Documents folder. Do not infer missing instructions from their titles; add the source files to the repository before relying on them.

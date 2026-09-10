@@ -181,16 +181,7 @@ function StrategyCard({ strategy }: { strategy: (typeof strategies)[number] }) {
 export default function DollywoodDayPlanPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/pigeon-forge">
-          Pigeon Forge Guide
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">Dollywood planning guide</p>
         <h1>Dollywood Day Plan: How To Build a Better Pigeon Forge Day</h1>
         <p>

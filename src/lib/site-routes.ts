@@ -35,6 +35,7 @@ export const indexableRoutes = [
   "/how-many-days",
   "/parking-tag",
   "/parking-timing-cheat-sheet",
+  "/photo-credits",
   "/pigeon-forge",
   "/pigeon-forge-with-kids",
   "/privacy",

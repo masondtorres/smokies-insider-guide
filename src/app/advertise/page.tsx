@@ -3,9 +3,9 @@ import Link from "next/link";
 import { BusinessPageShell, BusinessPathLinks, inquiryHref } from "@/components/business-intake";
 
 export const metadata: Metadata = {
-  title: "Advertise With Smoky Insider",
+  title: "Advertise With Smokies Insider",
   description:
-    "Choose a clearly priced local advertising package from independent Smoky Insider. Visibility is labeled and never buys editorial judgment.",
+    "Choose a clearly priced local advertising package from independent Smokies Insider. Visibility is labeled and never buys editorial judgment.",
   alternates: { canonical: "/advertise" },
 };
 

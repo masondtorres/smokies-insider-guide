@@ -1,6 +1,6 @@
 # Codex Instructions
 
-This project is Smoky Insider.
+This project is Smokies Insider.
 
 Active public domain: smokyinsider.com.
 

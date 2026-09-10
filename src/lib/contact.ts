@@ -131,7 +131,7 @@ export function buildContactEmailHtml(data: {
 
   return (
     "<div style=\"font-family:system-ui,sans-serif;line-height:1.5;color:#111\">" +
-    "<p><strong>Smoky Insider contact form</strong></p>" +
+    "<p><strong>Smokies Insider contact form</strong></p>" +
     "<table>" +
     meta +
     "</table>" +

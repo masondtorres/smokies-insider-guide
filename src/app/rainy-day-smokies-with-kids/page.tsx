@@ -148,16 +148,7 @@ const nextSteps = [
 export default function RainyDaySmokiesWithKidsPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/things-to-do">
-          Things To Do
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">Rainy day family guide</p>
         <h1>Rainy Day Smokies With Kids: What To Do When the Weather Changes</h1>
         <p>

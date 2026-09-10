@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: pageDescription,
   alternates: { canonical: "/parking-tag" },
   openGraph: {
-    title: `${pageTitle} | Smoky Insider`,
+    title: `${pageTitle} | Smokies Insider`,
     description: pageDescription,
     url: "https://www.smokyinsider.com/parking-tag",
   },
@@ -41,16 +41,7 @@ const faqs = [
 export default function ParkingTagPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/smokies-parking-trolley-guide">
-          Parking guide
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">National park parking tag</p>
         <h1>What you need before you park in the park</h1>
         <p className="seo-direct-copy">

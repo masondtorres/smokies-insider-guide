@@ -153,16 +153,7 @@ const nextSteps = [
 export default function SmokiesWithToddlersPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/start-planning">
-          Start Planning
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">Smokies family planning guide</p>
         <h1>Smokies With Toddlers</h1>
         <p>
@@ -429,7 +420,7 @@ export default function SmokiesWithToddlersPage() {
           <p className="eyebrow">Local businesses</p>
           <h2 id="toddler-business-title">Have an easy stop or family offer for parents with young kids?</h2>
           <p>
-            Smoky Insider will eventually feature useful local options
+            Smokies Insider will eventually feature useful local options
             that help families plan better.
           </p>
         </div>

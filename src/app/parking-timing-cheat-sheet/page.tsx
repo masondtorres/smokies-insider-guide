@@ -50,7 +50,7 @@ export default function ParkingTimingCheatSheetPage() {
         <section className="cheat-sheet-hero">
           <p className="cheat-sheet-eyebrow">Free 2026 planning tool</p>
           <h1>Smokies Parking & Timing Cheat Sheet</h1>
-          <p>A fast, printable guide from Smoky Insider. Use it to simplify the day before traffic, parking and tired feet start making decisions for you.</p>
+          <p>A fast, printable guide from Smokies Insider. Use it to simplify the day before traffic, parking and tired feet start making decisions for you.</p>
           <p><strong>Last reviewed: July 22, 2026.</strong> Changing details must be rechecked before travel.</p>
         </section>
 

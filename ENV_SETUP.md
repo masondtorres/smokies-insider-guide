@@ -8,7 +8,7 @@ None of these values are stored in the repository. Set them in the Vercel projec
 |---|---|---|
 | `RESEND_API_KEY` | [resend.com](https://resend.com) API keys | Server-only. Never prefix with `NEXT_PUBLIC_`. |
 | `CONTACT_EMAIL` | Your business inbox | Server-only receiving address. Never exposed in browser code. |
-| `EMAIL_FROM` | Verified sender in Resend | Example format: `Smoky Insider <onboarding@resend.dev>` until a custom domain is verified. |
+| `EMAIL_FROM` | Verified sender in Resend | Example format: `Smokies Insider <onboarding@resend.dev>` until a custom domain is verified. |
 
 If any of the three is missing, `/api/contact` returns HTTP 503 with `code: NOT_CONFIGURED`. The form shows “not yet configured” and does **not** claim success.
 

@@ -74,16 +74,7 @@ const avoidList = [
 export default function TrackClosingGuidePage() {
   return (
     <main className="destination-page article-guide-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/pigeon-forge">
-          Pigeon Forge Guide
-        </Link>
-      </header>
-
-      <section className="destination-hero article-guide-hero">
+<section className="destination-hero article-guide-hero">
         <div className="page-identity page-identity-strong">
           <p className="eyebrow">Pigeon Forge visitor update</p>
           <p className="page-breadcrumb">

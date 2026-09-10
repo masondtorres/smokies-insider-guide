@@ -122,16 +122,7 @@ const relatedGuides = [
 export default function GatlinburgWithoutWalkingTooMuchPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/gatlinburg">
-          Gatlinburg Guide
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">Lower-walking Gatlinburg guide</p>
         <h1>Gatlinburg Without Walking Too Much</h1>
         <p>
@@ -374,7 +365,7 @@ export default function GatlinburgWithoutWalkingTooMuchPage() {
           <p>
             Have an easy-access Gatlinburg stop, family-friendly meal, useful
             offer or attraction that helps visitors plan a lower-walking day?
-            Smoky Insider will eventually feature local options that
+            Smokies Insider will eventually feature local options that
             help visitors choose better.
           </p>
         </div>

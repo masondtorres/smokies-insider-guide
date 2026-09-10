@@ -1,5 +1,5 @@
 /**
- * Verified parking and transit anchors for the Smoky Insider parking cluster.
+ * Verified parking and transit anchors for the Smokies Insider parking cluster.
  * Every time-sensitive field includes source URL, dateChecked, and verification status.
  * Prices use "USD" wording so currency symbols never double-render in RSC or HTML.
  */

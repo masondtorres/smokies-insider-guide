@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { siteUrl } from "@/lib/seoSchema";
-import { SiteIdentity } from "@/components/site-mark";
+
 
 export type LinkItem = {
   title: string;
@@ -32,54 +32,14 @@ export type GuidePageData = {
   sources?: LinkItem[];
 };
 
-export const primaryNav = [
-  { label: "Go", href: "/go" },
-  { label: "Do", href: "/do" },
-  { label: "See", href: "/see" },
-  { label: "Eat", href: "/eat" },
-  { label: "Stay", href: "/stay" },
-  { label: "Deals", href: "/deals" },
-  { label: "My Plan", href: "/my-plan" },
-];
-
-const footerLinks = [
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-  { label: "Advertise", href: "/advertise" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
-];
-
 export function SiteHeader() {
-  return (
-    <header className="site-header guide-site-header">
-      <div className="brand-lockup">
-        <Link className="brand-mark" href="/" aria-label="Smoky Insider home">
-          <SiteIdentity />
-        </Link>
-      </div>
-      <nav className="primary-nav" aria-label="Primary navigation">
-        {primaryNav.map((link) => (
-          <Link href={link.href} key={link.href}>{link.label}</Link>
-        ))}
-      </nav>
-    </header>
-  );
+  return null;
 }
 
 export function SiteFooter() {
-  return (
-    <footer className="site-footer guide-site-footer">
-      <div className="footer-brand-panel">
-        <SiteIdentity compact />
-        <span>Practical Smoky Mountains trip planning for routes, things to do, views, food, stays and deals.</span>
-      </div>
-      <nav className="category-footer-links" aria-label="Policy and information links">
-        {footerLinks.map((link) => <Link href={link.href} key={link.href}>{link.label}</Link>)}
-      </nav>
-    </footer>
-  );
+  return null;
 }
+
 
 export function LastUpdated({ date = "June 2026" }: { date?: string }) {
   return <p className="last-updated">Last updated: {date}</p>;
@@ -166,7 +126,7 @@ export function GuidePage({ page, path }: { page: GuidePageData; path: string })
       <SiteHeader />
       <main>
         <section className="page-hero">
-          <p className="eyebrow">Smoky Insider guide</p>
+          <p className="eyebrow">Smokies Insider guide</p>
           <h1>{page.title}</h1>
           <p>{page.description}</p>
         </section>
@@ -201,7 +161,7 @@ export function GuideJsonLd({ data, path }: { data: GuidePageData; path: string 
     description: data.description,
     url: `${siteUrl}${path}`,
     dateModified: data.reviewedOnIso ?? "2026-06-01",
-    publisher: { "@type": "Organization", name: "Smoky Insider", url: siteUrl },
+    publisher: { "@type": "Organization", name: "Smokies Insider", url: siteUrl },
   };
   return <JsonLd data={schema} />;
 }

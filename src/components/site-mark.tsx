@@ -4,36 +4,18 @@ type SiteMarkProps = {
 
 export function SiteMark({ className = "" }: SiteMarkProps) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 96 96"
-      aria-hidden="true"
-      role="img"
-    >
-      <circle cx="48" cy="48" r="44" fill="#fffaf0" stroke="#075b36" strokeWidth="5" />
-
-      <circle cx="69" cy="27" r="11" fill="#ffad22" />
-
-      <path d="M12 47 30 29 43 40 57 22 85 49Z" fill="#2f86d6" />
-      <path d="m30 29 7 9 6-6 8 11 6-21-14 18Z" fill="#ffffff" opacity="0.96" />
-      <path d="m57 22 9 12 5-5 14 20H58Z" fill="#176bb0" />
-      <path d="m57 22 7 10 4-4 5 8-3-12Z" fill="#ffffff" />
-
-      <path d="M8 55c15-10 30-13 45-10 13 2 24 8 35 17v24H8Z" fill="#11834f" />
-      <path d="M8 66c17-8 32-10 47-6 12 3 23 9 33 18v10H8Z" fill="#075b36" />
-
-      <g fill="#06492d">
-        <path d="M21 49 27 34l6 15h-4l5 9H20l5-9Z" />
-        <path d="M12 56 18 41l6 15h-4l5 9H11l5-9Z" />
-        <path d="M31 57 37 42l6 15h-4l5 9H30l5-9Z" />
-      </g>
-
+    <svg className={className} viewBox="0 0 96 96" aria-hidden="true" role="img">
+      <rect width="96" height="96" rx="20" fill="#f3ebd6" />
+      <circle cx="70" cy="28" r="9" fill="#c49a3c" />
+      <path d="M8 64 28 42l16 14 14-22 22 24v22H8Z" fill="#2a5340" />
+      <path d="M8 72c18-10 34-12 50-6 12 4 22 10 30 18v4H8Z" fill="#1c3a2c" />
       <path
-        d="M47 89c18-12 22-23 8-28-18-6-25-11-13-17 9-5 23-4 40 3"
+        d="M18 78c16-8 28-10 42-4"
         fill="none"
-        stroke="#ffffff"
-        strokeWidth="8"
+        stroke="#f3ebd6"
+        strokeWidth="3"
         strokeLinecap="round"
+        opacity="0.7"
       />
     </svg>
   );
@@ -43,9 +25,8 @@ export function SiteIdentity({ compact = false }: { compact?: boolean }) {
   return (
     <span className={compact ? "site-identity site-identity-compact" : "site-identity"}>
       <SiteMark className="site-identity-mark" />
-      <span className="site-identity-text" aria-label="Smoky Insider">
-        <strong>Smoky</strong>
-        <span>Insider</span>
+      <span className="site-identity-text" aria-label="Smokies Insider">
+        Smokies Insider
       </span>
     </span>
   );

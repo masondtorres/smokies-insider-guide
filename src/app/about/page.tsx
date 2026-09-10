@@ -30,20 +30,11 @@ const guideUses = [
 export default function AboutPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/">
-          Back to home
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">About the guide</p>
         <h1>Practical Smokies Planning Without the Guesswork</h1>
         <p>
-          Smoky Insider is an independent East Tennessee planning guide for
+          Smokies Insider is an independent East Tennessee planning guide for
           Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky
           Mountains National Park. It exists to turn scattered information into
           working days.
@@ -60,7 +51,7 @@ export default function AboutPage() {
           <h2>Mason Torres</h2>
         </div>
         <p className="router-section-intro">
-          Mason Torres is based in East Tennessee. He created Smoky Insider to
+          Mason Torres is based in East Tennessee. He created Smokies Insider to
           make trip planning clearer, more practical and less dependent on hype.
         </p>
         <p className="router-section-intro">
@@ -69,6 +60,24 @@ export default function AboutPage() {
           guidance is research-based and checked against official or first-party
           sources. The site states the difference instead of pretending every
           changing detail is live.
+        </p>
+      </section>
+
+      <section className="destination-section comparison-section">
+        <div className="destination-heading">
+          <p className="eyebrow">The book and the website</p>
+          <h2>Durable planning in the book. Changing facts on this site.</h2>
+        </div>
+        <p className="router-section-intro">
+          The Smokies Insider Guide carries the durable judgment: how the region
+          fits together, where to stay, how to group a day, and how traffic
+          changes the trip. This website is the live companion for closures,
+          hours, road status, parking rules, events and corrections.
+        </p>
+        <p className="router-section-intro">
+          A purchase button will appear only after publication and the actual
+          retailer destination are verified. Until then, use the planning tools
+          here.
         </p>
       </section>
 
@@ -105,7 +114,7 @@ export default function AboutPage() {
 
       <section className="destination-section field-notes-section">
         <div className="destination-heading">
-          <p className="eyebrow">What Smoky Insider helps with</p>
+          <p className="eyebrow">What Smokies Insider helps with</p>
           <h2>Make the trip easier before you leave home</h2>
         </div>
         <div className="destination-grid">

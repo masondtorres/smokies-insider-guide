@@ -1,5 +1,5 @@
 export const siteUrl = "https://www.smokyinsider.com";
-export const siteName = "Smoky Insider";
+export const siteName = "Smokies Insider";
 
 type FaqItem = {
   question: string;
@@ -16,7 +16,7 @@ export function webPageSchema({
   path,
   title,
   description,
-  dateModified = "2026-07-22",
+  dateModified = "2026-09-10",
 }: {
   path: string;
   title: string;
@@ -45,6 +45,27 @@ export function webSiteSchema() {
     "@type": "WebSite",
     name: siteName,
     url: siteUrl,
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: siteUrl,
+    },
+  };
+}
+
+export function organizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteName,
+    url: siteUrl,
+    email: "masondtorres@duck.com",
+    founder: {
+      "@type": "Person",
+      name: "Mason Torres",
+    },
+    description:
+      "Independent Smoky Mountains trip planning for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park.",
   };
 }
 

@@ -28,6 +28,26 @@ const nextConfig: NextConfig = {
         destination: "/rainy-day",
         permanent: true,
       },
+      {
+        source: "/parking-traffic",
+        destination: "/smokies-parking-trolley-guide",
+        permanent: true,
+      },
+      {
+        source: "/visitor-info",
+        destination: "/visitor-resources",
+        permanent: true,
+      },
+      {
+        source: "/home-v2",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/report-a-correction",
+        destination: "/corrections",
+        permanent: true,
+      },
     ];
   },
 };

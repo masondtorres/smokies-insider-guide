@@ -3,7 +3,7 @@ import { PolicyPage } from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
   title: "Source and Verification Policy",
-  description: "How Smoky Insider matches changing travel claims to appropriate sources.",
+  description: "How Smokies Insider matches changing travel claims to appropriate sources.",
 };
 
 export default function SourceVerificationPage() {

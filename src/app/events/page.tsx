@@ -20,15 +20,7 @@ const eventPlanning = [
 export default function EventsPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/start-planning">
-          Start Planning
-        </Link>
-      </header>
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">Events and what's happening</p>
         <h1>Plan around Smokies events and seasonal timing</h1>
         <p>Use dates, location and the rest of the itinerary before adding an event to the day.</p>

@@ -1,70 +1,54 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { DecisionEngine } from "@/components/decision-engine";
 import { JsonLd } from "@/components/guide";
-import { breadcrumbSchema, webPageSchema, webSiteSchema } from "@/lib/seoSchema";
-import "./homepage-v2.css";
+import { breadcrumbSchema, organizationSchema, webPageSchema, webSiteSchema } from "@/lib/seoSchema";
 
 export const metadata: Metadata = {
-  title: "Smoky Insider | Smoky Mountains Trip Planner",
+  title: "Smokies Insider | Smoky Mountains Trip Planner",
   description:
-    "Build a Smokies day that works with practical, independent help for routes, parking, weather, attractions, food, stays and backup plans.",
+    "Build a Smokies day that works. Independent help for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park: traffic, parking, weather, food, stays and backup plans.",
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "Smokies Insider | Smoky Mountains Trip Planner",
+    description:
+      "Independent Smokies planning for routes, parking, weather, town choices, park stops, food and backup plans.",
+    url: "https://www.smokyinsider.com/",
+    images: [{ url: "/images/photos/og-home.jpg", width: 1200, height: 630, alt: "Cades Cove split-rail fences and autumn ridges in Great Smoky Mountains National Park" }],
+  },
 };
 
-const planningCards = [
+const blockingDecisions = [
   {
-    title: "Start Planning",
-    text: "Answer five practical questions and get recommendations that fit your base, group and day.",
-    action: "Build the day",
-    href: "/start-planning",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    label: "Where should we stay?",
+    text: "Match the base to the trip, not the cabin photo. Gatlinburg, Pigeon Forge, Sevierville and Townsend solve different days.",
+    href: "/where-to-stay",
   },
   {
-    title: "Go",
-    text: "Routes, parking, traffic and arrival timing.",
-    action: "Plan routes & parking",
-    href: "/go",
-    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80",
+    label: "What will ruin today?",
+    text: "Road status, parking tags, full lots and late starts wreck more days than bad restaurants.",
+    href: "/today",
   },
   {
-    title: "Do",
-    text: "Attractions, hikes, shows and rainy-day options.",
-    action: "Plan what to do",
-    href: "/do",
-    image: "https://images.unsplash.com/photo-1551632811-561732f1e96c?auto=format&fit=crop&w=900&q=80",
+    label: "What if it rains?",
+    text: "Keep one indoor backup on the same side of the region. Do not drive to the ridge hoping for a hole in the clouds.",
+    href: "/rainy-day",
   },
   {
-    title: "Eat",
-    text: "Choose food near the plan instead of adding another drive across town.",
-    action: "Plan where to eat",
-    href: "/eat",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80",
+    label: "Can we do this without much walking?",
+    text: "Overlooks, trolleys, the Cades Cove loop and some shows work. Steep sidewalks and 'short' trailheads often do not.",
+    href: "/gatlinburg-without-walking-too-much",
   },
   {
-    title: "Stay",
-    text: "Compare lodging areas by the trip you are actually taking.",
-    action: "Choose your base",
-    href: "/stay",
-    image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=900&q=80",
+    label: "How should we spend one day?",
+    text: "One geographic anchor. One backup. Food near the plan. That beats a highlight reel.",
+    href: "/how-many-days",
   },
   {
-    title: "See",
-    text: "Overlooks, scenic drives, waterfalls and park stops worth grouping together.",
-    action: "Plan scenic stops",
+    label: "What is worth the drive?",
+    text: "Cades Cove, Kuwohi and Newfound Gap are commitments, not add-ons after a Parkway morning.",
     href: "/see",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80",
   },
-];
-
-const entryPoints = [
-  { label: "First trip", href: "/start-here" },
-  { label: "Three-day trip", href: "/how-many-days" },
-  { label: "Parking", href: "/smokies-parking-trolley-guide" },
-  { label: "Rainy day", href: "/rainy-day-smokies-with-kids" },
-  { label: "Families with children", href: "/pigeon-forge-with-kids" },
-  { label: "Low-walking trips", href: "/gatlinburg-without-walking-too-much" },
-  { label: "Gatlinburg vs Pigeon Forge", href: "/gatlinburg-vs-pigeon-forge" },
-  { label: "Best time to visit", href: "/best-time-to-visit" },
 ];
 
 const beforeYouGo = [
@@ -72,14 +56,14 @@ const beforeYouGo = [
   { label: "Parking and timing cheat sheet", href: "/parking-timing-cheat-sheet" },
   { label: "Full parking and trolley guide", href: "/smokies-parking-trolley-guide" },
   { label: "Official park resources", href: "/visitor-resources" },
-  { label: "Rainy-day backup ideas", href: "/rainy-day-smokies-with-kids" },
+  { label: "Rainy-day backup ideas", href: "/rainy-day" },
 ];
 
 export default function Home() {
   return (
-    <main className="smokies-home-v2">
+    <main className="smokies-home-v2" id="home">
       <section className="si-hero si-hero--photo" aria-labelledby="home-title">
-        <div className="si-width si-hero-copy">
+        <div className="si-hero-copy">
           <p className="si-kicker">Independent Smokies planning</p>
           <h1 id="home-title">Build a Smokies day that actually works.</h1>
           <p className="si-hero-promise">
@@ -87,13 +71,18 @@ export default function Home() {
           </p>
           <div className="si-actions">
             <Link className="si-button si-button-primary" href="/start-planning">Start Planning</Link>
-            <Link className="si-button si-button-secondary" href="/today">Check Today&apos;s Conditions</Link>
+            <Link className="si-button si-button-secondary" href="/today">Check Today's Conditions</Link>
           </div>
           <p className="si-hero-text-link">
             Independent planning. Not affiliated with the National Park Service, Dollywood or any tourism board.
           </p>
         </div>
+        <p className="si-photo-credit">Cades Cove, Great Smoky Mountains National Park</p>
       </section>
+
+      <div className="si-engine-wrap">
+        <DecisionEngine />
+      </div>
 
       <section className="si-section si-width" aria-labelledby="planning-heading">
         <div className="si-section-heading">
@@ -101,34 +90,43 @@ export default function Home() {
           <h2 id="planning-heading">Make the decision blocking your trip.</h2>
           <p>Pick the next useful step instead of opening another list of attractions.</p>
         </div>
-        <div className="si-card-grid">
-          {planningCards.map((card) => (
-            <Link
-              className="si-card si-card--photo"
-              href={card.href}
-              key={card.href}
-              style={{
-                backgroundImage: `linear-gradient(to top, rgba(7,30,49,0.92) 0%, rgba(7,30,49,0.45) 55%, transparent 100%), url(${card.image})`,
-              }}
-            >
-              <span className="si-icon">{card.title}</span>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-              <span>{card.action}</span>
+        <div className="si-decision-list">
+          {blockingDecisions.map((item) => (
+            <Link className="si-decision-item" href={item.href} key={item.href}>
+              <strong>{item.label}</strong>
+              <p>{item.text}</p>
+              <span>Open guide</span>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="si-section si-width" aria-labelledby="entry-heading">
+      <section className="si-section si-width" aria-labelledby="place-heading">
         <div className="si-section-heading">
-          <p className="si-section-kicker">Quick starts</p>
-          <h2 id="entry-heading">Start with the trip you are actually taking.</h2>
+          <p className="si-section-kicker">The region is not one mood</p>
+          <h2 id="place-heading">Park, Parkway and quiet side ask for different days.</h2>
         </div>
-        <div className="si-before-grid" style={{ marginTop: "1rem" }}>
-          {entryPoints.map((item) => (
-            <Link href={item.href} key={item.label}>{item.label}</Link>
-          ))}
+        <div className="si-split">
+          <div
+            className="si-panel si-panel--photo"
+            style={{ ["--panel-image" as string]: "url(/images/photos/kuwohi-east-view.webp)" }}
+          >
+            <h2>Great Smoky Mountains National Park</h2>
+            <p>Early start, one corridor, parking tag, downloaded map, and a backup that stays on the same side.</p>
+            <div className="si-actions">
+              <Link className="si-button si-button-secondary" href="/see">Plan park stops</Link>
+            </div>
+          </div>
+          <div className="si-panel">
+            <p className="si-section-kicker">Gateway towns</p>
+            <h2>Four bases, four rhythms.</h2>
+            <div className="si-link-list">
+              <Link href="/gatlinburg">Gatlinburg — walkable park gateway</Link>
+              <Link href="/pigeon-forge">Pigeon Forge — family entertainment corridor</Link>
+              <Link href="/sevierville">Sevierville — space, downtown, access to both</Link>
+              <Link href="/townsend">Townsend — quiet side near Cades Cove</Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -144,6 +142,28 @@ export default function Home() {
               <Link href={note.href} key={note.label}>{note.label}</Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="si-section si-width" aria-labelledby="book-heading">
+        <div className="si-book">
+          <div>
+            <p className="si-section-kicker">Why this website exists</p>
+            <h2 id="book-heading">The book and the website</h2>
+            <p>The book carries the durable planning. The website carries what changes.</p>
+            <p>
+              The Smokies Insider Guide explains how the region fits together, where to stay, how to group a day, what traffic changes and how to avoid wasting half the trip crossing the region. This site carries the changing layer: closures, hours, events, road conditions and corrections.
+            </p>
+            <p>A purchase link will appear here when publication and the retailer destination are verified. Until then, use the live tools.</p>
+          </div>
+          <aside>
+            <strong>Use the live companion now</strong>
+            <p>Start with today's conditions, then save the day's anchor in My Plan. Plans stay in this browser only.</p>
+            <div className="si-actions">
+              <Link className="si-button si-button-primary" href="/today">Check today</Link>
+              <Link className="si-button si-button-secondary" href="/my-plan">Open My Plan</Link>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -163,7 +183,8 @@ export default function Home() {
       </section>
 
       <JsonLd data={webSiteSchema()} />
-      <JsonLd data={webPageSchema({ path: "/", title: metadata.title as string, description: metadata.description ?? "", dateModified: "2026-09-09" })} />
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={webPageSchema({ path: "/", title: metadata.title as string, description: metadata.description ?? "", dateModified: "2026-09-10" })} />
       <JsonLd data={breadcrumbSchema([{ name: "Home", url: "/" }])} />
     </main>
   );

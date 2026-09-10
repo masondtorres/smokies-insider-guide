@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description: pageDescription,
   alternates: { canonical: "/go/parking" },
   openGraph: {
-    title: `${pageTitle} | Smoky Insider`,
+    title: `${pageTitle} | Smokies Insider`,
     description: pageDescription,
     url: "https://www.smokyinsider.com/go/parking",
   },
@@ -32,16 +32,7 @@ export default function ParkingDecisionPage() {
 
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/go">
-          Go
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">Short parking decision</p>
         <h1>Where should you park?</h1>
         <p className="seo-direct-copy">

@@ -6,12 +6,12 @@ import { ContactForm } from "@/components/contact-form";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Smoky Insider for corrections, listing requests, partnerships and general questions about Smoky Mountains trip planning.",
+    "Contact Smokies Insider for corrections, listing requests, partnerships and general questions about Smoky Mountains trip planning.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact | Smoky Insider",
+    title: "Contact | Smokies Insider",
     description:
-      "Contact Smoky Insider for corrections, listing requests, partnerships and general questions.",
+      "Contact Smokies Insider for corrections, listing requests, partnerships and general questions.",
     url: "https://www.smokyinsider.com/contact",
   },
 };

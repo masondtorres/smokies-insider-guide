@@ -131,16 +131,7 @@ const nextSteps = [
 export default function GatlinburgPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/start-planning">
-          Start Planning
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">Gatlinburg guide</p>
         <h1>Gatlinburg Smokies Planning Guide</h1>
         <p>

@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       from: config.from,
       to: config.to,
       replyTo: data.email,
-      subject: `[Smoky Insider] ${data.reason} — ${data.name}`,
+      subject: `[Smokies Insider] ${data.reason} — ${data.name}`,
       html: buildContactEmailHtml(data),
     });
 

@@ -138,16 +138,7 @@ const nextSteps = [
 export default function PigeonForgePage() {
   return (
     <main className="destination-page">
-      <header className="destination-header">
-        <Link className="wordmark" href="/">
-          Smoky Insider
-        </Link>
-        <Link className="back-link" href="/start-planning">
-          Start Planning
-        </Link>
-      </header>
-
-      <section className="destination-hero">
+<section className="destination-hero">
         <p className="eyebrow">Pigeon Forge guide</p>
         <h1>Pigeon Forge Smokies Planning Guide</h1>
         <p>

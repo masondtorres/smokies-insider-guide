@@ -55,7 +55,7 @@ export function MyPlan() {
 
   function handleExport() {
     const lines = [
-      "Smoky Insider — My Plan",
+      "Smokies Insider — My Plan",
       `Exported: ${new Date().toISOString()}`,
       "Stored only in this browser. Not a reservation or live conditions source.",
       "",

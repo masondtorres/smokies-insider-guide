@@ -1,23 +1,85 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-const resources = [
-  ["Parking and traffic", "Plan timing and route shape before a busy park or town day."],
-  ["Weather and backups", "Keep an indoor or low-walking plan ready."],
-  ["Park basics", "Review the practical details that affect the park day."],
-  ["Maps and routes", "Choose a focused area instead of crossing the whole region repeatedly."],
-  ["Accessibility and low-walking plans", "Match the day to mobility, rest needs and realistic distances."],
+export const metadata: Metadata = {
+  title: "Visitor Resources",
+  description:
+    "Official Smokies planning resources for roads, weather, parking tags, trolley information and trip backups.",
+  alternates: { canonical: "/visitor-resources" },
+};
+
+const official = [
+  {
+    title: "NPS current conditions",
+    text: "Roads, trails, facilities and weather-related changes inside Great Smoky Mountains National Park.",
+    href: "https://www.nps.gov/grsm/planyourvisit/conditions.htm",
+    external: true,
+  },
+  {
+    title: "NPS parking tags",
+    text: "Current parking-tag rules, prices and purchase options. A tag does not reserve a space.",
+    href: "https://www.nps.gov/grsm/planyourvisit/fees.htm",
+    external: true,
+  },
+  {
+    title: "National Weather Service",
+    text: "Mountain weather is not town weather. Check the forecast before a ridge or long park day.",
+    href: "https://www.weather.gov/mrx/",
+    external: true,
+  },
+  {
+    title: "Today's conditions desk",
+    text: "Use the Smokies Insider live layer to open the official checks in one place.",
+    href: "/today",
+    external: false,
+  },
+  {
+    title: "Parking and trolley guide",
+    text: "Choose a parking pattern and a backup before leaving lodging.",
+    href: "/smokies-parking-trolley-guide",
+    external: false,
+  },
+  {
+    title: "Rainy-day backup",
+    text: "Keep one indoor plan on the same side of the region.",
+    href: "/rainy-day",
+    external: false,
+  },
 ];
 
 export default function VisitorResourcesPage() {
   return (
     <main className="destination-page">
-      <header className="destination-header"><Link className="wordmark" href="/">Smoky Insider</Link><Link className="back-link" href="/start-planning">Start Planning</Link></header>
-      <section className="destination-hero"><p className="eyebrow">Visitor resources</p><h1>Prepare for the parts that change the day</h1><p>Use practical planning resources before park days, busy weekends and first-time trips.</p></section>
-      <section className="destination-section">
-        <div className="destination-heading"><p className="eyebrow">Plan around</p><h2>Check the practical details first</h2></div>
-        <div className="destination-grid">{resources.map(([title, text]) => <article className="destination-card" key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
+      <section className="destination-hero">
+        <p className="eyebrow">Visitor resources</p>
+        <h1>Prepare for the parts that change the day.</h1>
+        <p>
+          Use official sources for roads, weather, parking and transportation. Use this guide for the planning judgment around those facts.
+        </p>
       </section>
-      <section className="destination-section destination-coming"><p className="eyebrow">Before you go</p><h2>Check official sources for current conditions</h2><p>Rules, closures, weather and road conditions can change. Current official sources should lead those decisions.</p></section>
+      <section className="destination-section">
+        <div className="destination-heading">
+          <p className="eyebrow">Start here</p>
+          <h2>Open the source that can wreck the day if you skip it.</h2>
+        </div>
+        <div className="si-decision-list">
+          {official.map((item) =>
+            item.external ? (
+              <a className="si-decision-item" href={item.href} key={item.href} rel="noopener noreferrer">
+                <strong>{item.title}</strong>
+                <p>{item.text}</p>
+                <span>Open official source</span>
+              </a>
+            ) : (
+              <Link className="si-decision-item" href={item.href} key={item.href}>
+                <strong>{item.title}</strong>
+                <p>{item.text}</p>
+                <span>Open guide</span>
+              </Link>
+            ),
+          )}
+        </div>
+      </section>
     </main>
   );
 }
