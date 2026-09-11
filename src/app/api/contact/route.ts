@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     message: typeof body.message === "string" ? body.message : "",
     businessName: typeof body.businessName === "string" ? body.businessName : "",
     pageUrl: typeof body.pageUrl === "string" ? body.pageUrl : "",
-    website: typeof body.website === "string" ? body.website : "",
+    website: typeof body.website === "string" && body.website ? body.website : typeof body.hpWebsite === "string" ? body.hpWebsite : "",
   });
 
   if (!validation.ok) {
@@ -74,17 +74,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.info("[contact] delivered", {
-      id: result.id,
-      reason: data.reason,
-      messageLength: data.message.length,
-    });
-
     return NextResponse.json({ ok: true, id: result.id });
-  } catch (err) {
-    console.error("[contact] delivery exception", {
-      type: err instanceof Error ? err.name : "unknown",
-    });
+  } catch {
     return NextResponse.json(
       {
         error: "Delivery failed. Please try again in a few minutes.",
