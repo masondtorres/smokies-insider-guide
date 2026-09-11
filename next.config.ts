@@ -43,11 +43,6 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
-      {
-        source: "/report-a-correction",
-        destination: "/corrections",
-        permanent: true,
-      },
     ];
   },
 };

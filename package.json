@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx --test src/lib/contact.test.ts"
+    "test": "tsx --test src/lib/contact.test.ts src/lib/rainy-day.test.ts src/lib/conditions.test.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
