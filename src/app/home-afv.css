@@ -1,0 +1,13 @@
+.home-overhaul .home-intel{border-radius:8px;box-shadow:0 8px 24px rgba(20,38,28,.10)}
+.home-overhaul .home-intel a{border-radius:0}
+.home-overhaul .town-card{min-height:220px;border-radius:8px;background-image:none!important}
+.home-overhaul .town-card:before{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.18))}
+.home-overhaul .town-gatlinburg{background:#244c3a}
+.home-overhaul .town-pigeon{background:#72513a}
+.home-overhaul .town-sevierville{background:#3e5860}
+.home-overhaul .town-townsend{background:#495d38}
+.home-overhaul .place-card{border-radius:8px}
+.home-overhaul .trip-card{border-radius:0 8px 8px 0}
+.home-overhaul .revenue-strip{border-radius:10px}
+.home-overhaul .photo-big,.home-overhaul .photo-stack figure{border-radius:8px}
+@media(max-width:620px){.home-overhaul .town-card{min-height:150px}}
