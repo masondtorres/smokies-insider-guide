@@ -7,7 +7,7 @@ import { mapsUrl, places } from "@/data/places";
 import { breadcrumbSchema, organizationSchema, webPageSchema, webSiteSchema } from "@/lib/seoSchema";
 
 export const metadata: Metadata = {
-  title: "Build a Smokies Day That Actually Works",
+  title: "Smoky Mountains Trip Planner: Gatlinburg, Pigeon Forge & the Park",
   description:
     "Independent Smoky Mountains planning for Gatlinburg, Pigeon Forge, Sevierville and Townsend. Choose your base, group and today's focus. Get traffic, parking, weather and backup help without the guesswork.",
   alternates: { canonical: "/" },
