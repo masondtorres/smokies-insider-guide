@@ -25,11 +25,11 @@ const ui = Source_Sans_3({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.smokyinsider.com"),
   title: {
-    default: "Smokies Insider | Plan a Smoky Mountains Trip That Works",
+    default: "Smokies Insider | Gatlinburg, Pigeon Forge & Great Smoky Mountains Guide",
     template: "%s | Smokies Insider",
   },
   description:
-    "Independent Smoky Mountains trip planning for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park. Practical help for routes, parking, attractions, food, stays and rainy-day backups.",
+    "Independent Smoky Mountains trip planning for Gatlinburg, Pigeon Forge, Sevierville, Townsend and Great Smoky Mountains National Park. Current conditions, traffic and parking help, verified local places, official links and practical trip plans.",
   applicationName: "Smokies Insider",
   category: "Travel and Tourism",
   keywords: [
@@ -39,7 +39,10 @@ export const metadata: Metadata = {
     "Pigeon Forge trip planning",
     "Sevierville Tennessee travel",
     "Townsend Tennessee",
-    "family vacation planning",
+    "Great Smoky Mountains National Park",
+    "Smoky Mountains fall color",
+    "Smoky Mountains traffic and parking",
+    "Smoky Mountains restaurants and attractions",
   ],
   authors: [{ name: "Mason Torres" }, { name: "Smokies Insider" }],
   creator: "Mason Torres",
@@ -48,17 +51,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Smokies Insider",
-    title: "Smokies Insider | Smoky Mountains Trip Planner",
+    title: "Smokies Insider | Gatlinburg, Pigeon Forge & Great Smoky Mountains Guide",
     description:
-      "Independent Smokies planning for routes, attractions, restaurants, stays and before-you-go details.",
+      "Plan a Smokies trip around current conditions, traffic, real restaurants and attractions, lodging choices, fall color and official source links.",
     url: "https://www.smokyinsider.com",
     locale: "en_US",
     images: [{ url: "/images/photos/og-home.jpg", width: 1200, height: 630, alt: "Autumn in Cades Cove, Great Smoky Mountains National Park" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Smokies Insider",
-    description: "Plan your Smokies trip without the guesswork.",
+    title: "Smokies Insider | Smoky Mountains Trip Guide",
+    description:
+      "Current conditions, traffic help, real places, official links and practical planning for Gatlinburg, Pigeon Forge, Sevierville, Townsend and the national park.",
     images: ["/images/photos/og-home.jpg"],
   },
   robots: {
