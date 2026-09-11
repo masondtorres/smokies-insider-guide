@@ -40,6 +40,7 @@ export const indexableRoutes = [
   "/pigeon-forge",
   "/pigeon-forge-with-kids",
   "/privacy",
+  "/report-a-correction",
   "/rainy-day",
   "/rainy-day-smokies-with-kids",
   "/restaurants",
