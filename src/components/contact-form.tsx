@@ -1,8 +1,10 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 
-type FormState = "idle" | "submitting" | "success" | "error" | "not_configured";
+type FormState = "idle" | "submitting" | "success" | "error" | "email_fallback";
+
+const CONTACT_EMAIL = "masondtorres@duck.com";
 
 const reasons = [
   "General question",
@@ -43,10 +45,37 @@ type ContactFormProps = {
   variant?: "contact" | "correction" | "advertise";
 };
 
+function subjectForVariant(variant: ContactFormProps["variant"]) {
+  if (variant === "correction") return "Smoky Insider Correction Report";
+  if (variant === "advertise") return "Smoky Insider Advertising Inquiry";
+  return "Smoky Insider Contact";
+}
+
+function buildMailto(variant: ContactFormProps["variant"], fields: FieldValues) {
+  const labels: Array<[string, string]> = [
+    ["Name", fields.name],
+    ["Email", fields.email],
+    ["Reason", fields.reason],
+    ["Business name", fields.businessName],
+    ["Page / listing", fields.pageUrl],
+    ["Phone", fields.phone],
+    ["Business website", fields.businessWebsite],
+    ["Interest", fields.interest],
+    ["Correct information / source", fields.correctInfo],
+    ["Message", fields.message],
+  ];
+  const body = labels
+    .filter(([, value]) => value.trim())
+    .map(([label, value]) => `${label}:\n${value.trim()}`)
+    .join("\n\n");
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subjectForVariant(variant))}&body=${encodeURIComponent(body)}`;
+}
+
 export function ContactForm({ variant = "contact" }: ContactFormProps) {
   const [state, setState] = useState<FormState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [fields, setFields] = useState<FieldValues>(emptyFields);
+  const mailtoHref = useMemo(() => buildMailto(variant, fields), [variant, fields]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -67,7 +96,7 @@ export function ContactForm({ variant = "contact" }: ContactFormProps) {
       interest: String(data.get("interest") || "").trim(),
       correctInfo: String(data.get("correctInfo") || "").trim(),
     };
-    setFields({
+    const preservedFields: FieldValues = {
       name: payload.name,
       email: payload.email,
       reason: payload.reason,
@@ -78,12 +107,21 @@ export function ContactForm({ variant = "contact" }: ContactFormProps) {
       businessWebsite: payload.businessWebsite,
       interest: payload.interest,
       correctInfo: payload.correctInfo,
-    });
-    if (!payload.name || !payload.email || !payload.reason || !payload.message) {
+    };
+    setFields(preservedFields);
+
+    const correctionMissing = variant === "correction" && (!payload.message || (!payload.pageUrl && !payload.correctInfo));
+    const standardMissing = variant !== "correction" && (!payload.name || !payload.email || !payload.reason || !payload.message);
+    if (correctionMissing || standardMissing) {
       setState("error");
-      setErrorMessage("Please fill in name, email, reason and message.");
+      setErrorMessage(
+        variant === "correction"
+          ? "Please describe the problem and include either the page involved or the correct information/source."
+          : "Please fill in name, email, reason and message."
+      );
       return;
     }
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -92,20 +130,19 @@ export function ContactForm({ variant = "contact" }: ContactFormProps) {
       });
       const result = await response.json().catch(() => ({}));
       if (response.status === 503 || result?.code === "NOT_CONFIGURED") {
-        setState("not_configured");
+        setState("email_fallback");
         return;
       }
       if (!response.ok) {
         setState("error");
-        setErrorMessage(result?.error || "Something went wrong. Please try again later.");
+        setErrorMessage(result?.error || "Something went wrong. You can use the email option below instead.");
         return;
       }
       setState("success");
       setFields(emptyFields);
       form.reset();
     } catch {
-      setState("error");
-      setErrorMessage("Network error. Your message was kept so you can try again.");
+      setState("email_fallback");
     }
   }
 
@@ -113,30 +150,35 @@ export function ContactForm({ variant = "contact" }: ContactFormProps) {
     return (
       <div className="contact-form-status" role="status">
         <h2>Message received</h2>
-        <p>Thank you. We will review your message and respond when appropriate.</p>
+        <p>Your submission reached the Smoky Insider contact system.</p>
         <button type="button" className="button button-secondary" onClick={() => setState("idle")}>Send another message</button>
       </div>
     );
   }
 
-  if (state === "not_configured") {
+  if (state === "email_fallback") {
     return (
       <div className="contact-form-status" role="status">
-        <h2>Contact form not yet configured</h2>
-        <p>Delivery is not connected yet. The site owner must set server-only email credentials before messages can be received.</p>
+        <h2>Open your email to finish sending</h2>
+        <p>The website email service is not connected yet. Your information is preserved below in a pre-addressed email draft. Review it in your email app and press send.</p>
+        <p><a className="button button-primary" href={mailtoHref}>Open email draft</a></p>
+        <p>If no email app opens, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+        <button type="button" className="button button-secondary" onClick={() => setState("idle")}>Edit form</button>
       </div>
     );
   }
 
+  const correction = variant === "correction";
+
   return (
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
-      <h2>{variant === "correction" ? "Report a correction" : variant === "advertise" ? "Advertising inquiry" : "Send a message"}</h2>
+      <h2>{correction ? "Report a correction" : variant === "advertise" ? "Advertising inquiry" : "Send a message"}</h2>
       <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: "1px", height: "1px", overflow: "hidden" }}>
         <label>Website<input name="hpWebsite" type="text" tabIndex={-1} autoComplete="off" /></label>
       </div>
       <div className="contact-form-grid">
-        <label>Name <span aria-hidden="true">*</span><input name="name" type="text" required autoComplete="name" maxLength={120} defaultValue={fields.name} /></label>
-        <label>Email <span aria-hidden="true">*</span><input name="email" type="email" required autoComplete="email" maxLength={254} defaultValue={fields.email} /></label>
+        <label>Name {correction ? "(optional)" : <span aria-hidden="true">*</span>}<input name="name" type="text" required={!correction} autoComplete="name" maxLength={120} defaultValue={fields.name} /></label>
+        <label>Email {correction ? "(optional)" : <span aria-hidden="true">*</span>}<input name="email" type="email" required={!correction} autoComplete="email" maxLength={254} defaultValue={fields.email} /></label>
         {variant === "contact" ? (
           <label>Reason for contacting <span aria-hidden="true">*</span>
             <select name="reason" required defaultValue={fields.reason || ""}>
@@ -145,10 +187,10 @@ export function ContactForm({ variant = "contact" }: ContactFormProps) {
             </select>
           </label>
         ) : (
-          <input type="hidden" name="reason" value={variant === "correction" ? "Correction or factual update" : "Advertising or partnership"} />
+          <input type="hidden" name="reason" value={correction ? "Correction or factual update" : "Advertising or partnership"} />
         )}
         <label>Business name (optional)<input name="businessName" type="text" autoComplete="organization" maxLength={160} defaultValue={fields.businessName} /></label>
-        <label className="contact-form-full">Page or listing involved (optional)<input name="pageUrl" type="url" placeholder="https://www.smokyinsider.com/..." maxLength={500} defaultValue={fields.pageUrl} /></label>
+        <label className="contact-form-full">Page or listing involved {correction ? "" : "(optional)"}<input name="pageUrl" type="url" placeholder="https://www.smokyinsider.com/..." maxLength={500} defaultValue={fields.pageUrl} /></label>
         {variant === "advertise" ? (
           <>
             <label>Phone (optional)<input name="phone" type="tel" autoComplete="tel" maxLength={40} defaultValue={fields.phone} /></label>
@@ -156,13 +198,19 @@ export function ContactForm({ variant = "contact" }: ContactFormProps) {
             <label className="contact-form-full">What are you interested in?<input name="interest" type="text" maxLength={160} defaultValue={fields.interest} /></label>
           </>
         ) : null}
-        {variant === "correction" ? (
+        {correction ? (
           <label className="contact-form-full">Correct information / source<textarea name="correctInfo" rows={3} maxLength={2000} defaultValue={fields.correctInfo} /></label>
         ) : null}
         <label className="contact-form-full">Message <span aria-hidden="true">*</span><textarea name="message" rows={6} required maxLength={5000} defaultValue={fields.message} /></label>
       </div>
-      {state === "error" && <p className="contact-form-error" role="alert">{errorMessage}</p>}
+      {state === "error" && (
+        <div role="alert">
+          <p className="contact-form-error">{errorMessage}</p>
+          <p><a href={mailtoHref}>Email {CONTACT_EMAIL} instead</a></p>
+        </div>
+      )}
       <button type="submit" className="button button-primary" disabled={state === "submitting"}>{state === "submitting" ? "Sending" : "Send message"}</button>
+      <p className="contact-form-help">If website delivery is unavailable, this form will give you a pre-addressed email draft instead of pretending your message was sent.</p>
     </form>
   );
 }
