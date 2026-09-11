@@ -1,0 +1,33 @@
+.today-page,.rain-page{background:#f6efe0;color:#17231d}
+.today-hero,.rain-hero{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:28px 0 8px}
+.today-hero h1,.rain-hero h1{max-width:16ch;margin:6px 0 12px;font-size:clamp(2rem,6vw,3.4rem);line-height:1.02;letter-spacing:-.04em}
+.today-hero p,.rain-hero p{max-width:720px;margin:0;font-size:1.08rem;line-height:1.5}
+.today-checked{margin-top:14px;font-size:.92rem;color:#5b685f}
+.today-board{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:12px 0 48px;display:grid;gap:28px}
+.today-weather{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px;padding:0 0 8px;border-bottom:1px solid #ddcfb3}
+.today-weather h2,.today-block h2{margin:0 0 8px;font-size:1.35rem}
+.today-weather p,.today-block p{margin:0 0 8px;line-height:1.5}
+.today-meta{font-size:.88rem;color:#5b685f}
+.today-meta a,.today-block a,.rain-links a{color:#214b37;font-weight:700}
+.today-checks{display:grid;gap:18px}
+.today-checks article{padding:0 0 14px;border-bottom:1px solid #e4d8bf}
+.today-checks h3{margin:0 0 6px;font-size:1.12rem}
+.today-flag{font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;font-weight:700;color:#985035}
+.today-backup h2{font-size:1.6rem}
+.rain-tool{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:8px 0 56px}
+.rain-tool-copy h2{max-width:18ch;margin:6px 0 10px;font-size:clamp(1.6rem,4vw,2.4rem)}
+.rain-form{display:grid;gap:18px;margin:22px 0}
+.rain-field{margin:0;padding:0;border:0}
+.rain-field legend{font-weight:800;margin-bottom:8px}
+.rain-options{display:flex;flex-wrap:wrap;gap:8px}
+.rain-options label{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;border:1px solid #cbb894;background:#fffaf0;cursor:pointer;font-weight:650}
+.rain-options label.is-on{background:#14251c;color:#fffaf0;border-color:#14251c}
+.rain-options input{accent-color:#f5c542}
+.rain-result{padding-top:8px;border-top:1px solid #ddcfb3}
+.rain-result h3{margin:0 0 10px;font-size:clamp(1.4rem,3vw,2rem)}
+.rain-label{margin:18px 0 6px;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#985035}
+.rain-result ol{margin:0;padding-left:18px}
+.rain-result li{margin:0 0 12px}
+.rain-result li span{display:block;color:#5b685f}
+.rain-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px}
+@media(max-width:700px){.today-weather{grid-template-columns:1fr}.rain-options label{width:100%}}
