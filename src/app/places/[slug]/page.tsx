@@ -19,10 +19,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const place = placeBySlug(slug);
   if (!place) return { title: "Place not found" };
+  const description = `${place.name} in ${place.town}. Official site, directions and planning notes. Last verified ${place.lastVerified}.`;
   return {
-    title: `${place.name} | Smokies Insider`,
-    description: `${place.name} in ${place.town}. Official site, directions and planning notes. Last verified ${place.lastVerified}.`,
+    title: place.name,
+    description,
     alternates: { canonical: `/places/${place.slug}` },
+    openGraph: {
+      title: place.name,
+      description,
+      url: `/places/${place.slug}`,
+    },
   };
 }
 
