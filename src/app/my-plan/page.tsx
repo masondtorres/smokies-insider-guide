@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AskGrokPlan } from "@/components/ask-grok-plan";
 import { MyPlan } from "@/components/my-plan";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function MyPlanPage() {
           <p>Save what fits, organize the trip by day, choose one main anchor and catch common planning problems early.</p>
         </header>
         <MyPlan />
+        <AskGrokPlan />
       </article>
     </main>
   );
