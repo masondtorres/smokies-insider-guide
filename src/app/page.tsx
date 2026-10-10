@@ -45,7 +45,7 @@ export default function Home() {
 
       <section className="visitor-contained visitor-section visitor-itinerary-feature" aria-label="Illustrated three-day Gatlinburg trip">
         <Link href="/gatlinburg-3-day-itinerary">
-          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/GatlinburgAerial.jpg?width=1200" alt="Aerial view of downtown Gatlinburg, Tennessee" loading="lazy" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/GatlinburgAerial.jpg" alt="Aerial view of downtown Gatlinburg, Tennessee" loading="lazy" />
           <span>
             <small>Featured photo itinerary</small>
             <strong>3 days in Gatlinburg, ready to explore.</strong>
