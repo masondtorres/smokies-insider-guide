@@ -43,6 +43,19 @@ export default function Home() {
         <InstantFinder />
       </div>
 
+      <section className="visitor-contained visitor-section visitor-itinerary-feature" aria-label="Illustrated three-day Gatlinburg trip">
+        <Link href="/gatlinburg-3-day-itinerary">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/GatlinburgAerial.jpg?width=1200" alt="Aerial view of downtown Gatlinburg, Tennessee" loading="lazy" />
+          <span>
+            <small>Featured photo itinerary</small>
+            <strong>3 days in Gatlinburg, ready to explore.</strong>
+            <span>Real photos. Downtown attractions, mountain views, historic sites, food, daily routes and directions to every stop.</span>
+            <b>See the complete illustrated trip ↗</b>
+          </span>
+        </Link>
+        <p>Gatlinburg aerial photo: Dswitz10734, <a href="https://commons.wikimedia.org/wiki/File:GatlinburgAerial.jpg">CC BY-SA 4.0</a>.</p>
+      </section>
+
       <section className="visitor-contained visitor-section visitor-shortcuts" aria-label="Popular visitor shortcuts">
         <Link href="/free-and-cheap-smokies"><span>Spend less</span><strong>Actually free things to do →</strong></Link>
         <Link href="/rainy-day"><span>Weather changed?</span><strong>Indoor activities →</strong></Link>
