@@ -20,7 +20,7 @@ type Day = {
 const days: Day[] = [
   {
     number: 1, title: "Downtown Gatlinburg", tagline: "Breakfast, aquarium, shops and a mountaintop afternoon",
-    image: "https://commons.wikimedia.org/wiki/Special:FilePath/GatlinburgAerial.jpg?width=1200",
+    image: "https://upload.wikimedia.org/wikipedia/commons/2/29/GatlinburgAerial.jpg",
     alt: "Aerial photograph of downtown Gatlinburg, Tennessee, taken in 2023",
     credit: "Downtown Gatlinburg — Dswitz10734, CC BY-SA 4.0 (2023)", creditUrl: "https://commons.wikimedia.org/wiki/File:GatlinburgAerial.jpg",
     route: "https://www.google.com/maps/dir/?api=1&origin=Crockett%27s+Breakfast+Camp+Gatlinburg&destination=The+Peddler+Steakhouse+Gatlinburg&waypoints=Ripley%27s+Aquarium+of+the+Smokies+Gatlinburg%7CAnakeesta+Gatlinburg",
