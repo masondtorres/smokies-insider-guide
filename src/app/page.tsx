@@ -1,239 +1,121 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import "./home-overhaul.css";
-import { DecisionEngine } from "@/components/decision-engine";
+import { InstantFinder } from "@/components/instant-finder";
 import { JsonLd } from "@/components/guide";
-import { mapsUrl, places } from "@/data/places";
 import { breadcrumbSchema, organizationSchema, webPageSchema, webSiteSchema } from "@/lib/seoSchema";
+import "./visitor-home.css";
 
 export const metadata: Metadata = {
-  title: "Smoky Mountains Trip Planner: Gatlinburg, Pigeon Forge & the Park",
-  description:
-    "Independent Smoky Mountains planning for Gatlinburg, Pigeon Forge, Sevierville and Townsend. Choose your base, group and today's focus. Get traffic, parking, weather and backup help without the guesswork.",
+  title: "Smokies Insider | Find Things to Do in Gatlinburg, Pigeon Forge & the Smokies",
+  description: "Find real places to visit across the Smoky Mountains. Choose your town and what you want to do, then open maps, official details, park conditions and free activities in seconds.",
   alternates: { canonical: "/" },
 };
 
-const featured = [
-  places.find((p) => p.slug === "pancake-pantry-gatlinburg"),
-  places.find((p) => p.slug === "dollywood"),
-  places.find((p) => p.slug === "ripleys-aquarium-gatlinburg"),
-  places.find((p) => p.slug === "local-goat-pigeon-forge"),
-  places.find((p) => p.slug === "anakeesta"),
-  places.find((p) => p.slug === "dancing-bear-lodge"),
-].filter(Boolean) as typeof places;
+const regions = [
+  { title: "Gatlinburg", description: "Walkable downtown, aquarium and the national park gateway.", href: "/gatlinburg", detail: "Downtown + park" },
+  { title: "Pigeon Forge", description: "Dollywood, family attractions and the Parkway.", href: "/pigeon-forge", detail: "Big family fun" },
+  { title: "Sevierville", description: "Historic downtown, shopping and easy access to nearby attractions.", href: "/sevierville", detail: "Explore at your pace" },
+  { title: "Townsend", description: "Cades Cove, quiet scenery and the slower side of the mountains.", href: "/townsend", detail: "Nature + quiet" },
+];
+
+const adventures = [
+  { eyebrow: "The mountains", title: "See the park without wasting the day", description: "Cades Cove, Newfound Gap and trails are not a quick loop together. Pick the park area that fits your day.", href: "/see", action: "Find scenic stops", image: "/images/photos/cades-cove-autumn.webp", alt: "Autumn foliage around Cades Cove in Great Smoky Mountains National Park" },
+  { eyebrow: "When rain shows up", title: "Find an indoor backup in the right town", description: "Aquarium, interactive museums and family attractions with direct links to check tickets and hours.", href: "/rainy-day", action: "Find rainy-day options", image: "/images/photos/historic-appalachian-cabins.webp", alt: "Historic Appalachian cabins in Great Smoky Mountains National Park" },
+];
 
 export default function Home() {
   return (
-    <main className="home-overhaul" id="home">
-      <div className="home-alert">
-        Peak-season mistake #1: building a day that ignores traffic.{" "}
-        <Link href="/parking-traffic">Check parking and traffic before you leave.</Link>
-      </div>
-
-      <section className="home-hero home-hero-compact" aria-labelledby="home-title">
-        <div className="home-hero-inner">
-          <p className="home-trust-line">Independent Smokies planning</p>
-          <h1 id="home-title">Build a Smokies day that actually works.</h1>
-          <p className="home-hero-lead">
-            Choose where you&apos;re staying, who&apos;s traveling, and what matters today. Get practical help with traffic, parking, weather, town choices, park stops, food and backup plans.
-          </p>
-          <div className="home-hero-actions">
-            <Link className="home-btn home-btn-primary" href="/start-planning">
-              Start Planning
-            </Link>
-            <Link className="home-btn home-btn-light" href="/today">
-              Check Today&apos;s Conditions
-            </Link>
+    <main className="visitor-home" id="home">
+      <section className="visitor-hero" aria-labelledby="home-title">
+        <div className="visitor-hero-inner">
+          <p className="visitor-eyebrow">Gatlinburg · Pigeon Forge · Sevierville · Townsend</p>
+          <h1 id="home-title">Less searching.<br />More Smokies.</h1>
+          <p>Find real places, free experiences, family favorites and a backup when plans change. Choose your area. Get directions. Go enjoy the mountains.</p>
+          <div className="visitor-hero-actions">
+            <a className="visitor-button visitor-primary" href="#find-now">Find something to do <span aria-hidden="true">↓</span></a>
+            <Link className="visitor-button visitor-outline" href="/today">Check park & road conditions ↗</Link>
           </div>
-          <p className="home-independence">
-            Independent Smoky Mountains planning. Not affiliated with the National Park Service, Dollywood or any tourism board. Time-sensitive information links to the official source.
-          </p>
         </div>
+        <p className="visitor-photo-credit">Cades Cove, Great Smoky Mountains National Park · <Link href="/photo-credits">Photo credits</Link></p>
       </section>
 
-      <div className="home-shell home-engine-first">
-        <DecisionEngine />
+      <div className="visitor-contained visitor-finder-wrap">
+        <InstantFinder />
       </div>
 
-      <div className="home-shell">
-        <nav className="home-intel" aria-label="Fast Smokies trip decisions">
-          <Link href="/today">
-            <small>Right now</small>
-            <strong>Roads, weather + park</strong>
-            <span>Start with what can change your day.</span>
-          </Link>
-          <Link href="/parking-traffic">
-            <small>Avoid the mess</small>
-            <strong>Traffic + parking</strong>
-            <span>Know the choke points before you commit.</span>
-          </Link>
-          <Link href="/where-to-stay">
-            <small>Base</small>
-            <strong>Where to stay</strong>
-            <span>Compare the four towns by what they make easier.</span>
-          </Link>
-          <Link href="/rainy-day">
-            <small>Backup</small>
-            <strong>Rain changed the plan</strong>
-            <span>Stay in one town instead of crossing the county.</span>
-          </Link>
-        </nav>
-      </div>
-
-      <section className="home-section home-shell">
-        <span className="home-kicker">Pick the right base</span>
-        <h2 className="home-heading">Four different trips hide under one destination name.</h2>
-        <p className="home-subhead">
-          Gatlinburg, Pigeon Forge, Sevierville and Townsend are not interchangeable. Start with the town that matches the first two days.
-        </p>
-        <div className="town-grid">
-          <Link className="town-card town-gatlinburg" href="/gatlinburg">
-            <strong>Gatlinburg</strong>
-            <span>Walkable food, downtown stops and the closest park gateway.</span>
-          </Link>
-          <Link className="town-card town-pigeon" href="/pigeon-forge">
-            <strong>Pigeon Forge</strong>
-            <span>Shows, family attractions and Parkway energy. Expect the drive tax.</span>
-          </Link>
-          <Link className="town-card town-sevierville" href="/sevierville">
-            <strong>Sevierville</strong>
-            <span>Often cheaper space. Only works if you accept the extra driving.</span>
-          </Link>
-          <Link className="town-card town-townsend" href="/townsend">
-            <strong>Townsend</strong>
-            <span>Quieter base and Cades Cove access. Weak indoor backup in rain.</span>
-          </Link>
-        </div>
-        <p className="home-note">
-          <Link href="/where-to-stay">See the full town comparison</Link> before you lock a cabin.
-        </p>
+      <section className="visitor-contained visitor-section visitor-itinerary-feature" aria-label="Illustrated three-day Gatlinburg trip">
+        <Link href="/gatlinburg-3-day-itinerary">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/GatlinburgAerial.jpg" alt="Aerial view of downtown Gatlinburg, Tennessee" loading="lazy" />
+          <span>
+            <small>Featured photo itinerary</small>
+            <strong>3 days in Gatlinburg, ready to explore.</strong>
+            <span>Real photos. Downtown attractions, mountain views, historic sites, food, daily routes and directions to every stop.</span>
+            <b>See the complete illustrated trip ↗</b>
+          </span>
+        </Link>
+        <p>Gatlinburg aerial photo: Dswitz10734, <a href="https://commons.wikimedia.org/wiki/File:GatlinburgAerial.jpg">CC BY-SA 4.0</a>.</p>
       </section>
 
-      <section className="home-section home-section-dark">
-        <div className="home-shell">
-          <span className="home-kicker">Before you leave the cabin</span>
-          <h2 className="home-heading">Check the details that can break the day.</h2>
-          <p className="home-subhead">
-            Roads, lots and hours change. The official source controls the fact. This site tells you what to check and how to pivot.
-          </p>
-          <div className="photo-story">
-            <figure className="photo-big">
-              <img src="/images/photos/newfound-gap-autumn.webp" alt="Autumn color along Newfound Gap Road in Great Smoky Mountains National Park" />
-              <figcaption>Newfound Gap Road</figcaption>
-            </figure>
-            <div className="photo-stack">
-              <figure>
-                <img src="/images/photos/ramsey-cascades.webp" alt="Ramsey Cascades waterfall in Great Smoky Mountains National Park" />
-                <figcaption>Ramsey Cascades</figcaption>
-              </figure>
-              <figure>
-                <img src="/images/photos/cades-cove-gregg-cable-house.webp" alt="Historic Gregg-Cable House in Cades Cove" />
-                <figcaption>Cades Cove</figcaption>
-              </figure>
-            </div>
-          </div>
-          <p className="home-note home-note-light">
-            <Link href="/today">Open today&apos;s official checks</Link>
-            {" · "}
-            <Link href="/photo-credits">Photo credits</Link>
-          </p>
-        </div>
+      <section className="visitor-contained visitor-section visitor-shortcuts" aria-label="Popular visitor shortcuts">
+        <Link href="/free-and-cheap-smokies"><span>Spend less</span><strong>Actually free things to do →</strong></Link>
+        <Link href="/rainy-day"><span>Weather changed?</span><strong>Indoor activities →</strong></Link>
+        <Link href="/deals"><span>Before buying tickets</span><strong>Deals and savings →</strong></Link>
       </section>
 
-      <section className="home-section home-shell">
-        <span className="home-kicker">Eat near the plan</span>
-        <h2 className="home-heading">Open the place, not a meal zone.</h2>
-        <p className="home-subhead">
-          Featured listings have a working official website and directions. Hours, tickets and waits stay with the business that controls them.
-        </p>
-        <div className="place-rail">
-          {featured.map((place) => (
-            <article className="place-card" key={place.slug}>
-              <span className="place-meta">
-                {place.town} • {place.kind}
-              </span>
-              <h3>
-                <Link href={`/places/${place.slug}`}>{place.name}</Link>
-              </h3>
-              <p>{place.familyFit}</p>
-              <div className="place-links">
-                <Link href={`/places/${place.slug}`}>Insider page</Link>
-                <a href={place.website} target="_blank" rel="noreferrer">
-                  Official site
-                </a>
-                <a href={mapsUrl(place)} target="_blank" rel="noreferrer">
-                  Directions
-                </a>
-              </div>
-            </article>
+      <section className="visitor-contained visitor-section" aria-labelledby="region-title">
+        <div className="visitor-heading">
+          <div><p className="visitor-eyebrow">Explore by place</p><h2 id="region-title">Four towns. Four different trips.</h2></div>
+          <Link href="/where-to-stay">Compare where to stay ↗</Link>
+        </div>
+        <div className="visitor-regions">
+          {regions.map((region) => (
+            <Link href={region.href} key={region.title} className="visitor-region">
+              <span>{region.detail}</span>
+              <h3>{region.title}</h3>
+              <p>{region.description}</p>
+              <strong>Explore {region.title} ↗</strong>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section className="home-section-tight home-shell">
-        <div className="book-bridge">
-          <span className="home-kicker">The book and the website</span>
-          <h2>The book carries the durable planning. The website carries what changes.</h2>
-          <p>
-            The related Smokies Insider Guide project explains how the region fits together, where to stay, how to group a day and how to avoid wasting half the trip crossing the county. This site carries the changing layer: closures, hours, events, road conditions and corrections.
-          </p>
-          <p className="home-note">No retailer link or purchase claim until publication state is verified.</p>
+      <section className="visitor-contained visitor-section" aria-labelledby="adventure-title">
+        <div className="visitor-heading"><div><p className="visitor-eyebrow">Start with the experience</p><h2 id="adventure-title">A better day starts here.</h2></div></div>
+        <div className="visitor-adventures">
+          {adventures.map((adventure) => (
+            <Link className="visitor-adventure" href={adventure.href} key={adventure.title}>
+              <img src={adventure.image} alt={adventure.alt} loading="lazy" />
+              <span className="visitor-adventure-text">
+                <span className="visitor-eyebrow">{adventure.eyebrow}</span>
+                <strong>{adventure.title}</strong>
+                <span>{adventure.description}</span>
+                <b>{adventure.action} ↗</b>
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 
-      <section className="home-section-tight home-shell">
-        <div className="revenue-strip">
-          <div>
-            <span className="home-kicker">Local business owners</span>
-            <h2>Get found while visitors are deciding where to spend the day.</h2>
-            <p>
-              Verified listings and labeled sponsored placements only. Paid placement does not buy safety claims, local endorsements or editorial ranking. Traffic numbers are not invented here.
-            </p>
-          </div>
-          <Link className="home-btn" href="/advertise">
-            Advertise or get listed
-          </Link>
+      <section className="visitor-contained visitor-section visitor-savings" aria-labelledby="savings-title">
+        <div>
+          <p className="visitor-eyebrow">Real value, not imaginary coupons</p>
+          <h2 id="savings-title">Some of the best experiences cost nothing to enter.</h2>
+          <p>Great Smoky Mountains National Park charges no entrance fee, though parking tags generally apply to stops longer than 15 minutes. The Island in Pigeon Forge advertises free admission and parking. Attractions and purchases there may cost extra.</p>
+        </div>
+        <div className="visitor-savings-actions">
+          <Link className="visitor-button visitor-primary" href="/deals">See verified free options ↗</Link>
+          <a href="https://www.nps.gov/grsm/planyourvisit/fees.htm" target="_blank" rel="noopener noreferrer">Check current park parking rules ↗</a>
         </div>
       </section>
 
-      <section className="home-section home-shell">
-        <span className="home-kicker">Independent advice. Visible sources.</span>
-        <h2 className="home-heading">Useful first. Paid placements stay labeled.</h2>
-        <div className="trip-grid">
-          <article className="trip-card">
-            <span className="home-kicker">Family</span>
-            <h3>Kids and rain</h3>
-            <p>Keep one indoor anchor in the same town as lunch before the weather starts driving the car.</p>
-            <Link href="/rainy-day">Rainy-day backups</Link>
-          </article>
-          <article className="trip-card">
-            <span className="home-kicker">Park day</span>
-            <h3>One corridor</h3>
-            <p>Check roads first. Build around one park area instead of stacking Cades Cove, Newfound Gap and downtown.</p>
-            <Link href="/today">Check today</Link>
-          </article>
-          <article className="trip-card">
-            <span className="home-kicker">Trust</span>
-            <h3>Corrections stay open</h3>
-            <p>If a page is stale, send the URL and the official source. The site should change when the fact changes.</p>
-            <Link href="/report-a-correction">Report a correction</Link>
-          </article>
-        </div>
-        <p className="home-note">
-          Smokies Insider is independent and is not affiliated with the National Park Service or listed businesses unless a relationship is specifically disclosed.
-        </p>
+      <section className="visitor-contained visitor-section visitor-business">
+        <div><p className="visitor-eyebrow">Own a local business?</p><h2>Help visitors find what you offer.</h2><p>Request a factual listing or ask about clearly labeled advertising. No invented reviews or visitor numbers.</p></div>
+        <Link className="visitor-button visitor-dark" href="/advertise">Business listings & advertising ↗</Link>
       </section>
 
       <JsonLd data={webSiteSchema()} />
       <JsonLd data={organizationSchema()} />
-      <JsonLd
-        data={webPageSchema({
-          path: "/",
-          title: metadata.title as string,
-          description: metadata.description ?? "",
-          dateModified: "2026-09-10",
-        })}
-      />
+      <JsonLd data={webPageSchema({ path: "/", title: "Smokies Insider | Find Things to Do", description: metadata.description ?? "", dateModified: "2026-10-09" })} />
       <JsonLd data={breadcrumbSchema([{ name: "Home", url: "/" }])} />
     </main>
   );

@@ -5,10 +5,9 @@ import { usePathname } from "next/navigation";
 import styles from "@/components/mobile-bottom-nav.module.css";
 
 const links = [
+  { label: "Explore", href: "/explore" },
+  { label: "Deals", href: "/deals" },
   { label: "Today", href: "/today" },
-  { label: "Plan", href: "/start-planning" },
-  { label: "Do", href: "/do" },
-  { label: "Eat", href: "/eat" },
   { label: "My Plan", href: "/my-plan", plan: true },
 ];
 
