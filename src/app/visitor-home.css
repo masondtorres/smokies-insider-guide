@@ -58,3 +58,20 @@
 .visitor-region h3{font-size:1.42rem;margin:4px 0;color:#18422b}
 .visitor-region p{margin:0;color:#526355;line-height:1.4}
 .visitor-region strong{font-size:.9rem;margin-top:6px}
+
+.visitor-adventures{grid-template-columns:repeat(2,1fr)}
+.visitor-home .visitor-adventure{min-height:320px;position:relative;display:flex;align-items:end;overflow:hidden;color:#fff!important;border-radius:16px;background:#153522}
+.visitor-adventure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.visitor-adventure:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(8,25,17,.92))}
+.visitor-adventure-text{position:relative;z-index:1;display:grid;gap:7px;padding:22px}
+.visitor-adventure-text>strong{font:700 clamp(1.5rem,2.3vw,2.1rem)/1.1 var(--font-display),Georgia,serif}
+.visitor-adventure-text>b{color:#f6d681}
+.visitor-savings{display:grid;grid-template-columns:1.4fr .6fr;gap:20px;align-items:center;border-radius:16px;padding:clamp(23px,3.5vw,38px);background:#e7d9bd}
+.visitor-savings p,.visitor-business p{line-height:1.5}
+.visitor-savings-actions{display:grid;gap:10px}
+.visitor-home .visitor-savings-actions>a:last-child{color:#21553b!important;text-decoration:underline;font-size:.83rem;font-weight:800}
+.visitor-business{display:flex;gap:24px;align-items:center;justify-content:space-between;padding-bottom:50px}
+.visitor-business h2{font-size:clamp(1.5rem,2.8vw,2rem)}
+.visitor-business .visitor-button{flex-shrink:0}
+@media(max-width:850px){.find-results{grid-template-columns:repeat(2,1fr)}.visitor-regions{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.visitor-hero{min-height:400px}.visitor-hero-inner{padding:48px 0 56px}.visitor-hero h1{font-size:clamp(2.8rem,13vw,4.4rem)}.visitor-hero-actions{display:grid}.visitor-photo-credit{font-size:.6rem}.visitor-finder-wrap{margin-top:-10px}.find-now{padding:19px 14px}.find-now-header,.find-result-head,.find-bottom{display:grid;gap:8px}.find-options button{font-size:.85rem;padding:8px 12px}.find-results,.visitor-shortcuts,.visitor-regions,.visitor-adventures,.visitor-savings{grid-template-columns:1fr}.visitor-business{flex-direction:column;align-items:start}.visitor-adventure{min-height:280px!important}}
