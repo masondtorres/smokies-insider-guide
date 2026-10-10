@@ -44,14 +44,14 @@ function decide(base: Base, group: Group, focus: Focus): Result {
   if (focus === "rainy") {
     const town =
       base === "townsend"
-        ? "Townsend has fewer indoor backups. Shift the day toward Gatlinburg crafts or Pigeon Forge shows rather than forcing a wet park loop."
+        ? "Townsend has fewer indoor backups. Shift toward Gatlinburg (Ripley's Aquarium, Arts & Crafts Community) or Pigeon Forge (WonderWorks, Titanic Museum, dinner shows) rather than forcing a wet park loop."
         : base === "gatlinburg"
-          ? "Stay in town. Use the trolley or one garage and keep the day walkable: Arts & Crafts loop, aquarium, or a show."
-          : "Keep the day on the Parkway side. One indoor anchor plus food nearby beats a scenic drive in the clouds.";
+          ? "Stay in town. Use the trolley or one garage. Strong indoor options: Ripley's Aquarium of the Smokies, Anakeesta (covered areas), or Arts & Crafts loop shops."
+          : "Keep the day on the Parkway side. One indoor anchor (WonderWorks, Titanic Museum, Dollywood if open, or a show) plus food nearby beats a scenic drive in the clouds.";
     return {
-      anchor: base === "townsend" ? "Gatlinburg or Pigeon Forge indoor backup" : "One indoor town anchor",
+      anchor: base === "townsend" ? "Gatlinburg or Pigeon Forge indoor backup" : "One strong indoor town anchor",
       why: town,
-      caution: "Do not drive to Kuwohi or Cades Cove hoping the rain 'looks lighter up there.' Ridge weather is usually worse.",
+      caution: "Do not drive to Kuwohi or Cades Cove hoping the rain 'looks lighter up there.' Ridge weather is usually worse. Free options: Sugarlands Visitor Center, indoor malls, or driving the Arts & Crafts Community in light rain.",
       steps: [
         { label: "Rainy-day backups", href: "/rainy-day" },
         { label: "Check today's conditions", href: "/today" },
