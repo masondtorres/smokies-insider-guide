@@ -62,6 +62,12 @@ export default async function TodayPage() {
           <h2>{conditions.seasonal.title}</h2>
           <p>{conditions.seasonal.text}</p>
         </section>
+        <section className="today-block">
+          <p className="today-flag">Park trail advisory · NPS source checked October 25, 2026</p>
+          <h2>Check trail closures before heading uphill</h2>
+          <p>The National Park Service lists Bullhead Trail as closed Mondays through Thursdays, except federal holidays, through November 19, 2026, for rehabilitation. It also lists Laurel Falls Trail as closed for rehabilitation. Conditions and dates can change: do not rely on this summary in place of the park's live notices.</p>
+          <p className="today-meta"><a href="https://www.nps.gov/grsm/planyourvisit/temproadclose.htm" target="_blank" rel="noopener noreferrer">Check current NPS road and trail closures</a></p>
+        </section>
         <section className="today-block today-backup">
           <p className="today-flag">Backup plan</p>
           <h2>{conditions.backup.title}</h2>
@@ -82,7 +88,7 @@ export default async function TodayPage() {
           </div>
         </section>
       </div>
-      <JsonLd data={webPageSchema({ path: "/today", title: "Today in the Smokies | What to Check Before You Leave", description: metadata.description ?? "", dateModified: "2026-09-10" })} />
+      <JsonLd data={webPageSchema({ path: "/today", title: "Today in the Smokies | What to Check Before You Leave", description: metadata.description ?? "", dateModified: "2026-10-25" })} />
       <JsonLd data={breadcrumbSchema([{ name: "Home", url: "/" }, { name: "Today", url: "/today" }])} />
     </main>
   );
