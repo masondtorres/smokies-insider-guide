@@ -65,7 +65,8 @@ export default async function TodayPage() {
         <section className="today-block">
           <p className="today-flag">Park trail advisory · NPS source checked October 25, 2026</p>
           <h2>Check trail closures before heading uphill</h2>
-          <p>The National Park Service lists Bullhead Trail as closed Mondays through Thursdays, except federal holidays, through November 19, 2026, for rehabilitation. It also lists Laurel Falls Trail as closed for rehabilitation. Conditions and dates can change: do not rely on this summary in place of the park's live notices.</p>
+          <p>The National Park Service lists Bullhead Trail as closed Mondays through Thursdays, except federal holidays, through November 19, 2026, for rehabilitation. Laurel Falls Trail is also closed for rehabilitation; NPS currently anticipates reopening sometime in 2027.</p>
+          <p>Hurricane Helene damage also affects hiking plans: Big Creek Trail is open only for its first two miles, ending at Mouse Creek Falls. Caldwell Fork, Gunter Fork and Swallow Fork trails are closed. These are dated NPS advisories, not live trail-status updates. Check the official closure list immediately before traveling.</p>
           <p className="today-meta"><a href="https://www.nps.gov/grsm/planyourvisit/temproadclose.htm" target="_blank" rel="noopener noreferrer">Check current NPS road and trail closures</a></p>
         </section>
         <section className="today-block today-backup">
